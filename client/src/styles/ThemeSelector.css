@@ -1,0 +1,38 @@
+.theme-selector {
+  position: relative;
+}
+
+.theme-dropdown {
+  appearance: none;
+  background-color: var(--white-color);
+  border: 1px solid var(--gray-300);
+  border-radius: 4px;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--gray-800);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.theme-dropdown:hover {
+  border-color: var(--primary-color);
+}
+
+.theme-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+}
+
+.theme-dropdown option {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .theme-dropdown {
+    width: 100%;
+  }
+} 

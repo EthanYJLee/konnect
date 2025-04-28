@@ -1,0 +1,74 @@
+{
+  "welcome": "欢迎使用 K-Life Assistant",
+  "welcomeMessage": "关于韩国生活，您可以询问任何问题！",
+  "nav": {
+    "home": "首页",
+    "faq": "常见问题",
+    "history": "问题记录",
+    "settings": "设置"
+  },
+  "chat": {
+    "placeholder": "请输入您的问题...",
+    "send": "发送",
+    "thinking": "思考中"
+  },
+  "faq": {
+    "title": "常见问题",
+    "categories": {
+      "transportation": "交通",
+      "banking": "银行",
+      "telecom": "通信",
+      "healthcare": "医疗",
+      "visa": "签证与移民",
+      "housing": "住房"
+    },
+    "transportation": {
+      "q1": "如何在韩国使用地铁？",
+      "a1": "您可以使用T-money卡或信用卡支付地铁费用。请下载KakaoMetro应用进行路线规划。",
+      "q2": "如何购买T-money卡？",
+      "a2": "您可以在便利店、地铁站或网上购买T-money卡。基本卡的价格为2,500-3,000韩元。",
+      "q3": "地铁的运营时间是怎样的？",
+      "a3": "地铁通常从早上5:30运营到午夜12点。部分线路可能有不同的时间表。"
+    },
+    "banking": {
+      "q1": "如何开设银行账户？",
+      "a1": "请携带外国人登录证和护照前往银行分行。大多数银行需要最低1,000韩元的存款。",
+      "q2": "需要哪些文件？",
+      "a2": "您需要外国人登录证(ARC)、护照，有时还需要地址证明。",
+      "q3": "可以使用外国信用卡吗？",
+      "a3": "是的，大多数地方都接受外国信用卡，但一些小商店可能只接受韩国卡。"
+    }
+  },
+  "history": {
+    "title": "问题记录",
+    "empty": "还没有提问",
+    "question": "问题",
+    "answer": "回答",
+    "copy": "复制回答",
+    "report": "报告错误"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "theme": "主题",
+    "notifications": "通知",
+    "enableNotifications": "启用通知"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色"
+  },
+  "footer": {
+    "about": "关于",
+    "description": "K-Life Assistant为在韩外国人提供日常生活问题和信息。",
+    "links": "快速链接",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "contact": "联系我们",
+    "support": "支持",
+    "help": "帮助中心",
+    "feedback": "发送反馈",
+    "report": "报告问题",
+    "rights": "保留所有权利"
+  }
+} 

@@ -1,0 +1,74 @@
+{
+  "welcome": "Chào mừng đến với K-Life Assistant",
+  "welcomeMessage": "Hãy hỏi tôi bất cứ điều gì về cuộc sống ở Hàn Quốc!",
+  "nav": {
+    "home": "Trang chủ",
+    "faq": "Câu hỏi thường gặp",
+    "history": "Lịch sử câu hỏi",
+    "settings": "Cài đặt"
+  },
+  "chat": {
+    "placeholder": "Nhập câu hỏi của bạn...",
+    "send": "Gửi",
+    "thinking": "Đang suy nghĩ"
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "categories": {
+      "transportation": "Giao thông",
+      "banking": "Ngân hàng",
+      "telecom": "Viễn thông",
+      "healthcare": "Y tế",
+      "visa": "Thị thực & Nhập cư",
+      "housing": "Nhà ở"
+    },
+    "transportation": {
+      "q1": "Làm thế nào để sử dụng tàu điện ngầm ở Hàn Quốc?",
+      "a1": "Bạn có thể sử dụng thẻ T-money hoặc thẻ tín dụng để thanh toán phí tàu điện ngầm. Tải ứng dụng KakaoMetro để lập kế hoạch tuyến đường.",
+      "q2": "Làm thế nào để mua thẻ T-money?",
+      "a2": "Bạn có thể mua thẻ T-money tại cửa hàng tiện lợi, ga tàu điện ngầm hoặc trực tuyến. Giá thẻ cơ bản là 2,500-3,000 KRW.",
+      "q3": "Giờ hoạt động của tàu điện ngầm là gì?",
+      "a3": "Tàu điện ngầm thường hoạt động từ 5:30 sáng đến 12 giờ đêm. Một số tuyến có thể có lịch trình khác."
+    },
+    "banking": {
+      "q1": "Làm thế nào để mở tài khoản ngân hàng?",
+      "a1": "Đến chi nhánh ngân hàng với thẻ đăng ký người nước ngoài và hộ chiếu. Hầu hết các ngân hàng yêu cầu tiền gửi tối thiểu 1,000 KRW.",
+      "q2": "Cần những giấy tờ gì?",
+      "a2": "Bạn cần thẻ đăng ký người nước ngoài (ARC), hộ chiếu và đôi khi cần giấy chứng nhận địa chỉ.",
+      "q3": "Có thể sử dụng thẻ tín dụng nước ngoài không?",
+      "a3": "Có, hầu hết các nơi chấp nhận thẻ tín dụng nước ngoài, nhưng một số cửa hàng nhỏ có thể chỉ chấp nhận thẻ Hàn Quốc."
+    }
+  },
+  "history": {
+    "title": "Lịch sử câu hỏi",
+    "empty": "Chưa có câu hỏi nào",
+    "question": "Câu hỏi",
+    "answer": "Câu trả lời",
+    "copy": "Sao chép câu trả lời",
+    "report": "Báo cáo lỗi"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
+    "notifications": "Thông báo",
+    "enableNotifications": "Bật thông báo"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối"
+  },
+  "footer": {
+    "about": "Giới thiệu",
+    "description": "K-Life Assistant cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài ở Hàn Quốc.",
+    "links": "Liên kết nhanh",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản dịch vụ",
+    "contact": "Liên hệ",
+    "support": "Hỗ trợ",
+    "help": "Trung tâm trợ giúp",
+    "feedback": "Gửi phản hồi",
+    "report": "Báo cáo vấn đề",
+    "rights": "Đã đăng ký bản quyền"
+  }
+} 
