@@ -4,8 +4,10 @@
   "nav": {
     "home": "首页",
     "faq": "常见问题",
-    "history": "问题记录",
-    "settings": "设置"
+    "history": "历史记录",
+    "settings": "设置",
+    "login": "登录",
+    "signup": "注册"
   },
   "chat": {
     "placeholder": "请输入您的问题...",
@@ -70,5 +72,16 @@
     "feedback": "发送反馈",
     "report": "报告问题",
     "rights": "保留所有权利"
+  },
+  "login": {
+    "google": "使用谷歌账号登录",
+    "apple": "使用苹果账号登录",
+    "or": "或手动输入",
+    "login": "登录",
+    "signup": "注册",
+    "findId": "找回ID",
+    "findPw": "找回密码",
+    "email": "邮箱",
+    "password": "密码"
   }
 } 

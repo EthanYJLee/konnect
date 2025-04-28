@@ -34,8 +34,8 @@ const Home = () => {
       <p>{message}</p>
       <button onClick={fetchData}></button>
       <div className="chat-container">
-        <h1>{t("welcome")}</h1>
-        <p>{t("welcomeMessage")}</p>
+        {/* <h1>{t("welcome")}</h1>
+        <p>{t("welcomeMessage")}</p> */}
         <ChatInterface language={language} />
       </div>
     </div>

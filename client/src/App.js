@@ -7,6 +7,7 @@ import "./styles/App.css";
 
 // Pages
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import FAQ from "./pages/FAQ";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
@@ -25,6 +26,7 @@ function App() {
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/settings" element={<Settings />} />

@@ -5,7 +5,9 @@
     "home": "Home",
     "faq": "FAQ",
     "history": "History",
-    "settings": "Settings"
+    "settings": "Settings",
+    "login": "Login",
+    "signup": "Sign Up"
   },
   "chat": {
     "placeholder": "Type your question here...",
@@ -70,5 +72,16 @@
     "feedback": "Send Feedback",
     "report": "Report Issue",
     "rights": "All rights reserved"
+  },
+  "login": {
+    "google": "Login with Google",
+    "apple": "Login with Apple",
+    "or": "Or enter manually",
+    "login": "Login",
+    "signup": "Sign Up",
+    "findId": "Find ID",
+    "findPw": "Find Password",
+    "email": "Email",
+    "password": "Password"
   }
 } 

@@ -5,7 +5,9 @@
     "home": "ホーム",
     "faq": "よくある質問",
     "history": "質問履歴",
-    "settings": "設定"
+    "settings": "設定",
+    "login": "ログイン",
+    "signup": "新規登録"
   },
   "chat": {
     "placeholder": "質問を入力してください...",
@@ -70,5 +72,16 @@
     "feedback": "フィードバックを送信",
     "report": "問題を報告",
     "rights": "全著作権所有"
+  },
+  "login": {
+    "google": "Googleでログイン",
+    "apple": "Appleでログイン",
+    "or": "または直接入力",
+    "login": "ログイン",
+    "signup": "新規登録",
+    "findId": "ID検索",
+    "findPw": "パスワード検索",
+    "email": "メールアドレス",
+    "password": "パスワード"
   }
 } 

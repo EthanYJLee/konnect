@@ -5,7 +5,9 @@
     "home": "홈",
     "faq": "자주 묻는 질문",
     "history": "질문 기록",
-    "settings": "설정"
+    "settings": "설정",
+    "login": "로그인",
+    "signup": "회원가입"
   },
   "chat": {
     "placeholder": "질문을 입력하세요...",
@@ -70,5 +72,16 @@
     "feedback": "피드백 보내기",
     "report": "문제 신고",
     "rights": "모든 권리 보유"
+  },
+  "login": {
+    "google": "구글 계정으로 로그인",
+    "apple": "애플 계정으로 로그인",
+    "or": "또는 직접 입력",
+    "login": "로그인",
+    "signup": "회원가입",
+    "findId": "아이디 찾기",
+    "findPw": "비밀번호 찾기",
+    "email": "이메일",
+    "password": "비밀번호"
   }
 } 

@@ -94,6 +94,9 @@ const ChatInterface = ({ language }) => {
 
   return (
     <div className="chat-interface">
+      <p></p>
+      <h1>{t("welcome")}</h1>
+      <p>{t("welcomeMessage")}</p>
       <div className="messages-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.type}`}>

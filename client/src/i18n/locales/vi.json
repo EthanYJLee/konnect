@@ -5,7 +5,9 @@
     "home": "Trang chủ",
     "faq": "Câu hỏi thường gặp",
     "history": "Lịch sử câu hỏi",
-    "settings": "Cài đặt"
+    "settings": "Cài đặt",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký"
   },
   "chat": {
     "placeholder": "Nhập câu hỏi của bạn...",
@@ -70,5 +72,16 @@
     "feedback": "Gửi phản hồi",
     "report": "Báo cáo vấn đề",
     "rights": "Đã đăng ký bản quyền"
+  },
+  "login": {
+    "google": "Đăng nhập bằng Google",
+    "apple": "Đăng nhập bằng Apple",
+    "or": "Hoặc nhập thủ công",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký",
+    "findId": "Tìm ID",
+    "findPw": "Tìm mật khẩu",
+    "email": "Email",
+    "password": "Mật khẩu"
   }
 } 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
 import "../styles/Header.css";
@@ -7,6 +7,8 @@ import "../styles/Header.css";
 const Header = () => {
   const { t } = useTranslation();
   const [language, setLanguage] = React.useState("en");
+
+  const navigate = useNavigate();
 
   return (
     <header className="app-header">
@@ -23,6 +25,10 @@ const Header = () => {
         </nav>
 
         <div className="header-right">
+          <button className="login-btn" onClick={() => navigate("/login")}>
+            {t("nav.login")}
+          </button>
+          {/* <button className="signup-btn">{t("nav.signup")}</button> */}
           <LanguageSelector
             currentLanguage={language}
             onLanguageChange={setLanguage}
