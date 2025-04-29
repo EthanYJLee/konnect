@@ -1,4 +1,5 @@
-import React from "react";
+import { React, useState } from "react";
+import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
 import "../styles/Settings.css";
@@ -10,6 +11,20 @@ const Settings = () => {
   const handleLanguageChange = (event) => {
     const newLang = event.target.value;
     i18n.changeLanguage(newLang);
+  };
+
+  const [message, setMessage] = useState("");
+
+  const fetchData = () => {
+    axios
+      .get("http://localhost:3030/api")
+      .then((response) => {
+        console.log(response.data);
+        setMessage(response.data); // 서버에서 받은 메시지
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   };
 
   return (
@@ -40,6 +55,10 @@ const Settings = () => {
               {t("settings.enableNotifications")}
             </label>
           </div>
+        </div>
+        <div className="settings-col">
+          <button onClick={fetchData}>네트워크 확인</button>
+          <p>{message}</p>
         </div>
       </div>
       <div className="settings-footer">

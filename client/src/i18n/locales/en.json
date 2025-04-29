@@ -25,20 +25,52 @@
       "housing": "Housing"
     },
     "transportation": {
-      "q1": "How do I use the subway in Korea?",
-      "a1": "You can use T-money card or credit card to pay for subway rides. Download the KakaoMetro app for route planning.",
+      "q1": "How do I use public transportation in Korea?",
+      "a1": "You can use T-money card for buses and subways. Download the KakaoMap or NaverMap app for navigation.",
       "q2": "How do I get a T-money card?",
-      "a2": "You can buy T-money cards at convenience stores, subway stations, or online. The basic card costs 2,500-3,000 KRW.",
-      "q3": "What are the subway operating hours?",
-      "a3": "Subways usually operate from 5:30 AM to midnight. Some lines may have different schedules."
+      "a2": "You can purchase a T-money card at convenience stores, subway stations, or online. You can recharge it at any convenience store or subway station.",
+      "q3": "What are the main transportation apps in Korea?",
+      "a3": "KakaoMap and NaverMap are the most popular navigation apps. KakaoTaxi is commonly used for taxi services."
     },
     "banking": {
-      "q1": "How do I open a bank account?",
-      "a1": "Visit a bank branch with your ARC and passport. Most banks require a minimum deposit of 1,000 KRW.",
-      "q2": "What documents do I need?",
-      "a2": "You need your Alien Registration Card (ARC), passport, and sometimes proof of address.",
-      "q3": "Can I use foreign credit cards?",
-      "a3": "Yes, most places accept foreign credit cards, but some small shops may only accept Korean cards."
+      "q1": "How do I open a bank account in Korea?",
+      "a1": "Visit a bank branch with your ARC (Alien Registration Card) and passport. Some banks may require additional documents.",
+      "q2": "Which banks are foreigner-friendly?",
+      "a2": "KEB Hana Bank, Shinhan Bank, and Woori Bank have English services and are popular among foreigners.",
+      "q3": "How do I transfer money internationally?",
+      "a3": "You can use online banking or visit a branch. Some banks offer special international transfer services for foreigners."
+    },
+    "telecom": {
+      "q1": "How do I get a Korean phone number?",
+      "a1": "Visit a telecom provider (SKT, KT, or LG U+) with your ARC and passport. You can choose between prepaid and postpaid plans.",
+      "q2": "What are the main telecom providers in Korea?",
+      "a2": "The three major providers are SK Telecom (SKT), KT, and LG U+. They all offer various plans for foreigners.",
+      "q3": "How do I get mobile internet service?",
+      "a3": "You can get a SIM card with data plan from telecom providers or purchase a portable WiFi device."
+    },
+    "healthcare": {
+      "q1": "How does healthcare work in Korea?",
+      "a1": "Korea has a National Health Insurance system. Foreigners with an ARC can enroll after staying for 6 months.",
+      "q2": "How do I find an English-speaking doctor?",
+      "a2": "Major hospitals have international clinics. You can also use the 1339 hotline for medical consultation in English.",
+      "q3": "What should I do in case of emergency?",
+      "a3": "Call 119 for emergencies. The operators can speak English. Keep your insurance card and important medical documents with you."
+    },
+    "visa": {
+      "q1": "How do I extend my visa?",
+      "a1": "Visit the immigration office with required documents before your current visa expires. The process varies by visa type.",
+      "q2": "What documents do I need for visa extension?",
+      "a2": "Typically you need your passport, ARC, application form, proof of residence, and documents specific to your visa type.",
+      "q3": "How do I change my visa type?",
+      "a3": "Submit an application at the immigration office with required documents. Some changes may require leaving and re-entering Korea."
+    },
+    "housing": {
+      "q1": "What types of housing are available in Korea?",
+      "a1": "Common options include officetels, apartments, villas, and goshiwons. Each has different contract types and deposit requirements.",
+      "q2": "What is jeonse and wolse?",
+      "a2": "Jeonse is a large deposit with no monthly rent, while wolse is a smaller deposit with monthly rent. Both require contracts.",
+      "q3": "How do I find housing in Korea?",
+      "a3": "You can use real estate apps (직방, 다방), visit real estate agencies, or check online communities for foreigners."
     }
   },
   "history": {
@@ -83,5 +115,12 @@
     "findPw": "Find Password",
     "email": "Email",
     "password": "Password"
+  },
+  "signup": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "checkDuplicate": "Check"
   }
 } 

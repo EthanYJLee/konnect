@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/ChatInterface.css";
 
+import TypingText from "./TypingText";
+
 const ChatInterface = ({ language }) => {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const welcomeText = t("welcome");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,11 +43,6 @@ const ChatInterface = ({ language }) => {
     }
   };
 
-  // const simulateAIResponse = async (question) => {
-  //   // Simulate API delay
-  //   await new Promise((resolve) => setTimeout(resolve, 1000));
-  //   return `This is a simulated response to: "${question}"`;
-  // };
   const simulateAIResponse = async (question) => {
     const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
     const endpoint = process.env.REACT_APP_OPENAI_API_ENDPOINT;
@@ -67,7 +65,7 @@ const ChatInterface = ({ language }) => {
           content: question,
         },
       ],
-      temperature: 0.3,
+      temperature: 0.8,
     };
 
     try {
@@ -92,14 +90,28 @@ const ChatInterface = ({ language }) => {
     }
   };
 
+  const [selectedMessages, setSelectedMessages] = useState([]);
+
+  const toggleSelectMessage = (index) => {
+    setSelectedMessages((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
   return (
     <div className="chat-interface">
-      <p></p>
-      <h1>{t("welcome")}</h1>
+      {/* <h1>{t("welcome")}</h1> */}
+      <TypingText text={welcomeText} speed={100} />
       <p>{t("welcomeMessage")}</p>
       <div className="messages-container">
         {messages.map((message, index) => (
-          <div key={index} className={`message ${message.type}`}>
+          <div
+            key={index}
+            className={`message ${message.type} ${
+              selectedMessages.includes(index) ? "selected" : ""
+            }`}
+            onClick={() => toggleSelectMessage(index)}
+          >
             <div className="message-content">{message.content}</div>
             <div className="message-timestamp">
               {new Date(message.timestamp).toLocaleTimeString()}
@@ -115,6 +127,7 @@ const ChatInterface = ({ language }) => {
         <input
           type="text"
           value={inputValue}
+          maxLength={100}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder={t("chat.placeholder")}
           disabled={isLoading}

@@ -18,6 +18,9 @@
   --gray-700: #495057;
   --gray-800: #343a40;
   --gray-900: #212529;
+  --bg-primary: #ffffff;
+  --text-primary: #212529;
+  --border-color: #dee2e6;
 }
 
 [data-theme="dark"] {
@@ -40,6 +43,9 @@
   --gray-700: #dee2e6;
   --gray-800: #e9ecef;
   --gray-900: #f8f9fa;
+  --bg-primary: #1a1a1a;
+  --text-primary: #ffffff;
+  --border-color: #404040;
 }
 
 * {
@@ -51,23 +57,28 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: var(--gray-100);
-  color: var(--black-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 0.5rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 a {
@@ -90,10 +101,6 @@ button {
   transition: background-color 0.2s;
 }
 
-button:hover {
-  background-color: var(--primary-color-dark);
-}
-
 button:disabled {
   background-color: var(--gray-400);
   cursor: not-allowed;
@@ -101,11 +108,11 @@ button:disabled {
 
 input, select, textarea {
   padding: 0.5rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
-  background-color: var(--white-color);
-  color: var(--black-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 input:focus, select:focus, textarea:focus {

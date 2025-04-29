@@ -6,7 +6,7 @@
   margin: 0 auto;
   background-color: var(--white-color);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -21,9 +21,14 @@
 
 .message {
   max-width: 80%;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 8px;
   position: relative;
+}
+.message.user.selected, .message.ai.selected {
+  background-color: #e0f7fa; /* 연한 파랑 */
+  border: 1px solid #00acc1;
+  color: var(--black-color);
 }
 
 .message.user {
@@ -46,7 +51,7 @@
 .message-timestamp {
   font-size: 0.75rem;
   opacity: 0.7;
-  margin-top: 0.5rem;
+  margin-top: 0.2rem;
 }
 
 .input-form {

@@ -1,5 +1,13 @@
+#header {
+  background-color: var(--bg-primary);
+}
+.bg-body-tertiary {
+  --bs-bg-opacity: 0 !important;
+  justify-content: space-around !important;
+  background-color: var(--bg-primary) !important;
+}
 .app-header {
-  background-color: var(--white-color);
+  background-color: var(--bg-primary);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -9,10 +17,8 @@
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--bg-primary);
 }
 
 .logo {
@@ -33,7 +39,7 @@
 }
 
 .main-nav a {
-  color: var(--gray-700);
+  color: var(--text-primary);
   font-weight: 500;
   padding: 0.5rem;
   border-radius: 4px;
@@ -42,7 +48,7 @@
 
 .main-nav a:hover {
   color: var(--primary-color);
-  background-color: var(--gray-100);
+  background-color: var(--gray-200);
   text-decoration: none;
 }
 
@@ -53,31 +59,24 @@
   gap: 20px;
 }
 
-.login-btn, .signup-btn {
-  padding: 7px 18px 7px 18px;
+.header-login-btn, .header-signup-btn {
+  padding: 7px 18px;
   border: none;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  background: #f5f5f5;
-  color: #333;
-  transition: background 0.2s, color 0.2s;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  transition: background-color 0.2s, color 0.2s;
 }
 
-.login-btn:hover {
-  background: #e0e0e0;
+.header-login-btn:hover {
+  opacity: 0.9;
 }
 
-.login-btn, .signup-btn {
-  background: #007bff;
-  color: #fff;
-  /* margin-left: 2px; */
-  /* margin-right: 10px; */
-}
-
-.signup-btn:hover {
-  background: #0056b3;
+.header-signup-btn:hover {
+  opacity: 0.9;
 }
 
 @media (max-width: 768px) {
@@ -97,5 +96,6 @@
   .header-right {
     width: 100%;
     justify-content: center;
+    padding-top: 10px;
   }
 } 

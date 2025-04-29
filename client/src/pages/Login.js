@@ -22,10 +22,10 @@ const Login = () => {
           <SiNaver className="icon" />
           네이버 계정으로 로그인
         </button> */}
-        <button className="social-button apple">
+        {/* <button className="social-button apple">
           <FaApple className="icon" />
           {t("login.apple")}
-        </button>
+        </button> */}
         <div className="divider">{t("login.or")}</div>
         <input type="email" placeholder={t("login.email")} className="input" />
         <input
@@ -35,7 +35,7 @@ const Login = () => {
         />
         <button className="login-btn">{t("login.login")}</button>
         <div className="bottom-links">
-          <a href="#">{t("login.signup")}</a>
+          <a href="/signup">{t("login.signup")}</a>
           <a href="#">{t("login.findId")}</a>
           <a href="#">{t("login.findPw")}</a>
         </div>

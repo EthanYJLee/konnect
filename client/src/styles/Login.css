@@ -1,7 +1,5 @@
 /* Container */
 .container {
-    /* min-height: 100vh; */
-    /* background: #111; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,10 +26,11 @@
   /* Login Box */
   .login-box {
     /* background: #181818; */
+    margin-top: 2rem;
     border-radius: 18px;
-    padding: 2.5rem 2rem 2rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
     min-width: 340px;
-    box-shadow: 0 0 0 1px #222;
+    box-shadow: 0 0 0 1px var(--gray-300);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -39,18 +38,17 @@
   
   /* Social Buttons */
   .social-button {
+    cursor: pointer;
+    width: 100%;
     display: flex;
     align-items: center;
-    font-size: 1.15rem;
-    font-weight: 500;
-    padding: 1.1rem 0;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 9px;
-    cursor: pointer;
     justify-content: center;
-    transition: filter 0.15s;
-    color: #fff;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 12px 0;
+    transition: background 0.2s;
   }
   
   .social-button .icon {
@@ -59,30 +57,14 @@
   }
   
   /* 각 소셜 버튼 색상 */
-  .social-button.kakao {
-    background: #ffe812;
-    color: #222;
-  }
-  
-  .social-button.kakao:hover {
-    filter: brightness(0.95);
-  }
   
   .social-button.google {
-    background: #222;
-    color: #fff;
+    background: #fff;
+  color: #222;
+  border: 1px solid #e0e0e0;
   }
   
   .social-button.google:hover {
-    filter: brightness(0.95);
-  }
-  
-  .social-button.naver {
-    background: #03c75a;
-    color: #fff;
-  }
-  
-  .social-button.naver:hover {
     filter: brightness(0.95);
   }
   
@@ -92,6 +74,7 @@
   }
   
   .social-button.apple:hover {
+    background: #444;
     filter: brightness(0.95);
   }
   
@@ -99,7 +82,7 @@
   .divider {
     text-align: center;
     color: #888;
-    margin: 1.5rem 0 1rem 0;
+    margin: 1rem 0 1rem 0;
     font-size: 1.02rem;
     letter-spacing: 0.02em;
   }
@@ -121,20 +104,23 @@
   
   /* Login Button */
   .login-btn {
-    background: #fff;
-    color: #111;
+    display: flex;
+    align-items: center;
     font-size: 1.15rem;
-    font-weight: 600;
+    font-weight: 500;
+    padding: 0.7rem 0;
+    margin-bottom: 1rem;
     border: none;
     border-radius: 9px;
-    padding: 1.1rem 0;
-    /* margin-top: 0.5rem; */
     cursor: pointer;
-    transition: background 0.15s;
+    justify-content: center;
+    transition: filter 0.15s;
+    background: #007bff;
+    color: #fff;
   }
   
   .login-btn:hover {
-    background: #f2f2f2;
+    filter: brightness(0.85);
   }
   
   /* Bottom Links */

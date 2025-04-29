@@ -25,20 +25,52 @@
       "housing": "Nhà ở"
     },
     "transportation": {
-      "q1": "Làm thế nào để sử dụng tàu điện ngầm ở Hàn Quốc?",
-      "a1": "Bạn có thể sử dụng thẻ T-money hoặc thẻ tín dụng để thanh toán phí tàu điện ngầm. Tải ứng dụng KakaoMetro để lập kế hoạch tuyến đường.",
+      "q1": "Làm thế nào để sử dụng phương tiện giao thông công cộng ở Hàn Quốc?",
+      "a1": "Bạn có thể sử dụng thẻ T-money cho xe buýt và tàu điện ngầm. Sử dụng ứng dụng KakaoMap hoặc NaverMap để điều hướng.",
       "q2": "Làm thế nào để mua thẻ T-money?",
-      "a2": "Bạn có thể mua thẻ T-money tại cửa hàng tiện lợi, ga tàu điện ngầm hoặc trực tuyến. Giá thẻ cơ bản là 2,500-3,000 KRW.",
-      "q3": "Giờ hoạt động của tàu điện ngầm là gì?",
-      "a3": "Tàu điện ngầm thường hoạt động từ 5:30 sáng đến 12 giờ đêm. Một số tuyến có thể có lịch trình khác."
+      "a2": "Bạn có thể mua thẻ T-money tại cửa hàng tiện lợi, ga tàu điện ngầm hoặc trực tuyến. Nạp tiền có thể thực hiện tại bất kỳ cửa hàng tiện lợi hoặc ga tàu điện ngầm nào.",
+      "q3": "Ứng dụng giao thông nào được sử dụng phổ biến ở Hàn Quốc?",
+      "a3": "KakaoMap và NaverMap là ứng dụng điều hướng phổ biến nhất. Taxi thường sử dụng KakaoTaxi."
     },
     "banking": {
-      "q1": "Làm thế nào để mở tài khoản ngân hàng?",
-      "a1": "Đến chi nhánh ngân hàng với thẻ đăng ký người nước ngoài và hộ chiếu. Hầu hết các ngân hàng yêu cầu tiền gửi tối thiểu 1,000 KRW.",
-      "q2": "Cần những giấy tờ gì?",
-      "a2": "Bạn cần thẻ đăng ký người nước ngoài (ARC), hộ chiếu và đôi khi cần giấy chứng nhận địa chỉ.",
-      "q3": "Có thể sử dụng thẻ tín dụng nước ngoài không?",
-      "a3": "Có, hầu hết các nơi chấp nhận thẻ tín dụng nước ngoài, nhưng một số cửa hàng nhỏ có thể chỉ chấp nhận thẻ Hàn Quốc."
+      "q1": "Làm thế nào để mở tài khoản ngân hàng ở Hàn Quốc?",
+      "a1": "Đến chi nhánh ngân hàng với thẻ đăng ký người nước ngoài (ARC) và hộ chiếu. Một số ngân hàng có thể yêu cầu thêm tài liệu.",
+      "q2": "Ngân hàng nào thân thiện với người nước ngoài?",
+      "a2": "KEB Hana Bank, Shinhan Bank và Woori Bank cung cấp dịch vụ tiếng Anh và phổ biến với người nước ngoài.",
+      "q3": "Làm thế nào để chuyển tiền quốc tế?",
+      "a3": "Bạn có thể sử dụng ngân hàng trực tuyến hoặc đến chi nhánh. Một số ngân hàng cung cấp dịch vụ chuyển tiền quốc tế đặc biệt cho người nước ngoài."
+    },
+    "telecom": {
+      "q1": "Làm thế nào để có số điện thoại Hàn Quốc?",
+      "a1": "Đến nhà cung cấp viễn thông (SKT, KT, hoặc LG U+) với ARC và hộ chiếu. Bạn có thể chọn giữa gói trả trước và trả sau.",
+      "q2": "Nhà cung cấp viễn thông chính ở Hàn Quốc là gì?",
+      "a2": "Ba nhà cung cấp lớn là SK Telecom (SKT), KT và LG U+. Tất cả đều cung cấp các gói dịch vụ đa dạng cho người nước ngoài.",
+      "q3": "Làm thế nào để sử dụng internet di động?",
+      "a3": "Bạn có thể mua SIM card có gói dữ liệu từ nhà cung cấp viễn thông hoặc mua thiết bị WiFi di động."
+    },
+    "healthcare": {
+      "q1": "Hệ thống y tế Hàn Quốc hoạt động như thế nào?",
+      "a1": "Hàn Quốc có hệ thống Bảo hiểm Y tế Quốc gia. Người nước ngoài có ARC có thể tham gia sau 6 tháng cư trú.",
+      "q2": "Làm thế nào để tìm bác sĩ nói tiếng Anh?",
+      "a2": "Các bệnh viện lớn có phòng khám quốc tế. Bạn cũng có thể sử dụng đường dây nóng 1339 để tư vấn y tế bằng tiếng Anh.",
+      "q3": "Phải làm gì trong trường hợp khẩn cấp?",
+      "a3": "Gọi 119 trong trường hợp khẩn cấp. Có thể tư vấn bằng tiếng Anh. Luôn mang theo thẻ bảo hiểm và tài liệu y tế quan trọng."
+    },
+    "visa": {
+      "q1": "Làm thế nào để gia hạn thị thực?",
+      "a1": "Đến văn phòng xuất nhập cảnh với các tài liệu cần thiết trước khi thị thực hiện tại hết hạn. Quy trình khác nhau tùy theo loại thị thực.",
+      "q2": "Cần những tài liệu gì để gia hạn thị thực?",
+      "a2": "Thông thường cần hộ chiếu, ARC, đơn đăng ký, giấy chứng nhận cư trú và tài liệu cụ thể cho loại thị thực của bạn.",
+      "q3": "Làm thế nào để thay đổi loại thị thực?",
+      "a3": "Nộp đơn đăng ký tại văn phòng xuất nhập cảnh với các tài liệu cần thiết. Một số thay đổi có thể yêu cầu rời khỏi và nhập cảnh lại Hàn Quốc."
+    },
+    "housing": {
+      "q1": "Có những loại nhà ở nào ở Hàn Quốc?",
+      "a1": "Các lựa chọn phổ biến bao gồm officetel, căn hộ, biệt thự và goshiwon. Mỗi loại có các yêu cầu về hợp đồng và tiền đặt cọc khác nhau.",
+      "q2": "Jeonse và wolse là gì?",
+      "a2": "Jeonse là đặt cọc lớn không có tiền thuê hàng tháng, trong khi wolse là đặt cọc nhỏ với tiền thuê hàng tháng. Cả hai đều cần hợp đồng.",
+      "q3": "Làm thế nào để tìm nhà ở Hàn Quốc?",
+      "a3": "Bạn có thể sử dụng ứng dụng bất động sản (직방, 다방), đến đại lý bất động sản hoặc kiểm tra cộng đồng người nước ngoài."
     }
   },
   "history": {
@@ -83,5 +115,12 @@
     "findPw": "Tìm mật khẩu",
     "email": "Email",
     "password": "Mật khẩu"
+  },
+  "signup": {
+    "email": "Email",
+    "password": "Mật khẩu",
+    "name": "Tên",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "checkDuplicate": "Kiểm tra"
   }
 } 
