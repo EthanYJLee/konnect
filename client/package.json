@@ -10,6 +10,7 @@
     "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
     "i18next": "^25.0.1",
+    "openai": "^4.96.1",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.1.0",

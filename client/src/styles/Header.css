@@ -62,7 +62,7 @@
 .header-login-btn, .header-signup-btn {
   padding: 7px 18px;
   border: none;
-  border-radius: 12px;
+  border-radius: 0.375rem;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;

@@ -9,7 +9,6 @@ const ChatInterface = ({ language }) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const welcomeText = t("welcome");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -101,7 +100,8 @@ const ChatInterface = ({ language }) => {
   return (
     <div className="chat-interface">
       {/* <h1>{t("welcome")}</h1> */}
-      <TypingText text={welcomeText} speed={100} />
+
+      <TypingText text={t("welcome")} speed={100} />
       <p>{t("welcomeMessage")}</p>
       <div className="messages-container">
         {messages.map((message, index) => (
