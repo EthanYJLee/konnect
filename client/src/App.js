@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import i18n from "./i18n/config";
-import "./styles/App.css";
+import "./styles/App.scss";
 import skyline from "./assets/images/colorful-landmarks-skyline.jpg";
 // import seoul from "./assets/images/3451351.ai";
 
@@ -14,6 +14,7 @@ import FAQ from "./pages/FAQ";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
+import Test from "./pages/Test";
 
 // Components
 import Header from "./components/Header";
@@ -41,6 +42,7 @@ function App() {
                 <Route path="/history" element={<History />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/test" element={<Test />} />
               </Routes>
             </main>
             <Footer />

@@ -2,13 +2,9 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Dropdown from 'react-bootstrap/Dropdown';
-
-import "../styles/Header.css";
+import "../styles/Header.scss";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -35,6 +31,7 @@ const Header = () => {
                 <Nav.Link href="/faq">{t("nav.faq")}</Nav.Link>
                 <Nav.Link href="/history">{t("nav.history")}</Nav.Link>
                 <Nav.Link href="/settings">{t("nav.settings")}</Nav.Link>
+                <Nav.Link href="/test">테스트</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </nav>

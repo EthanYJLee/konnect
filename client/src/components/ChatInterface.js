@@ -10,6 +10,14 @@ const ChatInterface = ({ language }) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const [selectedMessages, setSelectedMessages] = useState([]);
+
+  const toggleSelectMessage = (index) => {
+    setSelectedMessages((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
@@ -87,14 +95,6 @@ const ChatInterface = ({ language }) => {
       console.error("Failed to fetch AI response:", error);
       return "Sorry, I couldn't get an answer right now.";
     }
-  };
-
-  const [selectedMessages, setSelectedMessages] = useState([]);
-
-  const toggleSelectMessage = (index) => {
-    setSelectedMessages((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
   };
 
   return (

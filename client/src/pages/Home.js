@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 import ChatInterface from "../components/ChatInterface";
-import LanguageSelector from "../components/LanguageSelector";
 import "../styles/Home.css";
 
 const Home = () => {

@@ -25,6 +25,11 @@
   border-radius: 8px;
   position: relative;
 }
+
+.message.user, .message.ai {
+  cursor: pointer;
+}
+
 .message.user.selected, .message.ai.selected {
   background-color: #e0f7fa; /* 연한 파랑 */
   border: 1px solid #00acc1;

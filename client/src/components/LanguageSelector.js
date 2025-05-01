@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/LanguageSelector.css";
+import "../styles/LanguageSelector.scss";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const LanguageSelector = ({ currentLanguage, onLanguageChange }) => {

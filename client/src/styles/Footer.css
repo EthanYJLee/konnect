@@ -1,9 +1,7 @@
-.app-footer {
+/* .app-footer {
     position: sticky;
     top: 0;
     z-index: 1000;
-    /* --bs-bg-opacity: 1; */
-    /* background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: var(--bg-primary);
     border-top: 1px solid var(--border-color);
@@ -117,4 +115,4 @@
     .footer-section:last-child {
       margin-bottom: 0;
     }
-  } 
+  }  */
