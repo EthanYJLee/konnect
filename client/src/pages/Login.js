@@ -1,10 +1,13 @@
 import React from "react";
 import { FaGoogle, FaApple } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 import "../styles/Login.css";
 
 const Login = () => {
   const { t } = useTranslation();
+
+  
 
   return (
     <div className="container">
@@ -14,14 +17,19 @@ const Login = () => {
           <SiKakaotalk className="icon" />
           카카오 계정으로 로그인
         </button> */}
-        <button className="social-button google">
+
+        {/* <button className="social-button google" onClick={handleGoogleLogin}>
           <FaGoogle className="icon" />
           {t("login.google")}
-        </button>
+        </button> */}
+
+        <GoogleLoginButton />
+
         {/* <button className="social-button naver">
           <SiNaver className="icon" />
           네이버 계정으로 로그인
         </button> */}
+
         {/* <button className="social-button apple">
           <FaApple className="icon" />
           {t("login.apple")}
