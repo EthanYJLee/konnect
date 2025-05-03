@@ -16,6 +16,9 @@ import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
 import Test from "./pages/Test";
 
+// Routes
+import LoginRoute from "./routes/LoginRoute";
+
 // Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -37,12 +40,20 @@ function App() {
             >
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
+
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/test" element={<Test />} />
+                <Route
+                  path="/login"
+                  element={
+                    <LoginRoute>
+                      <Login />
+                    </LoginRoute>
+                  }
+                />
               </Routes>
             </main>
             <Footer />

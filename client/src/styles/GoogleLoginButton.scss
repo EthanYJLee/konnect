@@ -1,5 +1,26 @@
 .google-btn {
     width: 100%;
-    height: auto;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    margin-top: 0;
+
+    // 내부의 구글 로그인 버튼을 100%로 확장
+    > div {
+        // width: 300px !important;
+        // height: 100px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button, .MuiButtonBase-root {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

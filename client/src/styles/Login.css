@@ -1,5 +1,5 @@
 /* Container */
-.container {
+.login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,6 +26,8 @@
   /* Login Box */
   .login-box {
     /* background: #181818; */
+    /* width: 100%; */
+    /* box-sizing: border-box; */
     margin-top: 2rem;
     border-radius: 18px;
     padding: 2rem 2rem 2rem 2rem;
@@ -60,8 +62,8 @@
   
   .social-button.google {
     background: #fff;
-  color: #222;
-  border: 1px solid #e0e0e0;
+    color: #222;
+    border: 1px solid #e0e0e0;
   }
   
   .social-button.google:hover {
@@ -79,27 +81,30 @@
   }
   
   /* Divider */
-  .divider {
+  .login-divider {
     text-align: center;
     color: #888;
-    margin: 1rem 0 1rem 0;
+    margin: 0.8rem 0 0.4rem 0;
     font-size: 1.02rem;
     letter-spacing: 0.02em;
   }
-  
-  /* Inputs */
-  .input {
-    /* background: #222; */
-    border: none;
-    border-radius: 7px;
-    padding: 1.1rem 1rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    font-size: 1.05rem;
+  .login-input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    /* background: var(--gray-700); */
+    color: var(--black-color);
+    transition: border 0.2s;
   }
-  
-  .input::placeholder {
+  .login-input::placeholder {
     color: #888;
+  }
+  .login-input:focus {
+    border-color: #007bff;
+    outline: none;
   }
   
   /* Login Button */
@@ -109,6 +114,7 @@
     font-size: 1.15rem;
     font-weight: 500;
     padding: 0.7rem 0;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     border: none;
     border-radius: 9px;

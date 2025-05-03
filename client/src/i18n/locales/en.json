@@ -7,7 +7,9 @@
     "history": "History",
     "settings": "Settings",
     "login": "Login",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "menu": "Menu",
+    "logout": "Logout"
   },
   "chat": {
     "placeholder": "Type your question here...",

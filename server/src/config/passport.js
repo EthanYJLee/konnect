@@ -16,11 +16,11 @@ passport.use(
         if (!user) {
           user = await User.create({
             googleId: profile.id,
-            displayName: profile.displayName,
             email: profile.emails[0].value,
+            username: profile.displayName,
+            social: 'Y' // 소셜 로그인 계정으로 표시
           });
         }
-
         return done(null, user);
       } catch (err) {
         return done(err, null);

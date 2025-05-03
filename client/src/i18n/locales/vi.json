@@ -7,7 +7,9 @@
     "history": "Lịch sử câu hỏi",
     "settings": "Cài đặt",
     "login": "Đăng nhập",
-    "signup": "Đăng ký"
+    "signup": "Đăng ký",
+    "menu": "Menu",
+    "logout": "Đăng xuất"
   },
   "chat": {
     "placeholder": "Nhập câu hỏi của bạn...",

@@ -1,15 +1,43 @@
-.signup-page {
-  background: #f7f8fa;
+.signup-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--black-color);
+  transition: border 0.2s;
+}
+
+.signup-input::placeholder {
+  color: #888;
+}
+
+.signup-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 유효 / 유효하지 않은 필드 테두리 색상 */
+.signup-input.input-valid {
+  border: 2px solid #2d86f3da !important; /* 파란색 */
+}
+
+.signup-input.input-invalid {
+  border: 2px solid #dc3545 !important; /* 빨간색 */
+}
+
+.signup-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .signup-box {
-  background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  padding: 40px 32px 32px 32px;
+  box-shadow: 0 0 0 1px var(--gray-300);
+  margin-top: 2rem;
+  padding: 2rem;
   width: 100%;
   max-width: 400px;
   display: flex;
@@ -21,40 +49,6 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 32px;
-  color: #222;
-}
-
-.divider {
-  width: 100%;
-  text-align: center;
-  color: #bbb;
-  margin: 24px 0 16px 0;
-  position: relative;
-  font-size: 0.95rem;
-}
-.divider:before, .divider:after {
-  content: '';
-  display: inline-block;
-  width: auto;
-  height: 1px;
-  background: #eee;
-  vertical-align: middle;
-  margin: 0 8px;
-}
-
-.input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  font-size: 1rem;
-  background: #fafbfc;
-  transition: border 0.2s;
-}
-.input:focus {
-  border-color: #007bff;
-  outline: none;
 }
 
 .signup-btn {
@@ -66,11 +60,12 @@
   border-radius: 6px;
   font-size: 1.1rem;
   font-weight: 600;
-  margin-top: 8px;
+  margin-top: 12px;
   margin-bottom: 16px;
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .signup-btn:hover {
   background: #0056b3;
 }
@@ -82,11 +77,13 @@
   font-size: 0.97rem;
   margin-top: 8px;
 }
+
 .bottom-links a {
   color: #888;
   text-decoration: none;
   transition: color 0.2s;
 }
+
 .bottom-links a:hover {
   color: #007bff;
 }
@@ -95,13 +92,15 @@
   display: flex;
   width: 100%;
   gap: 8px;
-  margin-bottom: 12px;
 }
+
 .email-check-row .input {
   flex: 1;
   margin-bottom: 0;
 }
+
 .check-duplicate-btn {
+  margin-top: 12px;
   padding: 0 16px;
   background: #eee;
   color: #333;
@@ -111,10 +110,9 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
-  height: 44px;
-  margin-bottom: 0;
 }
+
 .check-duplicate-btn:hover {
   background: #007bff;
   color: #fff;
-} 
+}

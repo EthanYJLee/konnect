@@ -7,7 +7,9 @@
     "history": "历史记录",
     "settings": "设置",
     "login": "登录",
-    "signup": "注册"
+    "signup": "注册",
+    "menu": "菜单",
+    "logout": "登出"
   },
   "chat": {
     "placeholder": "请输入您的问题...",
