@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
@@ -6,48 +6,17 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "../styles/Header.scss";
 import { useTheme } from "../contexts/ThemeContext";
+import AlertModal from "../components/AlertModal";
+import { useAuth } from "../contexts/AuthContext";
 
 const Header = () => {
   const { t } = useTranslation();
-  const [language, setLanguage] = React.useState("en");
+  const [language, setLanguage] = useState("en");
   const { theme, toggleTheme } = useTheme();
-
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  // 로그인 버튼 관리
-  const [isLoggedIn, setIsLoggedIn] = React.useState(
-    !!localStorage.getItem("token")
-  );
-
-  // 로그아웃 처리
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    // 구글 자동 로그인 세션 해제
-    if (window.google && window.google.accounts && window.google.accounts.id) {
-      window.google.accounts.id.disableAutoSelect();
-    }
-    window.open(
-      "https://accounts.google.com/Logout",
-      "_blank",
-      "width=500,height=600"
-    );
-    setIsLoggedIn(false);
-  };
-
-  React.useEffect(() => {
-    const updateLoginStatus = () => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
-    };
-
-    // 기존 storage 이벤트 + 커스텀 이벤트 둘 다 등록
-    window.addEventListener("storage", updateLoginStatus);
-    window.addEventListener("authChange", updateLoginStatus);
-
-    return () => {
-      window.removeEventListener("storage", updateLoginStatus);
-      window.removeEventListener("authChange", updateLoginStatus);
-    };
-  }, []);
+  const { isLoggedIn, handleLogout } = useAuth();
 
   return (
     <header className="app-header">
@@ -68,7 +37,18 @@ const Header = () => {
                 <Nav.Link href="/faq">{t("nav.faq")}</Nav.Link>
                 <Nav.Link href="/history">{t("nav.history")}</Nav.Link>
                 <Nav.Link href="/settings">{t("nav.settings")}</Nav.Link>
-                <Nav.Link href="/test">테스트</Nav.Link>
+                <Nav.Link
+                  href="/test"
+                  onClick={(e) => {
+                    console.log("테스트 클릭");
+                    if (!isLoggedIn) {
+                      e.preventDefault();
+                      setShowModal(true);
+                    }
+                  }}
+                >
+                  테스트
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </nav>
@@ -95,6 +75,12 @@ const Header = () => {
             />
           </div>
         </Navbar>
+        <AlertModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          title={"로그인 필요"}
+          body={"먼저 로그인해주세요"}
+        />
       </div>
     </header>
   );

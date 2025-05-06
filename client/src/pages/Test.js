@@ -1,61 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import "../styles/Home.css";
+import TestChatInterface from "../components/TestChatInterface";
 
 const Test = () => {
   const { t } = useTranslation();
-  const [messages, setMessages] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedMessages, setSelectedMessages] = useState([]);
-
-  const toggleSelectMessage = (index) => {
-    setSelectedMessages((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
-  };
-
-  const handleSubmit = async (e) => {
-    if (!inputValue.trim()) return;
-    
-  };
+  const [language, setLanguage] = useState("en");
 
   return (
-    <div className="chat-interface">
-      <p>{t("welcomeMessage")}</p>
-      <div className="messages-container">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.type} ${
-              selectedMessages.includes(index) ? "selected" : ""
-            }`}
-            onClick={() => toggleSelectMessage(index)}
-          >
-            <div className="message-content">{message.content}</div>
-            <div className="message-timestamp">
-              {new Date(message.timestamp).toLocaleTimeString()}
-            </div>
-          </div>
-        ))}
-        {isLoading && (
-          <div className="message ai loading">{t("chat.thinking")}...</div>
-        )}
-      </div>
-
-      <form onSubmit={handleSubmit} className="input-form">
-        <input
-          type="text"
-          value={inputValue}
-          maxLength={100}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder={t("chat.placeholder")}
-          disabled={isLoading}
+    <div className="home-container">
+      {/* <div className="language-selector-container">
+        <LanguageSelector
+          currentLanguage={language}
+          onLanguageChange={setLanguage}
         />
-        <button type="submit" disabled={isLoading || !inputValue.trim()}>
-          {t("chat.send")}
-        </button>
-      </form>
+      </div> */}
+
+      <div className="chat-container">
+        {/* <h1>{t("welcome")}</h1>
+        <p>{t("welcomeMessage")}</p> */}
+        <TestChatInterface />
+      </div>
     </div>
   );
 };
+
 export default Test;

@@ -120,9 +120,34 @@
   },
   "signup": {
     "email": "Email",
+    "customDomain": "Custom input",
     "password": "Password",
     "name": "Name",
     "confirmPassword": "Confirm Password",
-    "checkDuplicate": "Check"
+    "checkDuplicate": "Check",
+    "modal": {
+      "emailTitle": "Email",
+      "emailInputError": "Please enter a valid email.",
+      "emailDuplicateTitle": "Email Duplicate",
+      "emailDuplicateBody": "This email already exists.",
+      "emailAvailableTitle": "Available",
+      "emailAvailableBody": "This email is available.",
+      "emailFormatErrorTitle": "Email Format Error",
+      "emailFormatErrorBody": "The email format is invalid.",
+      "emailCheckErrorTitle": "Error",
+      "emailCheckErrorBody": "An error occurred while checking the email.",
+      "emailInputTitle": "Email",
+      "emailInputBody": "Please enter your email.",
+      "emailCheckTitle": "Email Duplicate Check",
+      "emailCheckBody": "Please check for email duplication first.",
+      "nameTitle": "Name",
+      "nameBody": "Please enter your name.",
+      "passwordTitle": "Password",
+      "passwordBody": "Please enter your password.",
+      "confirmPasswordTitle": "Confirm Password",
+      "confirmPasswordBody": "Please confirm your password.",
+      "passwordMismatchTitle": "Password Mismatch",
+      "passwordMismatchBody": "Passwords do not match."
+    }
   }
 } 

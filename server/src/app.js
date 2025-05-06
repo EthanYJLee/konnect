@@ -2,8 +2,10 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
-const authRoutes = require("./routes/auth");
 require("./config/passport");
+// 라우트
+const authRoutes = require("./routes/auth");
+const assistantRoutes = require("./routes/assistant");
 
 const app = express();
 
@@ -12,7 +14,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "OpenAI-Beta"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -37,6 +39,7 @@ app.use(passport.session());
 // 라우터
 // app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/assistant", assistantRoutes);
 
 // 접속된 아이피와 포트 출력
 app.get("/checkIpPort", function (req, res) {

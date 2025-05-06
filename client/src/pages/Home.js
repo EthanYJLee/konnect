@@ -9,12 +9,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* <div className="language-selector-container">
-        <LanguageSelector
-          currentLanguage={language}
-          onLanguageChange={setLanguage}
-        />
-      </div> */}
 
       <div className="chat-container">
         {/* <h1>{t("welcome")}</h1>

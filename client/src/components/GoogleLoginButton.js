@@ -1,9 +1,12 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import "../styles/GoogleLoginButton.scss";
+import { useAuth } from "../contexts/AuthContext";
 
 const GoogleLoginButton = () => {
   const navigate = useNavigate();
+
+  const { handleLogin } = useAuth();
 
   return (
     <div className="google-btn">
@@ -19,8 +22,10 @@ const GoogleLoginButton = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data.token) {
+                localStorage.setItem("loginType", "google");
                 localStorage.setItem("token", data.token);
                 window.dispatchEvent(new Event("authChange"));
+                handleLogin();
                 navigate("/");
               }
             })

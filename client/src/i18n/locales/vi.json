@@ -120,9 +120,34 @@
   },
   "signup": {
     "email": "Email",
+    "customDomain": "Nhập thủ công",
     "password": "Mật khẩu",
     "name": "Tên",
     "confirmPassword": "Xác nhận mật khẩu",
-    "checkDuplicate": "Kiểm tra"
+    "checkDuplicate": "Kiểm tra",
+    "modal": {
+      "emailTitle": "Email",
+      "emailInputError": "Vui lòng nhập email hợp lệ.",
+      "emailDuplicateTitle": "Email trùng lặp",
+      "emailDuplicateBody": "Email này đã tồn tại.",
+      "emailAvailableTitle": "Có thể sử dụng",
+      "emailAvailableBody": "Email này có thể sử dụng.",
+      "emailFormatErrorTitle": "Lỗi định dạng email",
+      "emailFormatErrorBody": "Định dạng email không hợp lệ.",
+      "emailCheckErrorTitle": "Lỗi",
+      "emailCheckErrorBody": "Đã xảy ra lỗi khi kiểm tra email.",
+      "emailInputTitle": "Email",
+      "emailInputBody": "Vui lòng nhập email.",
+      "emailCheckTitle": "Kiểm tra trùng lặp email",
+      "emailCheckBody": "Vui lòng kiểm tra trùng lặp email trước.",
+      "nameTitle": "Tên",
+      "nameBody": "Vui lòng nhập tên.",
+      "passwordTitle": "Mật khẩu",
+      "passwordBody": "Vui lòng nhập mật khẩu.",
+      "confirmPasswordTitle": "Xác nhận mật khẩu",
+      "confirmPasswordBody": "Vui lòng xác nhận mật khẩu.",
+      "passwordMismatchTitle": "Mật khẩu không khớp",
+      "passwordMismatchBody": "Mật khẩu không khớp."
+    }
   }
 } 

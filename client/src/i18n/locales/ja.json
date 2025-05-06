@@ -120,9 +120,34 @@
   },
   "signup": {
     "email": "メールアドレス",
+    "customDomain": "直接入力",
     "password": "パスワード",
     "name": "名前",
     "confirmPassword": "パスワード確認",
-    "checkDuplicate": "重複確認"
+    "checkDuplicate": "重複確認",
+    "modal": {
+      "emailTitle": "メールアドレス",
+      "emailInputError": "正しいメールアドレスを入力してください。",
+      "emailDuplicateTitle": "メール重複",
+      "emailDuplicateBody": "このメールアドレスは既に存在します。",
+      "emailAvailableTitle": "利用可能",
+      "emailAvailableBody": "このメールアドレスは利用可能です。",
+      "emailFormatErrorTitle": "メール形式エラー",
+      "emailFormatErrorBody": "メールアドレスの形式が正しくありません。",
+      "emailCheckErrorTitle": "エラー",
+      "emailCheckErrorBody": "メールアドレス確認中にエラーが発生しました。",
+      "emailInputTitle": "メールアドレス",
+      "emailInputBody": "メールアドレスを入力してください。",
+      "emailCheckTitle": "メール重複確認",
+      "emailCheckBody": "まずメール重複確認を行ってください。",
+      "nameTitle": "名前",
+      "nameBody": "名前を入力してください。",
+      "passwordTitle": "パスワード",
+      "passwordBody": "パスワードを入力してください。",
+      "confirmPasswordTitle": "パスワード確認",
+      "confirmPasswordBody": "パスワード確認を入力してください。",
+      "passwordMismatchTitle": "パスワード不一致",
+      "passwordMismatchBody": "パスワードが一致しません。"
+    }
   }
 } 

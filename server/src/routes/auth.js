@@ -7,6 +7,7 @@ const User = require("../models/user");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
+// 이메일 중복 확인
 router.get("/checkEmailExists", async (req, res) => {
   const { email } = req.query;
   console.log(email);
@@ -15,7 +16,7 @@ router.get("/checkEmailExists", async (req, res) => {
   res.json({ exists: !!existingUser });
 });
 
-// Local Signup
+// 일반 회원가입
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
   const existingUser = await User.findOne({ email });
@@ -23,12 +24,20 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({ message: "Email already in use" });
 
   const hashed = await bcrypt.hash(password, 10);
-  const user = new User({ username, email, password: hashed, social: "N" });
+  const now = new Date();
+  const user = new User({
+    username,
+    email,
+    password: hashed,
+    social: "N",
+    createdAt: now,
+    lastLogin: now,
+  });
   await user.save();
   res.status(201).json({ message: "User created" });
 });
 
-// Local Login
+// 일반 로그인
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });

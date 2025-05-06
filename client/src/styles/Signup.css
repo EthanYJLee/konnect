@@ -39,7 +39,7 @@
   margin-top: 2rem;
   padding: 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +73,8 @@
 .bottom-links {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   font-size: 0.97rem;
   margin-top: 8px;
 }
@@ -101,7 +102,7 @@
 
 .check-duplicate-btn {
   margin-top: 12px;
-  padding: 0 16px;
+  padding: 12px;
   background: #eee;
   color: #333;
   border: none;
@@ -115,4 +116,27 @@
 .check-duplicate-btn:hover {
   background: #007bff;
   color: #fff;
+}
+
+.at-symbol {
+  padding: 12px 4px;
+  font-size: 1.1rem;
+  color: #555;
+}
+.email-check-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 6px;
+}
+.email-check-row input {
+  flex: 1;
+}
+.email-check-row select {
+  width: 150px; /* 고정 너비 */
+  flex: 0 0 auto;
+}
+.signup-email-domain {
+  padding: 12px;
+  margin-top: 12px;
 }

@@ -120,9 +120,34 @@
   },
   "signup": {
     "email": "이메일",
+    "customDomain": "직접 입력",
     "password": "비밀번호",
     "name": "이름",
     "confirmPassword": "비밀번호 확인",
-    "checkDuplicate": "중복체크"
+    "checkDuplicate": "중복체크",
+    "modal": {
+      "emailTitle": "이메일",
+      "emailInputError": "이메일을 올바르게 입력해주세요.",
+      "emailDuplicateTitle": "이메일 중복",
+      "emailDuplicateBody": "이미 존재하는 이메일입니다.",
+      "emailAvailableTitle": "확인 완료",
+      "emailAvailableBody": "사용 가능한 이메일입니다.",
+      "emailFormatErrorTitle": "이메일 형식 오류",
+      "emailFormatErrorBody": "이메일 형식이 올바르지 않습니다.",
+      "emailCheckErrorTitle": "오류",
+      "emailCheckErrorBody": "이메일 확인 중 오류가 발생했습니다.",
+      "emailInputTitle": "이메일",
+      "emailInputBody": "이메일을 입력해주세요.",
+      "emailCheckTitle": "이메일 중복 확인",
+      "emailCheckBody": "이메일 중복 확인을 먼저 해주세요.",
+      "nameTitle": "이름",
+      "nameBody": "이름을 입력해주세요.",
+      "passwordTitle": "비밀번호",
+      "passwordBody": "비밀번호를 입력해주세요.",
+      "confirmPasswordTitle": "비밀번호 확인",
+      "confirmPasswordBody": "비밀번호 확인을 입력해주세요.",
+      "passwordMismatchTitle": "비밀번호 불일치",
+      "passwordMismatchBody": "비밀번호가 일치하지 않습니다."
+    }
   }
 } 

@@ -4,16 +4,28 @@ import axios from "axios";
 import AlertModal from "../components/AlertModal";
 import "../styles/Signup.css";
 
+// ... import 생략 ...
+
 const Signup = () => {
   const { t } = useTranslation();
 
-  const [email, setEmail] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [emailDomain, setEmailDomain] = useState("gmail.com");
+  const [customDomain, setCustomDomain] = useState("");
+  const [useCustomDomain, setUseCustomDomain] = useState(false);
+
+  const email = `${emailId}@${useCustomDomain ? customDomain : emailDomain}`;
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [isEmailValid, setIsEmailValid] = useState(null);
   const [isEmailChecked, setIsEmailChecked] = useState(false);
+
+  const emailRegEx =
+    /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,}$/i;
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 
   const [modalInfo, setModalInfo] = useState({
     show: false,
@@ -24,13 +36,13 @@ const Signup = () => {
   const closeModal = () => setModalInfo({ ...modalInfo, show: false });
 
   const checkEmailExists = () => {
-    if (!email) {
+    if (!emailId || (useCustomDomain && !customDomain)) {
       setModalInfo({
         show: true,
-        title: "이메일",
-        body: "이메일을 입력해주세요.",
+        title: t("signup.modal.emailTitle"),
+        body: t("signup.modal.emailInputError"),
       });
-      setIsEmailChecked(false);
+      setIsEmailChecked(true);
       setIsEmailValid(false);
       return;
     }
@@ -43,17 +55,27 @@ const Signup = () => {
           setIsEmailChecked(true);
           setModalInfo({
             show: true,
-            title: "이메일 중복",
-            body: "이미 존재하는 이메일입니다.",
+            title: t("signup.modal.emailDuplicateTitle"),
+            body: t("signup.modal.emailDuplicateBody"),
           });
         } else {
-          setIsEmailValid(true);
-          setIsEmailChecked(true);
-          setModalInfo({
-            show: true,
-            title: "확인 완료",
-            body: "사용 가능한 이메일입니다.",
-          });
+          if (emailRegEx.test(email)) {
+            setIsEmailValid(true);
+            setIsEmailChecked(true);
+            setModalInfo({
+              show: true,
+              title: t("signup.modal.emailAvailableTitle"),
+              body: t("signup.modal.emailAvailableBody"),
+            });
+          } else {
+            setIsEmailValid(false);
+            setIsEmailChecked(true);
+            setModalInfo({
+              show: true,
+              title: t("signup.modal.emailFormatErrorTitle"),
+              body: t("signup.modal.emailFormatErrorBody"),
+            });
+          }
         }
       })
       .catch(() => {
@@ -61,8 +83,8 @@ const Signup = () => {
         setIsEmailChecked(true);
         setModalInfo({
           show: true,
-          title: "오류",
-          body: "이메일 확인 중 오류가 발생했습니다.",
+          title: t("signup.modal.emailCheckErrorTitle"),
+          body: t("signup.modal.emailCheckErrorBody"),
         });
       });
   };
@@ -70,11 +92,11 @@ const Signup = () => {
   const handleSignup = (e) => {
     e.preventDefault();
 
-    if (!email) {
+    if (!emailId || (useCustomDomain && !customDomain)) {
       setModalInfo({
         show: true,
-        title: "이메일",
-        body: "이메일을 입력해주세요.",
+        title: t("signup.modal.emailInputTitle"),
+        body: t("signup.modal.emailInputBody"),
       });
       return;
     }
@@ -82,8 +104,8 @@ const Signup = () => {
     if (!isEmailValid) {
       setModalInfo({
         show: true,
-        title: "이메일 중복 확인",
-        body: "이메일 중복 확인을 먼저 해주세요.",
+        title: t("signup.modal.emailCheckTitle"),
+        body: t("signup.modal.emailCheckBody"),
       });
       return;
     }
@@ -91,8 +113,8 @@ const Signup = () => {
     if (!name) {
       setModalInfo({
         show: true,
-        title: "이름",
-        body: "이름을 입력해주세요.",
+        title: t("signup.modal.nameTitle"),
+        body: t("signup.modal.nameBody"),
       });
       return;
     }
@@ -100,8 +122,8 @@ const Signup = () => {
     if (!password) {
       setModalInfo({
         show: true,
-        title: "비밀번호",
-        body: "비밀번호를 입력해주세요.",
+        title: t("signup.modal.passwordTitle"),
+        body: t("signup.modal.passwordBody"),
       });
       return;
     }
@@ -109,8 +131,8 @@ const Signup = () => {
     if (!confirmPassword) {
       setModalInfo({
         show: true,
-        title: "비밀번호 확인",
-        body: "비밀번호 확인을 입력해주세요.",
+        title: t("signup.modal.confirmPasswordTitle"),
+        body: t("signup.modal.confirmPasswordBody"),
       });
       return;
     }
@@ -118,13 +140,26 @@ const Signup = () => {
     if (password !== confirmPassword) {
       setModalInfo({
         show: true,
-        title: "비밀번호 불일치",
-        body: "비밀번호가 일치하지 않습니다.",
+        title: t("signup.modal.passwordMismatchTitle"),
+        body: t("signup.modal.passwordMismatchBody"),
       });
       return;
     }
 
-    console.log("모든 조건 통과. 회원가입 진행!");
+    console.log("최종 이메일:", email);
+    console.log("회원가입 요청 보내기...");
+    axios
+      .post("http://localhost:3030/api/auth/register", {
+        email: email,
+        username: name,
+        password: password,
+      })
+      .then((response) => {
+        console.log("회원가입 성공:", response.data);
+      })
+      .catch((error) => {
+        console.error("회원가입 실패:", error);
+      });
   };
 
   return (
@@ -132,10 +167,10 @@ const Signup = () => {
       <div className="signup-box">
         <h2 className="signup-title">{t("login.signup")}</h2>
 
-        {/* 이메일 */}
+        {/* 이메일 입력 */}
         <div className="email-check-row">
           <input
-            type="email"
+            type="text"
             placeholder={t("signup.email")}
             className={`signup-input ${
               isEmailChecked
@@ -144,13 +179,35 @@ const Signup = () => {
                   : "input-invalid"
                 : ""
             }`}
-            value={email}
+            value={emailId}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setEmailId(e.target.value);
               setIsEmailChecked(false);
               setIsEmailValid(null);
             }}
           />
+          <select
+            className="signup-email-domain"
+            value={useCustomDomain ? "custom" : emailDomain}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "custom") {
+                setUseCustomDomain(true);
+                setEmailDomain(""); // reset
+              } else {
+                setUseCustomDomain(false);
+                setEmailDomain(value);
+              }
+              setIsEmailChecked(false);
+              setIsEmailValid(null);
+            }}
+          >
+            <option value="gmail.com">gmail.com</option>
+            <option value="yahoo.com">yahoo.com</option>
+            <option value="outlook.com">outlook.com</option>
+            <option value="custom">{t("signup.customDomain")}</option>
+          </select>
+
           <button className="check-duplicate-btn" onClick={checkEmailExists}>
             {t("signup.checkDuplicate")}
           </button>
@@ -193,7 +250,6 @@ const Signup = () => {
           {t("login.signup")}
         </button>
 
-        {/* 모달 */}
         <AlertModal
           show={modalInfo.show}
           onClose={closeModal}
@@ -201,11 +257,10 @@ const Signup = () => {
           body={modalInfo.body}
         />
 
-        {/* 하단 링크 */}
         <div className="bottom-links">
           <a href="/login">{t("login.login")}</a>
-          <a href="#">{t("login.findId")}</a>
-          <a href="#">{t("login.findPw")}</a>
+          {/* <a href="#">{t("login.findId")}</a>
+          <a href="#">{t("login.findPw")}</a> */}
         </div>
       </div>
     </div>

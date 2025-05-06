@@ -4,13 +4,15 @@ import "../styles/ChatInterface.css";
 
 import TypingText from "./TypingText";
 
-const ChatInterface = ({ language }) => {
+const TestChatInterface = ({ language }) => {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const [selectedMessages, setSelectedMessages] = useState([]);
+  const [threadId, setThreadId] = useState(
+    localStorage.getItem("assistant_thread") || null
+  );
 
   const toggleSelectMessage = (index) => {
     setSelectedMessages((prev) =>
@@ -28,79 +30,49 @@ const ChatInterface = ({ language }) => {
       timestamp: new Date().toISOString(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInputValue("");
     setIsLoading(true);
 
     try {
-      const response = await simulateAIResponse(inputValue);
+      const token = localStorage.getItem("token");
+      console.log("토큰:", token);
+      console.log("스레드:", threadId);
+      const response = await fetch("http://localhost:3030/api/assistant/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "OpenAI-Beta": "assistants=v1",
+        },
+        body: JSON.stringify({ messages: updatedMessages, threadId }),
+      });
       console.log(response);
+
+      const data = await response.json();
+
+      if (data.threadId && !threadId) {
+        setThreadId(data.threadId);
+        localStorage.setItem("assistant_thread", data.threadId);
+      }
 
       const aiMessage = {
         type: "ai",
-        content: response,
+        content: data.reply,
         timestamp: new Date().toISOString(),
       };
 
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
-      console.error("Error getting AI response:", error);
+      console.error("Error getting assistant response:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const simulateAIResponse = async (question) => {
-    const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-    const endpoint = process.env.REACT_APP_OPENAI_API_ENDPOINT;
-
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    };
-
-    const body = {
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a helpful assistant for foreigners living in Korea. Answer in simple and clear sentences.",
-        },
-        {
-          role: "user",
-          content: question,
-        },
-      ],
-      temperature: 0.8,
-    };
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Response Error Text:", errorText);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const aiReply = data.choices[0].message.content.trim();
-      return aiReply;
-    } catch (error) {
-      console.error("Failed to fetch AI response:", error);
-      return "Sorry, I couldn't get an answer right now.";
-    }
-  };
-
   return (
     <div className="chat-interface">
-      {/* <h1>{t("welcome")}</h1> */}
-
       <TypingText text={t("welcome")} speed={100} />
       <p>{t("welcomeMessage")}</p>
       <div className="messages-container">
@@ -140,4 +112,4 @@ const ChatInterface = ({ language }) => {
   );
 };
 
-export default ChatInterface;
+export default TestChatInterface;

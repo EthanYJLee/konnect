@@ -120,9 +120,34 @@
   },
   "signup": {
     "email": "邮箱",
+    "customDomain": "自定义输入",
     "password": "密码",
     "name": "姓名",
     "confirmPassword": "确认密码",
-    "checkDuplicate": "查重"
+    "checkDuplicate": "查重",
+    "modal": {
+      "emailTitle": "邮箱",
+      "emailInputError": "请输入有效的邮箱。",
+      "emailDuplicateTitle": "邮箱重复",
+      "emailDuplicateBody": "该邮箱已存在。",
+      "emailAvailableTitle": "可用",
+      "emailAvailableBody": "该邮箱可以使用。",
+      "emailFormatErrorTitle": "邮箱格式错误",
+      "emailFormatErrorBody": "邮箱格式不正确。",
+      "emailCheckErrorTitle": "错误",
+      "emailCheckErrorBody": "邮箱检查时发生错误。",
+      "emailInputTitle": "邮箱",
+      "emailInputBody": "请输入邮箱。",
+      "emailCheckTitle": "邮箱查重",
+      "emailCheckBody": "请先进行邮箱查重。",
+      "nameTitle": "姓名",
+      "nameBody": "请输入姓名。",
+      "passwordTitle": "密码",
+      "passwordBody": "请输入密码。",
+      "confirmPasswordTitle": "确认密码",
+      "confirmPasswordBody": "请确认密码。",
+      "passwordMismatchTitle": "密码不一致",
+      "passwordMismatchBody": "两次输入的密码不一致。"
+    }
   }
 } 
