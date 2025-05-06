@@ -24,6 +24,23 @@ function authenticateToken(req, res, next) {
   });
 }
 
+router.get("/thread/:threadId", authenticateToken, async (req, res) => {
+  const { threadId } = req.params;
+  const response = await openai.beta.threads.messages.list(threadId);
+  const messages = [];
+
+  response.data.forEach((message) => {
+    // console.log(`[${message.role}]`, message.content[0].text.value);
+    messages.push({
+      type: message.role === "user" ? "user" : "ai",
+      content: message.content[0].text.value,
+      timestamp: new Date(message.created_at * 1000).toISOString(),
+    });
+  });
+  console.log(messages);
+  res.json({ messages });
+});
+
 router.get("/threadList", authenticateToken, async (req, res) => {
   const user = await User.findById(req.userId);
   const threadList = await Thread.find({ userId: user._id });

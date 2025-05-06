@@ -11,10 +11,9 @@ const TestChatInterface = ({ language }) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMessages, setSelectedMessages] = useState([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [threadId, setThreadId] = useState(
-    // localStorage.getItem("assistant_thread") || null
-    null
+    localStorage.getItem("assistant_thread") || null
   );
 
   const [threadList, setThreadList] = useState([]);
@@ -22,6 +21,7 @@ const TestChatInterface = ({ language }) => {
   // initState
   useEffect(() => {
     getThreadList();
+    handleThreadClick(threadId);
   }, []);
 
   const getThreadList = async () => {
@@ -99,8 +99,30 @@ const TestChatInterface = ({ language }) => {
     }
   };
 
-  const handleThreadClick = (threadId) => {
+  const handleThreadClick = async (threadId) => {
     console.log(threadId);
+    localStorage.setItem("assistant_thread", threadId);
+    setThreadId(threadId);
+    const token = localStorage.getItem("token");
+    const response = await fetch(
+      `http://localhost:3030/api/assistant/thread/${threadId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    // 메시지 오래된 것부터 최신 순으로 정렬 (default: 최신 -> 오래된 순)
+    const sortedMessages = data.messages.sort(
+      (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+    );
+    console.log(sortedMessages);
+    console.log(messages);
+    setMessages(sortedMessages);
   };
 
   return (
@@ -117,8 +139,11 @@ const TestChatInterface = ({ language }) => {
             {threadList.map((thread) => (
               <ListGroup.Item
                 key={thread._id}
+                className={`list-group-item list-group-item-action ${
+                  thread.threadId === threadId ? "current-thread" : ""
+                }`}
                 action
-                onClick={() => handleThreadClick(thread._id)}
+                onClick={() => handleThreadClick(thread.threadId)}
               >
                 {thread.title || "(제목 없음)"}
               </ListGroup.Item>
