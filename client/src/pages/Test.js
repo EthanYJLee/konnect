@@ -9,17 +9,10 @@ const Test = () => {
 
   return (
     <div className="home-container">
-      {/* <div className="language-selector-container">
-        <LanguageSelector
-          currentLanguage={language}
-          onLanguageChange={setLanguage}
-        />
-      </div> */}
-
       <div className="chat-container">
-        {/* <h1>{t("welcome")}</h1>
-        <p>{t("welcomeMessage")}</p> */}
-        <TestChatInterface />
+        <div className="chat-main">
+          <TestChatInterface />
+        </div>
       </div>
     </div>
   );

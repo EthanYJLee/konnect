@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 600px;
-  max-width: 800px;
-  margin: 0 auto;
+  /* max-width: 800px; */
+  /* margin: 0 auto; */
   background-color: var(--white-color);
   border-radius: 8px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,7 @@
 .message.user.selected, .message.ai.selected {
   background-color: #e0f7fa; /* 연한 파랑 */
   border: 1px solid #00acc1;
-  color: var(--black-color);
+  color: black;
 }
 
 .message.user {
@@ -110,6 +110,17 @@
 @media (max-width: 768px) {
   .chat-interface {
     height: 500px;
+    
+  }
+  .chat-interface h1, .chat-interface p {
+    
+    padding-left: 3rem;
+    padding-right: 2rem;
+  }
+  .chat-interface.shrink h1, .chat-interface.shrink p {
+    /* font-size: 2rem; */
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .message {
@@ -123,4 +134,75 @@
   .input-form button {
     width: 100%;
   }
+
+  .chat-sidebar.open {
+    width: 150px !important;
+    border: 1px solid #ddd;
+  }
+
 } 
+
+@media (max-width: 480px) {
+  .chat-sidebar.open {
+    width: 100px !important;
+  }
+
+  .list-group-item {
+    font-size: 0.6rem !important;
+    padding: 0.2rem !important;
+  }
+}
+
+
+/* ------------------------------ */
+.chat-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.drawer-toggle {
+  position: absolute;
+  /* top: 1rem;
+  left: 1rem; */
+  z-index: 10;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--black-color);
+}
+
+
+.chat-sidebar {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  border-radius: 8px;
+  /* background-color: #f5f5f5; */
+}
+
+.chat-sidebar.open {
+  width: 200px;
+  border: 1px solid var(--gray-200);
+}
+
+.chat-interface {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.chat-interface.shrink p .chat-interface.shrink h1{
+  /* margin-left: 200px; */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  
+}
+.sidebar-list{
+  padding-top: 3.5rem;
+  margin: 1rem;
+}
+
+.list-group-item {
+  background-color: var(--white-color) !important;
+  color: var(--black-color) !important;
+}

@@ -1,10 +1,10 @@
 .home-container {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   max-width: 1200px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* height: 100vh; */
 }
 
@@ -16,8 +16,13 @@
 
 .chat-container {
   width: 100%;
-  max-width: 800px;
+  
+  /* max-width: 800px; */
   text-align: center;
+  
+  position: relative; /* 버튼이 위치할 수 있도록 */
+  display: flex;
+
 }
 
 .chat-container h1 {
@@ -38,6 +43,11 @@
   .home-container {
     padding: 1rem;
   }
+  .chat-container {
+    flex-direction: column;
+  }
+
+  
 
   .chat-container h1 {
     font-size: 1.5rem;
@@ -46,4 +56,28 @@
   .chat-container p {
     font-size: 1rem;
   }
+  .sidebar-interface {
+    height: 100px !important;
+  }
 } 
+
+
+.sidebar-interface {
+  /* width: 15rem; */
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.chat-main {
+  flex: 1;
+  padding: 1rem;
+}
+

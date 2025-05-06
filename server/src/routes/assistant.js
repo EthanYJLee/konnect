@@ -3,6 +3,7 @@ const router = express.Router();
 const { OpenAI } = require("openai");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const Thread = require("../models/thread");
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -17,19 +18,21 @@ function authenticateToken(req, res, next) {
   if (!token) return res.sendStatus(401);
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    console.log(err);
     if (err) return res.sendStatus(403);
     req.userId = user.id;
     next();
   });
 }
 
+router.get("/threadList", authenticateToken, async (req, res) => {
+  const user = await User.findById(req.userId);
+  const threadList = await Thread.find({ userId: user._id });
+  res.json({ list: threadList });
+});
+
 router.post("/ask", authenticateToken, async (req, res) => {
   const { messages, threadId } = req.body;
-  //
-  //   const pastMsg = await openai.beta.threads.messages.list(threadId);
-  //   console.log(pastMsg);
-  //
+
   const userMessages = messages?.filter((msg) => msg.type === "user").slice(-1);
 
   if (!userMessages || userMessages.length === 0) {
@@ -40,28 +43,51 @@ router.post("/ask", authenticateToken, async (req, res) => {
 
   try {
     const user = await User.findById(req.userId);
-    let thread_id = threadId || user.threadId;
+    if (!user) return res.status(404).json({ error: "User Not Found" });
 
-    // 1. Thread가 없으면 새로 생성 후 저장
+    let thread_id = threadId;
+    let thread;
+
     if (!thread_id) {
-      const thread = await openai.beta.threads.create();
-      thread_id = thread.id;
-      user.threadId = thread_id;
-      await user.save();
+      // 1. Thread가 없으면 OpenAI에 새 thread 생성
+      const openaiThread = await openai.beta.threads.create();
+      thread_id = openaiThread.id;
+
+      // 2. DB에 저장
+      thread = await Thread.create({
+        userId: user._id,
+        threadId: thread_id,
+        // title: "",
+        title: userMessageContent,
+      });
+    } else {
+      // 3. 기존 thread 정보 확인 (DB + OpenAI)
+      thread = await Thread.findOne({ threadId: thread_id });
+      if (!thread) {
+        // 예외 처리: DB에 없으면 생성
+        thread = await Thread.create({
+          userId: user._id,
+          threadId: thread_id,
+          title: "",
+        });
+      }
+
+      // OpenAI 쪽에서도 유효한 thread인지 확인
+      await openai.beta.threads.retrieve(thread_id);
     }
 
-    // 2. 사용자 메시지 추가
+    // 4. 사용자 메시지 추가
     await openai.beta.threads.messages.create(thread_id, {
       role: "user",
       content: userMessageContent,
     });
 
-    // 3. Run 실행
+    // 5. Run 실행
     const run = await openai.beta.threads.runs.create(thread_id, {
       assistant_id: ASSISTANT_ID,
     });
 
-    // 4. Run 완료 대기
+    // 6. Run 완료 대기
     let runStatus;
     do {
       runStatus = await openai.beta.threads.runs.retrieve(thread_id, run.id);
@@ -75,7 +101,7 @@ router.post("/ask", authenticateToken, async (req, res) => {
       return res.status(500).json({ error: "Run failed or cancelled" });
     }
 
-    // 5. Assistant 응답 추출
+    // 7. Assistant 응답 추출
     const threadMessages = await openai.beta.threads.messages.list(thread_id);
     const assistantMessage = threadMessages.data.find(
       (msg) => msg.role === "assistant"
