@@ -17,6 +17,7 @@ const LanguageSelector = ({ currentLanguage, onLanguageChange }) => {
   const handleLanguageChange = (langCode) => {
     onLanguageChange(langCode);
     i18n.changeLanguage(langCode);
+    localStorage.setItem("language", langCode);
   };
 
   const currentLang =

@@ -11,7 +11,9 @@ import { useAuth } from "../contexts/AuthContext";
 
 const Header = () => {
   const { t } = useTranslation();
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "en"
+  );
   const { theme, toggleTheme } = useTheme();
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const Header = () => {
       <div className="header-content">
         <Navbar
           expand="lg"
-          className="bg-body-tertiary"
+          className={`bg-body-tertiary ${theme}`}
           style={{ justifyContent: "flex" }}
         >
           <Link to="/" className="logo">
@@ -31,24 +33,26 @@ const Header = () => {
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <nav className="main-nav">
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Collapse
+              id="basic-navbar-nav"
+              className={`basic-navbar-nav ${theme}`}
+            >
               <Nav className="me-auto">
                 <Nav.Link href="/">{t("nav.home")}</Nav.Link>
-                <Nav.Link href="/faq">{t("nav.faq")}</Nav.Link>
-                <Nav.Link href="/history">{t("nav.history")}</Nav.Link>
-                <Nav.Link href="/settings">{t("nav.settings")}</Nav.Link>
                 <Nav.Link
-                  href="/test"
+                  href="/chat"
                   onClick={(e) => {
-                    console.log("테스트 클릭");
                     if (!isLoggedIn) {
                       e.preventDefault();
                       setShowModal(true);
                     }
                   }}
                 >
-                  테스트
+                  {t("nav.chat")}
                 </Nav.Link>
+                <Nav.Link href="/history">{t("nav.history")}</Nav.Link>
+                <Nav.Link href="/faq">{t("nav.faq")}</Nav.Link>
+                {/* <Nav.Link href="/settings">{t("nav.settings")}</Nav.Link> */}
               </Nav>
             </Navbar.Collapse>
           </nav>

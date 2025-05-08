@@ -1,31 +1,33 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
-import { ThemeProvider } from "./contexts/ThemeContext";
+
 import i18n from "./i18n/config";
 import "./styles/App.scss";
 import skyline from "./assets/images/colorful-landmarks-skyline.jpg";
-// import seoul from "./assets/images/3451351.ai";
 
 // Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import FAQ from "./pages/FAQ";
 import History from "./pages/History";
-import Settings from "./pages/Settings";
+// import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
-import Test from "./pages/Test";
+import Chat from "./pages/Chat";
 
 // Routes
-import LoginRoute from "./routes/LoginRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import GuestOnlyRoute from "./routes/GuestOnlyRoute";
 
 // Components
-import { AuthProvider } from "./contexts/AuthContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+// Contexts
+import { AuthProvider } from "./contexts/AuthContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
+
 function App() {
-  
   return (
     <AuthProvider>
       <ThemeProvider>
@@ -44,17 +46,23 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
 
-                  <Route path="/faq" element={<FAQ />} />
+                  <Route
+                    path="/chat"
+                    element={
+                      <ProtectedRoute>
+                        <Chat />
+                      </ProtectedRoute>
+                    }
+                  />
                   <Route path="/history" element={<History />} />
-                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/faq" element={<FAQ />} />
                   <Route path="/signup" element={<Signup />} />
-                  <Route path="/test" element={<Test />} />
                   <Route
                     path="/login"
                     element={
-                      <LoginRoute>
+                      <GuestOnlyRoute>
                         <Login />
-                      </LoginRoute>
+                      </GuestOnlyRoute>
                     }
                   />
                 </Routes>

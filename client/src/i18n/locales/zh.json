@@ -9,7 +9,8 @@
     "login": "登录",
     "signup": "注册",
     "menu": "菜单",
-    "logout": "登出"
+    "logout": "登出",
+    "chat": "聊天"
   },
   "chat": {
     "placeholder": "请输入您的问题...",

@@ -9,7 +9,8 @@
     "login": "Login",
     "signup": "Sign Up",
     "menu": "Menu",
-    "logout": "Logout"
+    "logout": "Logout",
+    "chat": "Chat"
   },
   "chat": {
     "placeholder": "Type your question here...",

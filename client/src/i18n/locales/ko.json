@@ -9,7 +9,8 @@
     "login": "로그인",
     "signup": "회원가입",
     "menu": "메뉴",
-    "logout": "로그아웃"
+    "logout": "로그아웃",
+    "chat": "채팅"
   },
   "chat": {
     "placeholder": "질문을 입력하세요...",

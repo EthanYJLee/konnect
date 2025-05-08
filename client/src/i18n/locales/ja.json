@@ -9,7 +9,8 @@
     "login": "ログイン",
     "signup": "新規登録",
     "menu": "メニュー",
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "chat": "チャット"
   },
   "chat": {
     "placeholder": "質問を入力してください...",
