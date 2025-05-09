@@ -28,6 +28,7 @@ const Login = () => {
         console.log("로그인 성공:", response.data);
         localStorage.setItem("loginType", "normal");
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("email", response.data.email);
         window.dispatchEvent(new Event("authChange"));
         handleLogin();
         navigate("/");

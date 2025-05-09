@@ -18,6 +18,7 @@ const Settings = () => {
   const fetchData = () => {
     axios
       .get("http://localhost:3030/checkIpPort", {
+        
         withCredentials: true,
       })
       .then((response) => {

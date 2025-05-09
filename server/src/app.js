@@ -6,6 +6,7 @@ require("./config/passport");
 // 라우트
 const authRoutes = require("./routes/auth");
 const assistantRoutes = require("./routes/assistant");
+const historyRoutes = require("./routes/history");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use(passport.session());
 // app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/assistant", assistantRoutes);
+app.use("/api/history", historyRoutes);
 
 // 접속된 아이피와 포트 출력
 app.get("/checkIpPort", function (req, res) {

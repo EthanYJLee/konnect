@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { googleLogout } from "@react-oauth/google";
 
 const AuthContext = createContext();
 
@@ -6,11 +7,16 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   const handleLogout = () => {
+    const email = localStorage.getItem("email");
+
     if (localStorage.getItem("loginType") === "google") {
-      // 구글 로그아웃
-      localStorage.removeItem("token");
-      localStorage.removeItem("assistant_thread");
-      localStorage.removeItem("loginType");
+      googleLogout();
+
+      if (window.google?.accounts?.id && email) {
+        window.google.accounts.id.revoke(email, () => {
+          console.log("✅ Google session revoked");
+        });
+      }
       if (
         window.google &&
         window.google.accounts &&
@@ -18,19 +24,25 @@ export const AuthProvider = ({ children }) => {
       ) {
         window.google.accounts.id.disableAutoSelect();
       }
-
       window.open(
         "https://accounts.google.com/Logout",
         "_blank",
         "width=500,height=600"
       );
-      setIsLoggedIn(false);
-      window.dispatchEvent(new Event("authChange"));
-    } else if (localStorage.getItem("loginType") === "normal") {
-      // 일반 로그아웃
+
       localStorage.removeItem("token");
       localStorage.removeItem("assistant_thread");
       localStorage.removeItem("loginType");
+      localStorage.removeItem("email");
+
+      setIsLoggedIn(false);
+      window.dispatchEvent(new Event("authChange"));
+    } else if (localStorage.getItem("loginType") === "normal") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("assistant_thread");
+      localStorage.removeItem("loginType");
+      localStorage.removeItem("email");
+
       setIsLoggedIn(false);
       window.dispatchEvent(new Event("authChange"));
     }

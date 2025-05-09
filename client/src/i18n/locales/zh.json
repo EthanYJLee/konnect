@@ -150,5 +150,9 @@
       "passwordMismatchTitle": "密码不一致",
       "passwordMismatchBody": "两次输入的密码不一致。"
     }
+  },
+  "alertModal": {
+    "login": "登录",
+    "pleaseLogin": "请登录"
   }
 } 

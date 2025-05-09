@@ -82,8 +82,8 @@ const Header = () => {
         <AlertModal
           show={showModal}
           onClose={() => setShowModal(false)}
-          title={"로그인 필요"}
-          body={"먼저 로그인해주세요"}
+          title={t("alertModal.login")}
+          body={t("alertModal.pleaseLogin")}
         />
       </div>
     </header>

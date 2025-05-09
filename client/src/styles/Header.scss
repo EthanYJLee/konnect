@@ -132,9 +132,6 @@
   --bs-navbar-brand-active-bg: var(--primary-color) !important;
 }
 
-// @include media-breakpoint-down(xs) {
-//   .container {
-//       margin-left: 0;
-//       margin-right: 0;
-//   }
-// }
+.nav-link.active {
+  color: var(--black-color) !important;
+}

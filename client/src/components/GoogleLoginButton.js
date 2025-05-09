@@ -24,6 +24,7 @@ const GoogleLoginButton = () => {
               if (data.token) {
                 localStorage.setItem("loginType", "google");
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("email", data.email);
                 window.dispatchEvent(new Event("authChange"));
                 handleLogin();
                 navigate("/");

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/ChatInterface.css";
-import ListGroup from "react-bootstrap/ListGroup";
+import { ListGroup, Modal, Button } from "react-bootstrap";
 import { CiSaveDown1 } from "react-icons/ci";
 
 import TypingText from "./TypingText";
 import FloatingActionButton from "./FloatingActionButton";
+// import SaveMessageModal from "./SaveMessageModal";
+import SavePairModal from "./SavePairModal";
 
 const ChatInterface = ({ language }) => {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedMessagePair, setSelectedMessagePair] = useState([]);
+  const [selectedMessagePairIndex, setSelectedMessagePairIndex] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [threadId, setThreadId] = useState(
     localStorage.getItem("assistant_thread") || null
@@ -22,6 +24,11 @@ const ChatInterface = ({ language }) => {
   const [showAddThreadButton, setShowAddThreadButton] = useState(false);
 
   const [messagePair, setMessagePair] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+  
 
   // initState
   useEffect(() => {
@@ -60,7 +67,7 @@ const ChatInterface = ({ language }) => {
   };
 
   const toggleSelectMessage = (index) => {
-    setSelectedMessagePair((prev) =>
+    setSelectedMessagePairIndex((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
@@ -140,6 +147,7 @@ const ChatInterface = ({ language }) => {
     for (let i = 0; i < sortedMessages.length; i += 2) {
       pairs.push(sortedMessages.slice(i, i + 2));
     }
+    console.log(pairs);
     setMessagePair(pairs);
   };
 
@@ -148,7 +156,7 @@ const ChatInterface = ({ language }) => {
     setThreadId(null);
     setMessages([]);
     setMessagePair([]);
-    setSelectedMessagePair([]);
+    setSelectedMessagePairIndex([]);
   };
 
   return (
@@ -197,14 +205,32 @@ const ChatInterface = ({ language }) => {
           <p>{t("welcomeMessage")}</p>
         </div>
         <div className="messages-container">
-          {selectedMessagePair.length > 0 && (
-            <FloatingActionButton
-              onClick={() => {
-                console.log("clicked");
-              }}
-              icon={<CiSaveDown1 />}
-              count={selectedMessagePair.length}
-            />
+          {selectedMessagePairIndex.length > 0 && (
+            <>
+              <FloatingActionButton
+                onClick={() => {
+                  console.log("clicked");
+                  console.log(selectedMessagePairIndex);
+                  for (let i = 0; i < selectedMessagePairIndex.length; i++) {
+                    const pair = messagePair[selectedMessagePairIndex[i]];
+                    for (let j = 0; j < pair.length; j++) {
+                      const msg = pair[j];
+                      console.log(msg);
+                    }
+                  }
+                  setShowModal(true);
+                }}
+                icon={<CiSaveDown1 />}
+                count={selectedMessagePairIndex.length}
+              />
+              <SavePairModal
+                show={showModal}
+                onClose={handleCloseModal}
+                // onSave={handleSaveModal}
+                selectedMessagePairIndex={selectedMessagePairIndex}
+                messagePair={messagePair}
+              />
+            </>
           )}
           {messagePair.map((pair, index) => (
             <div
@@ -216,7 +242,7 @@ const ChatInterface = ({ language }) => {
                 <div
                   key={idx}
                   className={`message ${msg.type} ${
-                    selectedMessagePair.includes(index) ? "selected" : ""
+                    selectedMessagePairIndex.includes(index) ? "selected" : ""
                   }`}
                 >
                   <div className="message-content">

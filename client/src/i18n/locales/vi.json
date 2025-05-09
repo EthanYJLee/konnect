@@ -150,5 +150,9 @@
       "passwordMismatchTitle": "Mật khẩu không khớp",
       "passwordMismatchBody": "Mật khẩu không khớp."
     }
+  },
+  "alertModal": {
+    "login": "Đăng nhập",
+    "pleaseLogin": "Vui lòng đăng nhập"
   }
 } 

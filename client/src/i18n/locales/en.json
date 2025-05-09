@@ -150,5 +150,9 @@
       "passwordMismatchTitle": "Password Mismatch",
       "passwordMismatchBody": "Passwords do not match."
     }
+  },
+  "alertModal": {
+    "login": "Login",
+    "pleaseLogin": "Please login"
   }
 } 

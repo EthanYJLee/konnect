@@ -150,5 +150,9 @@
       "passwordMismatchTitle": "비밀번호 불일치",
       "passwordMismatchBody": "비밀번호가 일치하지 않습니다."
     }
+  },
+  "alertModal": {
+    "login": "로그인",
+    "pleaseLogin": "로그인해주세요"
   }
 } 

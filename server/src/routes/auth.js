@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
-  res.json({ token });
+  res.json({ token, email });
 });
 
 // Google OAuth
@@ -108,7 +108,7 @@ router.post("/google/token", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.json({ token });
+    res.json({ token, email });
   } catch (err) {
     console.error("Google token verify failed:", err);
     res.status(401).json({ message: "Invalid Google token" });
