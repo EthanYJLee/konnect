@@ -54,7 +54,14 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
-                  <Route path="/history" element={<History />} />
+                  <Route
+                    path="/history"
+                    element={
+                      <ProtectedRoute>
+                        <History />
+                      </ProtectedRoute>
+                    }
+                  />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route

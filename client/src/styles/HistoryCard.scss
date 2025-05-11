@@ -1,45 +1,68 @@
-#HistoryCard{
-
-}
 .pair-card {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    margin: 1rem 0;
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    .p{
-      color: black;
-    }
+  background-color: var(--gray-100);
+  // max-height: 300px;
+  z-index: 0;
+  cursor: pointer;
+  // background-color: #fff;
+  // border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: box-shadow 0.3s ease;
+  height: 100%;
+  // height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0 6px 20px var(--gray-100);
   }
-  
+
   .pair-section {
     margin-bottom: 1rem;
+
+    &.user {
+      background-color: #e6f0ff;
+      border-left: 4px solid #4285f4;
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+
+    &.ai {
+      background-color: #f3f3f3;
+      border-left: 4px solid #34a853;
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+
+    .history-strong {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: black;
+    }
+
+    .history-p {
+      margin: 0;
+      line-height: 1.5;
+      color: black;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .timestamp {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 0.5rem;
+      display: block;
+    }
   }
-  
-  .pair-section.user {
-    background-color: #f5faff;
-    padding: 0.75rem;
-    border-radius: 8px;
-  }
-  
-  .pair-section.ai {
-    background-color: #f9f9f9;
-    padding: 0.75rem;
-    border-radius: 8px;
-  }
-  
-  .timestamp {
-    display: block;
-    font-size: 0.75rem;
-    color: #888;
-    margin-top: 0.25rem;
-  }
-  
-  .card-footer {
+
+  .history-card-footer {
     text-align: right;
-    font-size: 0.75rem;
-    color: #555;
-    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    // color: #777;
+    margin-top: auto;
   }
-  
+}

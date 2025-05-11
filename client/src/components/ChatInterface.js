@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+// ✅ ChatInterface.jsx 수정: FAB가 messages-container의 실제 스크롤 가능한 영역(늘어난 높이 기준) 안에서 항상 우측 하단에 보이도록 조정
+
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/ChatInterface.css";
 import { ListGroup, Modal, Button } from "react-bootstrap";
 import { CiSaveDown1 } from "react-icons/ci";
+import axios from "axios";
 
 import TypingText from "./TypingText";
 import FloatingActionButton from "./FloatingActionButton";
-// import SaveMessageModal from "./SaveMessageModal";
 import SavePairModal from "./SavePairModal";
 
 const ChatInterface = ({ language }) => {
@@ -19,18 +21,23 @@ const ChatInterface = ({ language }) => {
   const [threadId, setThreadId] = useState(
     localStorage.getItem("assistant_thread") || null
   );
-
   const [threadList, setThreadList] = useState([]);
   const [showAddThreadButton, setShowAddThreadButton] = useState(false);
-
   const [messagePair, setMessagePair] = useState([]);
-
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
-  
 
-  // initState
+  const messageContainerRef = useRef(null);
+  const fabRef = useRef(null);
+
+  const scrollToBottom = () => {
+    const container = messageContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -38,24 +45,29 @@ const ChatInterface = ({ language }) => {
     }
     getThreadList();
     handleThreadClick(threadId);
+    scrollToBottom();
   }, []);
 
-  // 이전에 생성된 스레드 목록 가져오기
+  useEffect(() => {
+    const pairs = [];
+    for (let i = 0; i < messages.length; i += 2) {
+      pairs.push(messages.slice(i, i + 2));
+    }
+    setMessagePair(pairs);
+    scrollToBottom();
+  }, [messages]);
+
   const getThreadList = async () => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(
-        "http://localhost:3030/api/assistant/threadList",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = await response.json();
-
+      const url = process.env.REACT_APP_WAS_URL;
+      const response = await axios.get(`${url}/api/assistant/threadList`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.data;
       if (data.list.length > 0 && data.list.length < 3) {
         setShowAddThreadButton(true);
         handleThreadClick(data.list[0].threadId);
@@ -82,10 +94,18 @@ const ChatInterface = ({ language }) => {
       timestamp: new Date().toISOString(),
     };
 
-    const updatedMessages = [...messages, userMessage];
+    const thinkingMessage = {
+      type: "ai",
+      content: t("chat.thinking") + "...",
+      timestamp: new Date().toISOString(),
+      isLoading: true,
+    };
+
+    const updatedMessages = [...messages, userMessage, thinkingMessage];
     setMessages(updatedMessages);
     setInputValue("");
     setIsLoading(true);
+    scrollToBottom();
 
     try {
       const token = localStorage.getItem("token");
@@ -112,7 +132,7 @@ const ChatInterface = ({ language }) => {
         timestamp: new Date().toISOString(),
       };
 
-      setMessages((prev) => [...prev, aiMessage]);
+      setMessages((prev) => [...prev.slice(0, -1), aiMessage]);
     } catch (error) {
       console.error("Error getting assistant response:", error);
     } finally {
@@ -124,30 +144,24 @@ const ChatInterface = ({ language }) => {
     localStorage.setItem("assistant_thread", threadId);
     setThreadId(threadId);
     const token = localStorage.getItem("token");
-    const response = await fetch(
-      `http://localhost:3030/api/assistant/thread/${threadId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const url = process.env.REACT_APP_WAS_URL;
+    const response = await fetch(`${url}/api/assistant/thread/${threadId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     const data = await response.json();
-    // 메시지 오래된 것부터 최신 순으로 정렬 (default: 최신 -> 오래된 순)
     const sortedMessages = data.messages.sort(
       (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
     );
-    // console.log(sortedMessages);
-    // console.log(messages);
     setMessages(sortedMessages);
     const pairs = [];
     for (let i = 0; i < sortedMessages.length; i += 2) {
       pairs.push(sortedMessages.slice(i, i + 2));
     }
-    console.log(pairs);
     setMessagePair(pairs);
   };
 
@@ -204,59 +218,63 @@ const ChatInterface = ({ language }) => {
           <TypingText text={t("welcome")} speed={100} />
           <p>{t("welcomeMessage")}</p>
         </div>
-        <div className="messages-container">
+
+        <div
+          className="messages-container"
+          ref={messageContainerRef}
+          // style={{ position: "relative" }}
+        >
+          <div className="message-list">
+            {messagePair.map((pair, index) => (
+              <div
+                key={index}
+                className="message-pair"
+                onClick={() => toggleSelectMessage(index)}
+              >
+                {pair.map((msg, idx) => (
+                  <div
+                    key={idx}
+                    className={`message ${msg.type} ${
+                      selectedMessagePairIndex.includes(index) ? "selected" : ""
+                    }`}
+                  >
+                    <div className="message-content">{msg.content}</div>
+                    <div className="message-timestamp">
+                      {new Date(msg.timestamp).toLocaleTimeString()}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
           {selectedMessagePairIndex.length > 0 && (
-            <>
+            <div
+              style={{
+                position: "sticky",
+                bottom: "0.1rem",
+                right: "0.1rem",
+                display: "flex",
+                justifyContent: "flex-end",
+                zIndex: 10,
+                // paddingRight: "1rem",
+              }}
+            >
               <FloatingActionButton
-                onClick={() => {
-                  console.log("clicked");
-                  console.log(selectedMessagePairIndex);
-                  for (let i = 0; i < selectedMessagePairIndex.length; i++) {
-                    const pair = messagePair[selectedMessagePairIndex[i]];
-                    for (let j = 0; j < pair.length; j++) {
-                      const msg = pair[j];
-                      console.log(msg);
-                    }
-                  }
-                  setShowModal(true);
-                }}
+                onClick={handleShowModal}
                 icon={<CiSaveDown1 />}
                 count={selectedMessagePairIndex.length}
               />
-              <SavePairModal
-                show={showModal}
-                onClose={handleCloseModal}
-                // onSave={handleSaveModal}
-                selectedMessagePairIndex={selectedMessagePairIndex}
-                messagePair={messagePair}
-              />
-            </>
-          )}
-          {messagePair.map((pair, index) => (
-            <div
-              key={index}
-              className="message-pair"
-              onClick={() => toggleSelectMessage(index)}
-            >
-              {pair.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={`message ${msg.type} ${
-                    selectedMessagePairIndex.includes(index) ? "selected" : ""
-                  }`}
-                >
-                  <div className="message-content">
-                    {/* {index},{idx}, */}
-                    {msg.content}
-                  </div>
-                  <div className="message-timestamp">
-                    {new Date(msg.timestamp).toLocaleTimeString()}
-                  </div>
-                </div>
-              ))}
             </div>
-          ))}
+          )}
         </div>
+
+        <SavePairModal
+          show={showModal}
+          onClose={handleCloseModal}
+          selectedMessagePairIndex={selectedMessagePairIndex}
+          messagePair={messagePair}
+        />
 
         <form onSubmit={handleSubmit} className="input-form">
           <input

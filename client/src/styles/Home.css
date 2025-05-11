@@ -4,6 +4,7 @@
   align-items: center;
   padding: 1rem;
   max-width: 1200px;
+  /* overflow: hidden; */
   /* margin: 0 auto; */
   /* height: 100vh; */
 }
@@ -16,6 +17,7 @@
 
 .chat-container {
   width: 100%;
+  /* overflow: hidden; */
   
   /* max-width: 800px; */
   text-align: center;
@@ -79,5 +81,6 @@
 .chat-main {
   flex: 1;
   padding: 1rem;
+  overflow: hidden;
 }
 

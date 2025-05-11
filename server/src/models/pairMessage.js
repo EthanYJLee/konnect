@@ -12,6 +12,7 @@ const PairMessageSchema = new mongoose.Schema({
     ref: "Thread",
     required: true,
   },
+  pairOrder: Number,
   userMessage: {
     content: { type: String, required: true },
     timestamp: { type: Date, required: true },

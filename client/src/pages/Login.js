@@ -19,8 +19,9 @@ const Login = () => {
     console.log("일반 로그인 진행");
     console.log("email:", email);
     console.log("password:", password);
+    const url = process.env.REACT_APP_WAS_URL;
     axios
-      .post("http://localhost:3030/api/auth/login", {
+      .post(`${url}/api/auth/login`, {
         email: email,
         password: password,
       })

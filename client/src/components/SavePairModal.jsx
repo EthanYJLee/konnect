@@ -23,8 +23,9 @@ const SavePairModal = ({
     );
 
     try {
+      const url = process.env.REACT_APP_WAS_URL;
       const response = await axios.post(
-        "http://localhost:3030/api/history/savePairs",
+        `${url}/api/history/savePairs`,
         { pairs: selectedPairs, threadId },
         {
           headers: {

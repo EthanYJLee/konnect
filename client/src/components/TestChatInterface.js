@@ -219,13 +219,12 @@ const TestChatInterface = ({ language }) => {
       timestamp: new Date().toISOString(),
     };
 
-    const updatedMessages = [...messages, userMessage];
-    setMessages(updatedMessages);
-    setInputValue("");
     setIsLoading(true);
+    setInputValue(""); // 입력창 초기화
 
     try {
       const token = localStorage.getItem("token");
+
       const response = await fetch("http://localhost:3030/api/assistant/ask", {
         method: "POST",
         headers: {
@@ -233,15 +232,13 @@ const TestChatInterface = ({ language }) => {
           Authorization: `Bearer ${token}`,
           "OpenAI-Beta": "assistants=v1",
         },
-        body: JSON.stringify({ messages: updatedMessages, threadId }),
+        body: JSON.stringify({
+          messages: [...messages, userMessage],
+          threadId,
+        }),
       });
 
       const data = await response.json();
-
-      if (data.threadId && !threadId) {
-        setThreadId(data.threadId);
-        localStorage.setItem("assistant_thread", data.threadId);
-      }
 
       const aiMessage = {
         type: "ai",
@@ -249,7 +246,20 @@ const TestChatInterface = ({ language }) => {
         timestamp: new Date().toISOString(),
       };
 
-      setMessages((prev) => [...prev, aiMessage]);
+      const newMessages = [...messages, userMessage, aiMessage];
+      setMessages(newMessages);
+
+      // 💡 메시지 페어도 동기화
+      const pairs = [];
+      for (let i = 0; i < newMessages.length; i += 2) {
+        pairs.push(newMessages.slice(i, i + 2));
+      }
+      setMessagePair(pairs);
+
+      if (data.threadId && !threadId) {
+        setThreadId(data.threadId);
+        localStorage.setItem("assistant_thread", data.threadId);
+      }
     } catch (error) {
       console.error("Error getting assistant response:", error);
     } finally {

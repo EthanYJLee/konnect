@@ -13,6 +13,7 @@
     "i18next": "^25.0.1",
     "openai": "^4.96.1",
     "react": "^19.1.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.1.0",
     "react-google-login": "^5.2.2",
@@ -47,4 +48,5 @@
       "last 1 safari version"
     ]
   }
+  
 }

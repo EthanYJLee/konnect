@@ -5,6 +5,7 @@ import ChatInterface from "../components/ChatInterface";
 
 const Chat = () => {
   return (
+    // <div className="chat-page-fullscreen">
     <div className="home-container">
       <div className="chat-container">
         <div className="chat-main">
@@ -12,6 +13,7 @@ const Chat = () => {
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 

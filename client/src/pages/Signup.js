@@ -46,9 +46,9 @@ const Signup = () => {
       setIsEmailValid(false);
       return;
     }
-
+    const url = process.env.REACT_APP_WAS_URL;
     axios
-      .get(`http://localhost:3030/api/auth/checkEmailExists?email=${email}`)
+      .get(`${url}/api/auth/checkEmailExists?email=${email}`)
       .then((response) => {
         if (response.data.exists) {
           setIsEmailValid(false);
@@ -148,8 +148,9 @@ const Signup = () => {
 
     console.log("최종 이메일:", email);
     console.log("회원가입 요청 보내기...");
+    const url = process.env.REACT_APP_WAS_URL;
     axios
-      .post("http://localhost:3030/api/auth/register", {
+      .post(`${url}/api/auth/register`, {
         email: email,
         username: name,
         password: password,

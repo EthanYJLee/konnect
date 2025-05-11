@@ -16,8 +16,9 @@ const Settings = () => {
   const [message, setMessage] = useState("");
 
   const fetchData = () => {
+    const url = process.env.REACT_APP_WAS_URL;
     axios
-      .get("http://localhost:3030/checkIpPort", {
+      .get(`${url}/checkIpPort`, {
         
         withCredentials: true,
       })

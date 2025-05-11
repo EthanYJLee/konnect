@@ -50,7 +50,17 @@ const Header = () => {
                 >
                   {t("nav.chat")}
                 </Nav.Link>
-                <Nav.Link href="/history">{t("nav.history")}</Nav.Link>
+                <Nav.Link
+                  href="/history"
+                  onClick={(e) => {
+                    if (!isLoggedIn) {
+                      e.preventDefault();
+                      setShowModal(true);
+                    }
+                  }}
+                >
+                  {t("nav.history")}
+                </Nav.Link>
                 <Nav.Link href="/faq">{t("nav.faq")}</Nav.Link>
                 {/* <Nav.Link href="/settings">{t("nav.settings")}</Nav.Link> */}
               </Nav>

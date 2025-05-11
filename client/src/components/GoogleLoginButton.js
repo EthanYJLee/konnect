@@ -13,7 +13,8 @@ const GoogleLoginButton = () => {
       <GoogleLogin
         onSuccess={(res) => {
           const credential = res.credential;
-          fetch("http://localhost:3030/api/auth/google/token", {
+          const url = process.env.REACT_APP_WAS_URL;
+          fetch(`${url}/api/auth/google/token`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ credential }),
