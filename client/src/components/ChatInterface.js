@@ -1,12 +1,88 @@
-import React, { useState } from "react";
+// ✅ ChatInterface.jsx 수정: FAB가 messages-container의 실제 스크롤 가능한 영역(늘어난 높이 기준) 안에서 항상 우측 하단에 보이도록 조정
+
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/ChatInterface.css";
+import { ListGroup, Modal, Button } from "react-bootstrap";
+import { CiSaveDown1 } from "react-icons/ci";
+import axios from "axios";
+
+import TypingText from "./TypingText";
+import FloatingActionButton from "./FloatingActionButton";
+import SavePairModal from "./SavePairModal";
 
 const ChatInterface = ({ language }) => {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedMessagePairIndex, setSelectedMessagePairIndex] = useState([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [threadId, setThreadId] = useState(
+    localStorage.getItem("assistant_thread") || null
+  );
+  const [threadList, setThreadList] = useState([]);
+  const [showAddThreadButton, setShowAddThreadButton] = useState(false);
+  const [messagePair, setMessagePair] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+
+  const messageContainerRef = useRef(null);
+  const fabRef = useRef(null);
+
+  const scrollToBottom = () => {
+    const container = messageContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/";
+    }
+    getThreadList();
+    handleThreadClick(threadId);
+    scrollToBottom();
+  }, []);
+
+  useEffect(() => {
+    const pairs = [];
+    for (let i = 0; i < messages.length; i += 2) {
+      pairs.push(messages.slice(i, i + 2));
+    }
+    setMessagePair(pairs);
+    scrollToBottom();
+  }, [messages]);
+
+  const getThreadList = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const url = process.env.REACT_APP_WAS_URL;
+      const response = await axios.get(`${url}/api/assistant/threadList`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.data;
+      if (data.list.length > 0 && data.list.length < 3) {
+        setShowAddThreadButton(true);
+        handleThreadClick(data.list[0].threadId);
+      }
+      setThreadList(data.list || []);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const toggleSelectMessage = (index) => {
+    setSelectedMessagePairIndex((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,108 +94,202 @@ const ChatInterface = ({ language }) => {
       timestamp: new Date().toISOString(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    const thinkingMessage = {
+      type: "ai",
+      content: t("chat.thinking") + "...",
+      timestamp: new Date().toISOString(),
+      isLoading: true,
+    };
+
+    const updatedMessages = [...messages, userMessage, thinkingMessage];
+    setMessages(updatedMessages);
     setInputValue("");
     setIsLoading(true);
+    scrollToBottom();
 
     try {
-      // TODO: Implement actual API call to backend
-      const response = await simulateAIResponse(inputValue);
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:3030/api/assistant/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "OpenAI-Beta": "assistants=v1",
+        },
+        body: JSON.stringify({ messages: updatedMessages, threadId }),
+      });
+
+      const data = await response.json();
+
+      if (data.threadId && !threadId) {
+        setThreadId(data.threadId);
+        localStorage.setItem("assistant_thread", data.threadId);
+      }
 
       const aiMessage = {
         type: "ai",
-        content: response,
+        content: data.reply,
         timestamp: new Date().toISOString(),
       };
 
-      setMessages((prev) => [...prev, aiMessage]);
+      setMessages((prev) => [...prev.slice(0, -1), aiMessage]);
     } catch (error) {
-      console.error("Error getting AI response:", error);
+      console.error("Error getting assistant response:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // const simulateAIResponse = async (question) => {
-  //   // Simulate API delay
-  //   await new Promise((resolve) => setTimeout(resolve, 1000));
-  //   return `This is a simulated response to: "${question}"`;
-  // };
-  const simulateAIResponse = async (question) => {
-    const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-    const endpoint = process.env.REACT_APP_OPENAI_API_ENDPOINT;
+  const handleThreadClick = async (threadId) => {
+    localStorage.setItem("assistant_thread", threadId);
+    setThreadId(threadId);
+    const token = localStorage.getItem("token");
+    const url = process.env.REACT_APP_WAS_URL;
+    const response = await fetch(`${url}/api/assistant/thread/${threadId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    };
-
-    const body = {
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a helpful assistant for foreigners living in Korea. Answer in simple and clear sentences.",
-        },
-        {
-          role: "user",
-          content: question,
-        },
-      ],
-      temperature: 0.3,
-    };
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Response Error Text:", errorText);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const aiReply = data.choices[0].message.content.trim();
-      return aiReply;
-    } catch (error) {
-      console.error("Failed to fetch AI response:", error);
-      return "Sorry, I couldn't get an answer right now.";
+    const data = await response.json();
+    const sortedMessages = data.messages.sort(
+      (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+    );
+    setMessages(sortedMessages);
+    const pairs = [];
+    for (let i = 0; i < sortedMessages.length; i += 2) {
+      pairs.push(sortedMessages.slice(i, i + 2));
     }
+    setMessagePair(pairs);
+  };
+
+  const handleAddThread = () => {
+    localStorage.removeItem("assistant_thread");
+    setThreadId(null);
+    setMessages([]);
+    setMessagePair([]);
+    setSelectedMessagePairIndex([]);
   };
 
   return (
-    <div className="chat-interface">
-      <div className="messages-container">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.type}`}>
-            <div className="message-content">{message.content}</div>
-            <div className="message-timestamp">
-              {new Date(message.timestamp).toLocaleTimeString()}
-            </div>
-          </div>
-        ))}
-        {isLoading && (
-          <div className="message ai loading">{t("chat.thinking")}...</div>
-        )}
+    <div className="chat-wrapper">
+      <button
+        className="drawer-toggle"
+        onClick={() => setIsDrawerOpen((prev) => !prev)}
+      >
+        ☰
+      </button>
+      <div className={`chat-sidebar ${isDrawerOpen ? "open" : ""}`}>
+        <div className="sidebar-list">
+          <ListGroup>
+            {threadList.map((thread) => (
+              <ListGroup.Item
+                key={thread._id}
+                className={`list-group-item list-group-item-action thread-item ${
+                  thread.threadId === threadId ? "current-thread" : ""
+                }`}
+                action
+                onClick={() => handleThreadClick(thread.threadId)}
+              >
+                <div className="thread-content">
+                  <span>{thread.title || "제목 없음"}</span>
+                </div>
+              </ListGroup.Item>
+            ))}
+            {showAddThreadButton && (
+              <ListGroup.Item
+                className="list-group-item list-group-item-action thread-item add-thread"
+                action
+                onClick={handleAddThread}
+              >
+                <div className="thread-content">
+                  <span>+</span>
+                </div>
+              </ListGroup.Item>
+            )}
+          </ListGroup>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="input-form">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder={t("chat.placeholder")}
-          disabled={isLoading}
+      <div className={`chat-interface ${isDrawerOpen ? "shrink" : ""}`}>
+        <div className="chat-interface-header">
+          <TypingText text={t("welcome")} speed={100} />
+          <p>{t("welcomeMessage")}</p>
+        </div>
+
+        <div
+          className="messages-container"
+          ref={messageContainerRef}
+          // style={{ position: "relative" }}
+        >
+          <div className="message-list">
+            {messagePair.map((pair, index) => (
+              <div
+                key={index}
+                className="message-pair"
+                onClick={() => toggleSelectMessage(index)}
+              >
+                {pair.map((msg, idx) => (
+                  <div
+                    key={idx}
+                    className={`message ${msg.type} ${
+                      selectedMessagePairIndex.includes(index) ? "selected" : ""
+                    }`}
+                  >
+                    <div className="message-content">{msg.content}</div>
+                    <div className="message-timestamp">
+                      {new Date(msg.timestamp).toLocaleTimeString()}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {selectedMessagePairIndex.length > 0 && (
+            <div
+              style={{
+                position: "sticky",
+                bottom: "0.1rem",
+                right: "0.1rem",
+                display: "flex",
+                justifyContent: "flex-end",
+                zIndex: 10,
+                // paddingRight: "1rem",
+              }}
+            >
+              <FloatingActionButton
+                onClick={handleShowModal}
+                icon={<CiSaveDown1 />}
+                count={selectedMessagePairIndex.length}
+              />
+            </div>
+          )}
+        </div>
+
+        <SavePairModal
+          show={showModal}
+          onClose={handleCloseModal}
+          selectedMessagePairIndex={selectedMessagePairIndex}
+          messagePair={messagePair}
         />
-        <button type="submit" disabled={isLoading || !inputValue.trim()}>
-          {t("chat.send")}
-        </button>
-      </form>
+
+        <form onSubmit={handleSubmit} className="input-form">
+          <input
+            type="text"
+            value={inputValue}
+            maxLength={100}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder={t("chat.placeholder")}
+            disabled={isLoading}
+          />
+          <button type="submit" disabled={isLoading || !inputValue.trim()}>
+            {t("chat.send")}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

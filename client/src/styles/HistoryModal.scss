@@ -1,0 +1,61 @@
+.history-modal-body.modal-body{
+  padding: 0 !important;
+}
+.history-pair-modal {
+    z-index: 0;
+    // cursor: pointer;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 0 1rem 1rem 1rem;
+    transition: box-shadow 0.3s ease;
+    height: 100%;
+    // height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .pair-section {
+      margin-bottom: 1rem;
+  
+      &.user {
+        background-color: #e6f0ff;
+        border-left: 4px solid #4285f4;
+        padding: 0.75rem;
+        border-radius: 8px;
+      }
+  
+      &.ai {
+        background-color: #f3f3f3;
+        border-left: 4px solid #34a853;
+        padding: 0.75rem;
+        border-radius: 8px;
+      }
+  
+      .history-strong {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: block;
+        color: black;
+      }
+  
+      .history-modal-p {
+        margin: 0;
+        line-height: 1.5;
+      }
+  
+      .timestamp {
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 0.5rem;
+        display: block;
+      }
+    }
+  
+    .history-modal-footer {
+      text-align: right;
+      font-size: 0.8rem;
+    //   color: #777;
+      margin-top: auto;
+    }
+  }
+  

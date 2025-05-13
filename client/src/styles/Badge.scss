@@ -1,0 +1,28 @@
+@mixin badge-base {
+  display: inline-block !important;
+  align-items: center;
+  justify-content: center;
+  // max-width: 50%;
+  width: auto;
+  border-radius: 20px !important;
+  border: 1px solid transparent;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
+  cursor: default;
+  // max-width: 50%;
+
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  @include badge-base;
+
+  &:hover {
+    // opacity: 0.9;
+  }
+
+}
