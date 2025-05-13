@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import AlertModal from "../components/AlertModal";
-import "../styles/Signup.css";
+import "../styles/Signup.scss";
 
 // ... import 생략 ...
 
@@ -187,6 +187,9 @@ const Signup = () => {
               setIsEmailValid(null);
             }}
           />
+          <div style={{paddingTop:"12px"}}>
+          {"@"}
+          </div>
           <select
             className="signup-email-domain"
             value={useCustomDomain ? "custom" : emailDomain}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/FAQCategory.css";
+import "../styles/FAQCategory.scss";
 
 const FAQCategory = ({ category, isOpen, onToggle }) => {
   const { t } = useTranslation();

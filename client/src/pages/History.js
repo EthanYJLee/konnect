@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import HistoryCard from "../components/HistoryCard";
-import "../styles/History.css";
+import "../styles/History.scss";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -124,15 +124,6 @@ const History = () => {
             )}
           </Droppable>
         </DragDropContext>
-        {/* {selectedPair && (
-          <HistoryModal
-            show={showModal}
-            onClose={handleCloseModal}
-            userMessage={selectedPair.userMessage}
-            aiMessage={selectedPair.aiMessage}
-            createdAt={selectedPair.createdAt}
-          />
-        )} */}
       </Container>
     </div>
   );

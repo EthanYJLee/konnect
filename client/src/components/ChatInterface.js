@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/ChatInterface.css";
-import { ListGroup, Modal, Button } from "react-bootstrap";
+import "../styles/ChatInterface.scss";
+import { Modal } from "react-bootstrap";
 import { CiSaveDown1 } from "react-icons/ci";
 import axios from "axios";
 
 import TypingText from "./TypingText";
 import FloatingActionButton from "./FloatingActionButton";
 import SavePairModal from "./SavePairModal";
+import Button from "./common/Button";
+import Input from "./common/Input";
+import Message from "./common/Message";
+import ThreadList from "./common/ThreadList";
 
 const ChatInterface = ({ language }) => {
   const { t } = useTranslation();
@@ -29,7 +33,6 @@ const ChatInterface = ({ language }) => {
   const handleShowModal = () => setShowModal(true);
 
   const messageContainerRef = useRef(null);
-  const fabRef = useRef(null);
 
   const scrollToBottom = () => {
     const container = messageContainerRef.current;
@@ -175,42 +178,20 @@ const ChatInterface = ({ language }) => {
 
   return (
     <div className="chat-wrapper">
-      <button
+      <Button
         className="drawer-toggle"
         onClick={() => setIsDrawerOpen((prev) => !prev)}
       >
         ☰
-      </button>
+      </Button>
       <div className={`chat-sidebar ${isDrawerOpen ? "open" : ""}`}>
-        <div className="sidebar-list">
-          <ListGroup>
-            {threadList.map((thread) => (
-              <ListGroup.Item
-                key={thread._id}
-                className={`list-group-item list-group-item-action thread-item ${
-                  thread.threadId === threadId ? "current-thread" : ""
-                }`}
-                action
-                onClick={() => handleThreadClick(thread.threadId)}
-              >
-                <div className="thread-content">
-                  <span>{thread.title || "제목 없음"}</span>
-                </div>
-              </ListGroup.Item>
-            ))}
-            {showAddThreadButton && (
-              <ListGroup.Item
-                className="list-group-item list-group-item-action thread-item add-thread"
-                action
-                onClick={handleAddThread}
-              >
-                <div className="thread-content">
-                  <span>+</span>
-                </div>
-              </ListGroup.Item>
-            )}
-          </ListGroup>
-        </div>
+        <ThreadList
+          threads={threadList}
+          currentThreadId={threadId}
+          onThreadClick={handleThreadClick}
+          onAddThread={handleAddThread}
+          showAddButton={showAddThreadButton}
+        />
       </div>
 
       <div className={`chat-interface ${isDrawerOpen ? "shrink" : ""}`}>
@@ -219,11 +200,7 @@ const ChatInterface = ({ language }) => {
           <p>{t("welcomeMessage")}</p>
         </div>
 
-        <div
-          className="messages-container"
-          ref={messageContainerRef}
-          // style={{ position: "relative" }}
-        >
+        <div className="messages-container" ref={messageContainerRef}>
           <div className="message-list">
             {messagePair.map((pair, index) => (
               <div
@@ -232,17 +209,13 @@ const ChatInterface = ({ language }) => {
                 onClick={() => toggleSelectMessage(index)}
               >
                 {pair.map((msg, idx) => (
-                  <div
+                  <Message
                     key={idx}
-                    className={`message ${msg.type} ${
-                      selectedMessagePairIndex.includes(index) ? "selected" : ""
-                    }`}
-                  >
-                    <div className="message-content">{msg.content}</div>
-                    <div className="message-timestamp">
-                      {new Date(msg.timestamp).toLocaleTimeString()}
-                    </div>
-                  </div>
+                    content={msg.content}
+                    type={msg.type}
+                    timestamp={msg.timestamp}
+                    isSelected={selectedMessagePairIndex.includes(index)}
+                  />
                 ))}
               </div>
             ))}
@@ -277,7 +250,7 @@ const ChatInterface = ({ language }) => {
         />
 
         <form onSubmit={handleSubmit} className="input-form">
-          <input
+          <Input
             type="text"
             value={inputValue}
             maxLength={100}
@@ -285,9 +258,9 @@ const ChatInterface = ({ language }) => {
             placeholder={t("chat.placeholder")}
             disabled={isLoading}
           />
-          <button type="submit" disabled={isLoading || !inputValue.trim()}>
+          <Button type="submit" disabled={isLoading || !inputValue.trim()}>
             {t("chat.send")}
-          </button>
+          </Button>
         </form>
       </div>
     </div>

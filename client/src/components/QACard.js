@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/QACard.css";
+import "../styles/QACard.scss";
 
 const QACard = ({ question, answer, date, category }) => {
   const { t } = useTranslation();

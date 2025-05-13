@@ -1,0 +1,38 @@
+.message {
+  max-width: 80%;
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.user {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+  }
+
+  &.ai {
+    // background-color: var(--secondary-bg);
+    color: var(--text-color);
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+  }
+
+  &.selected {
+    box-shadow: 0 0 0 2px var(--primary-color);
+  }
+
+  .message-content {
+    word-break: break-word;
+  }
+
+  .message-timestamp {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+    text-align: right;
+  }
+} 

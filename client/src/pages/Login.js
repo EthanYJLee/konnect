@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import GoogleLoginButton from "../components/GoogleLoginButton";
-import "../styles/Login.css";
+import "../styles/Login.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";

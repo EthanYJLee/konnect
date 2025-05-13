@@ -1,6 +1,4 @@
 .chat-page-fullscreen {
-  /* height: 100vh; */
-  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
 }
@@ -15,12 +13,10 @@
 .chat-interface {
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
   height: 600px;
   background-color: var(--white-color);
   border-radius: 8px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  /* overflow: hidden; */
   position: relative;
 }
 
@@ -34,7 +30,6 @@
   gap: 1rem;
   white-space: pre-wrap;
   word-wrap: break-word;
-  /* position: relative !important; */
 }
 
 .message {
@@ -50,7 +45,7 @@
 }
 
 .message.user.selected, .message.ai.selected {
-  background-color: #e0f7fa; /* 연한 파랑 */
+  background-color: #e0f7fa;
   border: 1px solid var(--black-color);
   color: black;
 }
@@ -124,7 +119,7 @@
     padding-right: 2rem;
   }
   .chat-interface.shrink h1, .chat-interface.shrink p {
-    /* font-size: 2rem; */
+    
     padding-left: 0;
     padding-right: 0;
   }
@@ -160,7 +155,7 @@
 }
 
 
-/* ------------------------------ */
+
 .chat-wrapper {
   display: flex;
   position: relative;
@@ -169,8 +164,7 @@
 
 .drawer-toggle {
   position: absolute;
-  /* top: 1rem;
-  left: 1rem; */
+  
   z-index: 10;
   background: none;
   border: none;
@@ -191,7 +185,7 @@
 .chat-sidebar.open {
   width: 200px;
   box-shadow: 0 0 0 1px var(--gray-300);
-  /* background-color: var(--gray-200); */
+  
 }
 
 .chat-interface {
@@ -201,7 +195,7 @@
 }
 
 .chat-interface.shrink p .chat-interface.shrink h1{
-  /* margin-left: 200px; */
+  
   padding-left: 0 !important;
   padding-right: 0 !important;
   
@@ -223,7 +217,7 @@
 .list-group-item.current-thread {
   background-color: var(--primary-color) !important;
   color: var(--white-color) !important;
-  /* font-weight: bold; */
+  
   text-align: left !important;
 }
 .list-group-item.add-thread {
@@ -231,19 +225,15 @@
 }
 
 .message-pair {
-  /* margin-bottom: 1.5rem; */
-  /* padding: 1rem; */
-  /* background: #f9f9f9; */
+  
   border-radius: 8px;
-  /* flex: 1; */
-  /* overflow-y: auto; */
-  /* padding: 1rem; */
+  
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  white-space: pre-wrap;   /* 줄바꿈과 공백 유지 */
-  word-wrap: break-word;   /* 긴 단어도 줄바꿈 */
+  white-space: pre-wrap;
+  word-wrap: break-word;
 
 }
 
@@ -264,15 +254,9 @@
 }
 
 .chat-interface-header {
-  /* position: relative;
-  display: block; */
-  /* flex: 1; */
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
+  
 }
 .chat-interface-header-button {
-  /* position: absolute;  */
-  /* z-index: 10; */
+  
   
 }

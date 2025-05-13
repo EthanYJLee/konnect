@@ -1,0 +1,37 @@
+.thread-list {
+    padding-top: 3rem;
+    background-color: var(--gray-100) !important;
+  .thread-item {
+    padding: 0.75rem 1rem;
+    border: none;
+    // border: 1px solid var(--border-color);
+    // border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--hover-bg);
+    }
+
+    &.current-thread {
+      background-color: var(--primary-color-light);
+      color: var(--primary-color);
+    }
+
+    &.add-thread {
+      text-align: center;
+      color: var(--primary-color);
+    //   font-size: 1.5rem;
+      
+      &:hover {
+        background-color: var(--primary-color-light);
+      }
+    }
+
+    .thread-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+} 
