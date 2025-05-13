@@ -8,8 +8,8 @@ import "../styles/HistoryModal.scss";
 const HistoryModal = ({ show, onClose, userMessage, aiMessage, createdAt }) => {
   const { theme, toggleTheme } = useTheme();
 
-  const token = localStorage.getItem("token");
-  const threadId = localStorage.getItem("assistant_thread");
+  // const token = localStorage.getItem("token");
+  // const threadId = localStorage.getItem("assistant_thread");
 
   return (
     <Modal show={show} onHide={onClose}>

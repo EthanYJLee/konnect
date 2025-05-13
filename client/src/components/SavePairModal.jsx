@@ -18,8 +18,6 @@ const SavePairModal = ({
 
   // 대화내용 (pair) 저장하기
   const onSave = async () => {
-    // console.log(messagePair);
-    // console.log(selectedMessagePairIndex);
     const selectedPairs = selectedMessagePairIndex.map(
       (idx) => messagePair[idx]
     );

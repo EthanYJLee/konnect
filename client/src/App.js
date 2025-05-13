@@ -29,10 +29,10 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <I18nextProvider i18n={i18n}>
-          <Router>
+    <Router>
+      <AuthProvider>
+        <ThemeProvider>
+          <I18nextProvider i18n={i18n}>
             <div className="app">
               {/* <BasicExample /> */}
               <Header />
@@ -76,10 +76,10 @@ function App() {
               </main>
               <Footer />
             </div>
-          </Router>
-        </I18nextProvider>
-      </ThemeProvider>
-    </AuthProvider>
+          </I18nextProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

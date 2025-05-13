@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { googleLogout } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   const handleLogout = () => {
@@ -46,6 +48,7 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(false);
       window.dispatchEvent(new Event("authChange"));
     }
+    navigate("/");
   };
 
   const handleLogin = () => {

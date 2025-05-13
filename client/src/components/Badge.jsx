@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Badge.scss";
 
-function Badge({ className = "", children, ...props }) {
+function Badge({ pair, cat, onClick, ...props }) {
   return (
-    <div className={`badge badge-${className}`} {...props}>
-      {children}
-    </div>
+    <button
+      className={`custom-badge badge-${pair.category}`}
+      {...props}
+      onClick={onClick}
+    >
+      {pair.category}
+    </button>
   );
 }
 

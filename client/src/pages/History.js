@@ -8,14 +8,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import HistoryModal from "../components/HistoryModal";
 
 const History = () => {
   const { t } = useTranslation();
   const [pairs, setPairs] = useState([]);
   const token = localStorage.getItem("token");
-
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchHistory();
@@ -27,7 +24,7 @@ const History = () => {
       const response = await axios.get(`${url}/api/history/fetchHistory`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const sorted = response.data.sort((a, b) => a.pairOrder - b.pairOrder);
+      const sorted = response.data.sort((a, b) => b.pairOrder - a.pairOrder);
       setPairs(sorted);
     } catch (error) {
       console.error("실패:", error);
@@ -75,6 +72,13 @@ const History = () => {
     }
   };
 
+  const handleCategoryUpdate = (pairId, newCategory) => {
+    const updated = pairs.map((pair) =>
+      pair._id === pairId ? { ...pair, category: newCategory } : pair
+    );
+    setPairs(updated); // 리렌더링 유도
+  };
+
   return (
     <div className="history-container">
       <Container>
@@ -107,21 +111,10 @@ const History = () => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        {/* <Card
-                          
-                          style={{
-                            backgroundColor: "transparent",
-                            // border: "none",
-                            borderRadius: "12px",
-                          }}
-                        > */}
                         <HistoryCard
-                        pair={pair}
-                          userMessage={pair.userMessage}
-                          aiMessage={pair.aiMessage}
-                          createdAt={pair.createdAt}
+                          pair={pair}
+                          onCategoryUpdate={handleCategoryUpdate}
                         />
-                        {/* </Card> */}
                       </Col>
                     )}
                   </Draggable>

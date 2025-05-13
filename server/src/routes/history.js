@@ -24,7 +24,23 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// routes/history.js
+router.post("/updateCategory", authenticateToken, async (req, res) => {
+  const { id, cat } = req.body;
+  console.log(id, cat);
+  try {
+    const pairMessage = await PairMessage.findById(id);
+    if (!pairMessage) {
+      return res.status(404).json({ message: "Message not found" });
+    }
+    pairMessage.category = cat;
+    await pairMessage.save();
+    res.json({ message: "카테고리 업데이트 완료", updated: pairMessage });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "DB update failed" });
+  }
+});
+
 router.post("/updateOrder", async (req, res) => {
   const { orderedPairs } = req.body; // [{ _id: "...", pairOrder: 0 }, ...]
   console.log(orderedPairs);
