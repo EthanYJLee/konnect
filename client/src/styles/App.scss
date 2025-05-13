@@ -73,6 +73,42 @@ html, body, #root {
   color: var(--text-primary);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
+
+  .react-datepicker {
+    font-family: 'Noto Sans KR', serif;
+    border: none;
+    border-radius: 12px;
+
+    .react-datepicker__header {
+      // background-color: var(--white-color);
+      // color: colors.$WHITE;
+      border-bottom: none;
+      border-radius: 12px;
+
+      .react-datepicker__day-names {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+
+        .react-datepicker__day-name {
+          color: #5b5b5b;
+          width: 36px;
+        }
+      }
+    }
+
+    .react-datepicker__triangle {
+      display: none;
+    }
+  }
+  .react-datepicker-wrapper{
+    .react-datepicker__input-container {
+      .react-datepicker__close-icon {
+        position: fixed !important;
+      }
+    }
+  }
 }
 
 .app {

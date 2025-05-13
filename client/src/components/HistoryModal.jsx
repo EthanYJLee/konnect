@@ -13,14 +13,18 @@ const HistoryModal = ({ show, onClose, userMessage, aiMessage, createdAt }) => {
 
   return (
     <Modal show={show} onHide={onClose}>
-      <Modal.Header className={`modal-header ${theme}`} closeButton>
+      <Modal.Header
+        className={`modal-header ${theme}`}
+        style={{ border: "none" }}
+        closeButton
+      >
         {/* <Modal.Title>저장</Modal.Title> */}
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body className="history-modal-body">
         <div>
           <div
-            className="pair-modal"
+            className="history-pair-modal"
             style={{ backgroundColor: "transparent" }}
           >
             <div className="pair-section user">
@@ -46,26 +50,12 @@ const HistoryModal = ({ show, onClose, userMessage, aiMessage, createdAt }) => {
               </span>
             </div>
 
-            <div className="history-modal-footer">
+            {/* <div className="history-modal-footer">
               {new Date(createdAt).toLocaleString()}
-            </div>
+            </div> */}
           </div>
         </div>
       </Modal.Body>
-
-      {/* <Modal.Footer>
-          <Button variant="secondary" onClick={onClose}>
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              onClose();
-            }}
-          >
-            Save
-          </Button>
-        </Modal.Footer> */}
     </Modal>
   );
 };

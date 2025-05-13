@@ -1,0 +1,2070 @@
+[
+  {
+    "text": "여행",
+    "category": "travel"
+  },
+  {
+    "text": "관광",
+    "category": "travel"
+  },
+  {
+    "text": "호텔",
+    "category": "travel"
+  },
+  {
+    "text": "숙박",
+    "category": "travel"
+  },
+  {
+    "text": "투어",
+    "category": "travel"
+  },
+  {
+    "text": "명소",
+    "category": "travel"
+  },
+  {
+    "text": "일정",
+    "category": "travel"
+  },
+  {
+    "text": "비행기표",
+    "category": "travel"
+  },
+  {
+    "text": "여행사",
+    "category": "travel"
+  },
+  {
+    "text": "가이드",
+    "category": "travel"
+  },
+  {
+    "text": "travel",
+    "category": "travel"
+  },
+  {
+    "text": "tour",
+    "category": "travel"
+  },
+  {
+    "text": "hotel",
+    "category": "travel"
+  },
+  {
+    "text": "accommodation",
+    "category": "travel"
+  },
+  {
+    "text": "itinerary",
+    "category": "travel"
+  },
+  {
+    "text": "attraction",
+    "category": "travel"
+  },
+  {
+    "text": "ticket",
+    "category": "travel"
+  },
+  {
+    "text": "agency",
+    "category": "travel"
+  },
+  {
+    "text": "guide",
+    "category": "travel"
+  },
+  {
+    "text": "sightseeing",
+    "category": "travel"
+  },
+  {
+    "text": "旅行",
+    "category": "travel"
+  },
+  {
+    "text": "観光",
+    "category": "travel"
+  },
+  {
+    "text": "ホテル",
+    "category": "travel"
+  },
+  {
+    "text": "宿泊",
+    "category": "travel"
+  },
+  {
+    "text": "ツアー",
+    "category": "travel"
+  },
+  {
+    "text": "名所",
+    "category": "travel"
+  },
+  {
+    "text": "日程",
+    "category": "travel"
+  },
+  {
+    "text": "航空券",
+    "category": "travel"
+  },
+  {
+    "text": "旅行会社",
+    "category": "travel"
+  },
+  {
+    "text": "ガイド",
+    "category": "travel"
+  },
+  {
+    "text": "旅行",
+    "category": "travel"
+  },
+  {
+    "text": "观光",
+    "category": "travel"
+  },
+  {
+    "text": "酒店",
+    "category": "travel"
+  },
+  {
+    "text": "住宿",
+    "category": "travel"
+  },
+  {
+    "text": "行程",
+    "category": "travel"
+  },
+  {
+    "text": "景点",
+    "category": "travel"
+  },
+  {
+    "text": "机票",
+    "category": "travel"
+  },
+  {
+    "text": "旅行社",
+    "category": "travel"
+  },
+  {
+    "text": "导游",
+    "category": "travel"
+  },
+  {
+    "text": "du lịch",
+    "category": "travel"
+  },
+  {
+    "text": "tham quan",
+    "category": "travel"
+  },
+  {
+    "text": "khách sạn",
+    "category": "travel"
+  },
+  {
+    "text": "chỗ ở",
+    "category": "travel"
+  },
+  {
+    "text": "lịch trình",
+    "category": "travel"
+  },
+  {
+    "text": "địa điểm",
+    "category": "travel"
+  },
+  {
+    "text": "vé máy bay",
+    "category": "travel"
+  },
+  {
+    "text": "hướng dẫn viên",
+    "category": "travel"
+  },
+  {
+    "text": "công ty du lịch",
+    "category": "travel"
+  },
+  {
+    "text": "버스",
+    "category": "transportation"
+  },
+  {
+    "text": "지하철",
+    "category": "transportation"
+  },
+  {
+    "text": "택시",
+    "category": "transportation"
+  },
+  {
+    "text": "교통",
+    "category": "transportation"
+  },
+  {
+    "text": "환승",
+    "category": "transportation"
+  },
+  {
+    "text": "노선",
+    "category": "transportation"
+  },
+  {
+    "text": "정류장",
+    "category": "transportation"
+  },
+  {
+    "text": "시간표",
+    "category": "transportation"
+  },
+  {
+    "text": "대중교통",
+    "category": "transportation"
+  },
+  {
+    "text": "운행",
+    "category": "transportation"
+  },
+  {
+    "text": "요금",
+    "category": "transportation"
+  },
+  {
+    "text": "교통카드",
+    "category": "transportation"
+  },
+  {
+    "text": "이동",
+    "category": "transportation"
+  },
+  {
+    "text": "bus",
+    "category": "transportation"
+  },
+  {
+    "text": "subway",
+    "category": "transportation"
+  },
+  {
+    "text": "taxi",
+    "category": "transportation"
+  },
+  {
+    "text": "transportation",
+    "category": "transportation"
+  },
+  {
+    "text": "transfer",
+    "category": "transportation"
+  },
+  {
+    "text": "route",
+    "category": "transportation"
+  },
+  {
+    "text": "stop",
+    "category": "transportation"
+  },
+  {
+    "text": "schedule",
+    "category": "transportation"
+  },
+  {
+    "text": "public transport",
+    "category": "transportation"
+  },
+  {
+    "text": "fare",
+    "category": "transportation"
+  },
+  {
+    "text": "card",
+    "category": "transportation"
+  },
+  {
+    "text": "move",
+    "category": "transportation"
+  },
+  {
+    "text": "バス",
+    "category": "transportation"
+  },
+  {
+    "text": "地下鉄",
+    "category": "transportation"
+  },
+  {
+    "text": "タクシー",
+    "category": "transportation"
+  },
+  {
+    "text": "交通",
+    "category": "transportation"
+  },
+  {
+    "text": "乗り換え",
+    "category": "transportation"
+  },
+  {
+    "text": "ルート",
+    "category": "transportation"
+  },
+  {
+    "text": "停留所",
+    "category": "transportation"
+  },
+  {
+    "text": "時刻表",
+    "category": "transportation"
+  },
+  {
+    "text": "公共交通",
+    "category": "transportation"
+  },
+  {
+    "text": "料金",
+    "category": "transportation"
+  },
+  {
+    "text": "移動",
+    "category": "transportation"
+  },
+  {
+    "text": "公交车",
+    "category": "transportation"
+  },
+  {
+    "text": "地铁",
+    "category": "transportation"
+  },
+  {
+    "text": "出租车",
+    "category": "transportation"
+  },
+  {
+    "text": "交通",
+    "category": "transportation"
+  },
+  {
+    "text": "换乘",
+    "category": "transportation"
+  },
+  {
+    "text": "路线",
+    "category": "transportation"
+  },
+  {
+    "text": "车站",
+    "category": "transportation"
+  },
+  {
+    "text": "时刻表",
+    "category": "transportation"
+  },
+  {
+    "text": "公共交通",
+    "category": "transportation"
+  },
+  {
+    "text": "运行",
+    "category": "transportation"
+  },
+  {
+    "text": "费用",
+    "category": "transportation"
+  },
+  {
+    "text": "交通卡",
+    "category": "transportation"
+  },
+  {
+    "text": "xe buýt",
+    "category": "transportation"
+  },
+  {
+    "text": "tàu điện ngầm",
+    "category": "transportation"
+  },
+  {
+    "text": "taxi",
+    "category": "transportation"
+  },
+  {
+    "text": "giao thông",
+    "category": "transportation"
+  },
+  {
+    "text": "chuyển tuyến",
+    "category": "transportation"
+  },
+  {
+    "text": "lộ trình",
+    "category": "transportation"
+  },
+  {
+    "text": "trạm",
+    "category": "transportation"
+  },
+  {
+    "text": "thời gian biểu",
+    "category": "transportation"
+  },
+  {
+    "text": "vận hành",
+    "category": "transportation"
+  },
+  {
+    "text": "phí",
+    "category": "transportation"
+  },
+  {
+    "text": "thẻ giao thông",
+    "category": "transportation"
+  },
+  {
+    "text": "음식",
+    "category": "food"
+  },
+  {
+    "text": "식당",
+    "category": "food"
+  },
+  {
+    "text": "맛집",
+    "category": "food"
+  },
+  {
+    "text": "메뉴",
+    "category": "food"
+  },
+  {
+    "text": "요리",
+    "category": "food"
+  },
+  {
+    "text": "식사",
+    "category": "food"
+  },
+  {
+    "text": "점심",
+    "category": "food"
+  },
+  {
+    "text": "저녁",
+    "category": "food"
+  },
+  {
+    "text": "아침",
+    "category": "food"
+  },
+  {
+    "text": "레스토랑",
+    "category": "food"
+  },
+  {
+    "text": "추천",
+    "category": "food"
+  },
+  {
+    "text": "주문",
+    "category": "food"
+  },
+  {
+    "text": "배달",
+    "category": "food"
+  },
+  {
+    "text": "food",
+    "category": "food"
+  },
+  {
+    "text": "restaurant",
+    "category": "food"
+  },
+  {
+    "text": "menu",
+    "category": "food"
+  },
+  {
+    "text": "meal",
+    "category": "food"
+  },
+  {
+    "text": "dish",
+    "category": "food"
+  },
+  {
+    "text": "lunch",
+    "category": "food"
+  },
+  {
+    "text": "dinner",
+    "category": "food"
+  },
+  {
+    "text": "breakfast",
+    "category": "food"
+  },
+  {
+    "text": "delivery",
+    "category": "food"
+  },
+  {
+    "text": "order",
+    "category": "food"
+  },
+  {
+    "text": "recommend",
+    "category": "food"
+  },
+  {
+    "text": "食べ物",
+    "category": "food"
+  },
+  {
+    "text": "レストラン",
+    "category": "food"
+  },
+  {
+    "text": "メニュー",
+    "category": "food"
+  },
+  {
+    "text": "料理",
+    "category": "food"
+  },
+  {
+    "text": "食事",
+    "category": "food"
+  },
+  {
+    "text": "昼ごはん",
+    "category": "food"
+  },
+  {
+    "text": "夕食",
+    "category": "food"
+  },
+  {
+    "text": "朝ごはん",
+    "category": "food"
+  },
+  {
+    "text": "デリバリー",
+    "category": "food"
+  },
+  {
+    "text": "注文",
+    "category": "food"
+  },
+  {
+    "text": "おすすめ",
+    "category": "food"
+  },
+  {
+    "text": "食物",
+    "category": "food"
+  },
+  {
+    "text": "餐厅",
+    "category": "food"
+  },
+  {
+    "text": "菜单",
+    "category": "food"
+  },
+  {
+    "text": "菜",
+    "category": "food"
+  },
+  {
+    "text": "午餐",
+    "category": "food"
+  },
+  {
+    "text": "晚餐",
+    "category": "food"
+  },
+  {
+    "text": "早餐",
+    "category": "food"
+  },
+  {
+    "text": "点餐",
+    "category": "food"
+  },
+  {
+    "text": "推荐",
+    "category": "food"
+  },
+  {
+    "text": "外卖",
+    "category": "food"
+  },
+  {
+    "text": "thức ăn",
+    "category": "food"
+  },
+  {
+    "text": "nhà hàng",
+    "category": "food"
+  },
+  {
+    "text": "thực đơn",
+    "category": "food"
+  },
+  {
+    "text": "bữa ăn",
+    "category": "food"
+  },
+  {
+    "text": "món ăn",
+    "category": "food"
+  },
+  {
+    "text": "bữa trưa",
+    "category": "food"
+  },
+  {
+    "text": "bữa tối",
+    "category": "food"
+  },
+  {
+    "text": "bữa sáng",
+    "category": "food"
+  },
+  {
+    "text": "giao hàng",
+    "category": "food"
+  },
+  {
+    "text": "gọi món",
+    "category": "food"
+  },
+  {
+    "text": "gợi ý",
+    "category": "food"
+  },
+  {
+    "text": "통신",
+    "category": "communication"
+  },
+  {
+    "text": "인터넷",
+    "category": "communication"
+  },
+  {
+    "text": "와이파이",
+    "category": "communication"
+  },
+  {
+    "text": "wifi",
+    "category": "communication"
+  },
+  {
+    "text": "데이터",
+    "category": "communication"
+  },
+  {
+    "text": "휴대폰",
+    "category": "communication"
+  },
+  {
+    "text": "유심",
+    "category": "communication"
+  },
+  {
+    "text": "SIM",
+    "category": "communication"
+  },
+  {
+    "text": "전화",
+    "category": "communication"
+  },
+  {
+    "text": "핸드폰",
+    "category": "communication"
+  },
+  {
+    "text": "충전",
+    "category": "communication"
+  },
+  {
+    "text": "신호",
+    "category": "communication"
+  },
+  {
+    "text": "핫스팟",
+    "category": "communication"
+  },
+  {
+    "text": "communication",
+    "category": "communication"
+  },
+  {
+    "text": "internet",
+    "category": "communication"
+  },
+  {
+    "text": "wifi",
+    "category": "communication"
+  },
+  {
+    "text": "data",
+    "category": "communication"
+  },
+  {
+    "text": "phone",
+    "category": "communication"
+  },
+  {
+    "text": "sim card",
+    "category": "communication"
+  },
+  {
+    "text": "signal",
+    "category": "communication"
+  },
+  {
+    "text": "charge",
+    "category": "communication"
+  },
+  {
+    "text": "call",
+    "category": "communication"
+  },
+  {
+    "text": "hotspot",
+    "category": "communication"
+  },
+  {
+    "text": "通信",
+    "category": "communication"
+  },
+  {
+    "text": "インターネット",
+    "category": "communication"
+  },
+  {
+    "text": "Wi-Fi",
+    "category": "communication"
+  },
+  {
+    "text": "データ",
+    "category": "communication"
+  },
+  {
+    "text": "携帯電話",
+    "category": "communication"
+  },
+  {
+    "text": "SIMカード",
+    "category": "communication"
+  },
+  {
+    "text": "電話",
+    "category": "communication"
+  },
+  {
+    "text": "信号",
+    "category": "communication"
+  },
+  {
+    "text": "充電",
+    "category": "communication"
+  },
+  {
+    "text": "ホットスポット",
+    "category": "communication"
+  },
+  {
+    "text": "通信",
+    "category": "communication"
+  },
+  {
+    "text": "互联网",
+    "category": "communication"
+  },
+  {
+    "text": "WiFi",
+    "category": "communication"
+  },
+  {
+    "text": "数据",
+    "category": "communication"
+  },
+  {
+    "text": "手机",
+    "category": "communication"
+  },
+  {
+    "text": "SIM卡",
+    "category": "communication"
+  },
+  {
+    "text": "信号",
+    "category": "communication"
+  },
+  {
+    "text": "电话",
+    "category": "communication"
+  },
+  {
+    "text": "充电",
+    "category": "communication"
+  },
+  {
+    "text": "热点",
+    "category": "communication"
+  },
+  {
+    "text": "truyền thông",
+    "category": "communication"
+  },
+  {
+    "text": "internet",
+    "category": "communication"
+  },
+  {
+    "text": "wifi",
+    "category": "communication"
+  },
+  {
+    "text": "dữ liệu",
+    "category": "communication"
+  },
+  {
+    "text": "điện thoại",
+    "category": "communication"
+  },
+  {
+    "text": "thẻ SIM",
+    "category": "communication"
+  },
+  {
+    "text": "tín hiệu",
+    "category": "communication"
+  },
+  {
+    "text": "gọi",
+    "category": "communication"
+  },
+  {
+    "text": "sạc",
+    "category": "communication"
+  },
+  {
+    "text": "hotspot",
+    "category": "communication"
+  },
+  {
+    "text": "병원",
+    "category": "hospital"
+  },
+  {
+    "text": "진료",
+    "category": "hospital"
+  },
+  {
+    "text": "약국",
+    "category": "hospital"
+  },
+  {
+    "text": "의사",
+    "category": "hospital"
+  },
+  {
+    "text": "응급실",
+    "category": "hospital"
+  },
+  {
+    "text": "의료",
+    "category": "hospital"
+  },
+  {
+    "text": "건강",
+    "category": "hospital"
+  },
+  {
+    "text": "치료",
+    "category": "hospital"
+  },
+  {
+    "text": "예약",
+    "category": "hospital"
+  },
+  {
+    "text": "증상",
+    "category": "hospital"
+  },
+  {
+    "text": "처방",
+    "category": "hospital"
+  },
+  {
+    "text": "진단",
+    "category": "hospital"
+  },
+  {
+    "text": "검사",
+    "category": "hospital"
+  },
+  {
+    "text": "hospital",
+    "category": "hospital"
+  },
+  {
+    "text": "clinic",
+    "category": "hospital"
+  },
+  {
+    "text": "doctor",
+    "category": "hospital"
+  },
+  {
+    "text": "pharmacy",
+    "category": "hospital"
+  },
+  {
+    "text": "emergency",
+    "category": "hospital"
+  },
+  {
+    "text": "treatment",
+    "category": "hospital"
+  },
+  {
+    "text": "health",
+    "category": "hospital"
+  },
+  {
+    "text": "medicine",
+    "category": "hospital"
+  },
+  {
+    "text": "appointment",
+    "category": "hospital"
+  },
+  {
+    "text": "symptom",
+    "category": "hospital"
+  },
+  {
+    "text": "diagnosis",
+    "category": "hospital"
+  },
+  {
+    "text": "病院",
+    "category": "hospital"
+  },
+  {
+    "text": "診療",
+    "category": "hospital"
+  },
+  {
+    "text": "薬局",
+    "category": "hospital"
+  },
+  {
+    "text": "医者",
+    "category": "hospital"
+  },
+  {
+    "text": "救急",
+    "category": "hospital"
+  },
+  {
+    "text": "治療",
+    "category": "hospital"
+  },
+  {
+    "text": "健康",
+    "category": "hospital"
+  },
+  {
+    "text": "薬",
+    "category": "hospital"
+  },
+  {
+    "text": "予約",
+    "category": "hospital"
+  },
+  {
+    "text": "症状",
+    "category": "hospital"
+  },
+  {
+    "text": "診断",
+    "category": "hospital"
+  },
+  {
+    "text": "検査",
+    "category": "hospital"
+  },
+  {
+    "text": "医院",
+    "category": "hospital"
+  },
+  {
+    "text": "诊疗",
+    "category": "hospital"
+  },
+  {
+    "text": "药店",
+    "category": "hospital"
+  },
+  {
+    "text": "医生",
+    "category": "hospital"
+  },
+  {
+    "text": "急诊",
+    "category": "hospital"
+  },
+  {
+    "text": "医疗",
+    "category": "hospital"
+  },
+  {
+    "text": "健康",
+    "category": "hospital"
+  },
+  {
+    "text": "药物",
+    "category": "hospital"
+  },
+  {
+    "text": "预约",
+    "category": "hospital"
+  },
+  {
+    "text": "症状",
+    "category": "hospital"
+  },
+  {
+    "text": "诊断",
+    "category": "hospital"
+  },
+  {
+    "text": "检查",
+    "category": "hospital"
+  },
+  {
+    "text": "bệnh viện",
+    "category": "hospital"
+  },
+  {
+    "text": "khám bệnh",
+    "category": "hospital"
+  },
+  {
+    "text": "hiệu thuốc",
+    "category": "hospital"
+  },
+  {
+    "text": "bác sĩ",
+    "category": "hospital"
+  },
+  {
+    "text": "cấp cứu",
+    "category": "hospital"
+  },
+  {
+    "text": "y tế",
+    "category": "hospital"
+  },
+  {
+    "text": "sức khỏe",
+    "category": "hospital"
+  },
+  {
+    "text": "thuốc",
+    "category": "hospital"
+  },
+  {
+    "text": "đặt lịch",
+    "category": "hospital"
+  },
+  {
+    "text": "triệu chứng",
+    "category": "hospital"
+  },
+  {
+    "text": "chẩn đoán",
+    "category": "hospital"
+  },
+  {
+    "text": "kiểm tra",
+    "category": "hospital"
+  },
+  {
+    "text": "숙소",
+    "category": "accommodation"
+  },
+  {
+    "text": "호텔",
+    "category": "accommodation"
+  },
+  {
+    "text": "게스트하우스",
+    "category": "accommodation"
+  },
+  {
+    "text": "호스텔",
+    "category": "accommodation"
+  },
+  {
+    "text": "예약",
+    "category": "accommodation"
+  },
+  {
+    "text": "방",
+    "category": "accommodation"
+  },
+  {
+    "text": "체크인",
+    "category": "accommodation"
+  },
+  {
+    "text": "체크아웃",
+    "category": "accommodation"
+  },
+  {
+    "text": "에어비앤비",
+    "category": "accommodation"
+  },
+  {
+    "text": "accommodation",
+    "category": "accommodation"
+  },
+  {
+    "text": "hotel",
+    "category": "accommodation"
+  },
+  {
+    "text": "guesthouse",
+    "category": "accommodation"
+  },
+  {
+    "text": "hostel",
+    "category": "accommodation"
+  },
+  {
+    "text": "reservation",
+    "category": "accommodation"
+  },
+  {
+    "text": "room",
+    "category": "accommodation"
+  },
+  {
+    "text": "check-in",
+    "category": "accommodation"
+  },
+  {
+    "text": "check-out",
+    "category": "accommodation"
+  },
+  {
+    "text": "airbnb",
+    "category": "accommodation"
+  },
+  {
+    "text": "宿泊",
+    "category": "accommodation"
+  },
+  {
+    "text": "ホテル",
+    "category": "accommodation"
+  },
+  {
+    "text": "ゲストハウス",
+    "category": "accommodation"
+  },
+  {
+    "text": "ホステル",
+    "category": "accommodation"
+  },
+  {
+    "text": "予約",
+    "category": "accommodation"
+  },
+  {
+    "text": "部屋",
+    "category": "accommodation"
+  },
+  {
+    "text": "チェックイン",
+    "category": "accommodation"
+  },
+  {
+    "text": "チェックアウト",
+    "category": "accommodation"
+  },
+  {
+    "text": "エアビーアンドビー",
+    "category": "accommodation"
+  },
+  {
+    "text": "住宿",
+    "category": "accommodation"
+  },
+  {
+    "text": "酒店",
+    "category": "accommodation"
+  },
+  {
+    "text": "民宿",
+    "category": "accommodation"
+  },
+  {
+    "text": "旅馆",
+    "category": "accommodation"
+  },
+  {
+    "text": "预订",
+    "category": "accommodation"
+  },
+  {
+    "text": "房间",
+    "category": "accommodation"
+  },
+  {
+    "text": "入住",
+    "category": "accommodation"
+  },
+  {
+    "text": "退房",
+    "category": "accommodation"
+  },
+  {
+    "text": "爱彼迎",
+    "category": "accommodation"
+  },
+  {
+    "text": "chỗ ở",
+    "category": "accommodation"
+  },
+  {
+    "text": "khách sạn",
+    "category": "accommodation"
+  },
+  {
+    "text": "nhà khách",
+    "category": "accommodation"
+  },
+  {
+    "text": "nhà trọ",
+    "category": "accommodation"
+  },
+  {
+    "text": "đặt phòng",
+    "category": "accommodation"
+  },
+  {
+    "text": "phòng",
+    "category": "accommodation"
+  },
+  {
+    "text": "nhận phòng",
+    "category": "accommodation"
+  },
+  {
+    "text": "trả phòng",
+    "category": "accommodation"
+  },
+  {
+    "text": "airbnb",
+    "category": "accommodation"
+  },
+  {
+    "text": "쇼핑",
+    "category": "shopping"
+  },
+  {
+    "text": "기념품",
+    "category": "shopping"
+  },
+  {
+    "text": "상점",
+    "category": "shopping"
+  },
+  {
+    "text": "마켓",
+    "category": "shopping"
+  },
+  {
+    "text": "백화점",
+    "category": "shopping"
+  },
+  {
+    "text": "할인",
+    "category": "shopping"
+  },
+  {
+    "text": "면세점",
+    "category": "shopping"
+  },
+  {
+    "text": "가격",
+    "category": "shopping"
+  },
+  {
+    "text": "영수증",
+    "category": "shopping"
+  },
+  {
+    "text": "결제",
+    "category": "shopping"
+  },
+  {
+    "text": "shopping",
+    "category": "shopping"
+  },
+  {
+    "text": "souvenir",
+    "category": "shopping"
+  },
+  {
+    "text": "store",
+    "category": "shopping"
+  },
+  {
+    "text": "market",
+    "category": "shopping"
+  },
+  {
+    "text": "mall",
+    "category": "shopping"
+  },
+  {
+    "text": "discount",
+    "category": "shopping"
+  },
+  {
+    "text": "duty-free",
+    "category": "shopping"
+  },
+  {
+    "text": "price",
+    "category": "shopping"
+  },
+  {
+    "text": "receipt",
+    "category": "shopping"
+  },
+  {
+    "text": "payment",
+    "category": "shopping"
+  },
+  {
+    "text": "ショッピング",
+    "category": "shopping"
+  },
+  {
+    "text": "お土産",
+    "category": "shopping"
+  },
+  {
+    "text": "店",
+    "category": "shopping"
+  },
+  {
+    "text": "マーケット",
+    "category": "shopping"
+  },
+  {
+    "text": "デパート",
+    "category": "shopping"
+  },
+  {
+    "text": "割引",
+    "category": "shopping"
+  },
+  {
+    "text": "免税店",
+    "category": "shopping"
+  },
+  {
+    "text": "値段",
+    "category": "shopping"
+  },
+  {
+    "text": "レシート",
+    "category": "shopping"
+  },
+  {
+    "text": "支払い",
+    "category": "shopping"
+  },
+  {
+    "text": "购物",
+    "category": "shopping"
+  },
+  {
+    "text": "纪念品",
+    "category": "shopping"
+  },
+  {
+    "text": "商店",
+    "category": "shopping"
+  },
+  {
+    "text": "市场",
+    "category": "shopping"
+  },
+  {
+    "text": "商场",
+    "category": "shopping"
+  },
+  {
+    "text": "折扣",
+    "category": "shopping"
+  },
+  {
+    "text": "免税店",
+    "category": "shopping"
+  },
+  {
+    "text": "价格",
+    "category": "shopping"
+  },
+  {
+    "text": "收据",
+    "category": "shopping"
+  },
+  {
+    "text": "付款",
+    "category": "shopping"
+  },
+  {
+    "text": "mua sắm",
+    "category": "shopping"
+  },
+  {
+    "text": "quà lưu niệm",
+    "category": "shopping"
+  },
+  {
+    "text": "cửa hàng",
+    "category": "shopping"
+  },
+  {
+    "text": "chợ",
+    "category": "shopping"
+  },
+  {
+    "text": "trung tâm thương mại",
+    "category": "shopping"
+  },
+  {
+    "text": "giảm giá",
+    "category": "shopping"
+  },
+  {
+    "text": "miễn thuế",
+    "category": "shopping"
+  },
+  {
+    "text": "giá",
+    "category": "shopping"
+  },
+  {
+    "text": "hóa đơn",
+    "category": "shopping"
+  },
+  {
+    "text": "thanh toán",
+    "category": "shopping"
+  },
+  {
+    "text": "문화",
+    "category": "culture"
+  },
+  {
+    "text": "역사",
+    "category": "culture"
+  },
+  {
+    "text": "전통",
+    "category": "culture"
+  },
+  {
+    "text": "박물관",
+    "category": "culture"
+  },
+  {
+    "text": "사원",
+    "category": "culture"
+  },
+  {
+    "text": "궁궐",
+    "category": "culture"
+  },
+  {
+    "text": "축제",
+    "category": "culture"
+  },
+  {
+    "text": "의식",
+    "category": "culture"
+  },
+  {
+    "text": "한복",
+    "category": "culture"
+  },
+  {
+    "text": "공연",
+    "category": "culture"
+  },
+  {
+    "text": "culture",
+    "category": "culture"
+  },
+  {
+    "text": "history",
+    "category": "culture"
+  },
+  {
+    "text": "tradition",
+    "category": "culture"
+  },
+  {
+    "text": "museum",
+    "category": "culture"
+  },
+  {
+    "text": "temple",
+    "category": "culture"
+  },
+  {
+    "text": "palace",
+    "category": "culture"
+  },
+  {
+    "text": "festival",
+    "category": "culture"
+  },
+  {
+    "text": "ceremony",
+    "category": "culture"
+  },
+  {
+    "text": "hanbok",
+    "category": "culture"
+  },
+  {
+    "text": "performance",
+    "category": "culture"
+  },
+  {
+    "text": "文化",
+    "category": "culture"
+  },
+  {
+    "text": "歴史",
+    "category": "culture"
+  },
+  {
+    "text": "伝統",
+    "category": "culture"
+  },
+  {
+    "text": "博物館",
+    "category": "culture"
+  },
+  {
+    "text": "寺",
+    "category": "culture"
+  },
+  {
+    "text": "宮殿",
+    "category": "culture"
+  },
+  {
+    "text": "祭り",
+    "category": "culture"
+  },
+  {
+    "text": "儀式",
+    "category": "culture"
+  },
+  {
+    "text": "韓服",
+    "category": "culture"
+  },
+  {
+    "text": "公演",
+    "category": "culture"
+  },
+  {
+    "text": "文化",
+    "category": "culture"
+  },
+  {
+    "text": "历史",
+    "category": "culture"
+  },
+  {
+    "text": "传统",
+    "category": "culture"
+  },
+  {
+    "text": "博物馆",
+    "category": "culture"
+  },
+  {
+    "text": "寺庙",
+    "category": "culture"
+  },
+  {
+    "text": "宫殿",
+    "category": "culture"
+  },
+  {
+    "text": "节日",
+    "category": "culture"
+  },
+  {
+    "text": "仪式",
+    "category": "culture"
+  },
+  {
+    "text": "韩服",
+    "category": "culture"
+  },
+  {
+    "text": "表演",
+    "category": "culture"
+  },
+  {
+    "text": "văn hóa",
+    "category": "culture"
+  },
+  {
+    "text": "lịch sử",
+    "category": "culture"
+  },
+  {
+    "text": "truyền thống",
+    "category": "culture"
+  },
+  {
+    "text": "bảo tàng",
+    "category": "culture"
+  },
+  {
+    "text": "chùa",
+    "category": "culture"
+  },
+  {
+    "text": "cung điện",
+    "category": "culture"
+  },
+  {
+    "text": "lễ hội",
+    "category": "culture"
+  },
+  {
+    "text": "nghi lễ",
+    "category": "culture"
+  },
+  {
+    "text": "hanbok",
+    "category": "culture"
+  },
+  {
+    "text": "buổi biểu diễn",
+    "category": "culture"
+  },
+  {
+    "text": "언어",
+    "category": "language"
+  },
+  {
+    "text": "말",
+    "category": "language"
+  },
+  {
+    "text": "한국어",
+    "category": "language"
+  },
+  {
+    "text": "인사",
+    "category": "language"
+  },
+  {
+    "text": "표현",
+    "category": "language"
+  },
+  {
+    "text": "단어",
+    "category": "language"
+  },
+  {
+    "text": "발음",
+    "category": "language"
+  },
+  {
+    "text": "의사소통",
+    "category": "language"
+  },
+  {
+    "text": "통역",
+    "category": "language"
+  },
+  {
+    "text": "번역",
+    "category": "language"
+  },
+  {
+    "text": "language",
+    "category": "language"
+  },
+  {
+    "text": "speak",
+    "category": "language"
+  },
+  {
+    "text": "Korean",
+    "category": "language"
+  },
+  {
+    "text": "greeting",
+    "category": "language"
+  },
+  {
+    "text": "phrase",
+    "category": "language"
+  },
+  {
+    "text": "word",
+    "category": "language"
+  },
+  {
+    "text": "pronunciation",
+    "category": "language"
+  },
+  {
+    "text": "communication",
+    "category": "language"
+  },
+  {
+    "text": "interpretation",
+    "category": "language"
+  },
+  {
+    "text": "translation",
+    "category": "language"
+  },
+  {
+    "text": "言語",
+    "category": "language"
+  },
+  {
+    "text": "話す",
+    "category": "language"
+  },
+  {
+    "text": "韓国語",
+    "category": "language"
+  },
+  {
+    "text": "あいさつ",
+    "category": "language"
+  },
+  {
+    "text": "表現",
+    "category": "language"
+  },
+  {
+    "text": "単語",
+    "category": "language"
+  },
+  {
+    "text": "発音",
+    "category": "language"
+  },
+  {
+    "text": "コミュニケーション",
+    "category": "language"
+  },
+  {
+    "text": "通訳",
+    "category": "language"
+  },
+  {
+    "text": "翻訳",
+    "category": "language"
+  },
+  {
+    "text": "语言",
+    "category": "language"
+  },
+  {
+    "text": "说",
+    "category": "language"
+  },
+  {
+    "text": "韩语",
+    "category": "language"
+  },
+  {
+    "text": "问候",
+    "category": "language"
+  },
+  {
+    "text": "短语",
+    "category": "language"
+  },
+  {
+    "text": "单词",
+    "category": "language"
+  },
+  {
+    "text": "发音",
+    "category": "language"
+  },
+  {
+    "text": "沟通",
+    "category": "language"
+  },
+  {
+    "text": "口译",
+    "category": "language"
+  },
+  {
+    "text": "翻译",
+    "category": "language"
+  },
+  {
+    "text": "ngôn ngữ",
+    "category": "language"
+  },
+  {
+    "text": "nói",
+    "category": "language"
+  },
+  {
+    "text": "tiếng Hàn",
+    "category": "language"
+  },
+  {
+    "text": "chào hỏi",
+    "category": "language"
+  },
+  {
+    "text": "câu",
+    "category": "language"
+  },
+  {
+    "text": "từ vựng",
+    "category": "language"
+  },
+  {
+    "text": "phát âm",
+    "category": "language"
+  },
+  {
+    "text": "giao tiếp",
+    "category": "language"
+  },
+  {
+    "text": "phiên dịch",
+    "category": "language"
+  },
+  {
+    "text": "dịch thuật",
+    "category": "language"
+  },
+  {
+    "text": "생활",
+    "category": "daily life"
+  },
+  {
+    "text": "정보",
+    "category": "daily life"
+  },
+  {
+    "text": "유심",
+    "category": "daily life"
+  },
+  {
+    "text": "SIM카드",
+    "category": "daily life"
+  },
+  {
+    "text": "인터넷",
+    "category": "daily life"
+  },
+  {
+    "text": "세탁",
+    "category": "daily life"
+  },
+  {
+    "text": "은행",
+    "category": "daily life"
+  },
+  {
+    "text": "환전",
+    "category": "daily life"
+  },
+  {
+    "text": "쓰레기",
+    "category": "daily life"
+  },
+  {
+    "text": "공공시설",
+    "category": "daily life"
+  },
+  {
+    "text": "daily life",
+    "category": "daily life"
+  },
+  {
+    "text": "information",
+    "category": "daily life"
+  },
+  {
+    "text": "sim card",
+    "category": "daily life"
+  },
+  {
+    "text": "internet",
+    "category": "daily life"
+  },
+  {
+    "text": "laundry",
+    "category": "daily life"
+  },
+  {
+    "text": "bank",
+    "category": "daily life"
+  },
+  {
+    "text": "currency exchange",
+    "category": "daily life"
+  },
+  {
+    "text": "trash",
+    "category": "daily life"
+  },
+  {
+    "text": "facility",
+    "category": "daily life"
+  },
+  {
+    "text": "生活",
+    "category": "daily life"
+  },
+  {
+    "text": "情報",
+    "category": "daily life"
+  },
+  {
+    "text": "SIMカード",
+    "category": "daily life"
+  },
+  {
+    "text": "インターネット",
+    "category": "daily life"
+  },
+  {
+    "text": "洗濯",
+    "category": "daily life"
+  },
+  {
+    "text": "銀行",
+    "category": "daily life"
+  },
+  {
+    "text": "両替",
+    "category": "daily life"
+  },
+  {
+    "text": "ゴミ",
+    "category": "daily life"
+  },
+  {
+    "text": "公共施設",
+    "category": "daily life"
+  },
+  {
+    "text": "生活",
+    "category": "daily life"
+  },
+  {
+    "text": "信息",
+    "category": "daily life"
+  },
+  {
+    "text": "SIM卡",
+    "category": "daily life"
+  },
+  {
+    "text": "互联网",
+    "category": "daily life"
+  },
+  {
+    "text": "洗衣",
+    "category": "daily life"
+  },
+  {
+    "text": "银行",
+    "category": "daily life"
+  },
+  {
+    "text": "换钱",
+    "category": "daily life"
+  },
+  {
+    "text": "垃圾",
+    "category": "daily life"
+  },
+  {
+    "text": "公共设施",
+    "category": "daily life"
+  },
+  {
+    "text": "cuộc sống",
+    "category": "daily life"
+  },
+  {
+    "text": "thông tin",
+    "category": "daily life"
+  },
+  {
+    "text": "thẻ SIM",
+    "category": "daily life"
+  },
+  {
+    "text": "internet",
+    "category": "daily life"
+  },
+  {
+    "text": "giặt ủi",
+    "category": "daily life"
+  },
+  {
+    "text": "ngân hàng",
+    "category": "daily life"
+  },
+  {
+    "text": "đổi tiền",
+    "category": "daily life"
+  },
+  {
+    "text": "rác",
+    "category": "daily life"
+  },
+  {
+    "text": "cơ sở công cộng",
+    "category": "daily life"
+  }
+]

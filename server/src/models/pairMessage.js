@@ -25,5 +25,6 @@ const PairMessageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  category: String,
 });
 module.exports = mongoose.model("PairMessage", PairMessageSchema);

@@ -15,6 +15,8 @@ const SavePairModal = ({
   const token = localStorage.getItem("token");
   const threadId = localStorage.getItem("assistant_thread");
 
+
+  // 대화내용 (pair) 저장하기
   const onSave = async () => {
     // console.log(messagePair);
     // console.log(selectedMessagePairIndex);

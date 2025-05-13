@@ -16,17 +16,6 @@ const History = () => {
   const token = localStorage.getItem("token");
 
   const [showModal, setShowModal] = useState(false);
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedPair(null);
-  };
-
-  const handleShowModal = (pair) => {
-    setSelectedPair(pair);
-    setShowModal(true);
-  };
-
-  const [selectedPair, setSelectedPair] = useState(null); // 추가
 
   useEffect(() => {
     fetchHistory();
@@ -118,20 +107,21 @@ const History = () => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Card
-                          onClick={() => handleShowModal(pair)}
+                        {/* <Card
+                          
                           style={{
                             backgroundColor: "transparent",
                             // border: "none",
                             borderRadius: "12px",
                           }}
-                        >
-                          <HistoryCard
-                            userMessage={pair.userMessage}
-                            aiMessage={pair.aiMessage}
-                            createdAt={pair.createdAt}
-                          />
-                        </Card>
+                        > */}
+                        <HistoryCard
+                        pair={pair}
+                          userMessage={pair.userMessage}
+                          aiMessage={pair.aiMessage}
+                          createdAt={pair.createdAt}
+                        />
+                        {/* </Card> */}
                       </Col>
                     )}
                   </Draggable>
@@ -141,7 +131,7 @@ const History = () => {
             )}
           </Droppable>
         </DragDropContext>
-        {selectedPair && (
+        {/* {selectedPair && (
           <HistoryModal
             show={showModal}
             onClose={handleCloseModal}
@@ -149,7 +139,7 @@ const History = () => {
             aiMessage={selectedPair.aiMessage}
             createdAt={selectedPair.createdAt}
           />
-        )}
+        )} */}
       </Container>
     </div>
   );
