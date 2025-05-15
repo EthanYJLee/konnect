@@ -7,6 +7,8 @@ require("./config/passport");
 const authRoutes = require("./routes/auth");
 const assistantRoutes = require("./routes/assistant");
 const historyRoutes = require("./routes/history");
+const searchRoutes = require("./routes/search");
+const naverSearchRoutes = require("./routes/naverSearch");
 
 const app = express();
 
@@ -43,6 +45,8 @@ app.use(passport.session());
 app.use("/api/auth", authRoutes);
 app.use("/api/assistant", assistantRoutes);
 app.use("/api/history", historyRoutes);
+app.use("/api/search", searchRoutes);
+app.use("/api/naver/search", naverSearchRoutes);
 
 // 접속된 아이피와 포트 출력
 app.get("/checkIpPort", function (req, res) {

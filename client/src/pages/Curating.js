@@ -1,23 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Curating.scss";
+import debounce from "lodash.debounce";
+import axios from "axios";
 
-const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
+// const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
+const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY_TEST;
 
-const fetchKakaoPlaces = async (query) => {
+// const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+// const NAVER_CLIENT_SECRET = process.env.REACT_APP_NAVER_CLIENT_SECRET;
+const url = process.env.REACT_APP_WAS_URL;
+
+const fetchNaverPlaces = async (query) => {
   if (!query) return [];
-  const res = await fetch(
-    `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(
-      query
-    )}`,
-    {
-      headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` },
-    }
-  );
-  const data = await res.json();
-  return data.documents || [];
+  try {
+    const res = await axios.get(
+      `${url}/api/naver/search?query=${encodeURIComponent(query)}`
+    );
+    return res.data.places || [];
+  } catch (error) {
+    console.error("Error fetching Naver places:", error);
+    return [];
+  }
 };
+
+// const fetchKakaoPlaces = async (query) => {
+//   if (!query) return [];
+
+//   try {
+//     const res = await axios.get(
+//       `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(
+//         query
+//       )}`,
+//       {
+//         headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` },
+//       }
+//     );
+
+//     console.log("Kakao response:", res.data);
+//     return res.data.documents || [];
+//   } catch (error) {
+//     console.error("Error fetching Kakao places:", error);
+//     return [];
+//   }
+// };
 
 const SpotInput = ({ value, onChange }) => {
   const [suggestions, setSuggestions] = useState([]);
@@ -27,8 +54,18 @@ const SpotInput = ({ value, onChange }) => {
   const handleInput = async (e) => {
     const val = e.target.value;
     setInputValue(val);
+    debouncedFetch(val);
+  };
+
+  const debouncedFetch = useCallback(
+    debounce((q) => fetchSuggestions(q), 500),
+    []
+  );
+
+  const fetchSuggestions = async (val) => {
     if (val.length > 1) {
-      const results = await fetchKakaoPlaces(val);
+      const results = await fetchNaverPlaces(val);
+      console.log(results);
       setSuggestions(results);
       setShowDropdown(true);
     } else {
@@ -36,11 +73,21 @@ const SpotInput = ({ value, onChange }) => {
       setShowDropdown(false);
     }
   };
+  // const fetchSuggestions = async (val) => {
+  //   if (val.length > 1) {
+  //     const results = await fetchKakaoPlaces(val);
+  //     setSuggestions(results);
+  //     setShowDropdown(true);
+  //   } else {
+  //     setSuggestions([]);
+  //     setShowDropdown(false);
+  //   }
+  // };
 
   const handleSelect = (place) => {
-    setInputValue(place.place_name);
+    setInputValue(place.name);
     setShowDropdown(false);
-    onChange(place.place_name);
+    onChange(place.name);
   };
 
   return (
@@ -59,9 +106,9 @@ const SpotInput = ({ value, onChange }) => {
         <ul className="spot-suggestion-dropdown">
           {suggestions.map((place) => (
             <li key={place.id} onClick={() => handleSelect(place)}>
-              <span>{place.place_name}</span>
+              <span>{place.name}</span>
               <span style={{ color: "#888", fontSize: "0.9em", marginLeft: 6 }}>
-                {place.road_address_name || place.address_name}
+                {place.roadAddress || place.address}
               </span>
             </li>
           ))}

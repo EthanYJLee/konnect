@@ -1,3 +1,4 @@
+// 대화 기록 관련
 const express = require("express");
 const router = express.Router();
 const { OpenAI } = require("openai");
@@ -6,7 +7,6 @@ const User = require("../models/user");
 const Thread = require("../models/thread");
 const mongoose = require("mongoose");
 const PairMessage = require("../models/pairMessage");
-// const { getEmbedding } = require("../utils/getEmbedding");
 const fs = require("fs").promises;
 const path = require("path");
 const { classifyCategory } = require("../utils/classifyCategory");

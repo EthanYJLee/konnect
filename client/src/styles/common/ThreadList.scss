@@ -1,6 +1,9 @@
 .thread-list {
     padding-top: 3rem;
     background-color: var(--gray-100) !important;
+    height: 100%;
+    overflow-y: auto;
+
   .thread-item {
     padding: 0.75rem 1rem;
     border: none;
@@ -30,8 +33,47 @@
 
     .thread-content {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      span {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .delete-thread-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #dc3545;
+        padding: 0.25rem;
+        margin-left: 0.5rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .list-group-item:hover .delete-thread-btn {
+    display: block;
+  }
+
+  .add-thread {
+    .thread-content {
+      justify-content: center;
+      
+      span {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
     }
   }
 } 

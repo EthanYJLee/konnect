@@ -14,6 +14,7 @@ import Button from "./common/Button";
 import Input from "./common/Input";
 import Message from "./common/Message";
 import ThreadList from "./common/ThreadList";
+import AlertModal from "./AlertModal";
 
 const ChatInterface = ({ language }) => {
   const { t } = useTranslation();
@@ -29,6 +30,8 @@ const ChatInterface = ({ language }) => {
   const [showAddThreadButton, setShowAddThreadButton] = useState(false);
   const [messagePair, setMessagePair] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [threadToDelete, setThreadToDelete] = useState(null);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
@@ -47,7 +50,9 @@ const ChatInterface = ({ language }) => {
       window.location.href = "/";
     }
     getThreadList();
-    handleThreadClick(threadId);
+    if (threadId) {
+      handleThreadClick(threadId);
+    }
     scrollToBottom();
   }, []);
 
@@ -73,8 +78,8 @@ const ChatInterface = ({ language }) => {
       const data = await response.data;
       if (data.list.length > 0 && data.list.length < 3) {
         setShowAddThreadButton(true);
-        handleThreadClick(data.list[0].threadId);
       }
+      handleThreadClick(data.list[0].threadId || null);
       setThreadList(data.list || []);
     } catch (error) {
       console.error(error);
@@ -176,6 +181,38 @@ const ChatInterface = ({ language }) => {
     setSelectedMessagePairIndex([]);
   };
 
+  const handleDeleteThread = async (threadId) => {
+    setThreadToDelete(threadId);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteThread = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const url = process.env.REACT_APP_WAS_URL;
+      await axios.delete(`${url}/api/assistant/thread/${threadToDelete}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (threadToDelete === localStorage.getItem("assistant_thread")) {
+        localStorage.removeItem("assistant_thread");
+        setThreadId(null);
+        setMessages([]);
+        setMessagePair([]);
+      }
+
+      getThreadList();
+    } catch (error) {
+      console.error("Error deleting thread:", error);
+    } finally {
+      setShowDeleteModal(false);
+      setThreadToDelete(null);
+    }
+  };
+
   return (
     <div className="chat-wrapper">
       <Button
@@ -191,6 +228,7 @@ const ChatInterface = ({ language }) => {
           currentThreadId={threadId}
           onThreadClick={handleThreadClick}
           onAddThread={handleAddThread}
+          onDeleteThread={handleDeleteThread}
           showAddButton={showAddThreadButton}
         />
       </div>
@@ -264,6 +302,16 @@ const ChatInterface = ({ language }) => {
           </Button>
         </form>
       </div>
+
+      <AlertModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        title={t("alertModal.deleteThread")}
+        body={t("alertModal.confirmDeleteThread")}
+        onConfirm={confirmDeleteThread}
+        confirmText={t("alertModal.delete")}
+        cancelText={t("alertModal.cancel")}
+      />
     </div>
   );
 };

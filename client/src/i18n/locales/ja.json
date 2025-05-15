@@ -155,6 +155,10 @@
   },
   "alertModal": {
     "login": "ログイン",
-    "pleaseLogin": "ログインしてください"
+    "pleaseLogin": "このサービスを利用するにはログインが必要です。",
+    "deleteThread": "スレッドの削除",
+    "confirmDeleteThread": "このスレッドを削除してもよろしいですか？",
+    "delete": "削除",
+    "cancel": "キャンセル"
   }
 } 
