@@ -30,7 +30,7 @@ const Header = () => {
           style={{ justifyContent: "flex" }}
         >
           <Link to="/" className="logo">
-            K-Life Assistant
+            Konnect
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <nav className="main-nav">
@@ -40,6 +40,17 @@ const Header = () => {
             >
               <Nav className="me-auto">
                 <Nav.Link href="/">{t("nav.home")}</Nav.Link>
+                <Nav.Link
+                  href="/curating"
+                  onClick={(e) => {
+                    if (!isLoggedIn) {
+                      e.preventDefault();
+                      setShowModal(true);
+                    }
+                  }}
+                >
+                  {t("nav.curating")}
+                </Nav.Link>
                 <Nav.Link
                   href="/chat"
                   onClick={(e) => {

@@ -5,6 +5,7 @@
     "home": "홈",
     "faq": "자주 묻는 질문",
     "history": "질문 기록",
+    "curating": "큐레이팅",
     "settings": "설정",
     "login": "로그인",
     "signup": "회원가입",
@@ -82,7 +83,8 @@
     "question": "질문",
     "answer": "답변",
     "copy": "답변 복사",
-    "report": "오류 신고"
+    "report": "오류 신고",
+    "allCategories": "모든 카테고리"
   },
   "settings": {
     "title": "설정",

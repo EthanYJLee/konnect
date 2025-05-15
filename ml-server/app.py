@@ -16,9 +16,9 @@ classifier = joblib.load("model/classifier.pkl")
 @app.route("/classify", methods=["POST"])
 def classify():
     data = request.get_json()
-    print("data:", data)
+    # print("data:", data)
     text = data.get("text", "")
-    print(text)
+    # print(text)
 
     if not text.strip():
         return jsonify({"error": "text is required"}), 400

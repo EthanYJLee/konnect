@@ -5,6 +5,7 @@
     "home": "ホーム",
     "faq": "よくある質問",
     "history": "履歴",
+    "curating": "キュレーティング",
     "settings": "設定",
     "login": "ログイン",
     "signup": "新規登録",
@@ -82,7 +83,8 @@
     "question": "質問",
     "answer": "回答",
     "copy": "回答をコピー",
-    "report": "エラーを報告"
+    "report": "エラーを報告",
+    "allCategories": "すべてのカテゴリ"
   },
   "settings": {
     "title": "設定",

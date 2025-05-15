@@ -5,6 +5,7 @@
     "home": "Trang chủ",
     "faq": "Câu hỏi thường gặp",
     "history": "Lịch sử câu hỏi",
+    "curating": "Curating",
     "settings": "Cài đặt",
     "login": "Đăng nhập",
     "signup": "Đăng ký",
@@ -80,9 +81,10 @@
     "title": "Lịch sử câu hỏi",
     "empty": "Chưa có câu hỏi nào",
     "question": "Câu hỏi",
-    "answer": "Câu trả lời",
-    "copy": "Sao chép câu trả lời",
-    "report": "Báo cáo lỗi"
+    "answer": "Trả lời",
+    "copy": "Sao chép trả lời",
+    "report": "Báo lỗi",
+    "allCategories": "Tất cả danh mục"
   },
   "settings": {
     "title": "Cài đặt",

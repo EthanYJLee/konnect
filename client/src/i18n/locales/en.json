@@ -5,6 +5,7 @@
     "home": "Home",
     "faq": "FAQ",
     "history": "History",
+    "curating": "Curating",
     "settings": "Settings",
     "login": "Login",
     "signup": "Sign Up",
@@ -82,7 +83,8 @@
     "question": "Question",
     "answer": "Answer",
     "copy": "Copy Answer",
-    "report": "Report Error"
+    "report": "Report Error",
+    "allCategories": "All Categories"
   },
   "settings": {
     "title": "Settings",

@@ -1,7 +1,7 @@
 .home-container {
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem 1.5rem;
   max-width: 1200px;
 }
 
@@ -46,7 +46,6 @@
 
 .chat-main {
   flex: 1;
-  padding: 1rem;
   overflow: hidden;
 }
 
@@ -69,5 +68,38 @@
 
   .sidebar-interface {
     height: 100px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding: 0;
+    max-width: 100vw;
+    min-height: 100vh;
+    background: var(--bg-primary);
+  }
+  .chat-container {
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .chat-main {
+    flex: 1;
+    min-height: 70vh;
+    padding: 0.5rem 0.5rem 4.5rem 0.5rem;
+    overflow-y: auto;
+    background: var(--bg-primary);
+    border-radius: 0;
+  }
+  .sidebar-interface {
+    display: none;
+  }
+  .chat-input, .chat-send-btn {
+    font-size: 1.1rem;
+    padding: 1rem;
+    border-radius: 12px;
   }
 } 

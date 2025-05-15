@@ -14,6 +14,7 @@ import History from "./pages/History";
 // import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
 import Chat from "./pages/Chat";
+import CuratingPage from "./pages/Curating";
 
 // Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -45,6 +46,7 @@ function App() {
               >
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/curating" element={<CuratingPage />} />
 
                   <Route
                     path="/chat"

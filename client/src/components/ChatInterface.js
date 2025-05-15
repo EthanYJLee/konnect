@@ -180,6 +180,7 @@ const ChatInterface = ({ language }) => {
     <div className="chat-wrapper">
       <Button
         className="drawer-toggle"
+        style={{ fontSize: "1.5rem" }}
         onClick={() => setIsDrawerOpen((prev) => !prev)}
       >
         ☰

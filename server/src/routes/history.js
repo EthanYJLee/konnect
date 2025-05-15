@@ -43,7 +43,7 @@ router.post("/updateCategory", authenticateToken, async (req, res) => {
 
 router.post("/updateOrder", async (req, res) => {
   const { orderedPairs } = req.body; // [{ _id: "...", pairOrder: 0 }, ...]
-  console.log(orderedPairs);
+  // console.log(orderedPairs);
 
   try {
     const bulkOps = orderedPairs.map(({ _id, pairOrder }) => ({
@@ -88,15 +88,6 @@ router.post("/savePairs", authenticateToken, async (req, res) => {
       const userMessage = pairData.find((m) => m.type === "user");
       const aiMessage = pairData.find((m) => m.type === "ai");
 
-      // OpenAI Embedding
-      // const fullText = `${userMessage} ${aiMessage}`;
-      // const userEmbedding = await getEmbedding(fullText);
-      // const bestCategory = await classifyCategory(userEmbedding);
-
-      // const bestCategory = await extractCategory(`${userMessage} ${aiMessage}`);
-      // console.log(bestCategory);
-      console.log(userMessage);
-      console.log(aiMessage);
       const fullText = `${userMessage.content} ${aiMessage.content}`;
       const bestCategory = await classifyCategory(fullText);
       console.log(bestCategory);

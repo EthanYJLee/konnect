@@ -166,11 +166,13 @@
 
 .sidebar-list {
   padding-top: 4rem;
-  margin: 1rem;
+  margin: 2.5rem;
   height: calc(100% - 5rem);
   overflow-y: auto;
 }
-
+.list-group {
+  margin-top: 0.5rem;
+}
 .list-group-item {
   background-color: var(--white-color) !important;
   color: var(--black-color) !important;
@@ -204,7 +206,10 @@
 
 @media (max-width: 768px) {
   .chat-interface {
-    height: 500px;
+    height: 80%;
+  }
+  .chat-sidebar {
+    height: 80%;
   }
 
   .message {
@@ -227,11 +232,25 @@
 
 @media (max-width: 480px) {
   .chat-sidebar.open {
-    width: 100px !important;
   }
 
   .list-group-item {
-    font-size: 0.6rem !important;
-    padding: 0.2rem !important;
+    font-size: 1rem !important;
+  }
+
+  .chat-interface {
+  
+    &.shrink {
+      p, h1 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+  
+    h1, p {
+      padding-left: 3rem;
+      padding-right: 2rem;
+      font-size: 1rem;
+    }
   }
 } 

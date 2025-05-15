@@ -5,6 +5,7 @@
     "home": "首页",
     "faq": "常见问题",
     "history": "历史记录",
+    "curating": "策展",
     "settings": "设置",
     "login": "登录",
     "signup": "注册",
@@ -77,12 +78,13 @@
     }
   },
   "history": {
-    "title": "问题记录",
-    "empty": "还没有提问",
+    "title": "问题历史",
+    "empty": "还没有问题",
     "question": "问题",
     "answer": "回答",
     "copy": "复制回答",
-    "report": "报告错误"
+    "report": "报告错误",
+    "allCategories": "所有类别"
   },
   "settings": {
     "title": "设置",
