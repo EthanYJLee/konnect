@@ -1,11 +1,11 @@
 {
-  "welcome": "Welcome to K-Life Assistant",
+  "welcome": "Welcome to Konnect",
   "welcomeMessage": "Ask me anything about living in Korea!",
   "nav": {
     "home": "Home",
     "faq": "FAQ",
     "history": "History",
-    "curating": "Curating",
+    "curation": "Curation",
     "settings": "Settings",
     "login": "Login",
     "signup": "Sign Up",
@@ -99,7 +99,7 @@
   },
   "footer": {
     "about": "About",
-    "description": "K-Life Assistant helps foreigners living in Korea with daily life questions and information.",
+    "description": "Konnect helps foreigners living in Korea with daily life questions and information.",
     "links": "Quick Links",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
@@ -160,5 +160,28 @@
     "confirmDeleteThread": "Are you sure you want to delete this thread?",
     "delete": "Delete",
     "cancel": "Cancel"
+  },
+  "curation": {
+    "language": "en",
+    "title": "Curation",
+    "subtitle": "Enter must-visit spots and get your full itinerary!",
+    "maxSpotsReached": "You can add a maximum of {{max}} spots.",
+    "resetSpot": "Reset All",
+    "addSpot": "Add Spot",
+    "generateItinerary": "Generate Itinerary",
+    "spotsReset": "All spots have been reset.",
+    "allSpotsEmpty": "All spots are empty. Resetting automatically.",
+    "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
+    "clearInput": "Clear input"
+  },
+  "session": {
+    "expireTitle": "Session Expiring Soon",
+    "expireMessage": "Your session will expire soon. Please extend to continue using the service.",
+    "remainingTime": "Time remaining: ",
+    "extend": "Extend Session (1 hour)",
+    "logout": "Logout",
+    "extendError": "Failed to connect to server. Please try again or log out and log back in.",
+    "retry": "Retry",
+    "orLogout": "or log out and sign in again"
   }
 } 

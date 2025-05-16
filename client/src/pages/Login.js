@@ -14,6 +14,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { handleLogin } = useAuth();
+  // const checkGoogle = () => {
+  //   console.log("구글 로그인상태 확인");
+  //   console.log(localStorage.getItem("loginType"));
+  //   console.log(localStorage.getItem("token"));
+  // };
 
   const handleGeneralLogin = () => {
     console.log("일반 로그인 진행");
@@ -65,6 +70,9 @@ const Login = () => {
         <div className="bottom-links">
           <a href="/signup">{t("login.signup")}</a>
         </div>
+        {/* <button className="checkgoogle" onClick={checkGoogle}>
+          구글?
+        </button> */}
       </div>
     </div>
   );

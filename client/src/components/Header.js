@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
 import Nav from "react-bootstrap/Nav";
@@ -17,8 +17,13 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { isLoggedIn, handleLogout } = useAuth();
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <header className="app-header">
@@ -39,9 +44,12 @@ const Header = () => {
               className={`basic-navbar-nav ${theme}`}
             >
               <Nav className="me-auto">
-                <Nav.Link href="/">{t("nav.home")}</Nav.Link>
+                <Nav.Link href="/" className={isActive("/") ? "active" : ""}>
+                  {t("nav.home")}
+                </Nav.Link>
                 <Nav.Link
-                  href="/curating"
+                  href="/curation"
+                  className={isActive("/curation") ? "active" : ""}
                   onClick={(e) => {
                     if (!isLoggedIn) {
                       e.preventDefault();
@@ -49,10 +57,11 @@ const Header = () => {
                     }
                   }}
                 >
-                  {t("nav.curating")}
+                  {t("nav.curation")}
                 </Nav.Link>
                 <Nav.Link
                   href="/chat"
+                  className={isActive("/chat") ? "active" : ""}
                   onClick={(e) => {
                     if (!isLoggedIn) {
                       e.preventDefault();
@@ -64,6 +73,7 @@ const Header = () => {
                 </Nav.Link>
                 <Nav.Link
                   href="/history"
+                  className={isActive("/history") ? "active" : ""}
                   onClick={(e) => {
                     if (!isLoggedIn) {
                       e.preventDefault();
@@ -73,7 +83,12 @@ const Header = () => {
                 >
                   {t("nav.history")}
                 </Nav.Link>
-                <Nav.Link href="/faq">{t("nav.faq")}</Nav.Link>
+                <Nav.Link
+                  href="/faq"
+                  className={isActive("/faq") ? "active" : ""}
+                >
+                  {t("nav.faq")}
+                </Nav.Link>
                 {/* <Nav.Link href="/settings">{t("nav.settings")}</Nav.Link> */}
               </Nav>
             </Navbar.Collapse>

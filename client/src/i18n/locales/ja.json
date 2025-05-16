@@ -1,5 +1,5 @@
 {
-  "welcome": "K-Life Assistantへようこそ",
+  "welcome": "Konnectへようこそ",
   "welcomeMessage": "韓国での生活について何でも質問してください！",
   "nav": {
     "home": "ホーム",
@@ -99,7 +99,7 @@
   },
   "footer": {
     "about": "概要",
-    "description": "K-Life Assistantは韓国で生活する外国人向けの日常生活の質問と情報を提供します。",
+    "description": "Konnectは韓国で生活する外国人向けの日常生活の質問と情報を提供します。",
     "links": "クイックリンク",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
@@ -160,5 +160,16 @@
     "confirmDeleteThread": "このスレッドを削除してもよろしいですか？",
     "delete": "削除",
     "cancel": "キャンセル"
+  },
+  "curating": {
+    "language": "ja",
+    "title": "キュレーティング",
+    "subtitle": "訪問したい場所を入力して、旅行日程を受け取りましょう！",
+    "maxSpotsReached": "最大{{max}}ヶ所までしか追加できません。",
+    "resetSpot": "すべてリセット",
+    "addSpot": "場所を追加",
+    "generateItinerary": "スケジュール生成",
+    "spotsReset": "すべての場所がリセットされました。",
+    "allSpotsEmpty": "すべての場所が空です。自動的にリセットします。"
   }
 } 

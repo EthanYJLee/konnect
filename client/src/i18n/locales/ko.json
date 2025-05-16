@@ -1,11 +1,11 @@
 {
-  "welcome": "K-Life Assistant에 오신 것을 환영합니다",
+  "welcome": "Konnect에 오신 것을 환영합니다",
   "welcomeMessage": "한국 생활에 대해 무엇이든 물어보세요!",
   "nav": {
     "home": "홈",
     "faq": "자주 묻는 질문",
     "history": "질문 기록",
-    "curating": "큐레이팅",
+    "curation": "큐레이션",
     "settings": "설정",
     "login": "로그인",
     "signup": "회원가입",
@@ -99,7 +99,7 @@
   },
   "footer": {
     "about": "소개",
-    "description": "K-Life Assistant는 한국에서 생활하는 외국인들을 위한 일상 생활 질문과 정보를 제공합니다.",
+    "description": "Konnect는 한국에서 생활하는 외국인들을 위한 일상 생활 질문과 정보를 제공합니다.",
     "links": "바로가기",
     "privacy": "개인정보 처리방침",
     "terms": "이용약관",
@@ -160,5 +160,28 @@
     "confirmDeleteThread": "정말로 이 스레드를 삭제하시겠습니까?",
     "delete": "삭제",
     "cancel": "취소"
+  },
+  "curation": {
+    "language": "ko",
+    "title": "큐레이션",
+    "subtitle": "방문하고 싶은 장소를 입력하고 여행 일정을 받아보세요!",
+    "maxSpotsReached": "최대 {{max}}개의 장소만 추가할 수 있습니다.",
+    "resetSpot": "모두 초기화",
+    "addSpot": "장소 추가",
+    "generateItinerary": "일정 생성하기",
+    "spotsReset": "모든 장소가 초기화되었습니다.",
+    "allSpotsEmpty": "모든 장소가 비어 있습니다. 리셋하시겠습니까?",
+    "spotPlaceholder": "장소를 입력하세요 (예: 카페, 명소 등)",
+    "clearInput": "입력 지우기"
+  },
+  "session": {
+    "expireTitle": "세션 만료 예정",
+    "expireMessage": "세션이 곧 만료됩니다. 계속 이용하시려면 연장하세요.",
+    "remainingTime": "남은 시간: ",
+    "extend": "세션 연장 (1시간)",
+    "logout": "로그아웃",
+    "extendError": "서버 연결에 실패했습니다. 다시 시도하거나 로그아웃 후 재로그인해주세요.",
+    "retry": "재시도",
+    "orLogout": "또는 로그아웃 후 다시 로그인"
   }
 } 

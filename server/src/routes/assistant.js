@@ -25,6 +25,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
+// 대화 기록 조회
 router.get("/thread/:threadId", authenticateToken, async (req, res) => {
   const { threadId } = req.params;
   const response = await openai.beta.threads.messages.list(threadId);
@@ -42,12 +43,14 @@ router.get("/thread/:threadId", authenticateToken, async (req, res) => {
   res.json({ messages });
 });
 
+// 대화 기록 목록 조회
 router.get("/threadList", authenticateToken, async (req, res) => {
   const user = await User.findById(req.userId);
   const threadList = await Thread.find({ userId: user._id });
   res.json({ list: threadList });
 });
 
+// 대화 보내기
 router.post("/ask", authenticateToken, async (req, res) => {
   const { messages, threadId } = req.body;
 
@@ -135,6 +138,7 @@ router.post("/ask", authenticateToken, async (req, res) => {
   }
 });
 
+// 대화 기록 삭제
 router.delete("/thread/:threadId", authenticateToken, async (req, res) => {
   try {
     const { threadId } = req.params;

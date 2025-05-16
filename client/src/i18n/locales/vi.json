@@ -1,5 +1,5 @@
 {
-  "welcome": "Chào mừng đến với K-Life Assistant",
+  "welcome": "Chào mừng đến với Konnect",
   "welcomeMessage": "Hãy hỏi tôi bất cứ điều gì về cuộc sống ở Hàn Quốc!",
   "nav": {
     "home": "Trang chủ",
@@ -99,7 +99,7 @@
   },
   "footer": {
     "about": "Giới thiệu",
-    "description": "K-Life Assistant cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài ở Hàn Quốc.",
+    "description": "Konnect cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài ở Hàn Quốc.",
     "links": "Liên kết nhanh",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản dịch vụ",
@@ -160,5 +160,16 @@
     "confirmDeleteThread": "Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?",
     "delete": "Xóa",
     "cancel": "Hủy"
+  },
+  "curating": {
+    "language": "vi",
+    "title": "Curating",
+    "subtitle": "Nhập các địa điểm muốn ghé thăm và nhận lịch trình đầy đủ của bạn!",
+    "maxSpotsReached": "Bạn chỉ có thể thêm tối đa {{max}} địa điểm.",
+    "resetSpot": "Đặt lại tất cả",
+    "addSpot": "Thêm địa điểm",
+    "generateItinerary": "Tạo lịch trình",
+    "spotsReset": "Tất cả các địa điểm đã được đặt lại.",
+    "allSpotsEmpty": "Tất cả các địa điểm đều trống. Đang đặt lại tự động."
   }
 } 

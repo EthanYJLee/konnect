@@ -32,10 +32,25 @@ const ChatInterface = ({ language }) => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [threadToDelete, setThreadToDelete] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
   const messageContainerRef = useRef(null);
+
+  // 모바일 화면 감지
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, []);
 
   const scrollToBottom = () => {
     const container = messageContainerRef.current;
@@ -171,6 +186,11 @@ const ChatInterface = ({ language }) => {
       pairs.push(sortedMessages.slice(i, i + 2));
     }
     setMessagePair(pairs);
+
+    // 모바일에서 스레드 클릭 시 drawer 닫기
+    if (isMobile) {
+      setIsDrawerOpen(false);
+    }
   };
 
   const handleAddThread = () => {
@@ -179,6 +199,11 @@ const ChatInterface = ({ language }) => {
     setMessages([]);
     setMessagePair([]);
     setSelectedMessagePairIndex([]);
+
+    // 모바일에서 새 스레드 추가 시 drawer 닫기
+    if (isMobile) {
+      setIsDrawerOpen(false);
+    }
   };
 
   const handleDeleteThread = async (threadId) => {
@@ -213,15 +238,24 @@ const ChatInterface = ({ language }) => {
     }
   };
 
+  // 배경 클릭 시 모바일에서 drawer 닫기
+  const handleOverlayClick = () => {
+    if (isMobile && isDrawerOpen) {
+      console.log("Overlay clicked, closing drawer");
+      setIsDrawerOpen(false);
+    }
+  };
+
   return (
-    <div className="chat-wrapper">
+    <div className={`chat-wrapper ${isMobile ? "mobile" : ""}`}>
       <Button
         className="drawer-toggle"
-        style={{ fontSize: "1.5rem" }}
+        style={{ fontSize: "1.5rem", zIndex: 9000 }}
         onClick={() => setIsDrawerOpen((prev) => !prev)}
       >
         ☰
       </Button>
+
       <div className={`chat-sidebar ${isDrawerOpen ? "open" : ""}`}>
         <ThreadList
           threads={threadList}
@@ -233,7 +267,24 @@ const ChatInterface = ({ language }) => {
         />
       </div>
 
-      <div className={`chat-interface ${isDrawerOpen ? "shrink" : ""}`}>
+      {/* 모바일 화면에서 drawer 열려있을 때 오버레이 */}
+      {isMobile && isDrawerOpen && (
+        <div
+          className="chat-overlay"
+          onClick={handleOverlayClick}
+          aria-label="Close sidebar overlay"
+        ></div>
+      )}
+
+      <div
+        className={`chat-interface ${
+          isDrawerOpen && isMobile
+            ? "mobile-shrink"
+            : isDrawerOpen
+            ? "shrink"
+            : ""
+        }`}
+      >
         <div className="chat-interface-header">
           <TypingText text={t("welcome")} speed={100} />
           <p>{t("welcomeMessage")}</p>
@@ -269,7 +320,6 @@ const ChatInterface = ({ language }) => {
                 display: "flex",
                 justifyContent: "flex-end",
                 zIndex: 10,
-                // paddingRight: "1rem",
               }}
             >
               <FloatingActionButton
@@ -288,16 +338,24 @@ const ChatInterface = ({ language }) => {
           messagePair={messagePair}
         />
 
-        <form onSubmit={handleSubmit} className="input-form">
+        <form
+          onSubmit={handleSubmit}
+          className={`input-form ${isDrawerOpen && isMobile ? "disabled" : ""}`}
+        >
           <Input
             type="text"
             value={inputValue}
             maxLength={100}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={t("chat.placeholder")}
-            disabled={isLoading}
+            disabled={isLoading || (isDrawerOpen && isMobile)}
           />
-          <Button type="submit" disabled={isLoading || !inputValue.trim()}>
+          <Button
+            type="submit"
+            disabled={
+              isLoading || !inputValue.trim() || (isDrawerOpen && isMobile)
+            }
+          >
             {t("chat.send")}
           </Button>
         </form>

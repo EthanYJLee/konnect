@@ -1,5 +1,5 @@
 {
-  "welcome": "欢迎使用 K-Life Assistant",
+  "welcome": "欢迎使用 Konnect",
   "welcomeMessage": "关于韩国生活，您可以询问任何问题！",
   "nav": {
     "home": "首页",
@@ -99,7 +99,7 @@
   },
   "footer": {
     "about": "关于",
-    "description": "K-Life Assistant为在韩外国人提供日常生活问题和信息。",
+    "description": "Konnect为在韩外国人提供日常生活问题和信息。",
     "links": "快速链接",
     "privacy": "隐私政策",
     "terms": "服务条款",
@@ -160,5 +160,16 @@
     "confirmDeleteThread": "确定要删除这个对话吗？",
     "delete": "删除",
     "cancel": "取消"
+  },
+  "curating": {
+    "language": "zh-CN",
+    "title": "策展",
+    "subtitle": "输入想要访问的地点，获取您的完整行程！",
+    "maxSpotsReached": "最多只能添加{{max}}个地点。",
+    "resetSpot": "全部重置",
+    "addSpot": "添加地点",
+    "generateItinerary": "生成行程",
+    "spotsReset": "所有地点已重置。",
+    "allSpotsEmpty": "所有地点都为空。正在自动重置。"
   }
 } 
