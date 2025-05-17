@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
 # 데이터 로드
-with open("../model/categories.json", "r", encoding="utf-8") as f:
+with open("/categories.json", "r", encoding="utf-8") as f:
     category_data = json.load(f)
 
 texts = []
@@ -26,10 +26,10 @@ clf = MultinomialNB()
 clf.fit(X, labels)
 
 # 모델 저장
-with open("model/vectorizer.pkl", "wb") as f:
+with open("models/vectorizer.pkl", "wb") as f:
     pickle.dump(vectorizer, f)
 
-with open("model/classifier.pkl", "wb") as f:
+with open("models/classifier.pkl", "wb") as f:
     pickle.dump(clf, f)
 
 print("✅ 모델 학습 및 저장 완료")

@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report
 import pickle
 
 # 학습 데이터 불러오기
-with open("model/train_data.json", "r", encoding="utf-8") as f:
+with open("models/train_data.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 texts = [item["text"] for item in data]
@@ -31,7 +31,7 @@ y_pred = pipeline.predict(X_test)
 print(classification_report(y_test, y_pred))
 
 # 개별 저장
-joblib.dump(pipeline.named_steps["tfidf"], "model/vectorizer.pkl")
-joblib.dump(pipeline.named_steps["nb"], "model/classifier.pkl")
+joblib.dump(pipeline.named_steps["tfidf"], "models/vectorizer.pkl")
+joblib.dump(pipeline.named_steps["nb"], "models/classifier.pkl")
 
 print("✅ vectorizer.pkl, classifier.pkl 저장 완료")

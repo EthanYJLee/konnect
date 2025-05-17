@@ -250,7 +250,7 @@ const ChatInterface = ({ language }) => {
     <div className={`chat-wrapper ${isMobile ? "mobile" : ""}`}>
       <Button
         className="drawer-toggle"
-        style={{ fontSize: "1.5rem", zIndex: 9000 }}
+        style={{ fontSize: "1.5rem", zIndex: 999 }}
         onClick={() => setIsDrawerOpen((prev) => !prev)}
       >
         ☰

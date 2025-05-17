@@ -258,8 +258,8 @@ const Curation = () => {
     console.log("End Date:", endDate);
     console.log("Spots with full information:", spots);
     const response = await axios.post(`${url}/api/curation/generate`, {
-      startDate,
-      endDate,
+      startDate: startDate ? formatDate(startDate) : null,
+      endDate: endDate ? formatDate(endDate) : null,
       spots,
     });
     console.log("Response:", response.data);
@@ -300,7 +300,7 @@ const Curation = () => {
           <label>Start Date</label>
           <DatePicker
             selected={startDate}
-            onChange={(date) => setStartDate(formatDate(date))}
+            onChange={(date) => setStartDate(date)}
             selectsStart
             startDate={startDate}
             endDate={endDate}
@@ -313,7 +313,7 @@ const Curation = () => {
           <label>End Date</label>
           <DatePicker
             selected={endDate}
-            onChange={(date) => setEndDate(formatDate(date))}
+            onChange={(date) => setEndDate(date)}
             selectsEnd
             startDate={startDate}
             endDate={endDate}
