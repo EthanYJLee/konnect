@@ -2,14 +2,20 @@ import requests
 from datetime import datetime, timedelta
 from sklearn.cluster import KMeans
 import numpy as np
+from dotenv import load_dotenv, find_dotenv
+import os
+
+load_dotenv(find_dotenv())
+OSRM_SERVER_URL = os.getenv("OSRM_SERVER_URL")
+
 
 def get_distance_matrix(spots):
     coordinates = ";".join([f"{s['lng']},{s['lat']}" for s in spots])
-    url = f"http://175.125.92.35:5010/table/v1/driving/{coordinates}?annotations=distance"
+    url = f"{OSRM_SERVER_URL}/table/v1/driving/{coordinates}?annotations=distance"
     try:
         res = requests.get(url)
         res.raise_for_status()
-        print(res.json()['distances'])
+        # print(res.json()['distances'])
         return res.json()["distances"]  # 2D 리스트 반환
     except Exception as e:
         print("OSRM /table error:", e)
@@ -47,6 +53,8 @@ def distribute_must_spots_by_cluster(spots, start_date_str, end_date_str):
         return {}
 
     n_clusters = min(days, len(spots))
+
+    # print("n clusters:",n_clusters)
 
 
     labels = cluster_spots(dist_matrix, n_clusters=n_clusters)

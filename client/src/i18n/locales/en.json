@@ -172,7 +172,20 @@
     "spotsReset": "All spots have been reset.",
     "allSpotsEmpty": "All spots are empty. Resetting automatically.",
     "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
-    "clearInput": "Clear input"
+    "clearInput": "Clear input",
+    "selectCategory": "Select Trip Categories",
+    "categoryDescription": "What type of trip are you planning?",
+    "categoryMultipleDescription": "What types of activities are you interested in? (Select all that apply)",
+    "changeCategory": "Change",
+    "confirmCategories": "Continue",
+    "selectAtLeastOne": "Please select at least one category",
+    "categories": {
+      "nature": "Nature",
+      "humanities": "Culture/Art/History",
+      "leisure": "Leisure Sports",
+      "shopping": "Shopping",
+      "food": "Food"
+    }
   },
   "session": {
     "expireTitle": "Session Expiring Soon",

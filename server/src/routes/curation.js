@@ -5,11 +5,17 @@ const { generateItinerary } = require("../utils/generateItinerary");
 require("dotenv").config();
 
 router.post("/generate", async (req, res) => {
-  const { spots, startDate, endDate } = req.body;
+  const { spots, startDate, endDate, categories } = req.body;
   console.log(spots);
   console.log(startDate);
   console.log(endDate);
-  const itinerary = await generateItinerary(startDate, endDate, spots);
+  console.log(categories);
+  const itinerary = await generateItinerary(
+    startDate,
+    endDate,
+    spots,
+    categories
+  );
   console.log(itinerary);
   res.json({ itinerary });
 });

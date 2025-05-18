@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-async function generateItinerary(startDate, endDate, spots) {
+async function generateItinerary(startDate, endDate, spots, categories) {
   try {
     const response = await axios.post(
       `${process.env.ML_SERVER_URL}/generateItinerary`,
@@ -8,6 +8,7 @@ async function generateItinerary(startDate, endDate, spots) {
         startDate,
         endDate,
         spots,
+        categories,
       }
     );
     console.log(response.data);

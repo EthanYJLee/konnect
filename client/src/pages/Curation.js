@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Curation.scss";
@@ -161,6 +161,55 @@ const Curation = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const { theme } = useTheme();
+  const [showCategorySelector, setShowCategorySelector] = useState(true);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  // Available trip categories
+  const categories = [
+    { id: "A01", icon: "🌳", name: t("curation.categories.nature", "자연") },
+    {
+      id: "A02",
+      icon: "🏛️",
+      name: t("curation.categories.humanities", "인문(문화/예술/역사)"),
+    },
+    { id: "A03", icon: "🚵", name: t("curation.categories.leisure", "레포츠") },
+    { id: "A04", icon: "🛍️", name: t("curation.categories.shopping", "쇼핑") },
+    { id: "A05", icon: "🍽️", name: t("curation.categories.food", "음식") },
+  ];
+
+  // Toggle a category in the selection
+  const handleCategoryToggle = (category) => {
+    setSelectedCategories((prevCategories) => {
+      // Check if this category is already selected
+      const isSelected = prevCategories.some((cat) => cat.id === category.id);
+
+      if (isSelected) {
+        // Remove from selected categories
+        return prevCategories.filter((cat) => cat.id !== category.id);
+      } else {
+        // Add to selected categories
+        return [...prevCategories, category];
+      }
+    });
+  };
+
+  // Proceed to the main curation interface
+  const handleCategoryConfirm = () => {
+    if (selectedCategories.length > 0) {
+      setShowCategorySelector(false);
+    } else {
+      // Show alert if no category is selected
+      setAlertMessage(
+        t("curation.selectAtLeastOne", "Please select at least one category")
+      );
+      setShowAlert(true);
+
+      // 3초 후 알림 숨기기
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+    }
+  };
 
   const handleSpotChange = (idx, value) => {
     const newSpots = [...spots];
@@ -257,10 +306,17 @@ const Curation = () => {
     console.log("Start Date:", startDate);
     console.log("End Date:", endDate);
     console.log("Spots with full information:", spots);
+    console.log("Selected Categories:", selectedCategories);
+
+    // Prepare category codes for API
+    const categoryCodes = selectedCategories.map((cat) => cat.id);
+    console.log("Category Codes:", categoryCodes);
+
     const response = await axios.post(`${url}/api/curation/generate`, {
       startDate: startDate ? formatDate(startDate) : null,
       endDate: endDate ? formatDate(endDate) : null,
       spots,
+      categories: categoryCodes,
     });
     console.log("Response:", response.data);
   };
@@ -280,92 +336,148 @@ const Curation = () => {
         )}
       </p>
 
-      <div className="direction-image-container">
-        <img
-          src={directionImg}
-          alt="Travel direction"
-          className="direction-image"
-        />
-      </div>
+      {showCategorySelector ? (
+        <div className="category-selector-container">
+          <h2>{t("curation.selectCategory", "Select Trip Category")}</h2>
+          <p>
+            {t(
+              "curation.categoryMultipleDescription",
+              "What types of activities are you interested in? (Select all that apply)"
+            )}
+          </p>
 
-      {/* 커스텀 알림 표시 */}
-      {showAlert && <div className="custom-alert">{alertMessage}</div>}
-
-      <div className="date-range-inputs">
-        <div
-          style={{
-            justifyContent: "space-between !important",
-          }}
-        >
-          <label>Start Date</label>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            dateFormat="yyyy-MM-dd"
-            placeholderText="Select start date"
-            className={datePickerClassName}
-          />
-        </div>
-        <div>
-          <label>End Date</label>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            dateFormat="yyyy-MM-dd"
-            placeholderText="Select end date"
-            className={datePickerClassName}
-          />
-        </div>
-      </div>
-      <div className="spot-inputs">
-        {spots.map((spot, idx) => (
-          <SpotInput
-            key={idx}
-            value={spot}
-            onChange={(val) => handleSpotChange(idx, val)}
-          />
-        ))}
-        <div className="spot-button-group">
-          <button onClick={addSpot} className="add-spot-btn">
-            + {t("curation.addSpot", "Add Spot")}
-          </button>
-          <button onClick={resetSpot} className="reset-spot-btn">
-            {t("curation.resetSpot", "Reset All")}
-          </button>
-        </div>
-      </div>
-      <button className="generate-btn" onClick={generateItinerary}>
-        {t("curation.generateItinerary", "Generate Itinerary")}
-      </button>
-
-      {itinerary && (
-        <div className="itinerary-card">
-          <h2>Suggested Itinerary</h2>
-          <div className="itinerary-date">{itinerary.date}</div>
-          <div className="itinerary-start">Start at {itinerary.start}</div>
-          <div className="itinerary-map">
-            {/* 지도 컴포넌트 자리 (예: <ItineraryMap ... />) */}
-            <img src="/mock-map.png" alt="map" className="mock-map" />
-          </div>
-          <div className="itinerary-list">
-            {itinerary.route.map((item, idx) => (
-              <div className="itinerary-spot" key={idx}>
-                <span className={`icon icon-${item.icon}`} />
-                <div>
-                  <div className="spot-name">{item.name}</div>
-                  <div className="spot-time">{item.time}</div>
+          <div className="category-grid">
+            {categories.map((category) => {
+              const isSelected = selectedCategories.some(
+                (cat) => cat.id === category.id
+              );
+              return (
+                <div
+                  key={category.id}
+                  className={`category-card ${isSelected ? "selected" : ""}`}
+                  onClick={() => handleCategoryToggle(category)}
+                >
+                  <div className="category-icon">{category.icon}</div>
+                  <div className="category-name">{category.name}</div>
+                  {isSelected && <div className="selected-indicator">✓</div>}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
+
+          <button
+            className="category-confirm-btn"
+            onClick={handleCategoryConfirm}
+          >
+            {t("curation.confirmCategories", "Continue")}
+          </button>
         </div>
+      ) : (
+        <>
+          <div className="selected-categories">
+            <div className="categories-list">
+              {selectedCategories.map((category, index) => (
+                <span key={category.id} className="category-tag">
+                  {category.icon} {category.name}
+                </span>
+              ))}
+            </div>
+            <button
+              className="change-category-btn"
+              onClick={() => setShowCategorySelector(true)}
+            >
+              {t("curation.changeCategory", "Change")}
+            </button>
+          </div>
+
+          <div className="direction-image-container">
+            <img
+              src={directionImg}
+              alt="Travel direction"
+              className="direction-image"
+            />
+          </div>
+
+          {/* 커스텀 알림 표시 */}
+          {showAlert && <div className="custom-alert">{alertMessage}</div>}
+
+          <div className="date-range-inputs">
+            <div
+              style={{
+                justifyContent: "space-between !important",
+              }}
+            >
+              <label>Start Date</label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Select start date"
+                className={datePickerClassName}
+              />
+            </div>
+            <div>
+              <label>End Date</label>
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Select end date"
+                className={datePickerClassName}
+              />
+            </div>
+          </div>
+          <div className="spot-inputs">
+            {spots.map((spot, idx) => (
+              <SpotInput
+                key={idx}
+                value={spot}
+                onChange={(val) => handleSpotChange(idx, val)}
+              />
+            ))}
+            <div className="spot-button-group">
+              <button onClick={addSpot} className="add-spot-btn">
+                + {t("curation.addSpot", "Add Spot")}
+              </button>
+              <button onClick={resetSpot} className="reset-spot-btn">
+                {t("curation.resetSpot", "Reset All")}
+              </button>
+            </div>
+          </div>
+          <button className="generate-btn" onClick={generateItinerary}>
+            {t("curation.generateItinerary", "Generate Itinerary")}
+          </button>
+
+          {itinerary && (
+            <div className="itinerary-card">
+              <h2>Suggested Itinerary</h2>
+              <div className="itinerary-date">{itinerary.date}</div>
+              <div className="itinerary-start">Start at {itinerary.start}</div>
+              <div className="itinerary-map">
+                {/* 지도 컴포넌트 자리 (예: <ItineraryMap ... />) */}
+                <img src="/mock-map.png" alt="map" className="mock-map" />
+              </div>
+              <div className="itinerary-list">
+                {itinerary.route.map((item, idx) => (
+                  <div className="itinerary-spot" key={idx}>
+                    <span className={`icon icon-${item.icon}`} />
+                    <div>
+                      <div className="spot-name">{item.name}</div>
+                      <div className="spot-time">{item.time}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
