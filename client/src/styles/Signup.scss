@@ -1,0 +1,133 @@
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-box {
+  border-radius: 16px;
+  box-shadow: 0 0 0 1px var(--gray-300);
+  margin-top: 2rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--black-color);
+  transition: border 0.2s;
+
+  &::placeholder {
+    color: #888;
+  }
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  &.input-valid {
+    border: 2px solid #2d86f3da !important;
+  }
+
+  &.input-invalid {
+    border: 2px solid #dc3545 !important;
+  }
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 12px 0 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #0056b3;
+  }
+}
+
+.bottom-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 0.97rem;
+  margin-top: 8px;
+
+  a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+}
+
+.email-check-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 6px;
+
+  .input {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  select {
+    width: 150px;
+    flex: 0 0 auto;
+  }
+}
+
+.check-duplicate-btn {
+  margin-top: 12px;
+  padding: 12px;
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: #007bff;
+    color: #fff;
+  }
+}
+
+.at-symbol {
+  padding: 12px 4px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.signup-email-domain {
+  padding: 12px;
+  margin-top: 12px;
+} 

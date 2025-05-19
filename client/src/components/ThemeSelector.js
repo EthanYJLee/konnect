@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/ThemeSelector.css";
+import "../styles/ThemeSelector.scss";
 
 const ThemeSelector = ({ currentTheme, onThemeChange }) => {
   const { t } = useTranslation();

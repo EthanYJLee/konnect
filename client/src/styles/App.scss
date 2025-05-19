@@ -1,6 +1,7 @@
 :root {
   // Colors
   --primary-color: #4a6bff;
+  --primary-color-dark: #3a56cc;
   --secondary-color: #6c757d;
   --success-color: #28a745;
   --danger-color: #dc3545;
@@ -31,6 +32,7 @@
 [data-theme="dark"] {
   // Colors
   --primary-color: #5c7cff;
+  --primary-color-dark: #4a63cc;
   --secondary-color: #868e96;
   --success-color: #37b24d;
   --danger-color: #e03131;
@@ -80,8 +82,6 @@ html, body, #root {
     border-radius: 12px;
 
     .react-datepicker__header {
-      // background-color: var(--white-color);
-      // color: colors.$WHITE;
       border-bottom: none;
       border-radius: 12px;
 
@@ -172,6 +172,6 @@ input, select, textarea {
 
 @media (max-width: 768px) {
   .main-content {
-    padding: 1rem;
+    padding: 0;
   }
 } 

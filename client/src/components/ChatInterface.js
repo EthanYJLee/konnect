@@ -2,14 +2,19 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/ChatInterface.css";
-import { ListGroup, Modal, Button } from "react-bootstrap";
+import "../styles/ChatInterface.scss";
+import { Modal } from "react-bootstrap";
 import { CiSaveDown1 } from "react-icons/ci";
 import axios from "axios";
 
 import TypingText from "./TypingText";
 import FloatingActionButton from "./FloatingActionButton";
 import SavePairModal from "./SavePairModal";
+import Button from "./common/Button";
+import Input from "./common/Input";
+import Message from "./common/Message";
+import ThreadList from "./common/ThreadList";
+import AlertModal from "./AlertModal";
 
 const ChatInterface = ({ language }) => {
   const { t } = useTranslation();
@@ -25,11 +30,27 @@ const ChatInterface = ({ language }) => {
   const [showAddThreadButton, setShowAddThreadButton] = useState(false);
   const [messagePair, setMessagePair] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [threadToDelete, setThreadToDelete] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
   const messageContainerRef = useRef(null);
-  const fabRef = useRef(null);
+
+  // 모바일 화면 감지
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, []);
 
   const scrollToBottom = () => {
     const container = messageContainerRef.current;
@@ -44,7 +65,9 @@ const ChatInterface = ({ language }) => {
       window.location.href = "/";
     }
     getThreadList();
-    handleThreadClick(threadId);
+    if (threadId) {
+      handleThreadClick(threadId);
+    }
     scrollToBottom();
   }, []);
 
@@ -70,8 +93,8 @@ const ChatInterface = ({ language }) => {
       const data = await response.data;
       if (data.list.length > 0 && data.list.length < 3) {
         setShowAddThreadButton(true);
-        handleThreadClick(data.list[0].threadId);
       }
+      handleThreadClick(data.list[0].threadId || null);
       setThreadList(data.list || []);
     } catch (error) {
       console.error(error);
@@ -163,6 +186,11 @@ const ChatInterface = ({ language }) => {
       pairs.push(sortedMessages.slice(i, i + 2));
     }
     setMessagePair(pairs);
+
+    // 모바일에서 스레드 클릭 시 drawer 닫기
+    if (isMobile) {
+      setIsDrawerOpen(false);
+    }
   };
 
   const handleAddThread = () => {
@@ -171,59 +199,98 @@ const ChatInterface = ({ language }) => {
     setMessages([]);
     setMessagePair([]);
     setSelectedMessagePairIndex([]);
+
+    // 모바일에서 새 스레드 추가 시 drawer 닫기
+    if (isMobile) {
+      setIsDrawerOpen(false);
+    }
+  };
+
+  const handleDeleteThread = async (threadId) => {
+    setThreadToDelete(threadId);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteThread = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const url = process.env.REACT_APP_WAS_URL;
+      await axios.delete(`${url}/api/assistant/thread/${threadToDelete}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (threadToDelete === localStorage.getItem("assistant_thread")) {
+        localStorage.removeItem("assistant_thread");
+        setThreadId(null);
+        setMessages([]);
+        setMessagePair([]);
+      }
+
+      getThreadList();
+    } catch (error) {
+      console.error("Error deleting thread:", error);
+    } finally {
+      setShowDeleteModal(false);
+      setThreadToDelete(null);
+    }
+  };
+
+  // 배경 클릭 시 모바일에서 drawer 닫기
+  const handleOverlayClick = () => {
+    if (isMobile && isDrawerOpen) {
+      console.log("Overlay clicked, closing drawer");
+      setIsDrawerOpen(false);
+    }
   };
 
   return (
-    <div className="chat-wrapper">
-      <button
+    <div className={`chat-wrapper ${isMobile ? "mobile" : ""}`}>
+      <Button
         className="drawer-toggle"
+        style={{ fontSize: "1.5rem", zIndex: 999 }}
         onClick={() => setIsDrawerOpen((prev) => !prev)}
       >
         ☰
-      </button>
+      </Button>
+
       <div className={`chat-sidebar ${isDrawerOpen ? "open" : ""}`}>
-        <div className="sidebar-list">
-          <ListGroup>
-            {threadList.map((thread) => (
-              <ListGroup.Item
-                key={thread._id}
-                className={`list-group-item list-group-item-action thread-item ${
-                  thread.threadId === threadId ? "current-thread" : ""
-                }`}
-                action
-                onClick={() => handleThreadClick(thread.threadId)}
-              >
-                <div className="thread-content">
-                  <span>{thread.title || "제목 없음"}</span>
-                </div>
-              </ListGroup.Item>
-            ))}
-            {showAddThreadButton && (
-              <ListGroup.Item
-                className="list-group-item list-group-item-action thread-item add-thread"
-                action
-                onClick={handleAddThread}
-              >
-                <div className="thread-content">
-                  <span>+</span>
-                </div>
-              </ListGroup.Item>
-            )}
-          </ListGroup>
-        </div>
+        <ThreadList
+          threads={threadList}
+          currentThreadId={threadId}
+          onThreadClick={handleThreadClick}
+          onAddThread={handleAddThread}
+          onDeleteThread={handleDeleteThread}
+          showAddButton={showAddThreadButton}
+        />
       </div>
 
-      <div className={`chat-interface ${isDrawerOpen ? "shrink" : ""}`}>
+      {/* 모바일 화면에서 drawer 열려있을 때 오버레이 */}
+      {isMobile && isDrawerOpen && (
+        <div
+          className="chat-overlay"
+          onClick={handleOverlayClick}
+          aria-label="Close sidebar overlay"
+        ></div>
+      )}
+
+      <div
+        className={`chat-interface ${
+          isDrawerOpen && isMobile
+            ? "mobile-shrink"
+            : isDrawerOpen
+            ? "shrink"
+            : ""
+        }`}
+      >
         <div className="chat-interface-header">
           <TypingText text={t("welcome")} speed={100} />
           <p>{t("welcomeMessage")}</p>
         </div>
 
-        <div
-          className="messages-container"
-          ref={messageContainerRef}
-          // style={{ position: "relative" }}
-        >
+        <div className="messages-container" ref={messageContainerRef}>
           <div className="message-list">
             {messagePair.map((pair, index) => (
               <div
@@ -232,17 +299,13 @@ const ChatInterface = ({ language }) => {
                 onClick={() => toggleSelectMessage(index)}
               >
                 {pair.map((msg, idx) => (
-                  <div
+                  <Message
                     key={idx}
-                    className={`message ${msg.type} ${
-                      selectedMessagePairIndex.includes(index) ? "selected" : ""
-                    }`}
-                  >
-                    <div className="message-content">{msg.content}</div>
-                    <div className="message-timestamp">
-                      {new Date(msg.timestamp).toLocaleTimeString()}
-                    </div>
-                  </div>
+                    content={msg.content}
+                    type={msg.type}
+                    timestamp={msg.timestamp}
+                    isSelected={selectedMessagePairIndex.includes(index)}
+                  />
                 ))}
               </div>
             ))}
@@ -257,7 +320,6 @@ const ChatInterface = ({ language }) => {
                 display: "flex",
                 justifyContent: "flex-end",
                 zIndex: 10,
-                // paddingRight: "1rem",
               }}
             >
               <FloatingActionButton
@@ -276,20 +338,38 @@ const ChatInterface = ({ language }) => {
           messagePair={messagePair}
         />
 
-        <form onSubmit={handleSubmit} className="input-form">
-          <input
+        <form
+          onSubmit={handleSubmit}
+          className={`input-form ${isDrawerOpen && isMobile ? "disabled" : ""}`}
+        >
+          <Input
             type="text"
             value={inputValue}
             maxLength={100}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={t("chat.placeholder")}
-            disabled={isLoading}
+            disabled={isLoading || (isDrawerOpen && isMobile)}
           />
-          <button type="submit" disabled={isLoading || !inputValue.trim()}>
+          <Button
+            type="submit"
+            disabled={
+              isLoading || !inputValue.trim() || (isDrawerOpen && isMobile)
+            }
+          >
             {t("chat.send")}
-          </button>
+          </Button>
         </form>
       </div>
+
+      <AlertModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        title={t("alertModal.deleteThread")}
+        body={t("alertModal.confirmDeleteThread")}
+        onConfirm={confirmDeleteThread}
+        confirmText={t("alertModal.delete")}
+        cancelText={t("alertModal.cancel")}
+      />
     </div>
   );
 };

@@ -1,0 +1,138 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: #ff5533;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.login-text {
+  color: #fff;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.login-box {
+  margin-top: 2rem;
+  border-radius: 18px;
+  padding: 2rem;
+  min-width: 340px;
+  box-shadow: 0 0 0 1px var(--gray-300);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.social-button {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 12px 0;
+  transition: background 0.2s;
+
+  .icon {
+    margin-right: 12px;
+    font-size: 1.4rem;
+  }
+
+  &.google {
+    background: #fff;
+    color: #222;
+    border: 1px solid #e0e0e0;
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+
+  &.apple {
+    background: #000;
+    color: #fff;
+
+    &:hover {
+      background: #444;
+      filter: brightness(0.95);
+    }
+  }
+}
+
+.login-divider {
+  text-align: center;
+  color: #888;
+  margin: 0.8rem 0 0.4rem 0;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--black-color);
+  transition: border 0.2s;
+
+  &::placeholder {
+    color: #888;
+  }
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  font-size: 1.15rem;
+  font-weight: 500;
+  padding: 0.7rem 0;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  justify-content: center;
+  transition: filter 0.15s;
+  background: #007bff;
+  color: #fff;
+
+  &:hover {
+    filter: brightness(0.85);
+  }
+}
+
+.bottom-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+  font-size: 1.01rem;
+  color: #aaa;
+
+  a {
+    color: #aaa;
+    margin: 0 0.7rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: #ff5533;
+    }
+  }
+} 

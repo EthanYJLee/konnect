@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
-import "../styles/Settings.css";
+import "../styles/Settings.scss";
 
 const Settings = () => {
   const { t, i18n } = useTranslation();
@@ -19,7 +19,6 @@ const Settings = () => {
     const url = process.env.REACT_APP_WAS_URL;
     axios
       .get(`${url}/checkIpPort`, {
-        
         withCredentials: true,
       })
       .then((response) => {

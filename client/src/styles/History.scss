@@ -1,0 +1,130 @@
+.history-container {
+  padding: 3rem 1.5rem;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .page-header {
+    margin-bottom: 2rem;
+    position: relative;
+    
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+    
+    p {
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+    }
+    
+    .history-filters {
+      background-color: var(--white-color);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      
+      .search-box {
+        flex: 1;
+        min-width: 200px;
+        position: relative;
+        
+        input {
+          width: 100%;
+          padding: 0.75rem 1rem 0.75rem 2.5rem;
+          border: 1px solid var(--gray-300);
+          border-radius: 6px;
+          
+          &:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--primary-color-light);
+          }
+        }
+        
+        .search-icon {
+          position: absolute;
+          left: 0.75rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--gray-500);
+        }
+      }
+      
+      .filter-button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background-color: var(--gray-100);
+        border: 1px solid var(--gray-300);
+        border-radius: 6px;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: var(--gray-200);
+        }
+      }
+    }
+  }
+  
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  .col {
+    padding: 0 15px;
+    margin-bottom: 1.5rem;
+  }
+  
+  // 드래그 중인 카드 스타일
+  .dragging-card {
+    transform: rotate(3deg) scale(1.02) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+    z-index: 100;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    
+    .page-header {
+      h1 {
+        font-size: 1.75rem;
+      }
+    }
+    
+    .history-filters {
+      flex-direction: column;
+      
+      .search-box, .filter-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.no-history {
+  text-align: center;
+  color: var(--gray-600);
+  padding: 2rem;
+  background-color: var(--gray-100);
+  border-radius: 8px;
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+} 

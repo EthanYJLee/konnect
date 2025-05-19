@@ -75,7 +75,9 @@ const CategoryBadgeModal = ({ show, onClose, pair, onCategoryUpdate }) => {
                   style={{
                     backgroundColor: StringToColor(cat),
                     margin: "0.4rem 0.5rem",
-                    border: "2px solid white",
+                    border: `2px solid ${
+                      theme === "light" ? "black" : "white"
+                    }`,
                   }}
                 >
                   {cat}

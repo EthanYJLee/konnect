@@ -1,10 +1,11 @@
 {
-  "welcome": "Chào mừng đến với K-Life Assistant",
+  "welcome": "Chào mừng đến với Konnect",
   "welcomeMessage": "Hãy hỏi tôi bất cứ điều gì về cuộc sống ở Hàn Quốc!",
   "nav": {
     "home": "Trang chủ",
     "faq": "Câu hỏi thường gặp",
     "history": "Lịch sử câu hỏi",
+    "curation": "Curation",
     "settings": "Cài đặt",
     "login": "Đăng nhập",
     "signup": "Đăng ký",
@@ -80,9 +81,10 @@
     "title": "Lịch sử câu hỏi",
     "empty": "Chưa có câu hỏi nào",
     "question": "Câu hỏi",
-    "answer": "Câu trả lời",
-    "copy": "Sao chép câu trả lời",
-    "report": "Báo cáo lỗi"
+    "answer": "Trả lời",
+    "copy": "Sao chép trả lời",
+    "report": "Báo lỗi",
+    "allCategories": "Tất cả danh mục"
   },
   "settings": {
     "title": "Cài đặt",
@@ -97,7 +99,7 @@
   },
   "footer": {
     "about": "Giới thiệu",
-    "description": "K-Life Assistant cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài ở Hàn Quốc.",
+    "description": "Konnect cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài ở Hàn Quốc.",
     "links": "Liên kết nhanh",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản dịch vụ",
@@ -153,6 +155,54 @@
   },
   "alertModal": {
     "login": "Đăng nhập",
-    "pleaseLogin": "Vui lòng đăng nhập"
+    "pleaseLogin": "Vui lòng đăng nhập để sử dụng dịch vụ này.",
+    "deleteThread": "Xóa cuộc trò chuyện",
+    "confirmDeleteThread": "Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?",
+    "delete": "Xóa",
+    "cancel": "Hủy"
+  },
+  "curation": {
+    "language": "vi",
+    "title": "Curation",
+    "subtitle": "Nhập các địa điểm muốn ghé thăm và nhận lịch trình đầy đủ của bạn!",
+    "maxSpotsReached": "Bạn chỉ có thể thêm tối đa {{max}} địa điểm.",
+    "resetSpot": "Đặt lại tất cả",
+    "addSpot": "Thêm địa điểm",
+    "generateItinerary": "Tạo lịch trình",
+    "spotsReset": "Tất cả các địa điểm đã được đặt lại.",
+    "allSpotsEmpty": "Tất cả các địa điểm đều trống. Đang đặt lại tự động.",
+    "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
+    "clearInput": "Clear input",
+    "selectCategory": "Select Trip Categories",
+    "categoryDescription": "What type of trip are you planning?",
+    "categoryMultipleDescription": "What types of activities are you interested in? (Select all that apply)",
+    "changeCategory": "Change",
+    "confirmCategories": "Continue",
+    "selectAtLeastOne": "Please select at least one category",
+    "departureCity": "Departure City",
+    "arrivalCity": "Arrival City",
+    "selectCity": "Select city",
+    "itineraryResults": "Your Travel Itinerary",
+    "freeDay": "Free day - No activities planned",
+    "mapView": "Map View",
+    "mapComingSoon": "Map view coming soon",
+    "generationError": "Failed to generate itinerary. Please try again.",
+    "categories": {
+      "nature": "Nature",
+      "humanities": "Culture/Art/History",
+      "leisure": "Leisure Sports",
+      "shopping": "Shopping",
+      "food": "Food"
+    }
+  },
+  "session": {
+    "expireTitle": "Session Expiring Soon",
+    "expireMessage": "Your session will expire soon. Please extend to continue using the service.",
+    "remainingTime": "Time remaining: ",
+    "extend": "Extend Session (1 hour)",
+    "logout": "Logout",
+    "extendError": "Failed to connect to server. Please try again or log out and log back in.",
+    "retry": "Retry",
+    "orLogout": "or log out and sign in again"
   }
 } 

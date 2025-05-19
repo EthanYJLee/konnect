@@ -1,10 +1,11 @@
 {
-  "welcome": "K-Life Assistantへようこそ",
+  "welcome": "Konnectへようこそ",
   "welcomeMessage": "韓国での生活について何でも質問してください！",
   "nav": {
     "home": "ホーム",
     "faq": "よくある質問",
     "history": "履歴",
+    "curation": "キュレーティング",
     "settings": "設定",
     "login": "ログイン",
     "signup": "新規登録",
@@ -82,7 +83,8 @@
     "question": "質問",
     "answer": "回答",
     "copy": "回答をコピー",
-    "report": "エラーを報告"
+    "report": "エラーを報告",
+    "allCategories": "すべてのカテゴリ"
   },
   "settings": {
     "title": "設定",
@@ -97,7 +99,7 @@
   },
   "footer": {
     "about": "概要",
-    "description": "K-Life Assistantは韓国で生活する外国人向けの日常生活の質問と情報を提供します。",
+    "description": "Konnectは韓国で生活する外国人向けの日常生活の質問と情報を提供します。",
     "links": "クイックリンク",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
@@ -153,6 +155,54 @@
   },
   "alertModal": {
     "login": "ログイン",
-    "pleaseLogin": "ログインしてください"
+    "pleaseLogin": "このサービスを利用するにはログインが必要です。",
+    "deleteThread": "スレッドの削除",
+    "confirmDeleteThread": "このスレッドを削除してもよろしいですか？",
+    "delete": "削除",
+    "cancel": "キャンセル"
+  },
+  "curation": {
+    "language": "ja",
+    "title": "キュレーティング",
+    "subtitle": "訪問したい場所を入力して、旅行日程を受け取りましょう！",
+    "maxSpotsReached": "最大{{max}}ヶ所までしか追加できません。",
+    "resetSpot": "すべてリセット",
+    "addSpot": "場所を追加",
+    "generateItinerary": "スケジュール生成",
+    "spotsReset": "すべての場所がリセットされました。",
+    "allSpotsEmpty": "すべての場所が空です。自動的にリセットします。",
+    "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
+    "clearInput": "Clear input",
+    "selectCategory": "Select Trip Categories",
+    "categoryDescription": "What type of trip are you planning?",
+    "categoryMultipleDescription": "What types of activities are you interested in? (Select all that apply)",
+    "changeCategory": "Change",
+    "confirmCategories": "Continue",
+    "selectAtLeastOne": "Please select at least one category",
+    "departureCity": "Departure City",
+    "arrivalCity": "Arrival City",
+    "selectCity": "Select city",
+    "itineraryResults": "Your Travel Itinerary",
+    "freeDay": "Free day - No activities planned",
+    "mapView": "Map View",
+    "mapComingSoon": "Map view coming soon",
+    "generationError": "Failed to generate itinerary. Please try again.",
+    "categories": {
+      "nature": "Nature",
+      "humanities": "Culture/Art/History",
+      "leisure": "Leisure Sports",
+      "shopping": "Shopping",
+      "food": "Food"
+    }
+  },
+  "session": {
+    "expireTitle": "Session Expiring Soon",
+    "expireMessage": "Your session will expire soon. Please extend to continue using the service.",
+    "remainingTime": "Time remaining: ",
+    "extend": "Extend Session (1 hour)",
+    "logout": "Logout",
+    "extendError": "Failed to connect to server. Please try again or log out and log back in.",
+    "retry": "Retry",
+    "orLogout": "or log out and sign in again"
   }
 } 

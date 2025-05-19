@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/Home.css";
+import "../styles/Home.scss";
 import ChatInterface from "../components/ChatInterface";
 
 const Chat = () => {

@@ -115,4 +115,79 @@ router.post("/google/token", async (req, res) => {
   }
 });
 
+// 토큰 갱신 API
+router.post("/refresh", async (req, res) => {
+  const { token } = req.body;
+  console.log(
+    "Token refresh requested:",
+    token ? "Token provided" : "No token"
+  );
+
+  if (!token) {
+    return res.status(400).json({ message: "Token is required" });
+  }
+
+  try {
+    // 기존 토큰 검증
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Token verified successfully, userId:", decoded.id);
+
+    // 사용자 ID 추출
+    const userId = decoded.id;
+
+    // 사용자 조회
+    const user = await User.findById(userId);
+    if (!user) {
+      console.log("User not found for ID:", userId);
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // 새 토큰 발급 (1시간 유효)
+    const newToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    console.log("New token issued for user:", user.email);
+    res.json({ token: newToken, email: user.email });
+  } catch (err) {
+    console.error("Token refresh failed:", err);
+
+    // 토큰이 만료된 경우에도 사용자 정보를 복구하려고 시도
+    if (err.name === "TokenExpiredError") {
+      try {
+        // 만료된 토큰에서도 페이로드 추출 가능 (검증 없이)
+        const payload = jwt.decode(token);
+        if (payload && payload.id) {
+          console.log("Token expired, attempting to recover user from payload");
+
+          // 사용자 조회
+          const user = await User.findById(payload.id);
+          if (user) {
+            // 새 토큰 발급
+            const newToken = jwt.sign(
+              { id: user._id },
+              process.env.JWT_SECRET,
+              {
+                expiresIn: "1h",
+              }
+            );
+
+            console.log(
+              "Recovered user session after token expiry for:",
+              user.email
+            );
+            return res.json({ token: newToken, email: user.email });
+          }
+        }
+      } catch (decodeErr) {
+        console.error("Failed to recover from expired token:", decodeErr);
+      }
+
+      return res.status(401).json({ message: "Token expired" });
+    }
+
+    res.status(401).json({ message: "Invalid token" });
+  }
+});
+
 module.exports = router;

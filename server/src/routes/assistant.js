@@ -1,3 +1,4 @@
+// AI 대화 관련
 const express = require("express");
 const router = express.Router();
 const { OpenAI } = require("openai");
@@ -24,6 +25,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
+// 대화 기록 조회
 router.get("/thread/:threadId", authenticateToken, async (req, res) => {
   const { threadId } = req.params;
   const response = await openai.beta.threads.messages.list(threadId);
@@ -41,12 +43,14 @@ router.get("/thread/:threadId", authenticateToken, async (req, res) => {
   res.json({ messages });
 });
 
+// 대화 기록 목록 조회
 router.get("/threadList", authenticateToken, async (req, res) => {
   const user = await User.findById(req.userId);
   const threadList = await Thread.find({ userId: user._id });
   res.json({ list: threadList });
 });
 
+// 대화 보내기
 router.post("/ask", authenticateToken, async (req, res) => {
   const { messages, threadId } = req.body;
 
@@ -131,6 +135,32 @@ router.post("/ask", authenticateToken, async (req, res) => {
   } catch (err) {
     console.error("Assistant API error:", err);
     res.status(500).json({ error: "Assistant API 처리 실패" });
+  }
+});
+
+// 대화 기록 삭제
+router.delete("/thread/:threadId", authenticateToken, async (req, res) => {
+  try {
+    const { threadId } = req.params;
+    const user = await User.findById(req.userId);
+
+    const thread = await Thread.findOne({
+      threadId: threadId,
+      userId: user._id,
+    });
+
+    if (!thread) {
+      return res.status(404).json({ error: "Thread not found" });
+    }
+
+    await openai.beta.threads.del(threadId);
+
+    await Thread.deleteOne({ threadId: threadId });
+
+    res.json({ message: "Thread deleted successfully" });
+  } catch (err) {
+    console.error("Thread deletion error:", err);
+    res.status(500).json({ error: "Failed to delete thread" });
   }
 });
 

@@ -1,3 +1,4 @@
+// 대화 기록 관련
 const express = require("express");
 const router = express.Router();
 const { OpenAI } = require("openai");
@@ -6,7 +7,6 @@ const User = require("../models/user");
 const Thread = require("../models/thread");
 const mongoose = require("mongoose");
 const PairMessage = require("../models/pairMessage");
-// const { getEmbedding } = require("../utils/getEmbedding");
 const fs = require("fs").promises;
 const path = require("path");
 const { classifyCategory } = require("../utils/classifyCategory");
@@ -24,6 +24,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
+// 카테고리 변경
 router.post("/updateCategory", authenticateToken, async (req, res) => {
   const { id, cat } = req.body;
   console.log(id, cat);
@@ -41,9 +42,10 @@ router.post("/updateCategory", authenticateToken, async (req, res) => {
   }
 });
 
+// 대화 기록 순서 변경
 router.post("/updateOrder", async (req, res) => {
   const { orderedPairs } = req.body; // [{ _id: "...", pairOrder: 0 }, ...]
-  console.log(orderedPairs);
+  // console.log(orderedPairs);
 
   try {
     const bulkOps = orderedPairs.map(({ _id, pairOrder }) => ({
@@ -61,11 +63,13 @@ router.post("/updateOrder", async (req, res) => {
   }
 });
 
+// 대화 기록 조회
 router.get("/fetchHistory", authenticateToken, async (req, res, next) => {
   const pairMessageList = await PairMessage.find({ userId: req.userId });
   res.json(pairMessageList);
 });
 
+// 대화 기록 저장
 router.post("/savePairs", authenticateToken, async (req, res) => {
   const { pairs, threadId } = req.body;
 
@@ -88,15 +92,6 @@ router.post("/savePairs", authenticateToken, async (req, res) => {
       const userMessage = pairData.find((m) => m.type === "user");
       const aiMessage = pairData.find((m) => m.type === "ai");
 
-      // OpenAI Embedding
-      // const fullText = `${userMessage} ${aiMessage}`;
-      // const userEmbedding = await getEmbedding(fullText);
-      // const bestCategory = await classifyCategory(userEmbedding);
-
-      // const bestCategory = await extractCategory(`${userMessage} ${aiMessage}`);
-      // console.log(bestCategory);
-      console.log(userMessage);
-      console.log(aiMessage);
       const fullText = `${userMessage.content} ${aiMessage.content}`;
       const bestCategory = await classifyCategory(fullText);
       console.log(bestCategory);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import "../styles/Home.css";
+import "../styles/Home.scss";
 
 const Home = () => {
   const { t } = useTranslation();
