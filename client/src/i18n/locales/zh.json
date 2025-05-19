@@ -5,7 +5,7 @@
     "home": "首页",
     "faq": "常见问题",
     "history": "历史记录",
-    "curating": "策展",
+    "curation": "策展",
     "settings": "设置",
     "login": "登录",
     "signup": "注册",
@@ -161,7 +161,7 @@
     "delete": "删除",
     "cancel": "取消"
   },
-  "curating": {
+  "curation": {
     "language": "zh-CN",
     "title": "策展",
     "subtitle": "输入想要访问的地点，获取您的完整行程！",
@@ -170,6 +170,39 @@
     "addSpot": "添加地点",
     "generateItinerary": "生成行程",
     "spotsReset": "所有地点已重置。",
-    "allSpotsEmpty": "所有地点都为空。正在自动重置。"
+    "allSpotsEmpty": "所有地点都为空。正在自动重置。",
+    "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
+    "clearInput": "Clear input",
+    "selectCategory": "Select Trip Categories",
+    "categoryDescription": "What type of trip are you planning?",
+    "categoryMultipleDescription": "What types of activities are you interested in? (Select all that apply)",
+    "changeCategory": "Change",
+    "confirmCategories": "Continue",
+    "selectAtLeastOne": "Please select at least one category",
+    "departureCity": "Departure City",
+    "arrivalCity": "Arrival City",
+    "selectCity": "Select city",
+    "itineraryResults": "Your Travel Itinerary",
+    "freeDay": "Free day - No activities planned",
+    "mapView": "Map View",
+    "mapComingSoon": "Map view coming soon",
+    "generationError": "Failed to generate itinerary. Please try again.",
+    "categories": {
+      "nature": "Nature",
+      "humanities": "Culture/Art/History",
+      "leisure": "Leisure Sports",
+      "shopping": "Shopping",
+      "food": "Food"
+    }
+  },
+  "session": {
+    "expireTitle": "Session Expiring Soon",
+    "expireMessage": "Your session will expire soon. Please extend to continue using the service.",
+    "remainingTime": "Time remaining: ",
+    "extend": "Extend Session (1 hour)",
+    "logout": "Logout",
+    "extendError": "Failed to connect to server. Please try again or log out and log back in.",
+    "retry": "Retry",
+    "orLogout": "or log out and sign in again"
   }
 } 

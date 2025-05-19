@@ -5,7 +5,7 @@
     "home": "Trang chủ",
     "faq": "Câu hỏi thường gặp",
     "history": "Lịch sử câu hỏi",
-    "curating": "Curating",
+    "curation": "Curation",
     "settings": "Cài đặt",
     "login": "Đăng nhập",
     "signup": "Đăng ký",
@@ -161,15 +161,48 @@
     "delete": "Xóa",
     "cancel": "Hủy"
   },
-  "curating": {
+  "curation": {
     "language": "vi",
-    "title": "Curating",
+    "title": "Curation",
     "subtitle": "Nhập các địa điểm muốn ghé thăm và nhận lịch trình đầy đủ của bạn!",
     "maxSpotsReached": "Bạn chỉ có thể thêm tối đa {{max}} địa điểm.",
     "resetSpot": "Đặt lại tất cả",
     "addSpot": "Thêm địa điểm",
     "generateItinerary": "Tạo lịch trình",
     "spotsReset": "Tất cả các địa điểm đã được đặt lại.",
-    "allSpotsEmpty": "Tất cả các địa điểm đều trống. Đang đặt lại tự động."
+    "allSpotsEmpty": "Tất cả các địa điểm đều trống. Đang đặt lại tự động.",
+    "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
+    "clearInput": "Clear input",
+    "selectCategory": "Select Trip Categories",
+    "categoryDescription": "What type of trip are you planning?",
+    "categoryMultipleDescription": "What types of activities are you interested in? (Select all that apply)",
+    "changeCategory": "Change",
+    "confirmCategories": "Continue",
+    "selectAtLeastOne": "Please select at least one category",
+    "departureCity": "Departure City",
+    "arrivalCity": "Arrival City",
+    "selectCity": "Select city",
+    "itineraryResults": "Your Travel Itinerary",
+    "freeDay": "Free day - No activities planned",
+    "mapView": "Map View",
+    "mapComingSoon": "Map view coming soon",
+    "generationError": "Failed to generate itinerary. Please try again.",
+    "categories": {
+      "nature": "Nature",
+      "humanities": "Culture/Art/History",
+      "leisure": "Leisure Sports",
+      "shopping": "Shopping",
+      "food": "Food"
+    }
+  },
+  "session": {
+    "expireTitle": "Session Expiring Soon",
+    "expireMessage": "Your session will expire soon. Please extend to continue using the service.",
+    "remainingTime": "Time remaining: ",
+    "extend": "Extend Session (1 hour)",
+    "logout": "Logout",
+    "extendError": "Failed to connect to server. Please try again or log out and log back in.",
+    "retry": "Retry",
+    "orLogout": "or log out and sign in again"
   }
 } 

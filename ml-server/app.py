@@ -8,7 +8,7 @@ from utils.schedule_utils import distribute_must_spots_by_cluster, get_distance_
 import json
 from utils.geocode import reverse_geocode
 import time
-from utils.clustering import info_based_cluster_assignment
+from utils.clustering import info_based_cluster_assignment, fixed_region_schedule
 
 
 # Flask 초기화
@@ -39,8 +39,7 @@ def classify():
 @app.route("/generateItinerary", methods=["POST"])
 def generate_itinerary():
     data = request.get_json()
-    # print(json.dumps(data, indent=2))
-    # print(data)
+    print(data)
 
     # 카테고리
     print(data['categories'])
@@ -49,12 +48,16 @@ def generate_itinerary():
     end_date = datetime.strptime(data['endDate'], '%Y-%m-%d')
     days = (end_date - start_date).days + 1
     print(days, "일 일정")
+    # 도착 (시작), 출발 (종료) 지역
+    departureCity = data['departureCity']
+    arrivalCity = data['arrivalCity']
+    print(departureCity,"~",arrivalCity)
+
     # 거리 계산
     info = []
     for spot in data['spots']:
         lng = spot['geometry']['location']['lng']
         lat = spot['geometry']['location']['lat']
-        # points.append(f"{lng},{lat}")
 
         region = reverse_geocode(lat, lng)
         print(f"🗺 {spot['name']}: {region['city']} {region['district']} {region['neighborhood']}")
@@ -62,7 +65,9 @@ def generate_itinerary():
             "spot": spot['name'],
             "city": region["city"],
             "district": region["district"],
-            "neighborhood": region["neighborhood"]
+            "neighborhood": region["neighborhood"],
+            "lng":lng,
+            "lat":lat
         })
 
         time.sleep(1.1)  # Nominatim 요청 제한 준수
@@ -77,23 +82,13 @@ def generate_itinerary():
         }
         for spot in data["spots"]
     ]
-    matrix = get_distance_matrix(spots)
-    print(matrix)
+    # matrix = get_distance_matrix(spots)
+    # print(matrix)
 
-    schedule = info_based_cluster_assignment(
-        info,  # 행정구역 정보 포함된 리스트
-        matrix,  # 거리행렬 (2D)
-        data["startDate"],
-        data["endDate"]
-    )
-
-
-    # schedule = distribute_must_spots_by_cluster(
-    #     spots,
-    #     data["startDate"],
-    #     data["endDate"]
-    # )
+    schedule = fixed_region_schedule(info, data['startDate'], data['endDate'], departure_city=data['departureCity'], arrival_city=data['arrivalCity'], categories=data['categories'])
     print(schedule)
+
+
 
     return jsonify({"schedule": schedule})
 

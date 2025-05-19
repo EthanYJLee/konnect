@@ -20,9 +20,14 @@ export const AuthProvider = ({ children }) => {
   const [remainingSeconds, setRemainingSeconds] = useState(300); // 5분 = 300초
   const [sessionExtendError, setSessionExtendError] = useState(false); // 세션 연장 오류 상태
   const timerRef = useRef(null);
+  const warningTimeoutRef = useRef(null); // 경고 타이머 참조
+  const logoutTimeoutRef = useRef(null); // 로그아웃 타이머 참조
   const { t } = useTranslation();
 
   const handleLogout = () => {
+    // 모든 타이머 정리
+    clearAllTimers();
+
     const email = localStorage.getItem("email");
 
     if (localStorage.getItem("loginType") === "google") {
@@ -76,12 +81,6 @@ export const AuthProvider = ({ children }) => {
       window.dispatchEvent(new Event("authChange"));
     }
 
-    // 타이머가 실행 중이면 정리
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-
     // 모달이 열려있다면 닫기
     if (showSessionModal) {
       setShowSessionModal(false);
@@ -90,8 +89,65 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
+  // 모든 타이머 정리 함수
+  const clearAllTimers = () => {
+    // 카운트다운 타이머 정리
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+
+    // 경고 타이머 정리
+    if (warningTimeoutRef.current) {
+      clearTimeout(warningTimeoutRef.current);
+      warningTimeoutRef.current = null;
+    }
+
+    // 로그아웃 타이머 정리
+    if (logoutTimeoutRef.current) {
+      clearTimeout(logoutTimeoutRef.current);
+      logoutTimeoutRef.current = null;
+    }
+  };
+
   const handleLogin = () => {
     setIsLoggedIn(true);
+  };
+
+  // 세션 만료 타이머 설정 함수
+  const setSessionExpiryTimers = (expiresAt) => {
+    // 이전 타이머 모두 정리
+    clearAllTimers();
+
+    const now = Date.now();
+    const delay = expiresAt - now;
+
+    if (delay > 0) {
+      // 5분 = 300,000ms
+      const fiveMinutes = 5 * 60 * 1000;
+
+      // 만료 5분 전에 경고
+      if (delay > fiveMinutes) {
+        console.log(
+          "Setting new warning timer for",
+          new Date(now + delay - fiveMinutes)
+        );
+        warningTimeoutRef.current = setTimeout(() => {
+          setShowSessionModal(true);
+          startCountdown();
+        }, delay - fiveMinutes);
+
+        console.log("Setting new logout timer for", new Date(now + delay));
+        logoutTimeoutRef.current = setTimeout(() => handleLogout(), delay);
+      } else {
+        // 이미 만료 5분 이내라면 바로 알림 표시
+        setShowSessionModal(true);
+        startCountdown();
+
+        console.log("Setting new logout timer for", new Date(now + delay));
+        logoutTimeoutRef.current = setTimeout(() => handleLogout(), delay);
+      }
+    }
   };
 
   // 세션 연장 함수
@@ -120,7 +176,7 @@ export const AuthProvider = ({ children }) => {
           // 모달 닫기
           setShowSessionModal(false);
 
-          // 타이머 정리
+          // 카운트다운 타이머 정리
           if (timerRef.current) {
             clearInterval(timerRef.current);
             timerRef.current = null;
@@ -131,17 +187,9 @@ export const AuthProvider = ({ children }) => {
           // JWT 만료 타이머 재설정
           const payload = JSON.parse(atob(response.data.token.split(".")[1]));
           const expiresAt = payload.exp * 1000;
-          const delay = expiresAt - Date.now();
 
-          if (delay > 0) {
-            const fiveMinutes = 5 * 60 * 1000;
-            const warningDelay = delay - fiveMinutes;
-
-            setTimeout(() => {
-              setShowSessionModal(true);
-              startCountdown();
-            }, warningDelay);
-          }
+          // 새로운 타이머 설정
+          setSessionExpiryTimers(expiresAt);
         }
       } catch (serverError) {
         console.error("Server refresh failed:", serverError);
@@ -188,19 +236,16 @@ export const AuthProvider = ({ children }) => {
               // 모달 닫기
               setShowSessionModal(false);
 
-              // 타이머 정리
-              if (timerRef.current) {
-                clearInterval(timerRef.current);
-                timerRef.current = null;
-              }
+              // 모든 타이머 정리
+              clearAllTimers();
 
               console.log("⚠️ Emergency token extension complete (DEV ONLY)");
 
-              // 4분 후에 경고 보이기 (개발용 토큰이므로 짧게 설정)
-              setTimeout(() => {
-                setShowSessionModal(true);
-                startCountdown();
-              }, 240000); // 4분
+              // 새로운 만료 시간(1시간 후)
+              const newExpiresAt = oneHourFromNow * 1000;
+
+              // 새로운 타이머 설정
+              setSessionExpiryTimers(newExpiresAt);
 
               // 성공으로 처리하고 종료
               return;
@@ -255,42 +300,14 @@ export const AuthProvider = ({ children }) => {
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
         const expiresAt = payload.exp * 1000;
-        const now = Date.now();
-        const delay = expiresAt - now;
 
-        if (delay > 0) {
-          // 5분 = 300,000ms
-          const fiveMinutes = 5 * 60 * 1000;
+        // 세션 만료 타이머 설정
+        setSessionExpiryTimers(expiresAt);
 
-          // 만료 5분 전에 경고
-          if (delay > fiveMinutes) {
-            const warningTimeout = setTimeout(() => {
-              setShowSessionModal(true);
-              startCountdown();
-            }, delay - fiveMinutes);
-
-            const logoutTimeout = setTimeout(() => handleLogout(), delay);
-
-            return () => {
-              clearTimeout(warningTimeout);
-              clearTimeout(logoutTimeout);
-              if (timerRef.current) clearInterval(timerRef.current);
-            };
-          } else {
-            // 이미 만료 5분 이내라면 바로 알림 표시
-            setShowSessionModal(true);
-            startCountdown();
-
-            const logoutTimeout = setTimeout(() => handleLogout(), delay);
-
-            return () => {
-              clearTimeout(logoutTimeout);
-              if (timerRef.current) clearInterval(timerRef.current);
-            };
-          }
-        } else {
-          handleLogout();
-        }
+        // 컴포넌트 언마운트 시 모든 타이머 정리
+        return () => {
+          clearAllTimers();
+        };
       } catch (error) {
         console.error("토큰 처리 중 오류 발생:", error);
         handleLogout();

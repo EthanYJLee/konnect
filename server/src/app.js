@@ -10,6 +10,7 @@ const historyRoutes = require("./routes/history");
 // const searchRoutes = require("./routes/search");
 // const naverSearchRoutes = require("./routes/naverSearch");
 const googleSearchRoutes = require("./routes/googleSearch");
+const nominatimSearchRoutes = require("./routes/nominatimSearch");
 const curationRoutes = require("./routes/curation");
 
 const app = express();
@@ -50,6 +51,7 @@ app.use("/api/history", historyRoutes);
 // app.use("/api/search", searchRoutes);
 // app.use("/api/naver/search", naverSearchRoutes);
 app.use("/api/google/search", googleSearchRoutes);
+app.use("/api/nominatim/search", nominatimSearchRoutes);
 app.use("/api/curation", curationRoutes);
 
 // 접속된 아이피와 포트 출력
