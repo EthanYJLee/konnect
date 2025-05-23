@@ -182,11 +182,23 @@
     "departureCity": "출발 도시",
     "arrivalCity": "도착 도시",
     "selectCity": "도시 선택",
+    "startDate": "시작일",
+    "endDate": "종료일",
+    "selectStartDate": "시작일 선택",
+    "selectEndDate": "종료일 선택",
+    "removeSpot": "장소 삭제",
     "itineraryResults": "여행 일정",
     "freeDay": "자유 일정 - 계획된 활동 없음",
     "mapView": "지도 보기",
     "mapComingSoon": "지도 보기 기능 준비 중",
     "generationError": "일정 생성에 실패했습니다. 다시 시도해주세요.",
+    "validation": {
+      "startDateRequired": "시작 날짜를 선택해주세요",
+      "endDateRequired": "종료 날짜를 선택해주세요",
+      "departureCityRequired": "출발 도시를 선택해주세요",
+      "arrivalCityRequired": "도착 도시를 선택해주세요",
+      "noSpotsEntered": "최소 하나의 장소를 입력해주세요"
+    },
     "categories": {
       "nature": "자연",
       "humanities": "인문(문화/예술/역사)",

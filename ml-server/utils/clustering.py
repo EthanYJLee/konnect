@@ -156,7 +156,7 @@ def fill_schedule_with_recommendations(schedule, categories):
                 "radius": 5000,
                 "cat1": cat,
                 "MobileOS": "ETC",
-                "MobileApp": "KLife",
+                "MobileApp": "Konnect",
                 "_type": "json",
                 "numOfRows": 10,
                 "arrange": "O"

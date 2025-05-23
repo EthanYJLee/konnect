@@ -13,7 +13,9 @@ router.get("/", async (req, res) => {
       "https://nominatim.openstreetmap.org/search",
       {
         params: {
-          q: query,
+          // q: query,
+          amenity: query,
+          country: "kr",
           format: "json",
           addressdetails: 1,
           limit: 10,
@@ -21,27 +23,27 @@ router.get("/", async (req, res) => {
         },
         headers: {
           // 요청 제한 준수를 위한 User-Agent 필수
-          "User-Agent": "Konnect-App/1.0"
-        }
+          "User-Agent": "Konnect-App/1.0",
+        },
       }
     );
 
     // 결과를 Google Maps API 형식과 유사하게 변환
-    const results = response.data.map(place => ({
-      name: place.display_name.split(',')[0],
+    const results = response.data.map((place) => ({
+      name: place.display_name.split(",")[0],
       formatted_address: place.display_name,
       geometry: {
         location: {
           lat: parseFloat(place.lat),
-          lng: parseFloat(place.lon)
-        }
+          lng: parseFloat(place.lon),
+        },
       },
       place_id: place.place_id,
       types: [place.type],
-      address_components: place.address
+      address_components: place.address,
     }));
 
-    console.log(results);
+    // 4. 결과 반환
     res.json({ results });
   } catch (error) {
     console.error(

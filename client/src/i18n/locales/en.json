@@ -182,11 +182,23 @@
     "departureCity": "Departure City",
     "arrivalCity": "Arrival City",
     "selectCity": "Select city",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "selectStartDate": "Select start date",
+    "selectEndDate": "Select end date",
+    "removeSpot": "Remove spot",
     "itineraryResults": "Your Travel Itinerary",
     "freeDay": "Free day - No activities planned",
     "mapView": "Map View",
     "mapComingSoon": "Map view coming soon",
     "generationError": "Failed to generate itinerary. Please try again.",
+    "validation": {
+      "startDateRequired": "Please select a start date",
+      "endDateRequired": "Please select an end date",
+      "departureCityRequired": "Please select a departure city",
+      "arrivalCityRequired": "Please select an arrival city",
+      "noSpotsEntered": "Please enter at least one spot"
+    },
     "categories": {
       "nature": "Nature",
       "humanities": "Culture/Art/History",

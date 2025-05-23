@@ -142,6 +142,7 @@ const SpotInput = ({ value, onChange, onRemove, showRemoveButton }) => {
       const res = await axios.get(`${url}/api/nominatim/search`, {
         params: { query, lang: t("curation.language") },
       });
+      console.log(res.data);
       return res.data.results || [];
     } catch (error) {
       console.error("Error fetching Nominatim places:", error);
@@ -151,8 +152,8 @@ const SpotInput = ({ value, onChange, onRemove, showRemoveButton }) => {
 
   const fetchSuggestions = async (val) => {
     if (val.length > 1) {
-      // const results = await fetchGooglePlaces(val);
-      const results = await fetchNominatimPlaces(val);
+      const results = await fetchGooglePlaces(val);
+      // const results = await fetchNominatimPlaces(val);
       setSuggestions(results);
       setShowDropdown(true);
     } else {
@@ -262,6 +263,52 @@ const CitySelector = ({ value, onChange, label, placeholder }) => {
   );
 };
 
+// 토스트 메시지 컴포넌트
+const Toast = ({ message, type, onClose }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+      setTimeout(onClose, 300); // 페이드아웃 애니메이션 후 제거
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  const getToastClass = () => {
+    let baseClass = `custom-toast ${isVisible ? "show" : "hide"}`;
+
+    switch (type) {
+      case "warning":
+        return `${baseClass} toast-warning`;
+      case "error":
+        return `${baseClass} toast-error`;
+      case "success":
+        return `${baseClass} toast-success`;
+      default:
+        return `${baseClass} toast-info`;
+    }
+  };
+
+  return (
+    <div className={getToastClass()}>
+      <div className="toast-content">
+        <span>{message}</span>
+      </div>
+      <button
+        className="toast-close"
+        onClick={() => {
+          setIsVisible(false);
+          setTimeout(onClose, 300);
+        }}
+      >
+        ×
+      </button>
+    </div>
+  );
+};
+
 const Curation = () => {
   const [spots, setSpots] = useState([{ id: 1, name: "" }]);
   const [itinerary, setItinerary] = useState(null);
@@ -277,6 +324,75 @@ const Curation = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [nextId, setNextId] = useState(2);
   const [loading, setLoading] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // 토스트 관련 상태
+  const [toasts, setToasts] = useState([]);
+
+  // 스크롤 위치 감지
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // 언어 변경 감지 및 선택된 카테고리 업데이트
+  useEffect(() => {
+    if (selectedCategories.length > 0) {
+      // 카테고리 정의 가져오기
+      const updatedCategories = [
+        {
+          id: "A01",
+          icon: "🌳",
+          name: t("curation.categories.nature", "자연"),
+        },
+        {
+          id: "A02",
+          icon: "🏛️",
+          name: t("curation.categories.humanities", "인문(문화/예술/역사)"),
+        },
+        {
+          id: "A03",
+          icon: "🚵",
+          name: t("curation.categories.leisure", "레포츠"),
+        },
+        {
+          id: "A04",
+          icon: "🛍️",
+          name: t("curation.categories.shopping", "쇼핑"),
+        },
+        { id: "A05", icon: "🍽️", name: t("curation.categories.food", "음식") },
+      ];
+
+      // 선택된 카테고리 업데이트
+      const updatedSelectedCategories = selectedCategories.map(
+        (selectedCat) => {
+          const updatedCat = updatedCategories.find(
+            (cat) => cat.id === selectedCat.id
+          );
+          return updatedCat || selectedCat;
+        }
+      );
+
+      setSelectedCategories(updatedSelectedCategories);
+    }
+  }, [t, i18n.language]);
+
+  // 토스트 메시지 표시 함수
+  const showToast = (message, type = "info") => {
+    const id = Date.now();
+    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+  };
+
+  // 토스트 메시지 제거 함수
+  const removeToast = (id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  };
 
   // Available trip categories
   const categories = [
@@ -312,16 +428,11 @@ const Curation = () => {
     if (selectedCategories.length > 0) {
       setShowCategorySelector(false);
     } else {
-      // Show alert if no category is selected
-      setAlertMessage(
-        t("curation.selectAtLeastOne", "Please select at least one category")
+      // Show warning toast if no category is selected
+      showToast(
+        t("curation.selectAtLeastOne", "Please select at least one category"),
+        "warning"
       );
-      setShowAlert(true);
-
-      // 3초 후 알림 숨기기
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
     }
   };
 
@@ -335,15 +446,15 @@ const Curation = () => {
         (spot) => !spot.name || spot.name.trim() === ""
       );
       if (allEmpty && newSpots.length > 1) {
-        const message = t(
-          "curation.allSpotsEmpty",
-          "모든 장소가 비어 있습니다. 리셋하시겠습니까?"
+        showToast(
+          t(
+            "curation.allSpotsEmpty",
+            "모든 장소가 비어 있습니다. 자동으로 초기화합니다."
+          ),
+          "info"
         );
-        setAlertMessage(message);
-        setShowAlert(true);
 
         setTimeout(() => {
-          setShowAlert(false);
           setSpots([{ id: 1, name: "" }]);
           setNextId(2);
         }, 3000);
@@ -356,18 +467,14 @@ const Curation = () => {
   const addSpot = () => {
     const max = 5;
     if (spots.length >= max) {
-      const message = t(
-        "curation.maxSpotsReached",
-        `최대 ${max}개의 장소만 추가할 수 있습니다.`,
-        { max: max }
+      showToast(
+        t(
+          "curation.maxSpotsReached",
+          `최대 ${max}개의 장소만 추가할 수 있습니다.`,
+          { max: max }
+        ),
+        "warning"
       );
-      setAlertMessage(message);
-      setShowAlert(true);
-
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
-
       return;
     }
 
@@ -379,13 +486,10 @@ const Curation = () => {
     setSpots([{ id: 1, name: "" }]);
     setNextId(2);
 
-    const message = t("curation.spotsReset", "모든 장소가 초기화되었습니다.");
-    setAlertMessage(message);
-    setShowAlert(true);
-
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
+    showToast(
+      t("curation.spotsReset", "모든 장소가 초기화되었습니다."),
+      "info"
+    );
   };
 
   const formatDate = (date) => {
@@ -396,7 +500,46 @@ const Curation = () => {
     return `${yyyy}-${mm}-${dd}`;
   };
 
+  // 입력 검증 함수
+  const validateInputs = () => {
+    if (!startDate) {
+      showToast(t("curation.validation.startDateRequired"), "warning");
+      return false;
+    }
+
+    if (!endDate) {
+      showToast(t("curation.validation.endDateRequired"), "warning");
+      return false;
+    }
+
+    if (!departureCity) {
+      showToast(t("curation.validation.departureCityRequired"), "warning");
+      return false;
+    }
+
+    if (!arrivalCity) {
+      showToast(t("curation.validation.arrivalCityRequired"), "warning");
+      return false;
+    }
+
+    // 최소 하나의 유효한 spot이 있는지 확인
+    const validSpots = spots.filter(
+      (spot) => spot.name && spot.name.trim() !== ""
+    );
+    if (validSpots.length === 0) {
+      showToast(t("curation.validation.noSpotsEntered"), "warning");
+      return false;
+    }
+
+    return true;
+  };
+
   const generateItinerary = async () => {
+    // 입력 검증
+    if (!validateInputs()) {
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -436,14 +579,13 @@ const Curation = () => {
       }, 500);
     } catch (error) {
       console.error("Error generating itinerary:", error);
-      setAlertMessage(
+      showToast(
         t(
           "curation.generationError",
           "Failed to generate itinerary. Please try again."
-        )
+        ),
+        "error"
       );
-      setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 3000);
     } finally {
       setLoading(false);
     }
@@ -493,6 +635,26 @@ const Curation = () => {
           "Enter must-visit spots and get your full itinerary!"
         )}
       </p>
+
+      {/* 커스텀 토스트 메시지 컨테이너 */}
+      <div
+        className="toast-container"
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          zIndex: 10000,
+        }}
+      >
+        {toasts.map((toast) => (
+          <Toast
+            key={toast.id}
+            message={toast.message}
+            type={toast.type}
+            onClose={() => removeToast(toast.id)}
+          />
+        ))}
+      </div>
 
       {showCategorySelector ? (
         <div className="category-selector-container">
@@ -559,28 +721,13 @@ const Curation = () => {
           {showAlert && <div className="custom-alert">{alertMessage}</div>}
 
           <div className="city-date-container">
-            <div className="cities-container">
-              <CitySelector
-                value={departureCity}
-                onChange={setDepartureCity}
-                label={t("curation.departureCity", "Departure City")}
-                placeholder={t("curation.selectCity", "Select city")}
-              />
-              <CitySelector
-                value={arrivalCity}
-                onChange={setArrivalCity}
-                label={t("curation.arrivalCity", "Arrival City")}
-                placeholder={t("curation.selectCity", "Select city")}
-              />
-            </div>
-
             <div className="date-range-inputs">
               <div
                 style={{
                   justifyContent: "space-between !important",
                 }}
               >
-                <label>Start Date</label>
+                <label>{t("curation.startDate", "Start Date")}</label>
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -588,12 +735,15 @@ const Curation = () => {
                   startDate={startDate}
                   endDate={endDate}
                   dateFormat="yyyy-MM-dd"
-                  placeholderText="Select start date"
+                  placeholderText={t(
+                    "curation.selectStartDate",
+                    "Select start date"
+                  )}
                   className={datePickerClassName}
                 />
               </div>
               <div>
-                <label>End Date</label>
+                <label>{t("curation.endDate", "End Date")}</label>
                 <DatePicker
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
@@ -602,12 +752,31 @@ const Curation = () => {
                   endDate={endDate}
                   minDate={startDate}
                   dateFormat="yyyy-MM-dd"
-                  placeholderText="Select end date"
+                  placeholderText={t(
+                    "curation.selectEndDate",
+                    "Select end date"
+                  )}
                   className={datePickerClassName}
                 />
               </div>
             </div>
           </div>
+          <div className="cities-container">
+            <CitySelector
+              value={departureCity}
+              onChange={setDepartureCity}
+              label={t("curation.departureCity", "Departure City")}
+              placeholder={t("curation.selectCity", "Select city")}
+            />
+            <CitySelector
+              value={arrivalCity}
+              onChange={setArrivalCity}
+              label={t("curation.arrivalCity", "Arrival City")}
+              placeholder={t("curation.selectCity", "Select city")}
+            />
+          </div>
+
+          <div style={{ height: "1rem" }} />
           <div className="spot-inputs">
             {spots.map((spot, idx) => (
               <SpotInput
@@ -640,56 +809,6 @@ const Curation = () => {
             )}
           </button>
 
-          {/* {itinerary && (
-            <div className="itinerary-results" id="itinerary-results">
-              <h2>{t("curation.itineraryResults", "Your Travel Itinerary")}</h2>
-
-              {Object.keys(itinerary)
-                .sort()
-                .map((date) => (
-                  <div key={date} className="itinerary-day-card">
-                    <div className="itinerary-date">
-                      {formatDisplayDate(date)}
-                    </div>
-
-                    {itinerary[date].length > 0 ? (
-                      <div className="day-spots-container">
-                        {itinerary[date].map((spot, index) => (
-                          <div
-                            key={`${date}-${index}`}
-                            className="itinerary-spot"
-                          >
-                            <div className="spot-number">{index + 1}</div>
-                            <div className="spot-details">
-                              <div className="spot-name">{spot.spot}</div>
-                              <div className="spot-location">
-                                {spot.city}{" "}
-                                {spot.district && `• ${spot.district}`}{" "}
-                                {spot.neighborhood && `• ${spot.neighborhood}`}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="empty-day-message">
-                        {t(
-                          "curation.freeDay",
-                          "Free day - No activities planned"
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-              <div className="itinerary-map-container">
-                <h3>{t("curation.mapView", "Map View")}</h3>
-                <div className="itinerary-map-placeholder">
-                  <p>{t("curation.mapComingSoon", "Map view coming soon")}</p>
-                </div>
-              </div>
-            </div>
-          )} */}
           {itinerary && (
             <div className="itinerary-results" id="itinerary-results">
               <h2>{t("curation.itineraryResults", "Your Travel Itinerary")}</h2>
@@ -724,18 +843,18 @@ const Curation = () => {
                           ))}
                         </div>
 
-                        {/* <div className="day-map-container">
+                        <div className="day-map-container">
                           <ItineraryMap
                             daySpots={itinerary[date]}
                             date={formatDisplayDate(date)}
                           />
-                        </div> */}
-                        <div className="day-map-container">
+                        </div>
+                        {/* <div className="day-map-container">
                           <SimpleItineraryMap
                             daySpots={itinerary[date]}
                             date={formatDisplayDate(date)}
                           />
-                        </div>
+                        </div> */}
                       </>
                     ) : (
                       <div className="empty-day-message">
@@ -745,14 +864,6 @@ const Curation = () => {
                         )}
                       </div>
                     )}
-                    {/* {itinerary[date].length > 0 && (
-                      <div className="day-map-container">
-                        <SimpleItineraryMap
-                          daySpots={itinerary[date]}
-                          date={formatDisplayDate(date)}
-                        />
-                      </div>
-                    )} */}
                   </div>
                 ))}
             </div>

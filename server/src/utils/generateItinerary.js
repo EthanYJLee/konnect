@@ -52,6 +52,9 @@ async function generateItinerary(
         categories,
       }
     );
+    console.log("================");
+    console.log(response.data);
+    console.log("================");
 
     const schedule = response.data.schedule;
     const textArray = [];
