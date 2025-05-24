@@ -97,9 +97,15 @@
     "light": "Light",
     "dark": "Dark"
   },
+  "toast": {
+    "info": "Notice",
+    "success": "Success",
+    "warning": "Warning",
+    "error": "Error"
+  },
   "footer": {
     "about": "About",
-    "description": "Konnect helps foreigners living in Korea with daily life questions and information.",
+    "description": "Konnect helps foreigners visiting/living in Korea with daily life questions and information.",
     "links": "Quick Links",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
@@ -188,9 +194,12 @@
     "selectEndDate": "Select end date",
     "removeSpot": "Remove spot",
     "itineraryResults": "Your Travel Itinerary",
+    "itineraryGenerated": "Your itinerary has been successfully generated!",
+    "viewItinerary": "View Your Itinerary",
     "freeDay": "Free day - No activities planned",
     "mapView": "Map View",
     "mapComingSoon": "Map view coming soon",
+    "loadingMap": "Loading map...",
     "generationError": "Failed to generate itinerary. Please try again.",
     "validation": {
       "startDateRequired": "Please select a start date",
@@ -200,11 +209,14 @@
       "noSpotsEntered": "Please enter at least one spot"
     },
     "categories": {
-      "nature": "Nature",
-      "humanities": "Culture/Art/History",
+      "attraction": "Tourist Attractions",
+      "culture": "Cultural Facilities",
+      "festival": "Festivals & Events",
+      "tourCourse": "Travel Courses",
       "leisure": "Leisure Sports",
+      "accommodation": "Accommodation",
       "shopping": "Shopping",
-      "food": "Food"
+      "food": "Restaurants"
     }
   },
   "session": {

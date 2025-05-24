@@ -1,0 +1,224 @@
+@import './common/variables';
+@import './common/mixins';
+
+.spot-input-container {
+  position: relative;
+  margin-bottom: 16px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.spot-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spot-input-field {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.spot-autocomplete-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+  }
+  
+  .dark-theme & {
+    background-color: var(--dark-input-bg-color);
+    border-color: var(--dark-border-color);
+    color: white;
+    
+    &::placeholder {
+      color: #a0aec0;
+    }
+    
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+    }
+  }
+}
+
+.spot-input-loader {
+  position: absolute;
+  right: 40px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(var(--primary-color-rgb), 0.2);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spot-spin 0.8s linear infinite;
+}
+
+.clear-input-button {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #a0aec0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: #4a5568;
+  }
+  
+  .dark-theme & {
+    color: #718096;
+    
+    &:hover {
+      color: #e2e8f0;
+    }
+  }
+}
+
+.remove-spot-btn {
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #718096;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  padding: 0;
+  
+  &:hover {
+    background-color: #fee2e2;
+    border-color: #f56565;
+    color: #e53e3e;
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  .dark-theme & {
+    background-color: #2d3748;
+    border-color: #4a5568;
+    color: #a0aec0;
+    
+    &:hover {
+      background-color: #553c3c;
+      border-color: #f56565;
+      color: #fc8181;
+    }
+  }
+}
+
+.spot-suggestion-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  margin-top: 4px;
+  list-style: none;
+  padding: 0;
+  
+  .dark-theme & {
+    background-color: var(--dark-element-bg-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--dark-border-color);
+  }
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    
+    .dark-theme & {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  li {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.15s ease;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &:hover {
+      background-color: #f8fafc;
+      
+      .dark-theme & {
+        background-color: var(--dark-button-hover-color);
+      }
+    }
+    
+    .dark-theme & {
+      border-bottom-color: var(--dark-border-color);
+    }
+  }
+}
+
+.suggestion-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-name {
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 3px;
+  
+  .dark-theme & {
+    color: var(--dark-text-color);
+  }
+}
+
+.suggestion-address {
+  font-size: 0.85rem;
+  color: #718096;
+  
+  .dark-theme & {
+    color: var(--dark-text-secondary-color);
+  }
+}
+
+@keyframes spot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+} 

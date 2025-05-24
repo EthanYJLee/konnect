@@ -97,9 +97,15 @@
     "light": "浅色",
     "dark": "深色"
   },
+  "toast": {
+    "info": "通知",
+    "success": "成功",
+    "warning": "警告",
+    "error": "错误"
+  },
   "footer": {
     "about": "关于",
-    "description": "Konnect为在韩外国人提供日常生活问题和信息。",
+    "description": "Konnect为访问/居住在韩国的外国人提供日常生活问题和信息。",
     "links": "快速链接",
     "privacy": "隐私政策",
     "terms": "服务条款",
@@ -200,11 +206,14 @@
       "noSpotsEntered": "请至少输入一个地点"
     },
     "categories": {
-      "nature": "自然",
-      "humanities": "文化/艺术/历史",
+      "attraction": "旅游景点",
+      "culture": "文化设施",
+      "festival": "节日活动",
+      "tourCourse": "旅游路线",
       "leisure": "休闲运动",
+      "accommodation": "住宿",
       "shopping": "购物",
-      "food": "美食"
+      "food": "餐厅"
     }
   },
   "session": {

@@ -97,9 +97,15 @@
     "light": "라이트",
     "dark": "다크"
   },
+  "toast": {
+    "info": "알림",
+    "success": "성공",
+    "warning": "주의",
+    "error": "오류"
+  },
   "footer": {
     "about": "소개",
-    "description": "Konnect는 한국에서 생활하는 외국인들을 위한 일상 생활 질문과 정보를 제공합니다.",
+    "description": "Konnect는 한국을 방문하거나 한국에서 생활하는 외국인들을 위한 일상 생활 질문과 정보를 제공합니다.",
     "links": "바로가기",
     "privacy": "개인정보 처리방침",
     "terms": "이용약관",
@@ -188,9 +194,12 @@
     "selectEndDate": "종료일 선택",
     "removeSpot": "장소 삭제",
     "itineraryResults": "여행 일정",
+    "itineraryGenerated": "여행 일정이 성공적으로 생성되었습니다!",
+    "viewItinerary": "여행 일정 보기",
     "freeDay": "자유 일정 - 계획된 활동 없음",
     "mapView": "지도 보기",
     "mapComingSoon": "지도 보기 기능 준비 중",
+    "loadingMap": "지도 로딩 중...",
     "generationError": "일정 생성에 실패했습니다. 다시 시도해주세요.",
     "validation": {
       "startDateRequired": "시작 날짜를 선택해주세요",
@@ -200,11 +209,14 @@
       "noSpotsEntered": "최소 하나의 장소를 입력해주세요"
     },
     "categories": {
-      "nature": "자연",
-      "humanities": "인문(문화/예술/역사)",
+      "attraction": "관광지",
+      "culture": "문화시설",
+      "festival": "축제공연행사",
+      "tourCourse": "여행코스",
       "leisure": "레포츠",
+      "accommodation": "숙박",
       "shopping": "쇼핑",
-      "food": "음식"
+      "food": "음식점"
     }
   },
   "session": {

@@ -97,9 +97,15 @@
     "light": "Sáng",
     "dark": "Tối"
   },
+  "toast": {
+    "info": "Thông báo",
+    "success": "Thành công",
+    "warning": "Cảnh báo",
+    "error": "Lỗi"
+  },
   "footer": {
     "about": "Giới thiệu",
-    "description": "Konnect cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài ở Hàn Quốc.",
+    "description": "Konnect cung cấp thông tin và trả lời câu hỏi về cuộc sống hàng ngày cho người nước ngoài đang tham quan/sinh sống tại Hàn Quốc.",
     "links": "Liên kết nhanh",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản dịch vụ",
@@ -200,11 +206,14 @@
       "noSpotsEntered": "Vui lòng nhập ít nhất một địa điểm"
     },
     "categories": {
-      "nature": "Thiên nhiên",
-      "humanities": "Văn hóa/Nghệ thuật/Lịch sử",
+      "attraction": "Điểm du lịch",
+      "culture": "Cơ sở văn hóa",
+      "festival": "Lễ hội & Sự kiện",
+      "tourCourse": "Tuyến du lịch",
       "leisure": "Thể thao giải trí",
+      "accommodation": "Chỗ ở",
       "shopping": "Mua sắm",
-      "food": "Ẩm thực"
+      "food": "Nhà hàng"
     }
   },
   "session": {

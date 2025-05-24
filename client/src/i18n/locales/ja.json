@@ -97,9 +97,15 @@
     "light": "ライト",
     "dark": "ダーク"
   },
+  "toast": {
+    "info": "お知らせ",
+    "success": "成功",
+    "warning": "警告",
+    "error": "エラー"
+  },
   "footer": {
     "about": "概要",
-    "description": "Konnectは韓国で生活する外国人向けの日常生活の質問と情報を提供します。",
+    "description": "Konnectは韓国を訪問/居住する外国人向けの日常生活の質問と情報を提供します。",
     "links": "クイックリンク",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
@@ -200,11 +206,14 @@
       "noSpotsEntered": "少なくとも1つの場所を入力してください"
     },
     "categories": {
-      "nature": "自然",
-      "humanities": "文化/芸術/歴史",
+      "attraction": "観光地",
+      "culture": "文化施設",
+      "festival": "祭り・イベント",
+      "tourCourse": "旅行コース",
       "leisure": "レジャースポーツ",
+      "accommodation": "宿泊施設",
       "shopping": "ショッピング",
-      "food": "食事"
+      "food": "レストラン"
     }
   },
   "session": {

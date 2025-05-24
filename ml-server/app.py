@@ -9,6 +9,7 @@ import json
 from utils.geocode import reverse_geocode
 import time
 from utils.clustering import fixed_region_schedule
+from utils.recommendation import advanced_schedule_planning
 
 # from deep_translator import
 
@@ -87,7 +88,8 @@ def generate_itinerary():
     # matrix = get_distance_matrix(spots)
     # print(matrix)
 
-    schedule = fixed_region_schedule(info, data['startDate'], data['endDate'], departure_city=data['departureCity'], arrival_city=data['arrivalCity'], categories=data['categories'])
+    # schedule = fixed_region_schedule(info, data['startDate'], data['endDate'], departure_city=data['departureCity'], arrival_city=data['arrivalCity'], categories=data['categories'])
+    schedule = advanced_schedule_planning(info, data['startDate'], data['endDate'], departure_city=data['departureCity'], arrival_city=data['arrivalCity'], categories=data['categories'])
     print(schedule)
 
 
