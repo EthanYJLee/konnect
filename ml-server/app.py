@@ -8,7 +8,9 @@ import requests
 import json
 from utils.geocode import reverse_geocode
 import time
-from utils.clustering import info_based_cluster_assignment, fixed_region_schedule
+from utils.clustering import fixed_region_schedule
+
+# from deep_translator import
 
 
 # Flask 초기화
