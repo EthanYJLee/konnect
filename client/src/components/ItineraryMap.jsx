@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import React, { useEffect, useState, useCallback } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import axios from 'axios';
@@ -12,7 +12,56 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-const ItineraryMap = ({ daySpots, date }) => {
+// 맵 로드 이벤트 처리 컴포넌트
+const MapInitializer = ({ onMapLoaded }) => {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (map) {
+      // 맵이 로드되면 콜백 실행
+      map.once('load', () => {
+        if (onMapLoaded) onMapLoaded();
+      });
+      
+      // 맵이 이미 로드된 경우를 위한 타임아웃
+      const timer = setTimeout(() => {
+        if (onMapLoaded) onMapLoaded();
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [map, onMapLoaded]);
+  
+  return null;
+};
+
+// 커스텀 마커 아이콘 생성 함수
+const createCustomIcon = (index) => {
+  // 기본 색상 설정
+  const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#5B9BD5', '#3F51B5'];
+  const color = colors[index % colors.length];
+  
+  return L.divIcon({
+    className: 'custom-marker-icon',
+    html: `<div style="
+      background-color: ${color};
+      color: white;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    ">${index + 1}</div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -14]
+  });
+};
+
+const ItineraryMap = ({ daySpots, date, onMapLoaded }) => {
   const [routes, setRoutes] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -59,8 +108,10 @@ const ItineraryMap = ({ daySpots, date }) => {
   }
   
   return (
-    <div className="itinerary-map-container">
+    <div className="itinerary-map-container" style={{alignItems: 'center', justifyContent: 'center'}}>
       <MapContainer center={center} zoom={13} style={{ height: '400px', width: '100%' }}>
+        <MapInitializer onMapLoaded={onMapLoaded} />
+        
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,9 +122,10 @@ const ItineraryMap = ({ daySpots, date }) => {
           <Marker 
             key={`marker-${index}`} 
             position={[parseFloat(spot.lat), parseFloat(spot.lng)]}
+            icon={createCustomIcon(index)}
           >
             <Popup>
-              <div>
+              <div className="spot-popup">
                 <strong>{index + 1}. {spot.spot}</strong>
                 <div>{spot.city} {spot.district || ''} {spot.neighborhood || ''}</div>
               </div>
@@ -85,9 +137,10 @@ const ItineraryMap = ({ daySpots, date }) => {
         {routes.length > 0 && (
           <Polyline 
             positions={routes} 
-            color="blue" 
-            weight={3} 
-            opacity={0.7} 
+            color="#4285F4" 
+            weight={4} 
+            opacity={0.7}
+            dashArray="5, 10"
           />
         )}
       </MapContainer>

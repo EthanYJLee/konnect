@@ -46,10 +46,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <h1>{t("login.title")}</h1>
+      <p>{t("login.subtitle")}</p>
       <div className="login-box">
-        <GoogleLoginButton />
-
-        <div className="login-divider">{t("login.or")}</div>
         <input
           type="email"
           placeholder={t("login.email")}
@@ -67,6 +66,11 @@ const Login = () => {
         <button className="login-btn" onClick={handleGeneralLogin}>
           {t("login.login")}
         </button>
+
+        <div className="login-divider">{t("login.or")}</div>
+
+        <GoogleLoginButton />
+
         <div className="bottom-links">
           <a href="/signup">{t("login.signup")}</a>
         </div>

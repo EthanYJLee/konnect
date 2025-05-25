@@ -10,6 +10,7 @@ const PairMessage = require("../models/pairMessage");
 const fs = require("fs").promises;
 const path = require("path");
 const { classifyCategory } = require("../utils/classifyCategory");
+const Itinerary = require("../models/itinerary");
 
 // JWT 인증 미들웨어
 function authenticateToken(req, res, next) {
@@ -23,6 +24,49 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
+
+router.post("/deleteItinerary/:id", authenticateToken, async (req, res) => {
+  const itineraryId = req.params.id;
+
+  try {
+    const itinerary = await Itinerary.findById(itineraryId);
+    if (!itinerary) {
+      return res.status(404).json({ message: "Itinerary not found" });
+    }
+
+    // 소유자 확인
+    if (itinerary.userId.toString() !== req.userId) {
+      return res
+        .status(403)
+        .json({ message: "Not authorized to delete this itinerary" });
+    }
+
+    // 실제 삭제가 아닌 useYn만 false로 설정
+    itinerary.useYn = false;
+    await itinerary.save();
+
+    res.json({ message: "일정이 성공적으로 삭제되었습니다", success: true });
+  } catch (err) {
+    console.error("일정 삭제 실패:", err);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+router.get("/fetchItineraries", authenticateToken, async (req, res) => {
+  try {
+    // useYn이 true이거나 정의되지 않은 경우(구 데이터 호환성)만 조회
+    const query = {
+      userId: req.userId,
+      $or: [{ useYn: true }, { useYn: { $exists: false } }],
+    };
+
+    const itineraries = await Itinerary.find(query);
+    res.json(itineraries);
+  } catch (error) {
+    console.error("Error fetching itineraries:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 // 카테고리 변경
 router.post("/updateCategory", authenticateToken, async (req, res) => {
@@ -64,7 +108,7 @@ router.post("/updateOrder", async (req, res) => {
 });
 
 // 대화 기록 조회
-router.get("/fetchHistory", authenticateToken, async (req, res, next) => {
+router.get("/fetchPairs", authenticateToken, async (req, res, next) => {
   const pairMessageList = await PairMessage.find({ userId: req.userId });
   res.json(pairMessageList);
 });

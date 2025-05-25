@@ -15,6 +15,12 @@ import History from "./pages/History";
 import Signup from "./pages/Signup";
 import Chat from "./pages/Chat";
 import CurationPage from "./pages/Curation";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import TravelGuides from "./pages/TravelGuides";
+import Contact from "./pages/Contact";
+import Feedback from "./pages/Feedback";
+import Cookies from "./pages/Cookies";
 
 // Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -45,9 +51,11 @@ function App() {
                 // }}
               >
                 <Routes>
+                  {/* Main pages */}
                   <Route path="/" element={<Home />} />
                   <Route path="/curation" element={<CurationPage />} />
 
+                  {/* Protected routes */}
                   <Route
                     path="/chat"
                     element={
@@ -64,7 +72,8 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
-                  <Route path="/faq" element={<FAQ />} />
+
+                  {/* Authentication */}
                   <Route path="/signup" element={<Signup />} />
                   <Route
                     path="/login"
@@ -74,6 +83,21 @@ function App() {
                       </GuestOnlyRoute>
                     }
                   />
+
+                  {/* Travel Resources */}
+                  <Route path="/travel-guides" element={<TravelGuides />} />
+                  <Route path="/destinations" element={<TravelGuides />} />
+                  <Route path="/travel-tips" element={<TravelGuides />} />
+
+                  {/* Help & Support */}
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/feedback" element={<Feedback />} />
+
+                  {/* Legal pages */}
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/cookies" element={<Cookies />} />
                 </Routes>
               </main>
               <Footer />

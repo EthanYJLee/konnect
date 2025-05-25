@@ -286,7 +286,12 @@ const ChatInterface = ({ language }) => {
         }`}
       >
         <div className="chat-interface-header">
-          <TypingText text={t("welcome")} speed={100} />
+          {/* <TypingText text={t("welcome")} speed={100} /> */}
+          <TypingText
+            text={t("chat.title", "여행 도우미와 대화하기")}
+            speed={100}
+          />
+
           <p>{t("welcomeMessage")}</p>
         </div>
 

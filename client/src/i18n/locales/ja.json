@@ -13,10 +13,86 @@
     "logout": "ログアウト",
     "chat": "チャット"
   },
+  "home": {
+    "hero": {
+      "title": "韓国旅行をより簡単に、より特別に",
+      "subtitle": "あなたの旅行スタイルに合わせたAI搭載の旅行アシスタントで、忘れられない韓国旅行を計画しましょう。",
+      "button": "旅行計画を始める"
+    },
+    "demo": {
+      "categories": {
+        "attractions": "観光スポット",
+        "restaurants": "レストラン",
+        "cultural": "文化施設"
+      },
+      "generateButton": "日程を生成する"
+    },
+    "imagePlaceholder": "韓国の風景画像",
+    "features": {
+      "title": "Konnectの主な機能",
+      "subtitle": "AI技術を活用して、韓国旅行をより充実させるさまざまな機能を提供します。",
+      "learnMore": "詳細を見る",
+      "itinerary": {
+        "title": "パーソナライズされた旅行計画",
+        "description": "あなたの好みとスケジュールに基づいた個人的な旅行日程を簡単に作成できます。AIが最適なルートと推奨スポットを提案します。"
+      },
+      "localInsights": {
+        "title": "地元の人のおすすめ情報",
+        "description": "観光客にはあまり知られていない地元の隠れた名所やヒントを発見しましょう。本物の韓国文化を体験できます。"
+      },
+      "translation": {
+        "title": "言語サポートサービス",
+        "description": "言語の壁を気にせず旅行しましょう。メニュー翻訳、基本会話、標識解釈などをサポートします。"
+      },
+      "foodGuide": {
+        "title": "グルメガイド",
+        "description": "韓国の多様な料理と地元のレストランを探索しましょう。あなたの食事制限や好みに合ったレストランをおすすめします。"
+      },
+      "chatbot": {
+        "title": "AIトラベルアシスタント",
+        "description": "旅行に関する質問への即時回答やAIトラベルアシスタントからのパーソナライズされたおすすめを入手できます。旅行計画をサポートするために24時間利用可能です。"
+      }
+    },
+    "howItWorks": {
+      "title": "利用方法",
+      "subtitle": "たった3ステップで完璧な旅行計画を立てましょう",
+      "step1": {
+        "title": "目的地を選択",
+        "description": "出発都市と到着都市を選択します"
+      },
+      "step2": {
+        "title": "必見スポットを追加",
+        "description": "訪れたい場所を教えてください"
+      },
+      "step3": {
+        "title": "旅程を生成",
+        "description": "地図付きの完全な旅行計画を取得します"
+      }
+    },
+    "resultPreview": {
+      "title": "旅行プランを確認",
+      "subtitle": "インタラクティブな地図付きで詳細な日々の旅程を探索しましょう",
+      "features": {
+        "title": "スマート旅程機能",
+        "daily": "日別に整理されたプラン",
+        "map": "各日のインタラクティブ地図",
+        "efficient": "最適化された移動ルート"
+      },
+      "tryNow": "旅程を作成する",
+      "demoTitle": "あなたの旅行日程"
+    },
+    "cta": {
+      "title": "完璧な韓国の冒険を計画する準備はできましたか？",
+      "subtitle": "数分であなた専用の旅行日程を作成しましょう",
+      "button": "今すぐ計画を始める"
+    }
+  },
   "chat": {
     "placeholder": "質問を入力してください...",
     "send": "送信",
-    "thinking": "考え中"
+    "thinking": "考え中",
+    "title": "トラベルアシスタントとチャット",
+    "subtitle": "韓国旅行に関する質問や助けが必要なことについて、自由に質問してください。"
   },
   "faq": {
     "title": "よくある質問",
@@ -78,13 +154,27 @@
     }
   },
   "history": {
-    "title": "質問履歴",
-    "empty": "まだ質問がありません",
+    "title": "履歴",
+    "subtitle": "保存した会話や作成された旅行日程を確認・管理できます。",
+    "conversations": "保存された会話",
+    "itineraries": "保存された日程",
+    "allCategories": "すべてのカテゴリ",
+    "empty": "保存された会話はありません。",
+    "date": "日付",
+    "spots": "スポット数",
+    "regions": "地域",
+    "actions": "アクション",
+    "view": "表示",
+    "delete": "削除",
+    "noItineraries": "保存された日程はありません。",
     "question": "質問",
     "answer": "回答",
     "copy": "回答をコピー",
     "report": "エラーを報告",
-    "allCategories": "すべてのカテゴリ"
+    "searchPlaceholder": "履歴を検索...",
+    "savedOn": "保存日",
+    "viewItinerary": "詳細を見る",
+    "deleteItinerary": "削除"
   },
   "settings": {
     "title": "設定",
@@ -97,9 +187,15 @@
     "light": "ライト",
     "dark": "ダーク"
   },
+  "toast": {
+    "info": "お知らせ",
+    "success": "成功",
+    "warning": "警告",
+    "error": "エラー"
+  },
   "footer": {
     "about": "概要",
-    "description": "Konnectは韓国で生活する外国人向けの日常生活の質問と情報を提供します。",
+    "description": "Konnectは韓国を訪問/居住する外国人向けの日常生活の質問と情報を提供します。",
     "links": "クイックリンク",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
@@ -113,13 +209,15 @@
   "login": {
     "google": "Googleでログイン",
     "apple": "Appleでログイン",
-    "or": "または直接入力",
+    "or": "or",
     "login": "ログイン",
     "signup": "新規登録",
     "findId": "ID検索",
     "findPw": "パスワード検索",
     "email": "メールアドレス",
-    "password": "パスワード"
+    "password": "パスワード",
+    "title": "ログイン",
+    "subtitle": "アカウントにアクセスするには認証情報を入力してください。"
   },
   "signup": {
     "email": "メールアドレス",
@@ -128,6 +226,8 @@
     "name": "名前",
     "confirmPassword": "パスワード確認",
     "checkDuplicate": "重複確認",
+    "title": "新規登録",
+    "subtitle": "サービスを利用するには新しいアカウントを作成してください。",
     "modal": {
       "emailTitle": "メールアドレス",
       "emailInputError": "正しいメールアドレスを入力してください。",
@@ -158,6 +258,7 @@
     "pleaseLogin": "このサービスを利用するにはログインが必要です。",
     "deleteThread": "スレッドの削除",
     "confirmDeleteThread": "このスレッドを削除してもよろしいですか？",
+    "confirmDeleteItinerary": "この旅行日程を削除してもよろしいですか？",
     "delete": "削除",
     "cancel": "キャンセル"
   },
@@ -171,28 +272,46 @@
     "generateItinerary": "スケジュール生成",
     "spotsReset": "すべての場所がリセットされました。",
     "allSpotsEmpty": "すべての場所が空です。自動的にリセットします。",
-    "spotPlaceholder": "Enter a place (e.g. cafe, attraction, etc.)",
-    "clearInput": "Clear input",
-    "selectCategory": "Select Trip Categories",
-    "categoryDescription": "What type of trip are you planning?",
-    "categoryMultipleDescription": "What types of activities are you interested in? (Select all that apply)",
-    "changeCategory": "Change",
-    "confirmCategories": "Continue",
-    "selectAtLeastOne": "Please select at least one category",
-    "departureCity": "Departure City",
-    "arrivalCity": "Arrival City",
-    "selectCity": "Select city",
-    "itineraryResults": "Your Travel Itinerary",
-    "freeDay": "Free day - No activities planned",
-    "mapView": "Map View",
-    "mapComingSoon": "Map view coming soon",
-    "generationError": "Failed to generate itinerary. Please try again.",
+    "spotPlaceholder": "場所を入力してください（例：カフェ、観光スポットなど）",
+    "clearInput": "入力をクリア",
+    "selectCategory": "旅行カテゴリを選択",
+    "categoryDescription": "どのような旅行を計画していますか？",
+    "categoryMultipleDescription": "どのようなアクティビティに興味がありますか？（複数選択可）",
+    "changeCategory": "変更",
+    "confirmCategories": "続ける",
+    "selectAtLeastOne": "少なくとも1つのカテゴリを選択してください",
+    "departureCity": "出発都市",
+    "arrivalCity": "到着都市",
+    "selectCity": "都市を選択",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "selectStartDate": "開始日を選択",
+    "selectEndDate": "終了日を選択",
+    "removeSpot": "場所を削除",
+    "itineraryResults": "あなたの旅行日程",
+    "freeDay": "自由日 - 予定されたアクティビティはありません",
+    "mapView": "地図表示",
+    "mapComingSoon": "地図表示は近日公開予定です",
+    "generationError": "旅程の生成に失敗しました。もう一度お試しください。",
+    "save": "保存",
+    "saveSuccess": "旅程が正常に保存されました！",
+    "saveError": "旅程の保存に失敗しました。もう一度お試しください。",
+    "validation": {
+      "startDateRequired": "開始日を選択してください",
+      "endDateRequired": "終了日を選択してください",
+      "departureCityRequired": "出発都市を選択してください",
+      "arrivalCityRequired": "到着都市を選択してください",
+      "noSpotsEntered": "少なくとも1つの場所を入力してください"
+    },
     "categories": {
-      "nature": "Nature",
-      "humanities": "Culture/Art/History",
-      "leisure": "Leisure Sports",
-      "shopping": "Shopping",
-      "food": "Food"
+      "attraction": "観光地",
+      "culture": "文化施設",
+      "festival": "祭り・イベント",
+      "tourCourse": "旅行コース",
+      "leisure": "レジャースポーツ",
+      "accommodation": "宿泊施設",
+      "shopping": "ショッピング",
+      "food": "レストラン"
     }
   },
   "session": {

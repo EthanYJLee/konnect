@@ -1,0 +1,98 @@
+@import './common/variables';
+@import './common/mixins';
+
+.city-selector {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4a5568;
+    
+    .dark-theme & {
+      color: var(--dark-text-color);
+    }
+  }
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  
+  /* Removing duplicate arrow - this is now in Curation.scss */
+  /*
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #a0aec0;
+    pointer-events: none;
+    
+    .dark-theme & {
+      border-top-color: #cbd5e1;
+    }
+  }
+  */
+}
+
+.city-select {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 40px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--color-white);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1a202c;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+  }
+  
+  .dark-theme & {
+    background-color: var(--dark-input-bg-color);
+    border-color: var(--dark-border-color);
+    color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+    }
+  }
+  
+  option {
+    background-color: white;
+    color: #1a202c;
+    
+    .dark-theme & {
+      background-color: var(--dark-input-bg-color);
+      color: white;
+    }
+  }
+}
+
+// Enhanced select for mobile devices
+@media (max-width: 768px) {
+  .city-select {
+    padding: 14px 16px;
+    font-size: 16px; // Prevents iOS zoom
+  }
+} 

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Curation.scss";
@@ -11,6 +11,12 @@ import { useTheme } from "../contexts/ThemeContext";
 // import "react-toastify/dist/ReactToastify.css";
 import ItineraryMap from "../components/ItineraryMap";
 import SimpleItineraryMap from "../components/SimpleItineraryMap";
+
+// 컴포넌트 임포트
+import SpotInput from "../components/SpotInput";
+import CitySelector from "../components/CitySelector";
+import ItineraryModal from "../components/ItineraryModal";
+import Toast from "../components/Toast";
 
 const url = process.env.REACT_APP_WAS_URL;
 
@@ -88,180 +94,6 @@ const koreanCities = {
   },
 };
 
-const SpotInput = ({ value, onChange, onRemove, showRemoveButton }) => {
-  const [suggestions, setSuggestions] = useState([]);
-  const [inputValue, setInputValue] = useState(value?.name || "");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showClearButton, setShowClearButton] = useState(!!value?.name);
-  const { t } = useTranslation();
-
-  const handleInput = async (e) => {
-    const val = e.target.value;
-    setInputValue(val);
-    setShowClearButton(!!val);
-    debouncedFetch(val);
-  };
-
-  const handleClear = () => {
-    setInputValue("");
-    setShowClearButton(false);
-    onChange(null);
-    setSuggestions([]);
-    setShowDropdown(false);
-  };
-
-  const handleRemove = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onRemove();
-  };
-
-  const debouncedFetch = useCallback(
-    debounce((q) => fetchSuggestions(q), 500),
-    []
-  );
-
-  const fetchGooglePlaces = async (query) => {
-    if (!query) return [];
-    // const lang = getBrowserLangCode();
-    try {
-      const res = await axios.get(`${url}/api/google/search`, {
-        params: { query, lang: t("curation.language") },
-        // params: { query, lang: lang },
-      });
-      return res.data.results || [];
-    } catch (error) {
-      console.error("Error fetching Google places from backend:", error);
-      return [];
-    }
-  };
-
-  const fetchNominatimPlaces = async (query) => {
-    if (!query) return [];
-    try {
-      const res = await axios.get(`${url}/api/nominatim/search`, {
-        params: { query, lang: t("curation.language") },
-      });
-      return res.data.results || [];
-    } catch (error) {
-      console.error("Error fetching Nominatim places:", error);
-      return [];
-    }
-  };
-
-  const fetchSuggestions = async (val) => {
-    if (val.length > 1) {
-      // const results = await fetchGooglePlaces(val);
-      const results = await fetchNominatimPlaces(val);
-      setSuggestions(results);
-      setShowDropdown(true);
-    } else {
-      setSuggestions([]);
-      setShowDropdown(false);
-    }
-  };
-
-  const handleSelect = (place) => {
-    setInputValue(place.name);
-    setShowDropdown(false);
-    setShowClearButton(true);
-    onChange(place); // Pass the entire place object instead of just the name
-  };
-
-  return (
-    <div style={{ position: "relative" }} className="spot-input-container">
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <div style={{ position: "relative", flex: 1 }}>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInput}
-            placeholder={t(
-              "curation.spotPlaceholder",
-              "장소를 입력하세요 (예: 카페, 명소 등)"
-            )}
-            autoComplete="off"
-            className="spot-autocomplete-input"
-            onFocus={() => inputValue.length > 1 && setShowDropdown(true)}
-            onBlur={(e) => {
-              // 클릭된 요소가 삭제 버튼이 아닐 때만 드롭다운을 닫음
-              const clickedElement = e.relatedTarget;
-              if (
-                !clickedElement ||
-                !clickedElement.classList.contains("remove-spot-btn")
-              ) {
-                setTimeout(() => setShowDropdown(false), 150);
-              }
-            }}
-          />
-          {showClearButton && (
-            <button
-              type="button"
-              className="clear-input-button"
-              onClick={handleClear}
-              aria-label={t("curation.clearInput", "입력 지우기")}
-            >
-              ×
-            </button>
-          )}
-        </div>
-        {showRemoveButton && (
-          <button
-            type="button"
-            onClick={handleRemove}
-            className="remove-spot-btn"
-            aria-label={t("curation.removeSpot", "스팟 삭제")}
-          >
-            🗑️
-          </button>
-        )}
-      </div>
-      {showDropdown && suggestions.length > 0 && (
-        <ul className="spot-suggestion-dropdown">
-          {suggestions.map((place) => (
-            <li key={place.id} onClick={() => handleSelect(place)}>
-              <span>{place.name}</span>
-              <span style={{ color: "#888", fontSize: "0.9em", marginLeft: 6 }}>
-                {place.formatted_address}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
-const CitySelector = ({ value, onChange, label, placeholder }) => {
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language.split("-")[0] || "en"; // 현재 언어 코드 (en, ko, ja, zh, vi 등)
-
-  // 선택된 도시 이름 (현재 언어로)
-  const selectedCityName = value
-    ? koreanCities[value][currentLang] || koreanCities[value].en
-    : "";
-
-  return (
-    <div className="city-selector">
-      <label>{label}</label>
-      <div className="select-wrapper">
-        <select
-          value={value || ""}
-          onChange={(e) => onChange(e.target.value || null)}
-          className="city-select"
-        >
-          <option value="">{placeholder}</option>
-          {Object.keys(koreanCities).map((cityKey) => (
-            <option key={cityKey} value={cityKey}>
-              {koreanCities[cityKey][currentLang] || koreanCities[cityKey].en}
-            </option>
-          ))}
-        </select>
-      </div>
-    </div>
-  );
-};
-
 const Curation = () => {
   const [spots, setSpots] = useState([{ id: 1, name: "" }]);
   const [itinerary, setItinerary] = useState(null);
@@ -277,18 +109,139 @@ const Curation = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [nextId, setNextId] = useState(2);
   const [loading, setLoading] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  // 모달 상태 추가
+  const [showItineraryModal, setShowItineraryModal] = useState(false);
+
+  // 토스트 관련 상태
+  const [toasts, setToasts] = useState([]);
+
+  // 스크롤 위치 감지
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // 언어 변경 감지 및 선택된 카테고리 업데이트
+  useEffect(() => {
+    if (selectedCategories.length > 0) {
+      // 카테고리 정의 가져오기
+      const updatedCategories = [
+        {
+          id: "12",
+          icon: "🏯",
+          name: t("curation.categories.attraction", "관광지"),
+        },
+        {
+          id: "14",
+          icon: "🏛️",
+          name: t("curation.categories.culture", "문화시설"),
+        },
+        {
+          id: "15",
+          icon: "🎭",
+          name: t("curation.categories.festival", "축제공연행사"),
+        },
+        {
+          id: "25",
+          icon: "🧭",
+          name: t("curation.categories.tourCourse", "여행코스"),
+        },
+        {
+          id: "28",
+          icon: "🚵",
+          name: t("curation.categories.leisure", "레포츠"),
+        },
+        {
+          id: "32",
+          icon: "🏨",
+          name: t("curation.categories.accommodation", "숙박"),
+        },
+        {
+          id: "38",
+          icon: "🛍️",
+          name: t("curation.categories.shopping", "쇼핑"),
+        },
+        {
+          id: "39",
+          icon: "🍽️",
+          name: t("curation.categories.food", "음식점"),
+        },
+      ];
+
+      // 선택된 카테고리 업데이트
+      const updatedSelectedCategories = selectedCategories.map(
+        (selectedCat) => {
+          const updatedCat = updatedCategories.find(
+            (cat) => cat.id === selectedCat.id
+          );
+          return updatedCat || selectedCat;
+        }
+      );
+
+      setSelectedCategories(updatedSelectedCategories);
+    }
+  }, [t, i18n.language]);
+
+  // 토스트 메시지 표시 함수
+  const showToast = (message, type = "info") => {
+    const id = Date.now();
+    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+  };
+
+  // 토스트 메시지 제거 함수
+  const removeToast = (id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  };
 
   // Available trip categories
   const categories = [
-    { id: "A01", icon: "🌳", name: t("curation.categories.nature", "자연") },
     {
-      id: "A02",
-      icon: "🏛️",
-      name: t("curation.categories.humanities", "인문(문화/예술/역사)"),
+      id: "12",
+      icon: "🏯",
+      name: t("curation.categories.attraction", "관광지"),
     },
-    { id: "A03", icon: "🚵", name: t("curation.categories.leisure", "레포츠") },
-    { id: "A04", icon: "🛍️", name: t("curation.categories.shopping", "쇼핑") },
-    { id: "A05", icon: "🍽️", name: t("curation.categories.food", "음식") },
+    {
+      id: "14",
+      icon: "🏛️",
+      name: t("curation.categories.culture", "문화시설"),
+    },
+    {
+      id: "15",
+      icon: "🎭",
+      name: t("curation.categories.festival", "축제공연행사"),
+    },
+    {
+      id: "25",
+      icon: "🧭",
+      name: t("curation.categories.tourCourse", "여행코스"),
+    },
+    {
+      id: "28",
+      icon: "🚵",
+      name: t("curation.categories.leisure", "레포츠"),
+    },
+    {
+      id: "32",
+      icon: "🏨",
+      name: t("curation.categories.accommodation", "숙박"),
+    },
+    {
+      id: "38",
+      icon: "🛍️",
+      name: t("curation.categories.shopping", "쇼핑"),
+    },
+    {
+      id: "39",
+      icon: "🍽️",
+      name: t("curation.categories.food", "음식점"),
+    },
   ];
 
   // Toggle a category in the selection
@@ -312,16 +265,11 @@ const Curation = () => {
     if (selectedCategories.length > 0) {
       setShowCategorySelector(false);
     } else {
-      // Show alert if no category is selected
-      setAlertMessage(
-        t("curation.selectAtLeastOne", "Please select at least one category")
+      // Show warning toast if no category is selected
+      showToast(
+        t("curation.selectAtLeastOne", "Please select at least one category"),
+        "warning"
       );
-      setShowAlert(true);
-
-      // 3초 후 알림 숨기기
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
     }
   };
 
@@ -335,15 +283,15 @@ const Curation = () => {
         (spot) => !spot.name || spot.name.trim() === ""
       );
       if (allEmpty && newSpots.length > 1) {
-        const message = t(
-          "curation.allSpotsEmpty",
-          "모든 장소가 비어 있습니다. 리셋하시겠습니까?"
+        showToast(
+          t(
+            "curation.allSpotsEmpty",
+            "모든 장소가 비어 있습니다. 자동으로 초기화합니다."
+          ),
+          "info"
         );
-        setAlertMessage(message);
-        setShowAlert(true);
 
         setTimeout(() => {
-          setShowAlert(false);
           setSpots([{ id: 1, name: "" }]);
           setNextId(2);
         }, 3000);
@@ -356,18 +304,14 @@ const Curation = () => {
   const addSpot = () => {
     const max = 5;
     if (spots.length >= max) {
-      const message = t(
-        "curation.maxSpotsReached",
-        `최대 ${max}개의 장소만 추가할 수 있습니다.`,
-        { max: max }
+      showToast(
+        t(
+          "curation.maxSpotsReached",
+          `최대 ${max}개의 장소만 추가할 수 있습니다.`,
+          { max: max }
+        ),
+        "warning"
       );
-      setAlertMessage(message);
-      setShowAlert(true);
-
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
-
       return;
     }
 
@@ -379,13 +323,10 @@ const Curation = () => {
     setSpots([{ id: 1, name: "" }]);
     setNextId(2);
 
-    const message = t("curation.spotsReset", "모든 장소가 초기화되었습니다.");
-    setAlertMessage(message);
-    setShowAlert(true);
-
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
+    showToast(
+      t("curation.spotsReset", "모든 장소가 초기화되었습니다."),
+      "info"
+    );
   };
 
   const formatDate = (date) => {
@@ -396,7 +337,46 @@ const Curation = () => {
     return `${yyyy}-${mm}-${dd}`;
   };
 
+  // 입력 검증 함수
+  const validateInputs = () => {
+    if (!startDate) {
+      showToast(t("curation.validation.startDateRequired"), "warning");
+      return false;
+    }
+
+    if (!endDate) {
+      showToast(t("curation.validation.endDateRequired"), "warning");
+      return false;
+    }
+
+    if (!departureCity) {
+      showToast(t("curation.validation.departureCityRequired"), "warning");
+      return false;
+    }
+
+    if (!arrivalCity) {
+      showToast(t("curation.validation.arrivalCityRequired"), "warning");
+      return false;
+    }
+
+    // 최소 하나의 유효한 spot이 있는지 확인
+    const validSpots = spots.filter(
+      (spot) => spot.name && spot.name.trim() !== ""
+    );
+    if (validSpots.length === 0) {
+      showToast(t("curation.validation.noSpotsEntered"), "warning");
+      return false;
+    }
+
+    return true;
+  };
+
   const generateItinerary = async () => {
+    // 입력 검증
+    if (!validateInputs()) {
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -427,23 +407,26 @@ const Curation = () => {
       console.log("Response:", response.data);
       setItinerary(response.data.itinerary.schedule);
 
-      // 자동으로 결과로 스크롤
-      setTimeout(() => {
-        const resultsElement = document.getElementById("itinerary-results");
-        if (resultsElement) {
-          resultsElement.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 500);
+      // 일정이 생성되면 모달 표시
+      setShowItineraryModal(true);
+
+      // 성공 메시지 표시
+      showToast(
+        t(
+          "curation.itineraryGenerated",
+          "Your itinerary has been successfully generated!"
+        ),
+        "success"
+      );
     } catch (error) {
       console.error("Error generating itinerary:", error);
-      setAlertMessage(
+      showToast(
         t(
           "curation.generationError",
           "Failed to generate itinerary. Please try again."
-        )
+        ),
+        "error"
       );
-      setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 3000);
     } finally {
       setLoading(false);
     }
@@ -493,6 +476,26 @@ const Curation = () => {
           "Enter must-visit spots and get your full itinerary!"
         )}
       </p>
+
+      {/* 토스트 메시지 컨테이너 */}
+      <div className="toast-container">
+        {toasts.map((toast) => (
+          <Toast
+            key={toast.id}
+            message={toast.message}
+            type={toast.type}
+            onClose={() => removeToast(toast.id)}
+          />
+        ))}
+      </div>
+
+      {/* 일정 모달 */}
+      <ItineraryModal
+        isOpen={showItineraryModal}
+        onClose={() => setShowItineraryModal(false)}
+        itinerary={itinerary || {}}
+        formatDisplayDate={formatDisplayDate}
+      />
 
       {showCategorySelector ? (
         <div className="category-selector-container">
@@ -549,65 +552,92 @@ const Curation = () => {
           </div>
 
           <div className="direction-image-container">
-            <img
-              src={directionImg}
-              alt="Travel direction"
-              className="direction-image"
-            />
+            <div className="direction-text-overlay">
+              <div className="direction-image-wrapper">
+                <img
+                  src={directionImg}
+                  alt="Travel direction"
+                  className="direction-image"
+                />
+              </div>
+              <div className="direction-content">
+                <div className="direction-upper-content">
+                  <div className="direction-image-wrapper mobile-only">
+                    <img
+                      src={directionImg}
+                      alt="Travel direction"
+                      className="direction-image"
+                    />
+                  </div>
+                  <div className="direction-from-to">
+                    <div className="direction-location-wrapper">
+                      <div className="direction-from">
+                        <span className="location-icon">🛫</span>
+                        <CitySelector
+                          value={departureCity}
+                          onChange={setDepartureCity}
+                          placeholder={t("curation.selectCity", "Select city")}
+                          customClass="direction-city-select"
+                        />
+                      </div>
+                    </div>
+                    <span className="direction-arrow">→</span>
+                    <div className="direction-location-wrapper">
+                      <div className="direction-to">
+                        <span className="location-icon">🏁</span>
+                        <CitySelector
+                          value={arrivalCity}
+                          onChange={setArrivalCity}
+                          placeholder={t("curation.selectCity", "Select city")}
+                          customClass="direction-city-select"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="direction-dates">
+                  <span className="date-icon">📅</span>
+                  <div className="date-picker-container">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      selectsStart
+                      startDate={startDate}
+                      endDate={endDate}
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText={t(
+                        "curation.selectStartDate",
+                        "Select start date"
+                      )}
+                      className="direction-date-picker"
+                      popperPlacement="top-start"
+                      popperClassName="date-picker-popper"
+                    />
+                    <span className="date-separator">~</span>
+                    <DatePicker
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      selectsEnd
+                      startDate={startDate}
+                      endDate={endDate}
+                      minDate={startDate}
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText={t(
+                        "curation.selectEndDate",
+                        "Select end date"
+                      )}
+                      className="direction-date-picker"
+                      popperPlacement="top-end"
+                      popperClassName="date-picker-popper"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {showAlert && <div className="custom-alert">{alertMessage}</div>}
 
-          <div className="city-date-container">
-            <div className="cities-container">
-              <CitySelector
-                value={departureCity}
-                onChange={setDepartureCity}
-                label={t("curation.departureCity", "Departure City")}
-                placeholder={t("curation.selectCity", "Select city")}
-              />
-              <CitySelector
-                value={arrivalCity}
-                onChange={setArrivalCity}
-                label={t("curation.arrivalCity", "Arrival City")}
-                placeholder={t("curation.selectCity", "Select city")}
-              />
-            </div>
-
-            <div className="date-range-inputs">
-              <div
-                style={{
-                  justifyContent: "space-between !important",
-                }}
-              >
-                <label>Start Date</label>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="Select start date"
-                  className={datePickerClassName}
-                />
-              </div>
-              <div>
-                <label>End Date</label>
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="Select end date"
-                  className={datePickerClassName}
-                />
-              </div>
-            </div>
-          </div>
           <div className="spot-inputs">
             {spots.map((spot, idx) => (
               <SpotInput
@@ -640,121 +670,15 @@ const Curation = () => {
             )}
           </button>
 
-          {/* {itinerary && (
-            <div className="itinerary-results" id="itinerary-results">
-              <h2>{t("curation.itineraryResults", "Your Travel Itinerary")}</h2>
-
-              {Object.keys(itinerary)
-                .sort()
-                .map((date) => (
-                  <div key={date} className="itinerary-day-card">
-                    <div className="itinerary-date">
-                      {formatDisplayDate(date)}
-                    </div>
-
-                    {itinerary[date].length > 0 ? (
-                      <div className="day-spots-container">
-                        {itinerary[date].map((spot, index) => (
-                          <div
-                            key={`${date}-${index}`}
-                            className="itinerary-spot"
-                          >
-                            <div className="spot-number">{index + 1}</div>
-                            <div className="spot-details">
-                              <div className="spot-name">{spot.spot}</div>
-                              <div className="spot-location">
-                                {spot.city}{" "}
-                                {spot.district && `• ${spot.district}`}{" "}
-                                {spot.neighborhood && `• ${spot.neighborhood}`}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="empty-day-message">
-                        {t(
-                          "curation.freeDay",
-                          "Free day - No activities planned"
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-              <div className="itinerary-map-container">
-                <h3>{t("curation.mapView", "Map View")}</h3>
-                <div className="itinerary-map-placeholder">
-                  <p>{t("curation.mapComingSoon", "Map view coming soon")}</p>
-                </div>
-              </div>
-            </div>
-          )} */}
+          {/* 기존 itinerary 표시 부분 제거 - 모달로 대체 */}
           {itinerary && (
-            <div className="itinerary-results" id="itinerary-results">
-              <h2>{t("curation.itineraryResults", "Your Travel Itinerary")}</h2>
-
-              {Object.keys(itinerary)
-                .sort()
-                .map((date) => (
-                  <div key={date} className="itinerary-day-card">
-                    <div className="itinerary-date">
-                      {formatDisplayDate(date)}
-                    </div>
-
-                    {itinerary[date].length > 0 ? (
-                      <>
-                        <div className="day-spots-container">
-                          {itinerary[date].map((spot, index) => (
-                            <div
-                              key={`${date}-${index}`}
-                              className="itinerary-spot"
-                            >
-                              <div className="spot-number">{index + 1}</div>
-                              <div className="spot-details">
-                                <div className="spot-name">{spot.spot}</div>
-                                <div className="spot-location">
-                                  {spot.city}{" "}
-                                  {spot.district && `• ${spot.district}`}{" "}
-                                  {spot.neighborhood &&
-                                    `• ${spot.neighborhood}`}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* <div className="day-map-container">
-                          <ItineraryMap
-                            daySpots={itinerary[date]}
-                            date={formatDisplayDate(date)}
-                          />
-                        </div> */}
-                        <div className="day-map-container">
-                          <SimpleItineraryMap
-                            daySpots={itinerary[date]}
-                            date={formatDisplayDate(date)}
-                          />
-                        </div>
-                      </>
-                    ) : (
-                      <div className="empty-day-message">
-                        {t(
-                          "curation.freeDay",
-                          "Free day - No activities planned"
-                        )}
-                      </div>
-                    )}
-                    {/* {itinerary[date].length > 0 && (
-                      <div className="day-map-container">
-                        <SimpleItineraryMap
-                          daySpots={itinerary[date]}
-                          date={formatDisplayDate(date)}
-                        />
-                      </div>
-                    )} */}
-                  </div>
-                ))}
+            <div className="view-itinerary-button-container">
+              <button
+                className="view-itinerary-button"
+                onClick={() => setShowItineraryModal(true)}
+              >
+                {t("curation.viewItinerary", "View Your Itinerary")}
+              </button>
             </div>
           )}
         </>

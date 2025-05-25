@@ -11,6 +11,13 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
+
+    // Apply dark-theme class to body for global styles
+    if (theme === "dark") {
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+    }
   }, [theme]);
 
   const toggleTheme = () => {
