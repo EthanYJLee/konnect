@@ -1,0 +1,210 @@
+@import './common/variables';
+@import './common/mixins';
+
+.travel-guides-page {
+  padding-bottom: 3rem;
+}
+
+.travel-guides-hero {
+  background: linear-gradient(135deg, var(--primary-color), darken(#007bff, 15%));
+  color: white;
+  padding: 3.5rem 0;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .lead {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .search-filters {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 1.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    
+    .input-group-text {
+      background-color: white;
+      border: none;
+    }
+    
+    .form-control, .form-select {
+      border: none;
+      padding: 0.75rem 1rem;
+      height: auto;
+      
+      &:focus {
+        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+}
+
+.guides-container {
+  margin-bottom: 2rem;
+}
+
+.guide-card {
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    
+    .guide-image {
+      transform: scale(1.05);
+    }
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+  
+  .card-text {
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+}
+
+.guide-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.guide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.guide-region {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.guide-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.guide-tag {
+  background-color: var(--light-bg-secondary);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  
+  .dark-theme & {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-secondary);
+  }
+}
+
+.read-more-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+}
+
+.no-results {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+// Dark theme overrides
+.dark-theme {
+  .travel-guides-hero {
+    background: linear-gradient(135deg, var(--primary-dark-color), #1e3a8a);
+  }
+  
+  .guide-card {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-title {
+      color: var(--dark-text-primary);
+    }
+    
+    .card-text {
+      color: var(--dark-text-secondary);
+    }
+  }
+  
+  .read-more-btn {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+  }
+  
+  .no-results {
+    color: var(--dark-text-secondary);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .travel-guides-hero {
+    padding: 2.5rem 0;
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .lead {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .guide-card {
+    margin-bottom: 1.5rem;
+  }
+} 

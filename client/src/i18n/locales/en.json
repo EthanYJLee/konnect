@@ -13,10 +13,86 @@
     "logout": "Logout",
     "chat": "Chat"
   },
+  "home": {
+    "hero": {
+      "title": "Make Your Korea Trip Easier and Special",
+      "subtitle": "Plan an unforgettable journey to Korea with our AI-powered travel assistant tailored to your travel style.",
+      "button": "Start Planning"
+    },
+    "demo": {
+      "categories": {
+        "attractions": "Attractions",
+        "restaurants": "Restaurants",
+        "cultural": "Cultural"
+      },
+      "generateButton": "Generate Itinerary"
+    },
+    "imagePlaceholder": "Korean Landscape Image",
+    "features": {
+      "title": "Key Features of Konnect",
+      "subtitle": "We offer various features to enhance your Korean travel experience using AI-based technology.",
+      "learnMore": "Learn More",
+      "itinerary": {
+        "title": "Personalized Travel Plans",
+        "description": "Easily create personalized travel itineraries based on your preferences and schedule. Our AI suggests optimal routes and recommended places."
+      },
+      "localInsights": {
+        "title": "Local Recommendations",
+        "description": "Discover hidden spots and tips from locals that aren't well-known to tourists. Experience authentic Korean culture."
+      },
+      "translation": {
+        "title": "Language Support",
+        "description": "Travel without worrying about language barriers. We help with menu translations, basic conversations, and sign interpretations."
+      },
+      "foodGuide": {
+        "title": "Food Guide",
+        "description": "Explore diverse Korean cuisine and local restaurants. We recommend places that match your dietary restrictions and preferences."
+      },
+      "chatbot": {
+        "title": "AI Travel Assistant",
+        "description": "Get instant answers to your travel questions and personalized recommendations from our AI travel assistant. Available 24/7 to help plan your trip."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Plan your perfect trip in just 3 simple steps",
+      "step1": {
+        "title": "Select Destinations",
+        "description": "Choose your departure and arrival cities"
+      },
+      "step2": {
+        "title": "Add Must-Visit Spots",
+        "description": "Tell us places you don't want to miss"
+      },
+      "step3": {
+        "title": "Generate Itinerary",
+        "description": "Get your complete trip plan with maps"
+      }
+    },
+    "resultPreview": {
+      "title": "See Your Travel Plan",
+      "subtitle": "Explore your detailed daily itinerary with interactive maps",
+      "features": {
+        "title": "Smart Itinerary Features",
+        "daily": "Day-by-day organized plan",
+        "map": "Interactive maps for each day",
+        "efficient": "Optimized travel routes"
+      },
+      "tryNow": "Create Your Itinerary",
+      "demoTitle": "Your Travel Itinerary"
+    },
+    "cta": {
+      "title": "Ready to plan your perfect Korean adventure?",
+      "subtitle": "Create your customized travel itinerary in minutes",
+      "button": "Start Planning Now"
+    }
+  },
   "chat": {
     "placeholder": "Type your question here...",
     "send": "Send",
-    "thinking": "Thinking"
+    "thinking": "Thinking",
+    "title": "Chat with Travel Assistant",
+    "subtitle": "Feel free to ask any questions about your trip to Korea or request assistance."
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -78,13 +154,27 @@
     }
   },
   "history": {
-    "title": "Question History",
-    "empty": "No questions asked yet",
+    "title": "My History",
+    "subtitle": "View and manage your saved conversations and generated travel itineraries.",
+    "conversations": "Saved Conversations",
+    "itineraries": "Saved Itineraries",
+    "allCategories": "All Categories",
+    "empty": "No saved conversations yet.",
+    "date": "Date",
+    "spots": "Number of Spots",
+    "regions": "Regions",
+    "actions": "Actions",
+    "view": "View",
+    "delete": "Delete",
+    "noItineraries": "No saved itineraries yet.",
     "question": "Question",
     "answer": "Answer",
     "copy": "Copy Answer",
     "report": "Report Error",
-    "allCategories": "All Categories"
+    "searchPlaceholder": "Search history...",
+    "savedOn": "Saved on",
+    "viewItinerary": "View Details",
+    "deleteItinerary": "Delete"
   },
   "settings": {
     "title": "Settings",
@@ -119,13 +209,15 @@
   "login": {
     "google": "Login with Google",
     "apple": "Login with Apple",
-    "or": "Or enter manually",
+    "or": "or",
     "login": "Login",
     "signup": "Sign Up",
     "findId": "Find ID",
     "findPw": "Find Password",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "title": "Login",
+    "subtitle": "Welcome back! Enter your credentials to access your account."
   },
   "signup": {
     "email": "Email",
@@ -134,6 +226,8 @@
     "name": "Name",
     "confirmPassword": "Confirm Password",
     "checkDuplicate": "Check",
+    "title": "Sign Up",
+    "subtitle": "Create a new account to use our services.",
     "modal": {
       "emailTitle": "Email",
       "emailInputError": "Please enter a valid email.",
@@ -164,6 +258,7 @@
     "pleaseLogin": "Please login to use this service.",
     "deleteThread": "Delete Thread",
     "confirmDeleteThread": "Are you sure you want to delete this thread?",
+    "confirmDeleteItinerary": "Are you sure you want to delete this itinerary?",
     "delete": "Delete",
     "cancel": "Cancel"
   },
@@ -201,6 +296,9 @@
     "mapComingSoon": "Map view coming soon",
     "loadingMap": "Loading map...",
     "generationError": "Failed to generate itinerary. Please try again.",
+    "save": "Save",
+    "saveSuccess": "Itinerary saved successfully!",
+    "saveError": "Failed to save itinerary. Please try again.",
     "validation": {
       "startDateRequired": "Please select a start date",
       "endDateRequired": "Please select an end date",

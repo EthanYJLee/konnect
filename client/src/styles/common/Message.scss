@@ -23,10 +23,15 @@
 
   &.selected {
     box-shadow: 0 0 0 2px var(--primary-color);
+    .message-content {
+      color: black;
+    }
   }
 
   .message-content {
     word-break: break-word;
+    color: var(--black-color);
+    
   }
 
   .message-timestamp {

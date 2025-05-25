@@ -13,10 +13,86 @@
     "logout": "登出",
     "chat": "聊天"
   },
+  "home": {
+    "hero": {
+      "title": "让您的韩国之旅更轻松、更特别",
+      "subtitle": "通过我们基于AI的旅行助手，根据您的旅行风格，规划一次难忘的韩国之旅。",
+      "button": "开始规划"
+    },
+    "demo": {
+      "categories": {
+        "attractions": "景点",
+        "restaurants": "餐厅",
+        "cultural": "文化场所"
+      },
+      "generateButton": "生成行程"
+    },
+    "imagePlaceholder": "韩国风景图片",
+    "features": {
+      "title": "Konnect的主要功能",
+      "subtitle": "我们提供各种基于AI技术的功能，以增强您的韩国旅行体验。",
+      "learnMore": "了解更多",
+      "itinerary": {
+        "title": "个性化旅行计划",
+        "description": "根据您的偏好和日程轻松创建个性化旅行行程。我们的AI会建议最佳路线和推荐地点。"
+      },
+      "localInsights": {
+        "title": "本地人推荐",
+        "description": "发现游客不太了解的当地隐藏景点和贴士。体验真正的韩国文化。"
+      },
+      "translation": {
+        "title": "语言支持服务",
+        "description": "无需担心语言障碍即可旅行。我们提供菜单翻译、基本对话和标志解释等帮助。"
+      },
+      "foodGuide": {
+        "title": "美食指南",
+        "description": "探索韩国多样化的美食和当地餐厅。我们会推荐符合您饮食限制和偏好的餐厅。"
+      },
+      "chatbot": {
+        "title": "AI旅行助手",
+        "description": "从我们的AI旅行助手获取旅行问题的即时答案和个性化推荐。全天候为您的旅行计划提供帮助。"
+      }
+    },
+    "howItWorks": {
+      "title": "使用方法",
+      "subtitle": "只需3个简单步骤即可规划完美旅行",
+      "step1": {
+        "title": "选择目的地",
+        "description": "选择您的出发城市和到达城市"
+      },
+      "step2": {
+        "title": "添加必访景点",
+        "description": "告诉我们您不想错过的地方"
+      },
+      "step3": {
+        "title": "生成行程",
+        "description": "获取带有地图的完整旅行计划"
+      }
+    },
+    "resultPreview": {
+      "title": "查看您的旅行计划",
+      "subtitle": "探索带有交互式地图的详细每日行程",
+      "features": {
+        "title": "智能行程功能",
+        "daily": "按天组织的计划",
+        "map": "每天的交互式地图",
+        "efficient": "优化的旅行路线"
+      },
+      "tryNow": "创建您的行程",
+      "demoTitle": "您的旅行行程"
+    },
+    "cta": {
+      "title": "准备好规划您完美的韩国冒险之旅了吗？",
+      "subtitle": "几分钟内创建您的定制旅行行程",
+      "button": "立即开始规划"
+    }
+  },
   "chat": {
     "placeholder": "请输入您的问题...",
     "send": "发送",
-    "thinking": "思考中"
+    "thinking": "思考中",
+    "title": "与旅行助手聊天",
+    "subtitle": "随时提问关于韩国旅行的问题或寻求帮助。"
   },
   "faq": {
     "title": "常见问题",
@@ -78,13 +154,27 @@
     }
   },
   "history": {
-    "title": "问题历史",
-    "empty": "还没有问题",
+    "title": "我的历史记录",
+    "subtitle": "查看和管理您保存的对话和生成的旅行行程。",
+    "conversations": "已保存的对话",
+    "itineraries": "已保存的行程",
+    "allCategories": "所有类别",
+    "empty": "暂无保存的对话。",
+    "date": "日期",
+    "spots": "景点数量",
+    "regions": "地区",
+    "actions": "操作",
+    "view": "查看",
+    "delete": "删除",
+    "noItineraries": "暂无保存的行程。",
     "question": "问题",
     "answer": "回答",
     "copy": "复制回答",
     "report": "报告错误",
-    "allCategories": "所有类别"
+    "searchPlaceholder": "搜索历史记录...",
+    "savedOn": "保存于",
+    "viewItinerary": "查看详情",
+    "deleteItinerary": "删除"
   },
   "settings": {
     "title": "设置",
@@ -119,13 +209,15 @@
   "login": {
     "google": "使用谷歌账号登录",
     "apple": "使用苹果账号登录",
-    "or": "或手动输入",
+    "or": "or",
     "login": "登录",
     "signup": "注册",
     "findId": "找回ID",
     "findPw": "找回密码",
     "email": "邮箱",
-    "password": "密码"
+    "password": "密码",
+    "title": "登录",
+    "subtitle": "请输入您的凭据以访问您的账户。"
   },
   "signup": {
     "email": "邮箱",
@@ -134,6 +226,8 @@
     "name": "姓名",
     "confirmPassword": "确认密码",
     "checkDuplicate": "查重",
+    "title": "注册",
+    "subtitle": "创建新账户以使用我们的服务。",
     "modal": {
       "emailTitle": "邮箱",
       "emailInputError": "请输入有效的邮箱。",
@@ -164,6 +258,7 @@
     "pleaseLogin": "请登录以使用此服务。",
     "deleteThread": "删除对话",
     "confirmDeleteThread": "确定要删除这个对话吗？",
+    "confirmDeleteItinerary": "确定要删除这个旅行行程吗？",
     "delete": "删除",
     "cancel": "取消"
   },
@@ -198,6 +293,9 @@
     "mapView": "地图视图",
     "mapComingSoon": "地图视图即将推出",
     "generationError": "生成行程失败。请重试。",
+    "save": "保存",
+    "saveSuccess": "行程已成功保存！",
+    "saveError": "保存行程失败。请重试。",
     "validation": {
       "startDateRequired": "请选择开始日期",
       "endDateRequired": "请选择结束日期",
@@ -217,13 +315,13 @@
     }
   },
   "session": {
-    "expireTitle": "Session Expiring Soon",
-    "expireMessage": "Your session will expire soon. Please extend to continue using the service.",
-    "remainingTime": "Time remaining: ",
-    "extend": "Extend Session (1 hour)",
-    "logout": "Logout",
-    "extendError": "Failed to connect to server. Please try again or log out and log back in.",
-    "retry": "Retry",
-    "orLogout": "or log out and sign in again"
+    "expireTitle": "会话即将过期",
+    "expireMessage": "您的会话即将过期。请延长以继续使用服务。",
+    "remainingTime": "剩余时间：",
+    "extend": "延长会话（1小时）",
+    "logout": "登出",
+    "extendError": "连接服务器失败。请重试或登出后重新登录。",
+    "retry": "重试",
+    "orLogout": "或登出后重新登录"
   }
 } 

@@ -39,6 +39,11 @@ const HistoryCard = ({ pair, onCategoryUpdate }) => {
     return text.slice(0, maxLength) + '...';
   };
 
+  const handleDeleteChat = () => {
+    console.log("delete chat");
+    
+  }
+
   return (
     <div className="pair-card">
       <div className="badge-container">
@@ -70,6 +75,7 @@ const HistoryCard = ({ pair, onCategoryUpdate }) => {
         </Button>
         <Button
           className="history-card-button-remove"
+          onClick={handleDeleteChat}
         >
           <FontAwesomeIcon icon={faTrash} />
         </Button>

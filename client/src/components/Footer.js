@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import "../styles/Footer.scss";
 
 const Footer = () => {
@@ -9,37 +10,91 @@ const Footer = () => {
   return (
     <footer className="app-footer">
       <div className="footer-content">
-        <div className="footer-section">
-          <h3>{t("footer.about")}</h3>
-          <p>{t("footer.description")}</p>
+        <div className="footer-section company">
+          <h3>{t("footer.about", "About Konnect")}</h3>
+          <p>
+            {t(
+              "footer.description",
+              "Your personalized travel assistant for Korea"
+            )}
+          </p>
+          {/* <div className="social-links">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div> */}
         </div>
 
         <div className="footer-section">
-          <h3>{t("footer.links")}</h3>
+          <h3>{t("footer.travel", "Travel Resources")}</h3>
           <ul>
             <li>
-              <a href="/privacy">{t("footer.privacy")}</a>
+              <Link to="/travel-guides">
+                {t("footer.travelGuides", "Travel Guides")}
+              </Link>
             </li>
             <li>
-              <a href="/terms">{t("footer.terms")}</a>
+              <Link to="/destinations">
+                {t("footer.destinations", "Popular Destinations")}
+              </Link>
             </li>
             <li>
-              <a href="/contact">{t("footer.contact")}</a>
+              <Link to="/travel-tips">
+                {t("footer.travelTips", "Travel Tips")}
+              </Link>
             </li>
           </ul>
         </div>
 
         <div className="footer-section">
-          <h3>{t("footer.support")}</h3>
+          <h3>{t("footer.help", "Help & Support")}</h3>
           <ul>
             <li>
-              <a href="/help">{t("footer.help")}</a>
+              <Link to="/faq">{t("footer.faq", "FAQ")}</Link>
             </li>
             <li>
-              <a href="/feedback">{t("footer.feedback")}</a>
+              <Link to="/contact">{t("footer.contact", "Contact Us")}</Link>
             </li>
             <li>
-              <a href="/report">{t("footer.report")}</a>
+              <Link to="/feedback">
+                {t("footer.feedback", "Give Feedback")}
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-section">
+          <h3>{t("footer.legal", "Legal")}</h3>
+          <ul>
+            <li>
+              <Link to="/terms">{t("footer.terms", "Terms of Service")}</Link>
+            </li>
+            <li>
+              <Link to="/privacy">{t("footer.privacy", "Privacy Policy")}</Link>
+            </li>
+            <li>
+              <Link to="/cookies">{t("footer.cookies", "Cookie Policy")}</Link>
             </li>
           </ul>
         </div>
@@ -47,7 +102,8 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p>
-          &copy; {currentYear} K-Life Assistant. {t("footer.rights")}
+          &copy; {currentYear} Konnect Travel Assistant.{" "}
+          {t("footer.rights", "All rights reserved.")}
         </p>
       </div>
     </footer>

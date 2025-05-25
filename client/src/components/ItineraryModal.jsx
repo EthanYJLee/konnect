@@ -3,14 +3,30 @@ import ItineraryMap from "./ItineraryMap";
 import "../styles/ItineraryModal.scss";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
+import axios from "axios";
+import Toast from "./Toast";
 
 const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
+  const token = localStorage.getItem("token");
   const modalRef = useRef(null);
   const [animateOut, setAnimateOut] = useState(false);
   const [mapsLoaded, setMapsLoaded] = useState({});
   const [activeDate, setActiveDate] = useState(null);
   const { t } = useTranslation();
   const { theme } = useTheme();
+  // 토스트 관련 상태 추가
+  const [toasts, setToasts] = useState([]);
+
+  // 토스트 메시지 표시 함수
+  const showToast = (message, type = "info") => {
+    const id = Date.now();
+    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+  };
+
+  // 토스트 메시지 제거 함수
+  const removeToast = (id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  };
 
   // 모달 외부 클릭 시 닫기
   const handleClickOutside = (e) => {
@@ -33,6 +49,25 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
       setAnimateOut(false);
       onClose();
     }, 300);
+  };
+
+  // 저장 버튼 클릭 핸들러
+  const handleSave = async() => {
+    // 저장 기능 구현
+    console.log("Save itinerary:", itinerary);
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_WAS_URL}/api/curation/saveItinerary`, 
+        { data: itinerary }, 
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log(response);
+      // 성공 메시지를 토스트로 표시
+      showToast(t("curation.saveSuccess", "Itinerary saved successfully!"), "success");
+    } catch(error) {
+      console.log(error);
+      // 실패 메시지를 토스트로 표시
+      showToast(t("curation.saveError", "Failed to save itinerary. Please try again."), "error");
+    }
   };
 
   // 지도 로딩 완료 핸들러
@@ -103,10 +138,14 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
       <div className={containerClasses} ref={modalRef}>
         <div className="itinerary-modal-header">
           <h2>{t("curation.itineraryResults", "Your Travel Itinerary")}</h2>
-          <button className="itinerary-modal-close" onClick={handleClose}>
-            {/* × */}
-            ⓧ
-          </button>
+          <div className="itinerary-modal-actions">
+            <button className="save-btn" onClick={handleSave}>
+              {t("curation.save", "Save")}
+            </button>
+            <button className="itinerary-modal-close" onClick={handleClose}>
+              ⓧ
+            </button>
+          </div>
         </div>
         
         {sortedDates.length > 0 && (
@@ -192,6 +231,18 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
               )}
             </div>
           )}
+        </div>
+        
+        {/* 토스트 메시지 컨테이너 */}
+        <div className="toast-container">
+          {toasts.map((toast) => (
+            <Toast
+              key={toast.id}
+              message={toast.message}
+              type={toast.type}
+              onClose={() => removeToast(toast.id)}
+            />
+          ))}
         </div>
       </div>
     </div>

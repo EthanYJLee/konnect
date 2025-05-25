@@ -1,0 +1,106 @@
+@import './common/variables';
+@import './common/mixins';
+
+// History 페이지용 모달 스타일 - 애니메이션 문제 해결
+.itinerary-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  opacity: 1;
+  
+  &.dark-theme {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+  
+  &.animate-out {
+    animation: fadeOut 0.3s ease forwards;
+  }
+}
+
+.itinerary-modal-container {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transform: none;
+  
+  @media (max-width: 768px) {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .dark-theme & {
+    background: linear-gradient(135deg, #1e2635, #121620);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    color: #f8f9fa;
+    border: 1px solid var(--dark-border-color);
+  }
+  
+  &.animate-out {
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  // 토스트 컨테이너 스타일 추가
+  .toast-container {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 90vw;
+    pointer-events: none;
+    
+    & > * {
+      pointer-events: auto;
+    }
+  }
+}
+
+// Spot 아이템도 애니메이션 없이 바로 표시되도록 스타일 오버라이드
+.itinerary-spot {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+.itinerary-day-card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+} 

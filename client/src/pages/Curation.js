@@ -552,72 +552,92 @@ const Curation = () => {
           </div>
 
           <div className="direction-image-container">
-            <img
-              src={directionImg}
-              alt="Travel direction"
-              className="direction-image"
-            />
+            <div className="direction-text-overlay">
+              <div className="direction-image-wrapper">
+                <img
+                  src={directionImg}
+                  alt="Travel direction"
+                  className="direction-image"
+                />
+              </div>
+              <div className="direction-content">
+                <div className="direction-upper-content">
+                  <div className="direction-image-wrapper mobile-only">
+                    <img
+                      src={directionImg}
+                      alt="Travel direction"
+                      className="direction-image"
+                    />
+                  </div>
+                  <div className="direction-from-to">
+                    <div className="direction-location-wrapper">
+                      <div className="direction-from">
+                        <span className="location-icon">🛫</span>
+                        <CitySelector
+                          value={departureCity}
+                          onChange={setDepartureCity}
+                          placeholder={t("curation.selectCity", "Select city")}
+                          customClass="direction-city-select"
+                        />
+                      </div>
+                    </div>
+                    <span className="direction-arrow">→</span>
+                    <div className="direction-location-wrapper">
+                      <div className="direction-to">
+                        <span className="location-icon">🏁</span>
+                        <CitySelector
+                          value={arrivalCity}
+                          onChange={setArrivalCity}
+                          placeholder={t("curation.selectCity", "Select city")}
+                          customClass="direction-city-select"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="direction-dates">
+                  <span className="date-icon">📅</span>
+                  <div className="date-picker-container">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      selectsStart
+                      startDate={startDate}
+                      endDate={endDate}
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText={t(
+                        "curation.selectStartDate",
+                        "Select start date"
+                      )}
+                      className="direction-date-picker"
+                      popperPlacement="top-start"
+                      popperClassName="date-picker-popper"
+                    />
+                    <span className="date-separator">~</span>
+                    <DatePicker
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      selectsEnd
+                      startDate={startDate}
+                      endDate={endDate}
+                      minDate={startDate}
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText={t(
+                        "curation.selectEndDate",
+                        "Select end date"
+                      )}
+                      className="direction-date-picker"
+                      popperPlacement="top-end"
+                      popperClassName="date-picker-popper"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {showAlert && <div className="custom-alert">{alertMessage}</div>}
 
-          <div className="city-date-container">
-            <div className="date-range-inputs">
-              <div
-                style={{
-                  justifyContent: "space-between !important",
-                }}
-              >
-                <label>{t("curation.startDate", "Start Date")}</label>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText={t(
-                    "curation.selectStartDate",
-                    "Select start date"
-                  )}
-                  className={datePickerClassName}
-                />
-              </div>
-              <div>
-                <label>{t("curation.endDate", "End Date")}</label>
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText={t(
-                    "curation.selectEndDate",
-                    "Select end date"
-                  )}
-                  className={datePickerClassName}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="cities-container">
-            <CitySelector
-              value={departureCity}
-              onChange={setDepartureCity}
-              label={t("curation.departureCity", "Departure City")}
-              placeholder={t("curation.selectCity", "Select city")}
-            />
-            <CitySelector
-              value={arrivalCity}
-              onChange={setArrivalCity}
-              label={t("curation.arrivalCity", "Arrival City")}
-              placeholder={t("curation.selectCity", "Select city")}
-            />
-          </div>
-
-          <div style={{ height: "1rem" }} />
           <div className="spot-inputs">
             {spots.map((spot, idx) => (
               <SpotInput

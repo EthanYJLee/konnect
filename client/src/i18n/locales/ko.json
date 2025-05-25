@@ -13,10 +13,86 @@
     "logout": "로그아웃",
     "chat": "채팅"
   },
+  "home": {
+    "hero": {
+      "title": "한국 여행을 더 쉽고 특별하게",
+      "subtitle": "당신만의 여행 스타일에 맞춘 AI 기반 여행 도우미로 잊지 못할 한국 여행을 계획하세요.",
+      "button": "여행 계획 시작하기"
+    },
+    "demo": {
+      "categories": {
+        "attractions": "관광 명소",
+        "restaurants": "맛집",
+        "cultural": "문화 시설"
+      },
+      "generateButton": "일정 생성하기"
+    },
+    "imagePlaceholder": "한국 풍경 이미지",
+    "features": {
+      "title": "Konnect의 주요 기능",
+      "subtitle": "AI 기반 기술로 당신의 한국 여행을 향상시키는 다양한 기능을 제공합니다.",
+      "learnMore": "더 알아보기",
+      "itinerary": {
+        "title": "맞춤형 여행 계획",
+        "description": "당신의 선호도와 일정에 맞춘 개인화된 여행 일정을 손쉽게 생성하세요. AI가 최적의 경로와 추천 장소를 제안합니다."
+      },
+      "localInsights": {
+        "title": "현지인 추천 정보",
+        "description": "관광객에게 잘 알려지지 않은 현지인의 숨겨진 명소와 팁을 발견하세요. 진정한 한국 문화를 경험할 수 있습니다."
+      },
+      "translation": {
+        "title": "언어 지원 서비스",
+        "description": "언어 장벽에 대한 걱정 없이 여행하세요. 메뉴 번역, 기본 회화, 표지판 해석 등을 도와드립니다."
+      },
+      "chatbot": {
+        "title": "AI 여행 도우미",
+        "description": "여행 질문에 대한 즉각적인 답변과 AI 여행 도우미의 맞춤형 추천을 받아보세요. 여행 계획을 돕기 위해 24시간 이용 가능합니다."
+      },
+      "foodGuide": {
+        "title": "맛집 가이드",
+        "description": "한국의 다양한 요리와 현지 맛집을 탐험하세요. 당신의 식이 제한이나 선호도에 맞는 맛집을 추천해 드립니다."
+      }
+    },
+    "howItWorks": {
+      "title": "이용 방법",
+      "subtitle": "간단한 3단계로 완벽한 여행 계획 세우기",
+      "step1": {
+        "title": "목적지 선택",
+        "description": "출발 도시와 도착 도시를 선택하세요"
+      },
+      "step2": {
+        "title": "꼭 방문할 장소 추가",
+        "description": "놓치고 싶지 않은 장소를 알려주세요"
+      },
+      "step3": {
+        "title": "여행 일정 생성",
+        "description": "지도와 함께 완전한 여행 계획을 받아보세요"
+      }
+    },
+    "resultPreview": {
+      "title": "여행 계획 보기",
+      "subtitle": "인터랙티브 지도와 함께 상세한 일별 여행 일정을 탐색하세요",
+      "features": {
+        "title": "스마트 여행 일정 기능",
+        "daily": "일별 구성된 계획",
+        "map": "일별 인터랙티브 지도",
+        "efficient": "최적화된 여행 경로"
+      },
+      "tryNow": "여행 일정 만들기",
+      "demoTitle": "내 여행 일정"
+    },
+    "cta": {
+      "title": "완벽한 한국 모험을 계획할 준비가 되셨나요?",
+      "subtitle": "몇 분 안에 맞춤형 여행 일정을 만들어보세요",
+      "button": "지금 계획 시작하기"
+    }
+  },
   "chat": {
     "placeholder": "질문을 입력하세요...",
     "send": "전송",
-    "thinking": "생각 중"
+    "thinking": "생각 중",
+    "title": "여행 도우미와 대화하기",
+    "subtitle": "한국 여행에 관한 질문이나 도움이 필요한 사항을 자유롭게 물어보세요."
   },
   "faq": {
     "title": "자주 묻는 질문",
@@ -78,13 +154,19 @@
     }
   },
   "history": {
-    "title": "질문 기록",
-    "empty": "아직 질문이 없습니다",
-    "question": "질문",
-    "answer": "답변",
-    "copy": "답변 복사",
-    "report": "오류 신고",
-    "allCategories": "모든 카테고리"
+    "title": "내 활동 기록",
+    "subtitle": "저장한 대화와 생성된 여행 일정을 확인하고 관리하세요.",
+    "conversations": "저장된 대화",
+    "itineraries": "저장된 일정",
+    "allCategories": "모든 카테고리",
+    "empty": "저장된 대화가 없습니다.",
+    "date": "날짜",
+    "spots": "장소 수",
+    "regions": "지역",
+    "actions": "작업",
+    "view": "보기",
+    "delete": "삭제",
+    "noItineraries": "저장된 일정이 없습니다."
   },
   "settings": {
     "title": "설정",
@@ -119,13 +201,15 @@
   "login": {
     "google": "구글 계정으로 로그인",
     "apple": "애플 계정으로 로그인",
-    "or": "또는 직접 입력",
+    "or": "or",
     "login": "로그인",
     "signup": "회원가입",
     "findId": "아이디 찾기",
     "findPw": "비밀번호 찾기",
     "email": "이메일",
-    "password": "비밀번호"
+    "password": "비밀번호",
+    "title": "로그인",
+    "subtitle": "계정에 접근하기 위해 로그인 정보를 입력해주세요."
   },
   "signup": {
     "email": "이메일",
@@ -134,6 +218,8 @@
     "name": "이름",
     "confirmPassword": "비밀번호 확인",
     "checkDuplicate": "중복체크",
+    "title": "회원가입",
+    "subtitle": "서비스 이용을 위해 새 계정을 만들어보세요.",
     "modal": {
       "emailTitle": "이메일",
       "emailInputError": "이메일을 올바르게 입력해주세요.",
@@ -164,6 +250,7 @@
     "pleaseLogin": "로그인이 필요한 서비스입니다.",
     "deleteThread": "스레드 삭제",
     "confirmDeleteThread": "정말로 이 스레드를 삭제하시겠습니까?",
+    "confirmDeleteItinerary": "정말로 이 여행 일정을 삭제하시겠습니까?",
     "delete": "삭제",
     "cancel": "취소"
   },
@@ -201,6 +288,9 @@
     "mapComingSoon": "지도 보기 기능 준비 중",
     "loadingMap": "지도 로딩 중...",
     "generationError": "일정 생성에 실패했습니다. 다시 시도해주세요.",
+    "save": "저장",
+    "saveSuccess": "일정이 성공적으로 저장되었습니다!",
+    "saveError": "일정 저장에 실패했습니다. 다시 시도해주세요.",
     "validation": {
       "startDateRequired": "시작 날짜를 선택해주세요",
       "endDateRequired": "종료 날짜를 선택해주세요",

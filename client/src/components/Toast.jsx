@@ -10,7 +10,7 @@ const Toast = ({ message, type, onClose }) => {
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onClose, 400); // 페이드아웃 애니메이션 후 제거
-    }, 4000); // Longer display time for better readability
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [onClose]);

@@ -1,0 +1,158 @@
+@import './common/variables';
+@import './common/mixins';
+
+.legal-page {
+  padding: 3rem 0 5rem;
+  
+  .legal-content {
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .last-updated {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    section {
+      margin-bottom: 2.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+      
+      p, li {
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      ul, ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+        
+        li {
+          margin-bottom: 0.75rem;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+      
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      strong {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+    }
+  }
+  
+  &.terms-page {
+    .legal-content {
+      border-top: 5px solid var(--primary-color);
+    }
+  }
+  
+  &.privacy-page {
+    .legal-content {
+      border-top: 5px solid var(--info-color, #17a2b8);
+    }
+  }
+  
+  &.cookies-page {
+    .legal-content {
+      border-top: 5px solid var(--warning-color, #ffc107);
+    }
+  }
+}
+
+// Dark theme overrides
+.dark-theme {
+  .legal-page {
+    .legal-content {
+      background-color: var(--dark-bg-secondary);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+      
+      h1 {
+        color: var(--dark-text-primary);
+      }
+      
+      .last-updated {
+        color: var(--dark-text-secondary);
+        border-bottom-color: var(--dark-border-color);
+      }
+      
+      section {
+        h2 {
+          color: var(--dark-text-primary);
+        }
+        
+        p, li {
+          color: var(--dark-text-secondary);
+        }
+        
+        strong {
+          color: var(--dark-text-primary);
+        }
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 2rem 0 3rem;
+    
+    .legal-content {
+      padding: 1.5rem;
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      section {
+        h2 {
+          font-size: 1.35rem;
+        }
+        
+        p, li {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+} 

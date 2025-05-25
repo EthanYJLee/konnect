@@ -6,6 +6,57 @@ body {
     background-color: var(--dark-background-color);
     color: var(--dark-text-color);
   }
+
+  .react-datepicker-popper {
+    position: fixed !important;
+    transform-origin: top center !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 99999 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    will-change: transform !important;
+    animation: datepickerFadeIn 0.2s ease-out !important;
+  }
+  
+  .react-datepicker-popper[data-placement^="top"] {
+    bottom: 40px !important;
+  }
+  
+  .react-datepicker {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.3) !important;
+    animation: datepickerFadeIn 0.2s ease-out;
+  }
+  
+  .react-datepicker__header {
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+    border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.1);
+  }
+  
+  .react-datepicker__navigation {
+    top: 8px !important;
+  }
+  
+  .react-datepicker__day--selected {
+    background-color: var(--primary-color);
+  }
+  
+  .react-datepicker__day:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.15);
+  }
+}
+
+@keyframes datepickerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .curation-container {
@@ -56,13 +107,458 @@ body {
 }
 
 .direction-image-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+  position: relative;
+  margin: 1.5rem auto;
+  height: auto;
+  overflow: visible !important;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.05), rgba(var(--primary-color-rgb), 0.02));
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  // max-width: 600px;
+  border: 1px solid rgba(var(--primary-color-rgb), 0.1);
   
-  .direction-image {
-    max-width: 100%;
-    height: auto;
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    border-color: rgba(var(--primary-color-rgb), 0.2);
+  }
+  
+  .direction-text-overlay {
+    position: relative;
+    // z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 1.5rem;
+    color: var(--text-color);
+    
+    .direction-image-wrapper {
+      flex: 0 0 100px;
+      margin-right: 1.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+      // height: 100px;
+      position: relative;
+      // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      // border: 1px solid rgba(var(--primary-color-rgb), 0.15);
+      background-color: rgba(255, 255, 255, 0.2);
+      
+      &.mobile-only {
+        display: none;
+      }
+      
+      .direction-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+        opacity: 0.9;
+        filter: contrast(1.1) saturate(1.2);
+        
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+      
+      .dark-theme & {
+        border-color: rgba(var(--primary-color-rgb), 0.25);
+        background-color: rgba(30, 35, 45, 0.2);
+        
+        .direction-image {
+          opacity: 0.8;
+          filter: brightness(0.9) contrast(1.1) saturate(0.8);
+        }
+      }
+    }
+    
+    .direction-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .direction-upper-content {
+      display: flex;
+      width: 100%;
+    }
+    
+    .direction-from-to {
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      width: 100%;
+      
+      .direction-location-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        padding:0;
+      }
+      
+      .direction-arrow {
+        position: relative;
+        margin: 0 1.2rem;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        flex: 0 0 auto;
+        width: 2.5rem;
+        text-align: center;
+        
+        // &::after {
+        //   content: '';
+        //   position: absolute;
+        //   height: 2px;
+        //   width: 100%;
+        //   background: var(--primary-color);
+        //   left: 0;
+        //   bottom: -4px;
+        //   opacity: 0.5;
+        //   border-radius: 2px;
+        // }
+      }
+      
+      .direction-from, .direction-to {
+        // padding: 0.4rem 1.2rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.2s ease;
+        border: 1px solid rgba(var(--primary-color-rgb), 0.1);
+        display: flex;
+        align-items: center;
+        height: 40px;
+        justify-content: center;
+        width: 100%;
+        // max-width: 160px;
+        padding: 0 0.5rem;
+        
+        .location-icon {
+          margin-right: 6px;
+          font-size: 1.1rem;
+          flex-shrink: 0;
+        }
+        
+        .location-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 1rem;
+          text-align: center;
+        }
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+          background-color: white;
+        }
+        
+        .dark-theme & {
+          background-color: rgba(50, 55, 65, 0.9);
+          color: var(--dark-text-color);
+          border-color: rgba(var(--primary-color-rgb), 0.3);
+          
+          &:hover {
+            background-color: rgba(60, 65, 75, 0.95);
+          }
+        }
+        
+        // 통합된 CitySelector 스타일
+        .city-selector.direction-city-select {
+          margin-bottom: 0;
+          flex: 1;
+          min-width: 0;
+          
+          .select-wrapper {
+            &::after {
+              display: none;
+            }
+            
+            .city-select {
+              border: none;
+              background: transparent;
+              box-shadow: none;
+              padding: 0;
+              height: 100%;
+              font-size: 1rem;
+              font-weight: 600;
+              width: 100%;
+              text-align: center;
+              color: inherit;
+              
+              &:focus {
+                outline: none;
+                box-shadow: none;
+              }
+              
+              option {
+                font-weight: normal;
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .direction-dates {
+      font-size: 0.95rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 0.4rem 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+      border: 1px solid rgba(var(--primary-color-rgb), 0.1);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      
+      .date-icon {
+        margin-right: 6px;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      
+      .date-picker-container {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: center;
+        max-width: calc(100% - 30px); /* date-icon 너비 + 여백 */
+        overflow: hidden;
+        
+        .react-datepicker-wrapper {
+          width: auto;
+          max-width: 45%;
+          flex-shrink: 1;
+          flex-grow: 0;
+        }
+        
+        .direction-date-picker {
+          background: transparent;
+          border: none;
+          font-size: 0.95rem;
+          padding: 0;
+          // width: 95px;
+          width: 100%;
+          min-width: 80px;
+          text-align: center;
+          cursor: pointer;
+          color: inherit;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          
+          &:focus {
+            outline: none;
+          }
+          
+          &::placeholder {
+            color: var(--text-secondary-color);
+            opacity: 0.8;
+          }
+        }
+        
+        .date-separator {
+          margin: 0 5px;
+          font-weight: 500;
+          color: var(--primary-color);
+          flex-shrink: 0;
+        }
+      }
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        background-color: white;
+      }
+      
+      .dark-theme & {
+        background-color: rgba(50, 55, 65, 0.9);
+        color: var(--dark-text-color);
+        border-color: rgba(var(--primary-color-rgb), 0.3);
+        
+        .date-picker-container {
+          .direction-date-picker {
+            color: var(--dark-text-color);
+            
+            &::placeholder {
+              color: var(--dark-text-secondary-color);
+            }
+          }
+        }
+        
+        &:hover {
+          background-color: rgba(60, 65, 75, 0.95);
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    .direction-text-overlay {
+      flex-direction: column;
+      padding: 1rem;
+      
+      .direction-image-wrapper {
+        display: none;
+        
+        &.mobile-only {
+          display: block;
+          flex: 0 0 auto;
+          width: 45%;
+          aspect-ratio: 1/1;
+          margin: 0;
+        }
+      }
+      
+      .direction-content {
+        align-items: center;
+        width: 100%;
+      }
+      
+      .direction-upper-content {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 1rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .direction-from-to {
+        font-size: 1rem;
+        flex-direction: column;
+        width: 45%;
+        margin-bottom: 0;
+        
+        .direction-location-wrapper {
+          width: 100%;
+          margin-bottom: 0.5rem;
+          padding: 0;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        
+        .direction-arrow {
+          margin: 0.3rem 0;
+          transform: rotate(90deg);
+          width: auto;
+          
+          &::after {
+            transform: rotate(90deg);
+            width: 120%;
+            left: -10%;
+          }
+        }
+        
+        .direction-from, .direction-to {
+          padding: 0.35rem 0.7rem;
+          margin-bottom: 0;
+          max-width: 100%;
+          height: 36px;
+          
+          .location-icon {
+            margin-right: 5px;
+            font-size: 1rem;
+          }
+          
+          .location-text {
+            font-size: 0.9rem;
+          }
+          
+          .city-selector.direction-city-select {
+            .select-wrapper {
+              .city-select {
+                font-size: 0.9rem;
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
+      
+      .direction-dates {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 0.35rem 1rem;
+        
+        .date-icon {
+          margin-right: 5px;
+          font-size: 0.9rem;
+        }
+        
+        .date-picker-container {
+          max-width: calc(100% - 25px); /* 모바일에서 date-icon 너비 + 여백 */
+          
+          .react-datepicker-wrapper {
+            max-width: 45%;
+          }
+          
+          .direction-date-picker {
+            font-size: 0.85rem;
+            // width: 80px;
+            min-width: 70px;
+          }
+          
+          .date-separator {
+            margin: 0 3px;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .direction-text-overlay {
+      .direction-from-to {
+        .direction-from, .direction-to {
+          padding: 0.35rem 0.4rem;
+          
+          .city-selector.direction-city-select {
+            .select-wrapper {
+              .city-select {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+      }
+      
+      .direction-dates {
+        padding: 0.35rem 0.5rem;
+        
+        .date-picker-container {
+          .react-datepicker-wrapper {
+            max-width: 45%;
+          }
+          
+          .direction-date-picker {
+            font-size: 0.8rem;
+            // width: 75px;
+            min-width: 60px;
+          }
+        }
+      }
+    }
+  }
+  
+  .dark-theme & {
+    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(30, 35, 45, 0.6));
+    border-color: rgba(var(--primary-color-rgb), 0.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    
+    &:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+      border-color: rgba(var(--primary-color-rgb), 0.3);
+    }
   }
 }
 
@@ -484,7 +980,6 @@ body {
   background-color: white;
   border-radius: 10px;
   padding: 1rem;
-  margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   
   @media (max-width: 576px) {
@@ -790,7 +1285,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 99999;
   animation: fadeIn 0.3s ease;
   backdrop-filter: blur(5px);
   
@@ -1163,3 +1658,107 @@ body {
     transform: rotate(360deg);
   }
 } 
+
+.react-datepicker__month-container {
+  z-index: 1000;
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+  position: absolute !important;
+  transform: none !important;
+  inset: auto !important;
+  top: 100% !important;
+  left: 0 !important;
+  margin-top: 8px !important;
+}
+
+body .react-datepicker-wrapper {
+  position: static !important;
+  display: inline-block;
+  width: auto;
+}
+
+body .react-datepicker-popper {
+  transform: none !important;
+  position: fixed !important;
+  z-index: 10000 !important;
+}
+
+body .react-datepicker-popper[data-placement^="bottom"] {
+  margin-top: 10px !important;
+}
+
+body .react-datepicker-popper[data-placement^="top"] {
+  margin-bottom: 10px !important;
+}
+
+body .react-datepicker {
+  font-family: inherit !important;
+  border-radius: 8px !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(var(--primary-color-rgb), 0.2) !important;
+}
+
+body .react-datepicker__month-container {
+  float: none !important;
+}
+
+body .react-datepicker__triangle {
+  display: none !important;
+}
+
+.direction-dates {
+  position: relative;
+  overflow: visible !important;
+  
+  .date-picker-container {
+    position: static;
+    overflow: visible !important;
+    
+    .direction-date-picker {
+      position: relative;
+      z-index: 999;
+    }
+  }
+}
+
+// 날짜 선택기 스타일
+.date-picker-popper {
+  z-index: 99999 !important;
+  margin-bottom: 10px !important;
+  
+  .react-datepicker {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.3) !important;
+    animation: datepickerFadeIn 0.2s ease-out;
+  }
+  
+  .react-datepicker__header {
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+    border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.1);
+  }
+  
+  .react-datepicker__day--selected {
+    background-color: var(--primary-color);
+  }
+  
+  .react-datepicker__day:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.15);
+  }
+  
+  .react-datepicker__triangle {
+    display: none !important;
+  }
+}
+
+@keyframes datepickerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

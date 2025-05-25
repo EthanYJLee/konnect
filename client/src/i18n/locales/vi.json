@@ -13,10 +13,86 @@
     "logout": "Đăng xuất",
     "chat": "Trò chuyện"
   },
+  "home": {
+    "hero": {
+      "title": "Hành trình Hàn Quốc dễ dàng và đặc biệt hơn",
+      "subtitle": "Lên kế hoạch cho chuyến đi khó quên đến Hàn Quốc với trợ lý du lịch AI được điều chỉnh theo phong cách du lịch của bạn.",
+      "button": "Bắt đầu lập kế hoạch"
+    },
+    "demo": {
+      "categories": {
+        "attractions": "Điểm du lịch",
+        "restaurants": "Nhà hàng",
+        "cultural": "Văn hóa"
+      },
+      "generateButton": "Tạo lịch trình"
+    },
+    "imagePlaceholder": "Hình ảnh phong cảnh Hàn Quốc",
+    "features": {
+      "title": "Tính năng chính của Konnect",
+      "subtitle": "Chúng tôi cung cấp nhiều tính năng để nâng cao trải nghiệm du lịch Hàn Quốc của bạn bằng công nghệ dựa trên AI.",
+      "learnMore": "Tìm hiểu thêm",
+      "itinerary": {
+        "title": "Kế hoạch du lịch cá nhân hóa",
+        "description": "Dễ dàng tạo lịch trình du lịch cá nhân dựa trên sở thích và lịch trình của bạn. AI của chúng tôi gợi ý các tuyến đường tối ưu và địa điểm được đề xuất."
+      },
+      "localInsights": {
+        "title": "Khuyến nghị từ người địa phương",
+        "description": "Khám phá những địa điểm ẩn và mẹo từ người địa phương mà khách du lịch ít biết đến. Trải nghiệm văn hóa Hàn Quốc đích thực."
+      },
+      "translation": {
+        "title": "Hỗ trợ ngôn ngữ",
+        "description": "Du lịch mà không lo lắng về rào cản ngôn ngữ. Chúng tôi giúp dịch thực đơn, đàm thoại cơ bản và hiểu biển chỉ dẫn."
+      },
+      "foodGuide": {
+        "title": "Hướng dẫn ẩm thực",
+        "description": "Khám phá ẩm thực Hàn Quốc đa dạng và nhà hàng địa phương. Chúng tôi giới thiệu những nơi phù hợp với chế độ ăn uống và sở thích của bạn."
+      },
+      "chatbot": {
+        "title": "Trợ lý Du lịch AI",
+        "description": "Nhận câu trả lời ngay lập tức cho các câu hỏi du lịch của bạn và các đề xuất cá nhân hóa từ trợ lý du lịch AI của chúng tôi. Hoạt động 24/7 để giúp lập kế hoạch chuyến đi của bạn."
+      }
+    },
+    "howItWorks": {
+      "title": "Cách thức hoạt động",
+      "subtitle": "Lên kế hoạch cho chuyến đi hoàn hảo chỉ với 3 bước đơn giản",
+      "step1": {
+        "title": "Chọn điểm đến",
+        "description": "Chọn thành phố khởi hành và đến của bạn"
+      },
+      "step2": {
+        "title": "Thêm địa điểm phải ghé thăm",
+        "description": "Cho chúng tôi biết những nơi bạn không muốn bỏ lỡ"
+      },
+      "step3": {
+        "title": "Tạo lịch trình",
+        "description": "Nhận kế hoạch chuyến đi đầy đủ với bản đồ"
+      }
+    },
+    "resultPreview": {
+      "title": "Xem kế hoạch du lịch của bạn",
+      "subtitle": "Khám phá lịch trình hàng ngày chi tiết với bản đồ tương tác",
+      "features": {
+        "title": "Tính năng lịch trình thông minh",
+        "daily": "Kế hoạch được tổ chức theo từng ngày",
+        "map": "Bản đồ tương tác cho mỗi ngày",
+        "efficient": "Tuyến đường di chuyển tối ưu"
+      },
+      "tryNow": "Tạo lịch trình của bạn",
+      "demoTitle": "Lịch trình du lịch của bạn"
+    },
+    "cta": {
+      "title": "Sẵn sàng lên kế hoạch cho chuyến phiêu lưu Hàn Quốc hoàn hảo của bạn?",
+      "subtitle": "Tạo lịch trình du lịch tùy chỉnh của bạn trong vài phút",
+      "button": "Bắt đầu lập kế hoạch ngay"
+    }
+  },
   "chat": {
     "placeholder": "Nhập câu hỏi của bạn...",
     "send": "Gửi",
-    "thinking": "Đang suy nghĩ"
+    "thinking": "Đang suy nghĩ",
+    "title": "Trò chuyện với Trợ lý Du lịch",
+    "subtitle": "Hãy tự do đặt câu hỏi về chuyến du lịch Hàn Quốc hoặc yêu cầu hỗ trợ."
   },
   "faq": {
     "title": "Câu hỏi thường gặp",
@@ -78,13 +154,27 @@
     }
   },
   "history": {
-    "title": "Lịch sử câu hỏi",
-    "empty": "Chưa có câu hỏi nào",
+    "title": "Lịch sử của Tôi",
+    "subtitle": "Xem và quản lý các cuộc trò chuyện đã lưu và lịch trình du lịch đã tạo.",
+    "conversations": "Cuộc trò chuyện đã Lưu",
+    "itineraries": "Lịch trình đã Lưu",
+    "allCategories": "Tất cả Danh mục",
+    "empty": "Chưa có cuộc trò chuyện nào được lưu.",
+    "date": "Ngày",
+    "spots": "Số Điểm đến",
+    "regions": "Khu vực",
+    "actions": "Thao tác",
+    "view": "Xem",
+    "delete": "Xóa",
+    "noItineraries": "Chưa có lịch trình nào được lưu.",
     "question": "Câu hỏi",
     "answer": "Trả lời",
     "copy": "Sao chép trả lời",
     "report": "Báo lỗi",
-    "allCategories": "Tất cả danh mục"
+    "searchPlaceholder": "Tìm kiếm lịch sử...",
+    "savedOn": "Đã lưu vào",
+    "viewItinerary": "Xem chi tiết",
+    "deleteItinerary": "Xóa"
   },
   "settings": {
     "title": "Cài đặt",
@@ -119,13 +209,15 @@
   "login": {
     "google": "Đăng nhập bằng Google",
     "apple": "Đăng nhập bằng Apple",
-    "or": "Hoặc nhập thủ công",
+    "or": "or",
     "login": "Đăng nhập",
     "signup": "Đăng ký",
     "findId": "Tìm ID",
     "findPw": "Tìm mật khẩu",
     "email": "Email",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "title": "Đăng nhập",
+    "subtitle": "Nhập thông tin đăng nhập để truy cập tài khoản của bạn."
   },
   "signup": {
     "email": "Email",
@@ -134,6 +226,8 @@
     "name": "Tên",
     "confirmPassword": "Xác nhận mật khẩu",
     "checkDuplicate": "Kiểm tra",
+    "title": "Đăng ký",
+    "subtitle": "Tạo tài khoản mới để sử dụng dịch vụ của chúng tôi.",
     "modal": {
       "emailTitle": "Email",
       "emailInputError": "Vui lòng nhập email hợp lệ.",
@@ -164,6 +258,7 @@
     "pleaseLogin": "Vui lòng đăng nhập để sử dụng dịch vụ này.",
     "deleteThread": "Xóa cuộc trò chuyện",
     "confirmDeleteThread": "Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?",
+    "confirmDeleteItinerary": "Bạn có chắc chắn muốn xóa lịch trình du lịch này không?",
     "delete": "Xóa",
     "cancel": "Hủy"
   },
@@ -198,6 +293,9 @@
     "mapView": "Xem bản đồ",
     "mapComingSoon": "Xem bản đồ sắp ra mắt",
     "generationError": "Không thể tạo lịch trình. Vui lòng thử lại.",
+    "save": "Lưu",
+    "saveSuccess": "Đã lưu lịch trình thành công!",
+    "saveError": "Lưu lịch trình thất bại. Vui lòng thử lại.",
     "validation": {
       "startDateRequired": "Vui lòng chọn ngày bắt đầu",
       "endDateRequired": "Vui lòng chọn ngày kết thúc",

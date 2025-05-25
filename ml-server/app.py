@@ -4,11 +4,9 @@ import joblib
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import requests
-# from utils.schedule_utils import distribute_must_spots_by_cluster, get_distance_matrix
 import json
 from utils.geocode import reverse_geocode
 import time
-from utils.clustering import fixed_region_schedule
 from utils.recommendation import advanced_schedule_planning
 
 # from deep_translator import

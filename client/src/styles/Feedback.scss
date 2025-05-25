@@ -1,0 +1,243 @@
+@import './common/variables';
+@import './common/mixins';
+
+.feedback-page {
+  padding-bottom: 4rem;
+}
+
+.feedback-hero {
+  background: linear-gradient(135deg, var(--primary-color), darken(#007bff, 15%));
+  color: white;
+  padding: 3.5rem 0;
+  margin-bottom: 3rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .lead {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.feedback-container {
+  margin-bottom: 2rem;
+}
+
+.feedback-form-container {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  
+  .feedback-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    h2 {
+      color: var(--text-primary);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+  }
+  
+  .rating-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    h3 {
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+  }
+  
+  .star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    
+    .star {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &.active {
+        color: #FFD700; // Gold color for active stars
+      }
+      
+      &.inactive {
+        color: var(--gray-400); // Gray color for inactive stars
+        opacity: 0.5;
+      }
+      
+      &:hover {
+        color: #FFD700;
+        transform: scale(1.1);
+      }
+    }
+  }
+  
+  .rating-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    height: 1.5rem;
+  }
+  
+  .form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  .form-control, .form-select {
+    padding: 0.75rem 1rem;
+    border-color: var(--border-color);
+    
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.15);
+    }
+  }
+  
+  textarea.form-control {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  .submit-button {
+    padding: 0.75rem 2.5rem;
+    font-weight: 600;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Dark theme overrides
+.dark-theme {
+  .feedback-hero {
+    background: linear-gradient(135deg, var(--primary-dark-color), #1e3a8a);
+  }
+  
+  .feedback-form-container {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    
+    .feedback-intro {
+      h2 {
+        color: var(--dark-text-primary);
+      }
+      
+      p {
+        color: var(--dark-text-secondary);
+      }
+    }
+    
+    .rating-section {
+      border-bottom-color: var(--dark-border-color);
+      
+      h3 {
+        color: var(--dark-text-primary);
+      }
+    }
+    
+    .star-rating {
+      .star {
+        &.inactive {
+          color: var(--dark-gray-600);
+          opacity: 0.5;
+        }
+        
+        &.active {
+          color: #FFD700;
+        }
+        
+        &:hover {
+          color: #FFD700;
+          transform: scale(1.1);
+        }
+      }
+    }
+    
+    .rating-text {
+      color: var(--dark-text-primary);
+    }
+    
+    .form-label {
+      color: var(--dark-text-primary);
+    }
+    
+    .form-control, .form-select {
+      background-color: var(--dark-bg-primary);
+      border-color: var(--dark-border-color);
+      color: var(--dark-text-primary);
+      
+      &::placeholder {
+        color: var(--dark-text-tertiary);
+      }
+      
+      &:focus {
+        border-color: var(--primary-color);
+        background-color: var(--dark-bg-primary);
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .feedback-hero {
+    padding: 2.5rem 0;
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .lead {
+      font-size: 1.1rem;
+    }
+  }
+  
+  .feedback-form-container {
+    padding: 1.5rem;
+    
+    .feedback-intro {
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+    
+    .star-rating {
+      .star {
+        font-size: 1.75rem;
+      }
+    }
+  }
+} 

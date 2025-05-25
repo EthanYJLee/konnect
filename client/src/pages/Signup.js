@@ -165,9 +165,9 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
+      <h1>{t("signup.title")}</h1>
+      <p>{t("signup.subtitle")}</p>
       <div className="signup-box">
-        <h2 className="signup-title">{t("login.signup")}</h2>
-
         {/* 이메일 입력 */}
         <div className="email-check-row">
           <input
@@ -187,30 +187,56 @@ const Signup = () => {
               setIsEmailValid(null);
             }}
           />
-          <div style={{paddingTop:"12px"}}>
-          {"@"}
-          </div>
-          <select
-            className="signup-email-domain"
-            value={useCustomDomain ? "custom" : emailDomain}
-            onChange={(e) => {
-              const value = e.target.value;
-              if (value === "custom") {
-                setUseCustomDomain(true);
-                setEmailDomain(""); // reset
-              } else {
+          <div className="at-symbol">@</div>
+
+          {useCustomDomain ? (
+            <input
+              type="text"
+              placeholder={t("signup.customDomain")}
+              className="signup-email-domain custom-domain-input"
+              value={customDomain}
+              onChange={(e) => {
+                setCustomDomain(e.target.value);
+                setIsEmailChecked(false);
+                setIsEmailValid(null);
+              }}
+            />
+          ) : (
+            <select
+              className="signup-email-domain"
+              value={emailDomain}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === "custom") {
+                  setUseCustomDomain(true);
+                  setCustomDomain(""); // reset
+                } else {
+                  setEmailDomain(value);
+                }
+                setIsEmailChecked(false);
+                setIsEmailValid(null);
+              }}
+            >
+              <option value="gmail.com">gmail.com</option>
+              <option value="yahoo.com">yahoo.com</option>
+              <option value="outlook.com">outlook.com</option>
+              <option value="naver.com">naver.com</option>
+              <option value="daum.net">daum.net</option>
+              <option value="custom">{t("signup.customDomain")}</option>
+            </select>
+          )}
+
+          {useCustomDomain && (
+            <button
+              className="domain-toggle-btn"
+              onClick={() => {
                 setUseCustomDomain(false);
-                setEmailDomain(value);
-              }
-              setIsEmailChecked(false);
-              setIsEmailValid(null);
-            }}
-          >
-            <option value="gmail.com">gmail.com</option>
-            <option value="yahoo.com">yahoo.com</option>
-            <option value="outlook.com">outlook.com</option>
-            <option value="custom">{t("signup.customDomain")}</option>
-          </select>
+                setEmailDomain("gmail.com");
+              }}
+            >
+              ↩
+            </button>
+          )}
 
           <button className="check-duplicate-btn" onClick={checkEmailExists}>
             {t("signup.checkDuplicate")}

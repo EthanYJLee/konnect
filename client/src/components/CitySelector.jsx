@@ -76,7 +76,7 @@ const koreanCities = {
   },
 };
 
-const CitySelector = ({ value, onChange, label, placeholder }) => {
+const CitySelector = ({ value, onChange, label, placeholder, customClass }) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language.split("-")[0] || "en"; // 현재 언어 코드 (en, ko, ja, zh, vi 등)
 
@@ -86,8 +86,8 @@ const CitySelector = ({ value, onChange, label, placeholder }) => {
     : "";
 
   return (
-    <div className="city-selector">
-      <label>{label}</label>
+    <div className={`city-selector ${customClass || ""}`}>
+      {label && <label>{label}</label>}
       <div className="select-wrapper">
         <select
           value={value || ""}
