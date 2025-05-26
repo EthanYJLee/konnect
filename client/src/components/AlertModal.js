@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const AlertModal = ({
   show,
@@ -7,9 +8,15 @@ const AlertModal = ({
   title,
   body,
   onConfirm,
-  confirmText = "확인",
-  cancelText = "취소",
+  confirmText,
+  cancelText,
 }) => {
+  const { t } = useTranslation();
+
+  // Use the translations from i18n with fallbacks
+  const confirm = confirmText || t("alertModal.confirm", "확인");
+  const cancel = cancelText || t("alertModal.cancel", "취소");
+
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header>
@@ -18,11 +25,11 @@ const AlertModal = ({
       <Modal.Body>{body}</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>
-          {cancelText}
+          {cancel}
         </Button>
         {onConfirm && (
           <Button variant="primary" onClick={onConfirm}>
-            {confirmText}
+            {confirm}
           </Button>
         )}
       </Modal.Footer>

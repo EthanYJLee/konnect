@@ -15,7 +15,7 @@
   },
   "home": {
     "hero": {
-      "title": "韓国旅行をより簡単に、より特別に",
+      "title": "韓国旅行を\nより簡単に、より特別に",
       "subtitle": "あなたの旅行スタイルに合わせたAI搭載の旅行アシスタントで、忘れられない韓国旅行を計画しましょう。",
       "button": "旅行計画を始める"
     },
@@ -249,8 +249,10 @@
       "passwordBody": "パスワードを入力してください。",
       "confirmPasswordTitle": "パスワード確認",
       "confirmPasswordBody": "パスワード確認を入力してください。",
-      "passwordMismatchTitle": "パスワード不一致",
-      "passwordMismatchBody": "パスワードが一致しません。"
+      "passwordMismatchTitle": "パスワードの不一致",
+      "passwordMismatchBody": "パスワードが一致しません。",
+      "signupSuccessTitle": "登録完了",
+      "signupSuccessBody": "アカウントが正常に作成されました。ログインページにリダイレクトします。"
     }
   },
   "alertModal": {
@@ -260,7 +262,8 @@
     "confirmDeleteThread": "このスレッドを削除してもよろしいですか？",
     "confirmDeleteItinerary": "この旅行日程を削除してもよろしいですか？",
     "delete": "削除",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "confirm": "確認"
   },
   "curation": {
     "language": "ja",

@@ -3,11 +3,13 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import AlertModal from "../components/AlertModal";
 import "../styles/Signup.scss";
+import { useNavigate } from "react-router-dom";
 
 // ... import 생략 ...
 
 const Signup = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [emailId, setEmailId] = useState("");
   const [emailDomain, setEmailDomain] = useState("gmail.com");
@@ -31,9 +33,17 @@ const Signup = () => {
     show: false,
     title: "",
     body: "",
+    isSuccess: false,
   });
 
-  const closeModal = () => setModalInfo({ ...modalInfo, show: false });
+  const closeModal = () => {
+    setModalInfo({ ...modalInfo, show: false });
+
+    // 회원가입 성공 시 로그인 페이지로 리다이렉트
+    if (modalInfo.isSuccess) {
+      navigate("/login");
+    }
+  };
 
   const checkEmailExists = () => {
     if (!emailId || (useCustomDomain && !customDomain)) {
@@ -41,6 +51,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.emailTitle"),
         body: t("signup.modal.emailInputError"),
+        isSuccess: false,
       });
       setIsEmailChecked(true);
       setIsEmailValid(false);
@@ -57,6 +68,7 @@ const Signup = () => {
             show: true,
             title: t("signup.modal.emailDuplicateTitle"),
             body: t("signup.modal.emailDuplicateBody"),
+            isSuccess: false,
           });
         } else {
           if (emailRegEx.test(email)) {
@@ -66,6 +78,7 @@ const Signup = () => {
               show: true,
               title: t("signup.modal.emailAvailableTitle"),
               body: t("signup.modal.emailAvailableBody"),
+              isSuccess: false,
             });
           } else {
             setIsEmailValid(false);
@@ -74,6 +87,7 @@ const Signup = () => {
               show: true,
               title: t("signup.modal.emailFormatErrorTitle"),
               body: t("signup.modal.emailFormatErrorBody"),
+              isSuccess: false,
             });
           }
         }
@@ -85,6 +99,7 @@ const Signup = () => {
           show: true,
           title: t("signup.modal.emailCheckErrorTitle"),
           body: t("signup.modal.emailCheckErrorBody"),
+          isSuccess: false,
         });
       });
   };
@@ -97,6 +112,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.emailInputTitle"),
         body: t("signup.modal.emailInputBody"),
+        isSuccess: false,
       });
       return;
     }
@@ -106,6 +122,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.emailCheckTitle"),
         body: t("signup.modal.emailCheckBody"),
+        isSuccess: false,
       });
       return;
     }
@@ -115,6 +132,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.nameTitle"),
         body: t("signup.modal.nameBody"),
+        isSuccess: false,
       });
       return;
     }
@@ -124,6 +142,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.passwordTitle"),
         body: t("signup.modal.passwordBody"),
+        isSuccess: false,
       });
       return;
     }
@@ -133,6 +152,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.confirmPasswordTitle"),
         body: t("signup.modal.confirmPasswordBody"),
+        isSuccess: false,
       });
       return;
     }
@@ -142,6 +162,7 @@ const Signup = () => {
         show: true,
         title: t("signup.modal.passwordMismatchTitle"),
         body: t("signup.modal.passwordMismatchBody"),
+        isSuccess: false,
       });
       return;
     }
@@ -157,9 +178,24 @@ const Signup = () => {
       })
       .then((response) => {
         console.log("회원가입 성공:", response.data);
+        // 회원가입 성공 모달 표시
+        setModalInfo({
+          show: true,
+          title: t("signup.modal.signupSuccessTitle"),
+          body: t("signup.modal.signupSuccessBody"),
+          isSuccess: true,
+        });
       })
       .catch((error) => {
         console.error("회원가입 실패:", error);
+        setModalInfo({
+          show: true,
+          title: t("toast.error"),
+          body:
+            error.response?.data?.message ||
+            "An error occurred during registration.",
+          isSuccess: false,
+        });
       });
   };
 

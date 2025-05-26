@@ -24,6 +24,15 @@ export const AuthProvider = ({ children }) => {
   const logoutTimeoutRef = useRef(null); // 로그아웃 타이머 참조
   const { t } = useTranslation();
 
+  // 컴포넌트 마운트 시 구글 클라이언트 ID 확인
+  useEffect(() => {
+    const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID;
+    console.log(
+      "AuthContext - Google Client ID:",
+      clientId ? "설정됨" : "설정되지 않음"
+    );
+  }, []);
+
   const handleLogout = () => {
     // 모든 타이머 정리
     clearAllTimers();

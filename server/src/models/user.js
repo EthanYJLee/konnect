@@ -11,6 +11,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     default: "N", // 기본값은 일반회원
   },
+  // 20250526 추가
+  gender: String,
+  birthday: Date,
+  // -----------
   createdAt: {
     type: Date,
     default: null, // 최초 가입 시만 설정

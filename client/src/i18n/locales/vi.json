@@ -15,7 +15,7 @@
   },
   "home": {
     "hero": {
-      "title": "Hành trình Hàn Quốc dễ dàng và đặc biệt hơn",
+      "title": "Hành trình Hàn Quốc\ndễ dàng và đặc biệt hơn",
       "subtitle": "Lên kế hoạch cho chuyến đi khó quên đến Hàn Quốc với trợ lý du lịch AI được điều chỉnh theo phong cách du lịch của bạn.",
       "button": "Bắt đầu lập kế hoạch"
     },
@@ -250,7 +250,9 @@
       "confirmPasswordTitle": "Xác nhận mật khẩu",
       "confirmPasswordBody": "Vui lòng xác nhận mật khẩu.",
       "passwordMismatchTitle": "Mật khẩu không khớp",
-      "passwordMismatchBody": "Mật khẩu không khớp."
+      "passwordMismatchBody": "Mật khẩu không trùng khớp.",
+      "signupSuccessTitle": "Đăng ký thành công",
+      "signupSuccessBody": "Tài khoản của bạn đã được tạo thành công. Đang chuyển hướng đến trang đăng nhập."
     }
   },
   "alertModal": {
@@ -260,7 +262,8 @@
     "confirmDeleteThread": "Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?",
     "confirmDeleteItinerary": "Bạn có chắc chắn muốn xóa lịch trình du lịch này không?",
     "delete": "Xóa",
-    "cancel": "Hủy"
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
   },
   "curation": {
     "language": "vi",

@@ -15,7 +15,7 @@
   },
   "home": {
     "hero": {
-      "title": "한국 여행을 더 쉽고 특별하게",
+      "title": "한국 여행을\n더 쉽고 특별하게",
       "subtitle": "당신만의 여행 스타일에 맞춘 AI 기반 여행 도우미로 잊지 못할 한국 여행을 계획하세요.",
       "button": "여행 계획 시작하기"
     },
@@ -242,7 +242,9 @@
       "confirmPasswordTitle": "비밀번호 확인",
       "confirmPasswordBody": "비밀번호 확인을 입력해주세요.",
       "passwordMismatchTitle": "비밀번호 불일치",
-      "passwordMismatchBody": "비밀번호가 일치하지 않습니다."
+      "passwordMismatchBody": "비밀번호가 일치하지 않습니다.",
+      "signupSuccessTitle": "회원가입 성공",
+      "signupSuccessBody": "회원가입이 성공적으로 완료되었습니다. 로그인 페이지로 이동합니다."
     }
   },
   "alertModal": {
@@ -252,7 +254,8 @@
     "confirmDeleteThread": "정말로 이 스레드를 삭제하시겠습니까?",
     "confirmDeleteItinerary": "정말로 이 여행 일정을 삭제하시겠습니까?",
     "delete": "삭제",
-    "cancel": "취소"
+    "cancel": "취소",
+    "confirm": "확인"
   },
   "curation": {
     "language": "ko",

@@ -31,21 +31,17 @@ const GoogleLoginButton = () => {
           console.log("Sending user info to backend:", userInfo);
           console.log("API URL:", `${url}/api/auth/google/token`);
 
-          // 요청 데이터 확인을 위한 로그
-          const requestData = {
-            credential: credentialResponse.access_token, // 액세스 토큰 문자열만 전송
-            type: "access_token", // 서버에 액세스 토큰임을 알림
-            email: userInfo.email,
-            name: userInfo.name,
-            picture: userInfo.picture,
-            id: userInfo.id,
-          };
-          console.log("Request data:", JSON.stringify(requestData));
-
           return fetch(`${url}/api/auth/google/token`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(requestData),
+            body: JSON.stringify({
+              credential: credentialResponse.access_token, // 서버에서 기대하는 필드명으로 변경
+              type: "access_token", // 서버에 액세스 토큰임을 알림
+              email: userInfo.email,
+              name: userInfo.name,
+              picture: userInfo.picture,
+              id: userInfo.id,
+            }),
             credentials: "include",
           });
         })
@@ -80,7 +76,6 @@ const GoogleLoginButton = () => {
         type="light"
         onClick={() => login()}
         label={t("login.google", "Login with Google")}
-        style={{ width: "100% !important", borderRadius: "9px !important" }}
       />
     </div>
   );

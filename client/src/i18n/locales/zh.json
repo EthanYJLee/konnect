@@ -15,7 +15,7 @@
   },
   "home": {
     "hero": {
-      "title": "让您的韩国之旅更轻松、更特别",
+      "title": "让您的韩国之旅\n更轻松、更特别",
       "subtitle": "通过我们基于AI的旅行助手，根据您的旅行风格，规划一次难忘的韩国之旅。",
       "button": "开始规划"
     },
@@ -249,8 +249,10 @@
       "passwordBody": "请输入密码。",
       "confirmPasswordTitle": "确认密码",
       "confirmPasswordBody": "请确认密码。",
-      "passwordMismatchTitle": "密码不一致",
-      "passwordMismatchBody": "两次输入的密码不一致。"
+      "passwordMismatchTitle": "密码不匹配",
+      "passwordMismatchBody": "密码不一致。",
+      "signupSuccessTitle": "注册成功",
+      "signupSuccessBody": "您的账户已成功创建。正在重定向到登录页面。"
     }
   },
   "alertModal": {
@@ -260,7 +262,8 @@
     "confirmDeleteThread": "确定要删除这个对话吗？",
     "confirmDeleteItinerary": "确定要删除这个旅行行程吗？",
     "delete": "删除",
-    "cancel": "取消"
+    "cancel": "取消",
+    "confirm": "确认"
   },
   "curation": {
     "language": "zh-CN",

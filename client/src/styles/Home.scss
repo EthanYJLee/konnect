@@ -119,12 +119,21 @@
       h1 {
         font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
         color: var(--text-primary);
+        
+        &.indented-line {
+          // padding-left: 2rem;
+          margin-top: 0;
+        }
         
         @media (max-width: 768px) {
           font-size: 2rem;
           text-align: center;
+          
+          &.indented-line {
+            padding-left: 0;
+          }
         }
       }
       
