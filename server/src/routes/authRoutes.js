@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../models/user");
 const { OAuth2Client } = require("google-auth-library");
+require("dotenv").config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // 이메일 중복 확인
@@ -18,7 +19,7 @@ router.get("/checkEmailExists", async (req, res) => {
 
 // 일반 회원가입
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, picture } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser)
     return res.status(400).json({ message: "Email already in use" });
@@ -30,6 +31,7 @@ router.post("/register", async (req, res) => {
     email,
     password: hashed,
     social: "N",
+    picture,
     createdAt: now,
     lastLogin: now,
   });
@@ -83,7 +85,7 @@ router.post("/google/token", async (req, res) => {
   });
 
   try {
-    let googleId, userEmail, userName;
+    let googleId, userEmail, userName, userPicture;
 
     // 토큰 타입에 따른 처리
     if (type === "access_token") {
@@ -91,6 +93,7 @@ router.post("/google/token", async (req, res) => {
       googleId = id;
       userEmail = email;
       userName = name;
+      userPicture = picture;
       console.log("Using access token with user info from client", {
         googleId,
         userEmail,
@@ -138,6 +141,7 @@ router.post("/google/token", async (req, res) => {
         googleId,
         email: userEmail,
         username: userName,
+        picture: userPicture,
         social: "Y",
         createdAt: now,
         lastLogin: now,

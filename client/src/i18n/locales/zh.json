@@ -11,7 +11,8 @@
     "signup": "注册",
     "menu": "菜单",
     "logout": "登出",
-    "chat": "聊天"
+    "chat": "聊天",
+    "userProfile": "用户信息"
   },
   "home": {
     "hero": {

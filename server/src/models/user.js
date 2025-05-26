@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
   // 20250526 추가
   gender: String,
   birthday: Date,
+  picture: String,
   // -----------
   createdAt: {
     type: Date,

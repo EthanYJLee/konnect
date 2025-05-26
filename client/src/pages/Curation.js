@@ -116,8 +116,8 @@ const Curation = () => {
   // 토스트 관련 상태
   const [toasts, setToasts] = useState([]);
 
-  // 스크롤 위치 감지
   useEffect(() => {
+    // 스크롤 위치 감지
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
     };
@@ -126,6 +126,8 @@ const Curation = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+
+    // 사용자 국적, 성별, 나이 정보 유무 확인
   }, []);
 
   // 언어 변경 감지 및 선택된 카테고리 업데이트
@@ -610,7 +612,24 @@ const Curation = () => {
                         "Select start date"
                       )}
                       className="direction-date-picker"
-                      popperPlacement="top-start"
+                      popperPlacement="bottom"
+                      withPortal
+                      portalId="date-picker-portal"
+                      popperModifiers={[
+                        {
+                          name: "offset",
+                          options: {
+                            offset: [0, 10],
+                          },
+                        },
+                        {
+                          name: "preventOverflow",
+                          options: {
+                            rootBoundary: "viewport",
+                            padding: 8,
+                          },
+                        },
+                      ]}
                       popperClassName="date-picker-popper"
                     />
                     <span className="date-separator">~</span>
@@ -627,7 +646,24 @@ const Curation = () => {
                         "Select end date"
                       )}
                       className="direction-date-picker"
-                      popperPlacement="top-end"
+                      popperPlacement="bottom"
+                      withPortal
+                      portalId="date-picker-portal"
+                      popperModifiers={[
+                        {
+                          name: "offset",
+                          options: {
+                            offset: [0, 10],
+                          },
+                        },
+                        {
+                          name: "preventOverflow",
+                          options: {
+                            rootBoundary: "viewport",
+                            padding: 8,
+                          },
+                        },
+                      ]}
                       popperClassName="date-picker-popper"
                     />
                   </div>

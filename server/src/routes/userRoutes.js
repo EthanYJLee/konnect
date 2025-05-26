@@ -5,10 +5,14 @@ const { profile } = require("../controllers/userController");
 const { ensureAuth } = require("../middlewares/authMiddleware");
 
 // 구글 로그인 시작
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
 // 구글 로그인 콜백
-router.get("/google/callback",
+router.get(
+  "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     res.redirect("/api/users/profile");

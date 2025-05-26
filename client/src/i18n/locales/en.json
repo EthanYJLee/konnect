@@ -11,7 +11,8 @@
     "signup": "Sign Up",
     "menu": "Menu",
     "logout": "Logout",
-    "chat": "Chat"
+    "chat": "Chat",
+    "userProfile": "User Profile"
   },
   "home": {
     "hero": {

@@ -4,14 +4,14 @@ const passport = require("passport");
 const cors = require("cors");
 require("./config/passport");
 // 라우트
-const authRoutes = require("./routes/auth");
-const assistantRoutes = require("./routes/assistant");
-const historyRoutes = require("./routes/history");
+const authRoutes = require("./routes/authRoutes");
+const assistantRoutes = require("./routes/assistantRoutes");
+const historyRoutes = require("./routes/historyRoutes");
 // const searchRoutes = require("./routes/search");
 // const naverSearchRoutes = require("./routes/naverSearch");
-const googleSearchRoutes = require("./routes/googleSearch");
-const nominatimSearchRoutes = require("./routes/nominatimSearch");
-const curationRoutes = require("./routes/curation");
+const googleSearchRoutes = require("./routes/googleSearchRoutes");
+const nominatimSearchRoutes = require("./routes/nominatimSearchRoutes");
+const curationRoutes = require("./routes/curationRoutes");
 const app = express();
 
 // CORS 미들웨어 (app.use(express.json()) 이전에 위치)

@@ -5,13 +5,14 @@
     "home": "Trang chủ",
     "faq": "Câu hỏi thường gặp",
     "history": "Lịch sử câu hỏi",
-    "curation": "Curation",
+    "curation": "Tuyển chọn",
     "settings": "Cài đặt",
     "login": "Đăng nhập",
     "signup": "Đăng ký",
     "menu": "Menu",
     "logout": "Đăng xuất",
-    "chat": "Trò chuyện"
+    "chat": "Trò chuyện",
+    "userProfile": "Thông tin người dùng"
   },
   "home": {
     "hero": {

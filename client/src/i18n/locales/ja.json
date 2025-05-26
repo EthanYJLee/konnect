@@ -5,13 +5,14 @@
     "home": "ホーム",
     "faq": "よくある質問",
     "history": "履歴",
-    "curation": "キュレーティング",
+    "curation": "キュレーション",
     "settings": "設定",
     "login": "ログイン",
     "signup": "新規登録",
     "menu": "メニュー",
     "logout": "ログアウト",
-    "chat": "チャット"
+    "chat": "チャット",
+    "userProfile": "ユーザー情報"
   },
   "home": {
     "hero": {

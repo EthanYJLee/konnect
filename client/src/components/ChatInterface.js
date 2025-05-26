@@ -22,7 +22,7 @@ const ChatInterface = ({ language }) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMessagePairIndex, setSelectedMessagePairIndex] = useState([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [threadId, setThreadId] = useState(
     localStorage.getItem("assistant_thread") || null
   );

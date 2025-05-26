@@ -76,6 +76,8 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("assistant_thread");
       localStorage.removeItem("loginType");
       localStorage.removeItem("email");
+      localStorage.removeItem("userPicture");
+      localStorage.removeItem("userName");
 
       // 앱 상태 업데이트
       setIsLoggedIn(false);
@@ -85,6 +87,8 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("assistant_thread");
       localStorage.removeItem("loginType");
       localStorage.removeItem("email");
+      localStorage.removeItem("userPicture");
+      localStorage.removeItem("userName");
 
       setIsLoggedIn(false);
       window.dispatchEvent(new Event("authChange"));
@@ -119,8 +123,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = (userData) => {
     setIsLoggedIn(true);
+
+    // 사용자 프로필 이미지가 있으면 로컬 스토리지에 저장
+    if (userData?.picture) {
+      localStorage.setItem("userPicture", userData.picture);
+    }
+
+    // 사용자 이름이 있으면 로컬 스토리지에 저장
+    if (userData?.name) {
+      localStorage.setItem("userName", userData.name);
+    }
   };
 
   // 세션 만료 타이머 설정 함수

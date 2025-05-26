@@ -22,64 +22,65 @@ const GoogleLoginButton = () => {
           method: "GET",
         }
       )
-        .then((response) => response.json())
-        .then((userInfo) => {
-          console.log("User info:", userInfo);
-
-          // ID 토큰 대신 액세스 토큰과 사용자 정보 전송
-          const url = process.env.REACT_APP_WAS_URL;
-          console.log("Sending user info to backend:", userInfo);
-          console.log("API URL:", `${url}/api/auth/google/token`);
-
-          // 요청 데이터 확인을 위한 로그
-          const requestData = {
-            credential: credentialResponse.access_token, // 액세스 토큰 문자열만 전송
-            type: "access_token", // 서버에 액세스 토큰임을 알림
-            email: userInfo.email,
-            name: userInfo.name,
-            picture: userInfo.picture,
-            id: userInfo.id,
-          };
-          console.log("Request data:", JSON.stringify(requestData));
-
-          return fetch(`${url}/api/auth/google/token`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(requestData),
-            credentials: "include",
-          });
-        })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.token) {
-            console.log("Login successful, received token:", data);
-            localStorage.setItem("loginType", "google");
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("email", data.email);
-            window.dispatchEvent(new Event("authChange"));
-            handleLogin();
-            navigate("/");
-          } else {
-            console.error("No token received from server:", data);
-          }
+        .then((userInfo) => {
+          console.log("Google User Info:", userInfo);
+
+          // 서버에 인증 정보 전송
+          fetch(`${process.env.REACT_APP_WAS_URL}/api/auth/google/token`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              type: "access_token",
+              email: userInfo.email,
+              name: userInfo.name,
+              picture: userInfo.picture,
+              id: userInfo.id,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.token) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("loginType", "google");
+                localStorage.setItem("email", userInfo.email);
+                localStorage.setItem("userPicture", userInfo.picture);
+
+                // AuthContext의 handleLogin 함수에 사용자 정보 전달
+                handleLogin({
+                  email: userInfo.email,
+                  name: userInfo.name,
+                  picture: userInfo.picture,
+                });
+
+                navigate("/");
+              } else {
+                console.error("No token received from server:", data);
+              }
+            })
+            .catch((err) => {
+              console.error("Error during server authentication:", err);
+            });
         })
-        .catch((error) => {
-          console.error("Error processing Google login:", error);
+        .catch((err) => {
+          console.error("Error fetching user info:", err);
         });
     },
     onError: (error) => {
-      console.error("Google login failed:", error);
+      console.error("Google Login Error:", error);
     },
-    flow: "implicit",
   });
 
   return (
+    // <div className="google-login-container">
     <div className="google-btn-wrapper">
-      {/* react-google-button 라이브러리 사용 */}
       <GoogleButton
+        // onClick={login}
+        label={t("login.google")}
         type="light"
         onClick={() => login()}
-        label={t("login.google", "Login with Google")}
         style={{ width: "100% !important", borderRadius: "9px !important" }}
       />
     </div>

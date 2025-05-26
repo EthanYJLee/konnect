@@ -11,7 +11,8 @@
     "signup": "회원가입",
     "menu": "메뉴",
     "logout": "로그아웃",
-    "chat": "채팅"
+    "chat": "채팅",
+    "userProfile": "사용자 정보"
   },
   "home": {
     "hero": {
