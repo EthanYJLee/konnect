@@ -80,7 +80,7 @@ const History = () => {
   // 히스토리 데이터 가져오기
   const fetchPairs = async () => {
     try {
-      const url = process.env.REACT_APP_WAS_URL || "http://localhost:4000";
+      const url = process.env.REACT_APP_WAS_URL;
       console.log("Fetching pairs with URL:", url);
       console.log("Using token:", token ? "Token exists" : "No token");
 
@@ -226,7 +226,7 @@ const History = () => {
 
   const saveOrderToServer = async (orderedPairs) => {
     try {
-      const url = process.env.REACT_APP_WAS_URL || "http://localhost:4000";
+      const url = process.env.REACT_APP_WAS_URL;
       console.log("Saving order with URL:", url);
 
       await axios.post(
@@ -521,7 +521,7 @@ const History = () => {
                             onClick={() => handleViewItinerary(itinerary)}
                           >
                             <FontAwesomeIcon icon={faEye} className="me-1" />
-                            {t("history.view", "View")}
+                            {t("history.viewItinerary", "View Details")}
                           </Button>
                           <Button
                             variant="outline-danger"

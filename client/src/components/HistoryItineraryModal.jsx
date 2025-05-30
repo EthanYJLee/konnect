@@ -233,7 +233,7 @@ const HistoryItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }
               >
                 <span className="tab-date">{formatDisplayDate ? formatDisplayDate(date) : date}</span>
                 <span className="tab-spots-count">
-                  {itinerary[date].length} {t("curation.spots", "spots")}
+                  {itinerary[date].length} {t("history.spots", "spots")}
                 </span>
               </button>
             ))}

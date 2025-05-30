@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../models/user");
 const { OAuth2Client } = require("google-auth-library");
+require("dotenv").config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // 이메일 중복 확인
@@ -18,7 +19,7 @@ router.get("/checkEmailExists", async (req, res) => {
 
 // 일반 회원가입
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, picture } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser)
     return res.status(400).json({ message: "Email already in use" });
@@ -30,6 +31,7 @@ router.post("/register", async (req, res) => {
     email,
     password: hashed,
     social: "N",
+    picture,
     createdAt: now,
     lastLogin: now,
   });
@@ -72,28 +74,74 @@ router.get(
 
 // 프론트에서 credential 받은 후 처리
 router.post("/google/token", async (req, res) => {
-  const { credential } = req.body;
-  console.log("Received credential:", credential);
+  console.log("Received full request body:", JSON.stringify(req.body));
+  const { credential, type, email, name, picture, id } = req.body;
+  console.log("Extracted credentials:", {
+    credential: typeof credential,
+    type,
+    hasEmail: !!email,
+    hasName: !!name,
+    hasId: !!id,
+  });
 
   try {
-    const ticket = await client.verifyIdToken({
-      idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    });
+    let googleId, userEmail, userName, userPicture;
 
-    const payload = ticket.getPayload();
-    const { sub: googleId, email, name } = payload;
+    // 토큰 타입에 따른 처리
+    if (type === "access_token") {
+      // 액세스 토큰인 경우 클라이언트에서 받은 사용자 정보 사용
+      googleId = id;
+      userEmail = email;
+      userName = name;
+      userPicture = picture;
+      console.log("Using access token with user info from client", {
+        googleId,
+        userEmail,
+        userName,
+      });
+    } else {
+      // ID 토큰인 경우 기존 로직 사용
+      if (typeof credential === "object") {
+        console.error(
+          "Credential is an object, but expected string for ID token"
+        );
+        return res.status(400).json({ message: "Invalid credential format" });
+      }
 
+      try {
+        const ticket = await client.verifyIdToken({
+          idToken: credential,
+          audience: process.env.GOOGLE_CLIENT_ID,
+        });
+
+        const payload = ticket.getPayload();
+        googleId = payload.sub;
+        userEmail = payload.email;
+        userName = payload.name;
+        console.log("Verified ID token payload:", payload);
+      } catch (verifyError) {
+        console.error("Error verifying ID token:", verifyError);
+        return res.status(401).json({ message: "Invalid Google token" });
+      }
+    }
+
+    // 사용자 정보가 없으면 오류
+    if (!googleId || !userEmail) {
+      console.error("Missing required user information");
+      return res.status(400).json({ message: "Missing user information" });
+    }
+
+    // 사용자 조회 또는 생성
     let user = await User.findOne({ googleId });
-
     const now = new Date();
 
     if (!user) {
       // 최초 가입: createdAt, lastLogin 모두 저장
       user = await User.create({
         googleId,
-        email,
-        username: name,
+        email: userEmail,
+        username: userName,
+        picture: userPicture,
         social: "Y",
         createdAt: now,
         lastLogin: now,
@@ -108,7 +156,8 @@ router.post("/google/token", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.json({ token, email });
+    console.log("Login successful for:", userEmail);
+    res.json({ token, email: userEmail });
   } catch (err) {
     console.error("Google token verify failed:", err);
     res.status(401).json({ message: "Invalid Google token" });

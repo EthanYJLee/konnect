@@ -78,7 +78,16 @@ const Home = () => {
         <Container>
           <Row className="align-items-center">
             <Col lg={6} md={12} className="hero-content">
-              <h1>{t("home.hero.title")}</h1>
+              {t("home.hero.title")
+                .split("\n")
+                .map((line, index) => (
+                  <h1
+                    key={index}
+                    className={index === 1 ? "indented-line" : ""}
+                  >
+                    {line}
+                  </h1>
+                ))}
               <p className="lead">{t("home.hero.subtitle")}</p>
               <Button
                 variant="primary"
@@ -269,7 +278,7 @@ const Home = () => {
                     <div className="spot-item">
                       <div className="spot-number">3</div>
                       <div className="spot-details">
-                        <div className="spot-name">Nodaji Pumba</div>
+                        <div className="spot-name">Silla Galbi</div>
                         <div className="spot-location">
                           Jongno-gu • Jongno 35-gil
                         </div>

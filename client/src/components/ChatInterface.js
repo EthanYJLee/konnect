@@ -6,6 +6,7 @@ import "../styles/ChatInterface.scss";
 import { Modal } from "react-bootstrap";
 import { CiSaveDown1 } from "react-icons/ci";
 import axios from "axios";
+import { useRateLimit } from "../contexts/RateLimitContext";
 
 import TypingText from "./TypingText";
 import FloatingActionButton from "./FloatingActionButton";
@@ -17,12 +18,14 @@ import ThreadList from "./common/ThreadList";
 import AlertModal from "./AlertModal";
 
 const ChatInterface = ({ language }) => {
+  const { checkChatLimit, getRemainingRequests, getTimeToReset } =
+    useRateLimit();
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMessagePairIndex, setSelectedMessagePairIndex] = useState([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [threadId, setThreadId] = useState(
     localStorage.getItem("assistant_thread") || null
   );
@@ -111,6 +114,25 @@ const ChatInterface = ({ language }) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
+    // 채팅 요청 제한 확인
+    if (!checkChatLimit()) {
+      // 알림 메시지 표시
+      const warningMessage = {
+        type: "ai",
+        content: t(
+          "chat.rateLimitExceeded",
+          "채팅 요청 한도에 도달했습니다. {{minutes}}분 후에 다시 시도해주세요.",
+          {
+            minutes: getTimeToReset("chat"),
+          }
+        ),
+        timestamp: new Date().toISOString(),
+        isWarning: true,
+      };
+      setMessages([...messages, warningMessage]);
+      return;
+    }
+
     const userMessage = {
       type: "user",
       content: inputValue,
@@ -132,7 +154,8 @@ const ChatInterface = ({ language }) => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3030/api/assistant/ask", {
+      const url = process.env.REACT_APP_WAS_URL;
+      const response = await fetch(`${url}/api/assistant/ask`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -158,6 +181,17 @@ const ChatInterface = ({ language }) => {
       setMessages((prev) => [...prev.slice(0, -1), aiMessage]);
     } catch (error) {
       console.error("Error getting assistant response:", error);
+      // 에러 메시지 표시
+      const errorMessage = {
+        type: "ai",
+        content: t(
+          "chat.error",
+          "죄송합니다. 오류가 발생했습니다. 다시 시도해주세요."
+        ),
+        timestamp: new Date().toISOString(),
+        isError: true,
+      };
+      setMessages((prev) => [...prev.slice(0, -1), errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -293,6 +327,16 @@ const ChatInterface = ({ language }) => {
           />
 
           <p>{t("welcomeMessage")}</p>
+
+          {/* 남은 채팅 요청 수 표시 */}
+          <div className="rate-limit-info">
+            <small>
+              {t("chat.remainingRequests", "남은 요청: {{count}}/{{total}}", {
+                count: getRemainingRequests("chat"),
+                total: 20,
+              })}
+            </small>
+          </div>
         </div>
 
         <div className="messages-container" ref={messageContainerRef}>

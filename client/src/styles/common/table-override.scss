@@ -1,0 +1,33 @@
+/* Bootstrap 테이블 배경색 오버라이드 */
+
+/* 모든 테이블의 배경색 변수 재정의 */
+.table {
+  --bs-table-bg: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 중첩된 테이블 셀의 배경색도 함께 재정의 */
+.table th,
+.table td {
+  background-color: inherit !important;
+}
+
+/* 테이블 스트라이프드 스타일 재정의 */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 다크 모드에서 테이블 스트라이프드 스타일 재정의 */
+.dark-theme .table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 테이블 호버 스타일 재정의 */
+.table-hover > tbody > tr:hover > * {
+  --bs-table-accent-bg: rgba(0, 0, 0, 0.075) !important;
+}
+
+/* 다크 모드에서 테이블 호버 스타일 재정의 */
+.dark-theme .table-hover > tbody > tr:hover > * {
+  --bs-table-accent-bg: rgba(255, 255, 255, 0.075) !important;
+} 

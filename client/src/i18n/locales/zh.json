@@ -11,11 +11,12 @@
     "signup": "注册",
     "menu": "菜单",
     "logout": "登出",
-    "chat": "聊天"
+    "chat": "聊天",
+    "userProfile": "用户信息"
   },
   "home": {
     "hero": {
-      "title": "让您的韩国之旅更轻松、更特别",
+      "title": "让您的韩国之旅\n更轻松、更特别",
       "subtitle": "通过我们基于AI的旅行助手，根据您的旅行风格，规划一次难忘的韩国之旅。",
       "button": "开始规划"
     },
@@ -88,11 +89,13 @@
     }
   },
   "chat": {
-    "placeholder": "请输入您的问题...",
+    "placeholder": "请在此输入问题...",
     "send": "发送",
     "thinking": "思考中",
     "title": "与旅行助手聊天",
-    "subtitle": "随时提问关于韩国旅行的问题或寻求帮助。"
+    "subtitle": "随时提问关于韩国旅行的问题或寻求帮助。",
+    "remainingRequests": "剩余请求: {{count}}/{{total}}",
+    "rateLimitExceeded": "聊天请求已达上限。请在{{minutes}}分钟后再试。"
   },
   "faq": {
     "title": "常见问题",
@@ -174,7 +177,8 @@
     "searchPlaceholder": "搜索历史记录...",
     "savedOn": "保存于",
     "viewItinerary": "查看详情",
-    "deleteItinerary": "删除"
+    "deleteItinerary": "删除",
+    "viewDetails": "查看详情"
   },
   "settings": {
     "title": "设置",
@@ -191,7 +195,9 @@
     "info": "通知",
     "success": "成功",
     "warning": "警告",
-    "error": "错误"
+    "error": "错误",
+    "loginSuccess": "登录成功",
+    "logoutSuccess": "已成功登出"
   },
   "footer": {
     "about": "关于",
@@ -249,8 +255,10 @@
       "passwordBody": "请输入密码。",
       "confirmPasswordTitle": "确认密码",
       "confirmPasswordBody": "请确认密码。",
-      "passwordMismatchTitle": "密码不一致",
-      "passwordMismatchBody": "两次输入的密码不一致。"
+      "passwordMismatchTitle": "密码不匹配",
+      "passwordMismatchBody": "密码不一致。",
+      "signupSuccessTitle": "注册成功",
+      "signupSuccessBody": "您的账户已成功创建。正在重定向到登录页面。"
     }
   },
   "alertModal": {
@@ -260,19 +268,20 @@
     "confirmDeleteThread": "确定要删除这个对话吗？",
     "confirmDeleteItinerary": "确定要删除这个旅行行程吗？",
     "delete": "删除",
-    "cancel": "取消"
+    "cancel": "取消",
+    "confirm": "确认"
   },
   "curation": {
-    "language": "zh-CN",
-    "title": "策展",
-    "subtitle": "输入想要访问的地点，获取您的完整行程！",
+    "language": "zh",
+    "title": "旅行定制",
+    "subtitle": "输入必去景点，获取完整旅行行程！",
     "maxSpotsReached": "最多只能添加{{max}}个地点。",
     "resetSpot": "全部重置",
     "addSpot": "添加地点",
     "generateItinerary": "生成行程",
     "spotsReset": "所有地点已重置。",
-    "allSpotsEmpty": "所有地点都为空。正在自动重置。",
-    "spotPlaceholder": "输入地点（例如：咖啡厅、景点等）",
+    "allSpotsEmpty": "所有地点均为空。正在自动重置。",
+    "spotPlaceholder": "输入地点（如：咖啡馆、景点等）",
     "clearInput": "清除输入",
     "selectCategory": "选择旅行类别",
     "categoryDescription": "您计划什么类型的旅行？",
@@ -281,7 +290,7 @@
     "confirmCategories": "继续",
     "selectAtLeastOne": "请至少选择一个类别",
     "departureCity": "出发城市",
-    "arrivalCity": "到达城市",
+    "arrivalCity": "抵达城市",
     "selectCity": "选择城市",
     "startDate": "开始日期",
     "endDate": "结束日期",
@@ -289,30 +298,39 @@
     "selectEndDate": "选择结束日期",
     "removeSpot": "删除地点",
     "itineraryResults": "您的旅行行程",
-    "freeDay": "自由日 - 没有计划活动",
+    "itineraryGenerated": "您的行程已成功生成！",
+    "viewItinerary": "查看您的行程",
+    "freeDay": "自由日 - 无计划活动",
     "mapView": "地图视图",
     "mapComingSoon": "地图视图即将推出",
+    "loadingMap": "加载地图中...",
     "generationError": "生成行程失败。请重试。",
     "save": "保存",
-    "saveSuccess": "行程已成功保存！",
+    "saved": "已保存",
+    "saveSuccess": "行程保存成功！",
     "saveError": "保存行程失败。请重试。",
     "validation": {
       "startDateRequired": "请选择开始日期",
       "endDateRequired": "请选择结束日期",
       "departureCityRequired": "请选择出发城市",
-      "arrivalCityRequired": "请选择到达城市",
+      "arrivalCityRequired": "请选择抵达城市",
       "noSpotsEntered": "请至少输入一个地点"
     },
     "categories": {
       "attraction": "旅游景点",
       "culture": "文化设施",
-      "festival": "节日活动",
+      "festival": "节日与活动",
       "tourCourse": "旅游路线",
       "leisure": "休闲运动",
       "accommodation": "住宿",
       "shopping": "购物",
       "food": "餐厅"
-    }
+    },
+    "remainingItineraries": "剩余行程生成: {{count}}/{{total}}",
+    "rateLimitExceeded": "行程生成已达上限。请在{{minutes}}分钟后再试。",
+    "searchLimitReached": "搜索已达上限",
+    "searchLimitMessage": "请在{{minutes}}分钟后再试",
+    "remainingSearches": "剩余搜索: {{count}}/{{total}}"
   },
   "session": {
     "expireTitle": "会话即将过期",
@@ -323,5 +341,15 @@
     "extendError": "连接服务器失败。请重试或登出后重新登录。",
     "retry": "重试",
     "orLogout": "或登出后重新登录"
+  },
+  "travelGuides": {
+    "title": "旅行指南",
+    "subtitle": "通过我们精选的旅行指南发现韩国的精彩之处",
+    "comingSoon": "即将推出",
+    "preparingMessage": "我们正在准备旅行指南。请稍后再查看。",
+    "searchPlaceholder": "搜索指南、目的地或活动...",
+    "allRegions": "所有地区",
+    "readMore": "阅读更多",
+    "noResults": "未找到符合您条件的指南。请尝试不同的搜索词。"
   }
 } 

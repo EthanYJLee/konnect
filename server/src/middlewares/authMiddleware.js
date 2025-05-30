@@ -9,6 +9,7 @@ module.exports = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
+    req.userId = decoded.id; // 사용자 ID를 req 객체에 저장 (중요)
     next();
   } catch (err) {
     res.status(403).json({ message: "Invalid token" });

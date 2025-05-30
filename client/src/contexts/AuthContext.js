@@ -24,6 +24,15 @@ export const AuthProvider = ({ children }) => {
   const logoutTimeoutRef = useRef(null); // 로그아웃 타이머 참조
   const { t } = useTranslation();
 
+  // 컴포넌트 마운트 시 구글 클라이언트 ID 확인
+  useEffect(() => {
+    const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID;
+    console.log(
+      "AuthContext - Google Client ID:",
+      clientId ? "설정됨" : "설정되지 않음"
+    );
+  }, []);
+
   const handleLogout = () => {
     // 모든 타이머 정리
     clearAllTimers();
@@ -67,6 +76,8 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("assistant_thread");
       localStorage.removeItem("loginType");
       localStorage.removeItem("email");
+      localStorage.removeItem("userPicture");
+      localStorage.removeItem("userName");
 
       // 앱 상태 업데이트
       setIsLoggedIn(false);
@@ -76,6 +87,8 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("assistant_thread");
       localStorage.removeItem("loginType");
       localStorage.removeItem("email");
+      localStorage.removeItem("userPicture");
+      localStorage.removeItem("userName");
 
       setIsLoggedIn(false);
       window.dispatchEvent(new Event("authChange"));
@@ -110,8 +123,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = (userData) => {
     setIsLoggedIn(true);
+
+    // 사용자 프로필 이미지가 있으면 로컬 스토리지에 저장
+    if (userData?.picture) {
+      localStorage.setItem("userPicture", userData.picture);
+    }
+
+    // 사용자 이름이 있으면 로컬 스토리지에 저장
+    if (userData?.name) {
+      localStorage.setItem("userName", userData.name);
+    }
   };
 
   // 세션 만료 타이머 설정 함수

@@ -1,11 +1,14 @@
 @import './common/variables';
 @import './common/mixins';
+#toast {
+  z-index: 99999;
+}
 
 .toast-container {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 10000;
+  z-index: 99999;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -15,6 +18,14 @@
   & > * {
     pointer-events: auto;
   }
+}
+
+/* 모달 내부의 토스트 컨테이너를 위한 특별 스타일 */
+.modal-toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100001; /* 모달보다 높은 z-index */
 }
 
 .toast {
@@ -34,6 +45,8 @@
   transform: translateX(100%);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  will-change: transform, opacity;
+  z-index: 99999;
   
   .dark-theme & {
     background: var(--dark-card-bg-color);
@@ -47,7 +60,7 @@
   }
   
   &.hide {
-    animation: toast-out 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+    animation: toast-out 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
   }
   
   &:hover {
@@ -203,17 +216,23 @@
     opacity: 1;
     transform: translateX(0);
   }
+  20% {
+    opacity: 1;
+    transform: translateX(-10px);
+  }
   100% {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(120%);
+    visibility: hidden;
   }
 }
 
 @media (max-width: 576px) {
   .toast-container {
     bottom: 16px;
-    right: 16px;
-    max-width: 90vw;
+    // left: auto;
+    right: 6px;
+    max-width: 90vw !important;
   }
   
   .toast {
@@ -224,11 +243,11 @@
     
     // Different animation for mobile
     &.show {
-      animation: toast-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      animation: toast-in-mobile 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
     
     &.hide {
-      animation: toast-out 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+      animation: toast-out-mobile 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     }
     
     &:hover {
@@ -238,7 +257,7 @@
   
   .toast-content {
     font-size: 0.9rem;
-    padding: 12px 8px 12px 0;
+    // padding: 12px 8px 12px 0;
     
     .toast-title {
       font-size: 0.95rem;
@@ -261,5 +280,36 @@
   
   .toast-close {
     padding: 0 12px;
+  }
+}
+
+@keyframes toast-in-mobile {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-out-mobile {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+    visibility: hidden;
   }
 } 

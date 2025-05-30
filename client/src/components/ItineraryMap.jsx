@@ -76,7 +76,7 @@ const ItineraryMap = ({ daySpots, date, onMapLoaded }) => {
         // 모든 장소의 좌표 추출
         const coordinates = daySpots.map(spot => [parseFloat(spot.lng), parseFloat(spot.lat)]);
         
-        // OSRM API 호출 (예: 도보 경로)
+        // OSRM API 호출
         const osrmUrl = `https://router.project-osrm.org/route/v1/walking/${coordinates.map(coord => coord.join(',')).join(';')}?overview=full&geometries=geojson`;
         
         const response = await axios.get(osrmUrl);

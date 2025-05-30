@@ -1,26 +1,20 @@
-.google-btn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    margin-top: 0;
-
-    // 내부의 구글 로그인 버튼을 100%로 확장
-    > div {
-        // width: 300px !important;
-        // height: 100px !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    button, .MuiButtonBase-root {
-        width: 100% !important;
-        min-width: 0 !important;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.google-btn-wrapper {
+  width: 100%;
+  margin-top: 12px;
+  box-sizing: border-box;
+  // display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* react-google-button 커스터마이징 */
+:global {
+  .react-google-button {
+    margin: 0 auto;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+} 

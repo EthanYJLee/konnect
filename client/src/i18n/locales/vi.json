@@ -5,17 +5,18 @@
     "home": "Trang chủ",
     "faq": "Câu hỏi thường gặp",
     "history": "Lịch sử câu hỏi",
-    "curation": "Curation",
+    "curation": "Tuyển chọn",
     "settings": "Cài đặt",
     "login": "Đăng nhập",
     "signup": "Đăng ký",
     "menu": "Menu",
     "logout": "Đăng xuất",
-    "chat": "Trò chuyện"
+    "chat": "Trò chuyện",
+    "userProfile": "Thông tin người dùng"
   },
   "home": {
     "hero": {
-      "title": "Hành trình Hàn Quốc dễ dàng và đặc biệt hơn",
+      "title": "Hành trình Hàn Quốc\ndễ dàng và đặc biệt hơn",
       "subtitle": "Lên kế hoạch cho chuyến đi khó quên đến Hàn Quốc với trợ lý du lịch AI được điều chỉnh theo phong cách du lịch của bạn.",
       "button": "Bắt đầu lập kế hoạch"
     },
@@ -88,11 +89,13 @@
     }
   },
   "chat": {
-    "placeholder": "Nhập câu hỏi của bạn...",
+    "placeholder": "Nhập câu hỏi của bạn ở đây...",
     "send": "Gửi",
     "thinking": "Đang suy nghĩ",
     "title": "Trò chuyện với Trợ lý Du lịch",
-    "subtitle": "Hãy tự do đặt câu hỏi về chuyến du lịch Hàn Quốc hoặc yêu cầu hỗ trợ."
+    "subtitle": "Hãy thoải mái đặt câu hỏi về chuyến du lịch đến Hàn Quốc hoặc yêu cầu hỗ trợ.",
+    "remainingRequests": "Yêu cầu còn lại: {{count}}/{{total}}",
+    "rateLimitExceeded": "Đã đạt giới hạn yêu cầu trò chuyện. Vui lòng thử lại sau {{minutes}} phút."
   },
   "faq": {
     "title": "Câu hỏi thường gặp",
@@ -174,7 +177,8 @@
     "searchPlaceholder": "Tìm kiếm lịch sử...",
     "savedOn": "Đã lưu vào",
     "viewItinerary": "Xem chi tiết",
-    "deleteItinerary": "Xóa"
+    "deleteItinerary": "Xóa",
+    "viewDetails": "Xem chi tiết"
   },
   "settings": {
     "title": "Cài đặt",
@@ -191,7 +195,9 @@
     "info": "Thông báo",
     "success": "Thành công",
     "warning": "Cảnh báo",
-    "error": "Lỗi"
+    "error": "Lỗi",
+    "loginSuccess": "Đăng nhập thành công",
+    "logoutSuccess": "Đã đăng xuất thành công"
   },
   "footer": {
     "about": "Giới thiệu",
@@ -250,7 +256,9 @@
       "confirmPasswordTitle": "Xác nhận mật khẩu",
       "confirmPasswordBody": "Vui lòng xác nhận mật khẩu.",
       "passwordMismatchTitle": "Mật khẩu không khớp",
-      "passwordMismatchBody": "Mật khẩu không khớp."
+      "passwordMismatchBody": "Mật khẩu không trùng khớp.",
+      "signupSuccessTitle": "Đăng ký thành công",
+      "signupSuccessBody": "Tài khoản của bạn đã được tạo thành công. Đang chuyển hướng đến trang đăng nhập."
     }
   },
   "alertModal": {
@@ -260,23 +268,24 @@
     "confirmDeleteThread": "Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?",
     "confirmDeleteItinerary": "Bạn có chắc chắn muốn xóa lịch trình du lịch này không?",
     "delete": "Xóa",
-    "cancel": "Hủy"
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
   },
   "curation": {
     "language": "vi",
-    "title": "Curation",
-    "subtitle": "Nhập các địa điểm muốn ghé thăm và nhận lịch trình đầy đủ của bạn!",
+    "title": "Tạo Lịch Trình",
+    "subtitle": "Nhập những địa điểm bạn muốn đến và nhận lịch trình đầy đủ!",
     "maxSpotsReached": "Bạn chỉ có thể thêm tối đa {{max}} địa điểm.",
     "resetSpot": "Đặt lại tất cả",
     "addSpot": "Thêm địa điểm",
     "generateItinerary": "Tạo lịch trình",
     "spotsReset": "Tất cả các địa điểm đã được đặt lại.",
-    "allSpotsEmpty": "Tất cả các địa điểm đều trống. Đang đặt lại tự động.",
+    "allSpotsEmpty": "Tất cả các địa điểm đều trống. Đang tự động đặt lại.",
     "spotPlaceholder": "Nhập địa điểm (ví dụ: quán cà phê, điểm tham quan, v.v.)",
-    "clearInput": "Xóa đầu vào",
-    "selectCategory": "Chọn danh mục chuyến đi",
+    "clearInput": "Xóa nhập liệu",
+    "selectCategory": "Chọn Danh Mục Du Lịch",
     "categoryDescription": "Bạn đang lên kế hoạch cho loại chuyến đi nào?",
-    "categoryMultipleDescription": "Bạn quan tâm đến những hoạt động nào? (Chọn tất cả những gì phù hợp)",
+    "categoryMultipleDescription": "Bạn quan tâm đến những hoạt động nào? (Chọn tất cả nếu phù hợp)",
     "changeCategory": "Thay đổi",
     "confirmCategories": "Tiếp tục",
     "selectAtLeastOne": "Vui lòng chọn ít nhất một danh mục",
@@ -288,14 +297,18 @@
     "selectStartDate": "Chọn ngày bắt đầu",
     "selectEndDate": "Chọn ngày kết thúc",
     "removeSpot": "Xóa địa điểm",
-    "itineraryResults": "Lịch trình du lịch của bạn",
-    "freeDay": "Ngày tự do - Không có hoạt động đã lên kế hoạch",
-    "mapView": "Xem bản đồ",
+    "itineraryResults": "Lịch Trình Du Lịch Của Bạn",
+    "itineraryGenerated": "Lịch trình của bạn đã được tạo thành công!",
+    "viewItinerary": "Xem Lịch Trình Của Bạn",
+    "freeDay": "Ngày tự do - Không có hoạt động nào được lên kế hoạch",
+    "mapView": "Xem Bản Đồ",
     "mapComingSoon": "Xem bản đồ sắp ra mắt",
+    "loadingMap": "Đang tải bản đồ...",
     "generationError": "Không thể tạo lịch trình. Vui lòng thử lại.",
     "save": "Lưu",
-    "saveSuccess": "Đã lưu lịch trình thành công!",
-    "saveError": "Lưu lịch trình thất bại. Vui lòng thử lại.",
+    "saved": "Đã lưu",
+    "saveSuccess": "Lịch trình đã được lưu thành công!",
+    "saveError": "Không thể lưu lịch trình. Vui lòng thử lại.",
     "validation": {
       "startDateRequired": "Vui lòng chọn ngày bắt đầu",
       "endDateRequired": "Vui lòng chọn ngày kết thúc",
@@ -304,15 +317,20 @@
       "noSpotsEntered": "Vui lòng nhập ít nhất một địa điểm"
     },
     "categories": {
-      "attraction": "Điểm du lịch",
-      "culture": "Cơ sở văn hóa",
-      "festival": "Lễ hội & Sự kiện",
-      "tourCourse": "Tuyến du lịch",
-      "leisure": "Thể thao giải trí",
-      "accommodation": "Chỗ ở",
-      "shopping": "Mua sắm",
-      "food": "Nhà hàng"
-    }
+      "attraction": "Điểm Du Lịch",
+      "culture": "Cơ Sở Văn Hóa",
+      "festival": "Lễ Hội & Sự Kiện",
+      "tourCourse": "Tuyến Du Lịch",
+      "leisure": "Thể Thao Giải Trí",
+      "accommodation": "Chỗ Ở",
+      "shopping": "Mua Sắm",
+      "food": "Nhà Hàng"
+    },
+    "remainingItineraries": "Lịch trình còn lại: {{count}}/{{total}}",
+    "rateLimitExceeded": "Đã đạt giới hạn tạo lịch trình. Vui lòng thử lại sau {{minutes}} phút.",
+    "searchLimitReached": "Đã đạt giới hạn tìm kiếm",
+    "searchLimitMessage": "Vui lòng thử lại sau {{minutes}} phút",
+    "remainingSearches": "Tìm kiếm còn lại: {{count}}/{{total}}"
   },
   "session": {
     "expireTitle": "Session Expiring Soon",
@@ -323,5 +341,15 @@
     "extendError": "Failed to connect to server. Please try again or log out and log back in.",
     "retry": "Retry",
     "orLogout": "or log out and sign in again"
+  },
+  "travelGuides": {
+    "title": "Hướng Dẫn Du Lịch",
+    "subtitle": "Khám phá những điều tuyệt vời nhất của Hàn Quốc với hướng dẫn du lịch được tuyển chọn của chúng tôi",
+    "comingSoon": "Sắp Ra Mắt",
+    "preparingMessage": "Chúng tôi đang chuẩn bị hướng dẫn du lịch. Vui lòng quay lại sau.",
+    "searchPlaceholder": "Tìm kiếm hướng dẫn, điểm đến hoặc hoạt động...",
+    "allRegions": "Tất Cả Khu Vực",
+    "readMore": "Đọc Thêm",
+    "noResults": "Không tìm thấy hướng dẫn phù hợp với tiêu chí của bạn. Vui lòng thử các từ khóa tìm kiếm khác."
   }
 } 

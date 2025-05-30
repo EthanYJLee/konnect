@@ -7,8 +7,8 @@ import { useFirestore } from "../contexts/FirestoreContext";
 
 const Profile = () => {
     return (
-        <div className="profile-container">
-
+        <div className="profile-container" style={{alignItems:"center"}}>
+            <h1>Profile</h1>
         </div>
     );
 }

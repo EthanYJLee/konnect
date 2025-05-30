@@ -13,7 +13,7 @@ const Toast = ({ message, type, onClose }) => {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [onClose]);
+  }, []);
 
   const getToastClass = () => {
     let baseClass = `toast ${isVisible ? "show" : "hide"}`;
