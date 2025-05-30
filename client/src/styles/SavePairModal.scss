@@ -7,6 +7,7 @@
     padding-right: 2rem;
     .modal-content {
         // width: 100%;
+        z-index: 9999;
         background-color: var(--gray-100);
         .modal-title {
             color: var(--black-color);

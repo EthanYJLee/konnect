@@ -4,10 +4,23 @@
 .spot-input-container {
   position: relative;
   margin-bottom: 16px;
-  z-index: 100;
+  z-index: 1;
+  transition: z-index 0s, transform 0.2s ease;
   
   &:last-child {
     margin-bottom: 0;
+  }
+  
+  &:focus-within,
+  &.focused {
+    z-index: 1000;
+  }
+  
+  &.focused {
+    .spot-autocomplete-input {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+    }
   }
 }
 
@@ -15,7 +28,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 100;
 }
 
 .spot-input-field {
@@ -23,7 +35,6 @@
   flex: 1;
   display: flex;
   align-items: center;
-  z-index: 100;
 }
 
 .spot-autocomplete-input {
@@ -148,10 +159,12 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  z-index: 9999;
   margin-top: 4px;
   list-style: none;
   padding: 0;
+  /* Ensure the dropdown appears above other elements */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   
   .dark-theme & {
     background-color: var(--dark-element-bg-color);
@@ -217,6 +230,35 @@
   
   .dark-theme & {
     color: var(--dark-text-secondary-color);
+  }
+}
+
+/* Add styling for the error suggestion */
+.suggestion-error {
+  background-color: rgba(254, 226, 226, 0.3);
+  
+  .dark-theme & {
+    background-color: rgba(254, 202, 202, 0.1);
+  }
+  
+  &:hover {
+    background-color: rgba(254, 226, 226, 0.5) !important;
+    
+    .dark-theme & {
+      background-color: rgba(254, 202, 202, 0.2) !important;
+    }
+  }
+}
+
+/* Rate limit warning styling */
+.rate-limit-warning {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #e53e3e;
+  text-align: right;
+  
+  .dark-theme & {
+    color: #fc8181;
   }
 }
 

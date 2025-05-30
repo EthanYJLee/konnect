@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/CitySelector.scss";
 
-// 한국의 주요 도시 목록 (다국어 지원)
+// 한국 주요 도시 목록
 const koreanCities = {
   seoul: {
     ko: "서울",

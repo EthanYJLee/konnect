@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
+import { RateLimitProvider } from "./contexts/RateLimitContext";
 
 import i18n from "./i18n/config";
 import "./styles/App.scss";
@@ -40,6 +41,7 @@ function App() {
     <AuthProvider>
       <ThemeProvider>
         <I18nextProvider i18n={i18n}>
+        <RateLimitProvider>
           <div className="app">
             {/* <BasicExample /> */}
             <Header />
@@ -102,6 +104,7 @@ function App() {
             </main>
             <Footer />
           </div>
+          </RateLimitProvider>
         </I18nextProvider>
       </ThemeProvider>
     </AuthProvider>

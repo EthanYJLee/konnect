@@ -109,6 +109,8 @@
     
     .itinerary-table {
       margin-bottom: 0;
+      --bs-table-bg: transparent !important;
+      background-color: transparent !important;
       
       th {
         color: var(--text-primary);

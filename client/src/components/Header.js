@@ -10,6 +10,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import AlertModal from "../components/AlertModal";
 import { useAuth } from "../contexts/AuthContext";
 import { FaUser } from "react-icons/fa";
+import Toast from "./Toast";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -24,8 +25,20 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [userPicture, setUserPicture] = useState(null);
   const [imageError, setImageError] = useState(false);
+  const [toasts, setToasts] = useState([]);
 
   const { isLoggedIn, handleLogout } = useAuth();
+
+  // 토스트 메시지 표시 함수
+  const showToast = (message, type = "info") => {
+    const id = Date.now();
+    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+  };
+
+  // 토스트 메시지 제거 함수
+  const removeToast = (id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  };
 
   // URL 정리 함수 - URL 인코딩 문제 해결
   const cleanImageUrl = useCallback((url) => {
@@ -91,7 +104,21 @@ const Header = () => {
   // isLoggedIn이 변경될 때마다 프로필 이미지 업데이트
   useEffect(() => {
     updateProfileImage();
-  }, [isLoggedIn, updateProfileImage]);
+
+    // 로그인/로그아웃 시 토스트 표시
+    const prevLoginState = localStorage.getItem("prevLoginState");
+    const currentLoginState = isLoggedIn ? "true" : "false";
+
+    if (prevLoginState !== null && prevLoginState !== currentLoginState) {
+      if (isLoggedIn) {
+        showToast(t("toast.loginSuccess"), "success");
+      } else {
+        showToast(t("toast.logoutSuccess"), "success");
+      }
+    }
+
+    localStorage.setItem("prevLoginState", currentLoginState);
+  }, [isLoggedIn, updateProfileImage, t]);
 
   // 이미지 로드 오류 핸들러
   const handleImageError = () => {
@@ -130,6 +157,12 @@ const Header = () => {
     setShowDropdown(!showDropdown);
     // 드롭다운 클릭 시 이미지 다시 확인
     updateProfileImage();
+  };
+
+  // 로그아웃 처리 함수
+  const handleLogoutClick = () => {
+    handleLogout();
+    setShowDropdown(false);
   };
 
   return (
@@ -232,13 +265,7 @@ const Header = () => {
                     >
                       {t("nav.userProfile")}
                     </div>
-                    <div
-                      className="dropdown-item"
-                      onClick={() => {
-                        handleLogout();
-                        setShowDropdown(false);
-                      }}
-                    >
+                    <div className="dropdown-item" onClick={handleLogoutClick}>
                       {t("nav.logout")}
                     </div>
                   </div>
@@ -267,6 +294,18 @@ const Header = () => {
           title={t("alertModal.login")}
           body={t("alertModal.pleaseLogin")}
         />
+
+        {/* 토스트 메시지 컨테이너 */}
+        <div className="toast-container">
+          {toasts.map((toast) => (
+            <Toast
+              key={toast.id}
+              message={toast.message}
+              type={toast.type}
+              onClose={() => removeToast(toast.id)}
+            />
+          ))}
+        </div>
       </div>
     </header>
   );

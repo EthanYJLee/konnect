@@ -93,7 +93,9 @@
     "send": "Send",
     "thinking": "Thinking",
     "title": "Chat with Travel Assistant",
-    "subtitle": "Feel free to ask any questions about your trip to Korea or request assistance."
+    "subtitle": "Feel free to ask any questions about your trip to Korea or request assistance.",
+    "remainingRequests": "Remaining requests: {{count}}/{{total}}",
+    "rateLimitExceeded": "Chat request limit reached. Please try again in {{minutes}} minutes."
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -175,7 +177,8 @@
     "searchPlaceholder": "Search history...",
     "savedOn": "Saved on",
     "viewItinerary": "View Details",
-    "deleteItinerary": "Delete"
+    "deleteItinerary": "Delete",
+    "viewDetails": "View Details"
   },
   "settings": {
     "title": "Settings",
@@ -192,7 +195,9 @@
     "info": "Notice",
     "success": "Success",
     "warning": "Warning",
-    "error": "Error"
+    "error": "Error",
+    "loginSuccess": "Successfully logged in",
+    "logoutSuccess": "Successfully logged out"
   },
   "footer": {
     "about": "About",
@@ -301,6 +306,7 @@
     "loadingMap": "Loading map...",
     "generationError": "Failed to generate itinerary. Please try again.",
     "save": "Save",
+    "saved": "Saved",
     "saveSuccess": "Itinerary saved successfully!",
     "saveError": "Failed to save itinerary. Please try again.",
     "validation": {
@@ -319,7 +325,12 @@
       "accommodation": "Accommodation",
       "shopping": "Shopping",
       "food": "Restaurants"
-    }
+    },
+    "remainingItineraries": "Remaining itineraries: {{count}}/{{total}}",
+    "rateLimitExceeded": "Itinerary generation limit reached. Please try again in {{minutes}} minutes.",
+    "searchLimitReached": "Search limit reached",
+    "searchLimitMessage": "Please try again in {{minutes}} minutes",
+    "remainingSearches": "Remaining searches: {{count}}/{{total}}"
   },
   "session": {
     "expireTitle": "Session Expiring Soon",
@@ -330,5 +341,15 @@
     "extendError": "Failed to connect to server. Please try again or log out and log back in.",
     "retry": "Retry",
     "orLogout": "or log out and sign in again"
+  },
+  "travelGuides": {
+    "title": "Travel Guides",
+    "subtitle": "Discover the best of Korea with our curated travel guides",
+    "comingSoon": "Coming Soon",
+    "preparingMessage": "We are preparing our travel guides. Please check back later.",
+    "searchPlaceholder": "Search guides, destinations, or activities...",
+    "allRegions": "All Regions",
+    "readMore": "Read More",
+    "noResults": "No guides found matching your criteria. Please try different search terms."
   }
 } 

@@ -278,7 +278,7 @@ const Home = () => {
                     <div className="spot-item">
                       <div className="spot-number">3</div>
                       <div className="spot-details">
-                        <div className="spot-name">Nodaji Pumba</div>
+                        <div className="spot-name">Silla Galbi</div>
                         <div className="spot-location">
                           Jongno-gu • Jongno 35-gil
                         </div>

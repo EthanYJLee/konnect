@@ -7,10 +7,10 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import directionImg from "../assets/images/direction_img.png";
 import { useTheme } from "../contexts/ThemeContext";
+import { useRateLimit } from "../contexts/RateLimitContext";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
-import ItineraryMap from "../components/ItineraryMap";
-import SimpleItineraryMap from "../components/SimpleItineraryMap";
+// import SimpleItineraryMap from "../components/SimpleItineraryMap";
 
 // 컴포넌트 임포트
 import SpotInput from "../components/SpotInput";
@@ -20,81 +20,13 @@ import Toast from "../components/Toast";
 
 const url = process.env.REACT_APP_WAS_URL;
 
-// 한국의 주요 도시 목록 (다국어 지원)
-const koreanCities = {
-  seoul: {
-    ko: "서울",
-    en: "Seoul",
-    ja: "ソウル",
-    zh: "首尔",
-    vi: "Seoul",
-  },
-  busan: {
-    ko: "부산",
-    en: "Busan",
-    ja: "釜山",
-    zh: "釜山",
-    vi: "Busan",
-  },
-  incheon: {
-    ko: "인천",
-    en: "Incheon",
-    ja: "仁川",
-    zh: "仁川",
-    vi: "Incheon",
-  },
-  jeju: {
-    ko: "제주",
-    en: "Jeju",
-    ja: "済州",
-    zh: "济州",
-    vi: "Jeju",
-  },
-  daegu: {
-    ko: "대구",
-    en: "Daegu",
-    ja: "大邱",
-    zh: "大邱",
-    vi: "Daegu",
-  },
-  daejeon: {
-    ko: "대전",
-    en: "Daejeon",
-    ja: "大田",
-    zh: "大田",
-    vi: "Daejeon",
-  },
-  gwangju: {
-    ko: "광주",
-    en: "Gwangju",
-    ja: "光州",
-    zh: "光州",
-    vi: "Gwangju",
-  },
-  suwon: {
-    ko: "수원",
-    en: "Suwon",
-    ja: "水原",
-    zh: "水原",
-    vi: "Suwon",
-  },
-  ulsan: {
-    ko: "울산",
-    en: "Ulsan",
-    ja: "蔚山",
-    zh: "蔚山",
-    vi: "Ulsan",
-  },
-  gangneung: {
-    ko: "강릉",
-    en: "Gangneung",
-    ja: "江陵",
-    zh: "江陵",
-    vi: "Gangneung",
-  },
-};
-
 const Curation = () => {
+  const {
+    checkSearchLimit,
+    checkItineraryLimit,
+    getRemainingRequests,
+    getTimeToReset,
+  } = useRateLimit();
   const [spots, setSpots] = useState([{ id: 1, name: "" }]);
   const [itinerary, setItinerary] = useState(null);
   const [startDate, setStartDate] = useState(null);
@@ -246,28 +178,22 @@ const Curation = () => {
     },
   ];
 
-  // Toggle a category in the selection
   const handleCategoryToggle = (category) => {
     setSelectedCategories((prevCategories) => {
-      // Check if this category is already selected
       const isSelected = prevCategories.some((cat) => cat.id === category.id);
 
       if (isSelected) {
-        // Remove from selected categories
         return prevCategories.filter((cat) => cat.id !== category.id);
       } else {
-        // Add to selected categories
         return [...prevCategories, category];
       }
     });
   };
 
-  // Proceed to the main curation interface
   const handleCategoryConfirm = () => {
     if (selectedCategories.length > 0) {
       setShowCategorySelector(false);
     } else {
-      // Show warning toast if no category is selected
       showToast(
         t("curation.selectAtLeastOne", "Please select at least one category"),
         "warning"
@@ -379,6 +305,19 @@ const Curation = () => {
       return;
     }
 
+    // 일정 생성 요청 제한 확인
+    if (!checkItineraryLimit()) {
+      showToast(
+        t(
+          "curation.rateLimitExceeded",
+          "일정 생성 한도에 도달했습니다. {{minutes}}분 후에 다시 시도해주세요.",
+          { minutes: getTimeToReset("itinerary") }
+        ),
+        "error"
+      );
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -389,7 +328,6 @@ const Curation = () => {
       console.log("Spots with full information:", spots);
       console.log("Selected Categories:", selectedCategories);
 
-      // Header에서 설정된 언어 가져오기 (localStorage에서 직접 가져옴)
       const selectedLanguage = localStorage.getItem("language") || "en";
       console.log("Selected Language:", selectedLanguage);
 
@@ -456,11 +394,6 @@ const Curation = () => {
     return date.toLocaleDateString(t("curation.language", "en"), options);
   };
 
-  // DatePicker 다크 모드용 클래스 생성
-  const datePickerClassName = `custom-datepicker ${
-    theme === "dark" ? "dark-theme-datepicker" : ""
-  }`;
-
   const removeSpot = (indexToRemove) => {
     if (spots.length > 1) {
       setSpots((prevSpots) => {
@@ -478,6 +411,20 @@ const Curation = () => {
           "Enter must-visit spots and get your full itinerary!"
         )}
       </p>
+
+      {/* 남은 요청 수 표시 */}
+      <div className="rate-limit-info">
+        <small>
+          {t(
+            "curation.remainingItineraries",
+            "남은 일정 생성: {{count}}/{{total}}",
+            {
+              count: getRemainingRequests("itinerary"),
+              total: 5,
+            }
+          )}
+        </small>
+      </div>
 
       {/* 토스트 메시지 컨테이너 */}
       <div className="toast-container">
@@ -713,7 +660,7 @@ const Curation = () => {
                 className="view-itinerary-button"
                 onClick={() => setShowItineraryModal(true)}
               >
-                {t("curation.viewItinerary", "View Your Itinerary")}
+                {t("curation.viewCurationItinerary", "View Your Itinerary")}
               </button>
             </div>
           )}

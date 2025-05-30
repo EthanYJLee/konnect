@@ -89,11 +89,13 @@
     }
   },
   "chat": {
-    "placeholder": "質問を入力してください...",
+    "placeholder": "ここに質問を入力してください...",
     "send": "送信",
     "thinking": "考え中",
-    "title": "トラベルアシスタントとチャット",
-    "subtitle": "韓国旅行に関する質問や助けが必要なことについて、自由に質問してください。"
+    "title": "旅行アシスタントとチャット",
+    "subtitle": "韓国旅行に関する質問やサポートを自由に依頼してください。",
+    "remainingRequests": "残りリクエスト: {{count}}/{{total}}",
+    "rateLimitExceeded": "チャットリクエスト制限に達しました。{{minutes}}分後に再試行してください。"
   },
   "faq": {
     "title": "よくある質問",
@@ -175,7 +177,8 @@
     "searchPlaceholder": "履歴を検索...",
     "savedOn": "保存日",
     "viewItinerary": "詳細を見る",
-    "deleteItinerary": "削除"
+    "deleteItinerary": "削除",
+    "viewDetails": "詳細を見る"
   },
   "settings": {
     "title": "設定",
@@ -192,7 +195,9 @@
     "info": "お知らせ",
     "success": "成功",
     "warning": "警告",
-    "error": "エラー"
+    "error": "エラー",
+    "loginSuccess": "ログインしました",
+    "logoutSuccess": "ログアウトしました"
   },
   "footer": {
     "about": "概要",
@@ -298,6 +303,7 @@
     "mapComingSoon": "地図表示は近日公開予定です",
     "generationError": "旅程の生成に失敗しました。もう一度お試しください。",
     "save": "保存",
+    "saved": "保存済み",
     "saveSuccess": "旅程が正常に保存されました！",
     "saveError": "旅程の保存に失敗しました。もう一度お試しください。",
     "validation": {
@@ -316,7 +322,12 @@
       "accommodation": "宿泊施設",
       "shopping": "ショッピング",
       "food": "レストラン"
-    }
+    },
+    "remainingItineraries": "残り旅程作成: {{count}}/{{total}}",
+    "rateLimitExceeded": "旅程生成の制限に達しました。{{minutes}}分後に再試行してください。",
+    "searchLimitReached": "検索制限に達しました",
+    "searchLimitMessage": "{{minutes}}分後に再試行してください",
+    "remainingSearches": "残り検索: {{count}}/{{total}}"
   },
   "session": {
     "expireTitle": "Session Expiring Soon",
@@ -327,5 +338,15 @@
     "extendError": "Failed to connect to server. Please try again or log out and log back in.",
     "retry": "Retry",
     "orLogout": "or log out and sign in again"
+  },
+  "travelGuides": {
+    "title": "旅行ガイド",
+    "subtitle": "厳選された旅行ガイドで韓国の魅力を発見しましょう",
+    "comingSoon": "準備中",
+    "preparingMessage": "旅行ガイドを準備中です。後ほどご確認ください。",
+    "searchPlaceholder": "ガイド、目的地、またはアクティビティを検索...",
+    "allRegions": "すべての地域",
+    "readMore": "続きを読む",
+    "noResults": "条件に一致するガイドが見つかりませんでした。別の検索語を試してください。"
   }
 } 

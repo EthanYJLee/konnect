@@ -16,6 +16,7 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
   const { theme } = useTheme();
   // 토스트 관련 상태 추가
   const [toasts, setToasts] = useState([]);
+  const [isSaved, setIsSaved] = useState(false);
 
   // 토스트 메시지 표시 함수
   const showToast = (message, type = "info") => {
@@ -53,6 +54,11 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
 
   // 저장 버튼 클릭 핸들러
   const handleSave = async() => {
+    // 이미 저장된 상태라면 함수 실행 중단
+    if (isSaved) {
+      return;
+    }
+    
     // 저장 기능 구현
     console.log("Save itinerary:", itinerary);
     try {
@@ -61,6 +67,7 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(response);
+      setIsSaved(true);
       // 성공 메시지를 토스트로 표시
       showToast(t("curation.saveSuccess", "Itinerary saved successfully!"), "success");
     } catch(error) {
@@ -107,6 +114,14 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
     }
   }, [isOpen, itinerary, activeDate]);
 
+  // 모달이 열릴 때마다 상태 초기화
+  useEffect(() => {
+    if (isOpen) {
+      // 모달이 열릴 때마다 저장 상태 초기화
+      setIsSaved(false);
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -133,14 +148,18 @@ const ItineraryModal = ({ isOpen, onClose, itinerary, formatDisplayDate }) => {
 
   const sortedDates = Object.keys(itinerary).sort();
 
+  const saveButtonClass = isSaved ? "save-btn-saved" : "save-btn";
+  const saveButtonText = isSaved ? `✓ ${t("curation.saved", "Saved")}` : t("curation.save", "Save");
+
+
   return (
     <div className={modalClasses}>
       <div className={containerClasses} ref={modalRef}>
         <div className="itinerary-modal-header">
           <h2>{t("curation.itineraryResults", "Your Travel Itinerary")}</h2>
           <div className="itinerary-modal-actions">
-            <button className="save-btn" onClick={handleSave}>
-              {t("curation.save", "Save")}
+            <button className={saveButtonClass} onClick={handleSave}>
+              {saveButtonText}
             </button>
             <button className="itinerary-modal-close" onClick={handleClose}>
               ⓧ

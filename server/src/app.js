@@ -12,6 +12,9 @@ const historyRoutes = require("./routes/historyRoutes");
 const googleSearchRoutes = require("./routes/googleSearchRoutes");
 const nominatimSearchRoutes = require("./routes/nominatimSearchRoutes");
 const curationRoutes = require("./routes/curationRoutes");
+// 미들웨어
+const authMiddleware = require("./middlewares/authMiddleware");
+
 const app = express();
 
 // CORS 미들웨어 (app.use(express.json()) 이전에 위치)
